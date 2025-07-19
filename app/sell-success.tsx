@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CheckCircle, ArrowRight } from 'lucide-react-native';
@@ -30,7 +30,7 @@ export default function SellSuccessScreen() {
       />
       <StatusBar style="light" />
       
-      <View style={styles.content}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.successSection}>
           <CheckCircle size={80} color={Colors.accent.green} />
           <Text style={styles.successTitle}>Congratulations! 🎉</Text>
@@ -73,7 +73,7 @@ export default function SellSuccessScreen() {
             <Text style={styles.secondaryButtonText}>View Marketplace</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -83,10 +83,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  content: {
+  scrollView: {
     flex: 1,
+  },
+  content: {
     paddingHorizontal: 16,
     paddingTop: 32,
+    minHeight: '100%',
   },
   successSection: {
     alignItems: 'center',

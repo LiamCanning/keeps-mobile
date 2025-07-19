@@ -90,7 +90,7 @@ export default function AssetDetailScreen() {
             <Text style={[styles.heroTitle, { color: textColor }]}>
               {asset.name}
             </Text>
-            <Text style={styles.assetTagline}>{getAssetTagline(asset.id)}</Text>
+            <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic]}>{getAssetTagline(asset.id)}</Text>
             <Text style={[styles.heroType, { color: Colors.text.light }]}>
               {asset.type === 'equity' ? 'Equity Investment' : 
                asset.type === 'debenture' ? 'Debenture Programme' : 
@@ -339,6 +339,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
     textAlign: 'center',
+  },
+  assetTaglineItalic: {
     fontStyle: 'italic',
   },
   heroType: {

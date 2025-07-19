@@ -184,11 +184,11 @@ export const marketListings: MarketListing[] = [
     originalPrice: 5000,
     sport: 'golf',
   },
-  // Exeter Rugby listings
+  // Exeter Chiefs listings
   {
     id: 'm12',
     assetId: 'exeter-rugby',
-    assetName: 'Exeter Rugby',
+    assetName: 'Exeter Chiefs',
     logo: 'https://r2-pub.rork.com/attachments/vgynqzajb5sdgj062fehn',
     quantity: 8,
     pricePerUnit: 580,
@@ -202,7 +202,7 @@ export const marketListings: MarketListing[] = [
   {
     id: 'm13',
     assetId: 'exeter-rugby',
-    assetName: 'Exeter Rugby',
+    assetName: 'Exeter Chiefs',
     logo: 'https://r2-pub.rork.com/attachments/vgynqzajb5sdgj062fehn',
     quantity: 15,
     pricePerUnit: 620,
@@ -216,7 +216,7 @@ export const marketListings: MarketListing[] = [
   {
     id: 'm14',
     assetId: 'exeter-rugby',
-    assetName: 'Exeter Rugby',
+    assetName: 'Exeter Chiefs',
     logo: 'https://r2-pub.rork.com/attachments/vgynqzajb5sdgj062fehn',
     quantity: 25,
     pricePerUnit: 595,

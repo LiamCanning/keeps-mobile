@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { CheckCircle, TrendingUp, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
@@ -26,7 +26,7 @@ export default function ListSuccessScreen() {
         }} 
       />
       
-      <View style={styles.content}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.successIcon}>
           <CheckCircle size={80} color={Colors.accent.green} />
         </View>
@@ -57,7 +57,7 @@ export default function ListSuccessScreen() {
             <Text style={styles.secondaryButtonText}>Back to Home</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -67,11 +67,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  content: {
+  scrollView: {
     flex: 1,
+  },
+  content: {
     padding: 24,
     justifyContent: 'center',
     alignItems: 'center',
+    minHeight: '100%',
   },
   successIcon: {
     marginBottom: 32,

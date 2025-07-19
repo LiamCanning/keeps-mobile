@@ -286,7 +286,7 @@ export const benefits: Benefit[] = [
     includesPrevious: true,
   },
 
-  // Exeter Rugby Benefits
+  // Exeter Chiefs Benefits
   {
     id: 'exeter-rugby-1',
     assetId: 'exeter-rugby',

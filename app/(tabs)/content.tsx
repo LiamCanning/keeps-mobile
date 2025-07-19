@@ -21,7 +21,7 @@ interface Reel {
 const reels: Reel[] = [
   {
     id: '1',
-    title: 'Liverpool FC investor shares their experience',
+    title: 'Liverpool FC investor shares their experience - LIVE',
     thumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop',
     duration: '2:15',
     views: 12500,
@@ -30,7 +30,7 @@ const reels: Reel[] = [
   },
   {
     id: '2',
-    title: 'McLaren Racing behind the scenes access',
+    title: 'McLaren Racing behind the scenes access - LIVE',
     thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop',
     duration: '1:45',
     views: 8900,
@@ -39,7 +39,7 @@ const reels: Reel[] = [
   },
   {
     id: '3',
-    title: 'Cardiff City investment success story',
+    title: 'Cardiff City fan excited for upcoming launch - COMING SOON',
     thumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=600&fit=crop',
     duration: '3:20',
     views: 6700,
@@ -48,7 +48,7 @@ const reels: Reel[] = [
   },
   {
     id: '4',
-    title: 'Ryder Cup exclusive tournament access',
+    title: 'Ryder Cup exclusive tournament access - LIVE',
     thumbnail: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=600&fit=crop',
     duration: '2:45',
     views: 9200,
@@ -57,12 +57,30 @@ const reels: Reel[] = [
   },
   {
     id: '5',
-    title: 'British Cycling debenture returns explained',
+    title: 'British Cycling debenture returns explained - COMPLETED',
     thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop',
     duration: '1:55',
     views: 5400,
     likes: 398,
     comments: 15,
+  },
+  {
+    id: '6',
+    title: 'Ohio State stadium funding excitement - COMING SOON',
+    thumbnail: 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=400&h=600&fit=crop',
+    duration: '2:30',
+    views: 7800,
+    likes: 542,
+    comments: 19,
+  },
+  {
+    id: '7',
+    title: 'Hexagon Fan Team esports investment - COMING SOON',
+    thumbnail: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=600&fit=crop',
+    duration: '1:40',
+    views: 4200,
+    likes: 298,
+    comments: 8,
   },
 ];
 

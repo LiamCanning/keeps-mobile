@@ -65,7 +65,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                 </Text>
                 
                 {/* Asset tagline */}
-                <Text style={[styles.tagline, { color: textColor }]}>
+                <Text style={[styles.tagline, { color: textColor }, asset.id === 'ohio' && styles.taglineItalic]}>
                   {asset.id === 'liverpool' ? 'Towards the transfer budget' :
                    asset.id === 'mclaren' ? 'Fuel McLaren\'s Next Victory' :
                    asset.id === 'rydercup' ? 'Improve digital fan engagement' :
@@ -291,17 +291,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   soldOutIndicator: {
-    backgroundColor: '#FF6B35',
+    backgroundColor: '#DC2626',
   },
   soldOutText: {
-    color: '#FF6B35',
+    color: '#DC2626',
+    fontWeight: '800',
   },
   tagline: {
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
-    fontStyle: 'italic',
     opacity: 0.9,
+  },
+  taglineItalic: {
+    fontStyle: 'italic',
   },
   whoInvestedButton: {
     marginBottom: 12,
