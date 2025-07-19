@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     color: Colors.primary.orange,
   },
   purchaseButton: {
-    backgroundColor: Colors.primary.orange,
+    backgroundColor: Colors.accent.green,
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',

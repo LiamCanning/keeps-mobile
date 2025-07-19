@@ -40,7 +40,7 @@ export default function AboutScreen() {
           <Text style={styles.text}>
             • Equity investments in premier sports teams{'\n'}
             • Debenture programmes for exclusive stadium access{'\n'}
-            • Income sharing agreements with sports organizations{'\n'}
+            • Income sharing agreements with sports organisations{'\n'}
             • Exclusive benefits and experiences for investors{'\n'}
             • Secondary market trading opportunities
           </Text>

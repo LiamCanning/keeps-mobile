@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingDown, Eye } from 'lucide-react-native';
+import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingUp as TrendingUpIcon, Eye } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
 
@@ -256,7 +256,7 @@ export default function AssetDetailScreen() {
               
               {isOwned && (
                 <TouchableOpacity style={styles.sellButton} onPress={handleSellPress}>
-                  <TrendingDown size={20} color={Colors.text.white} />
+                  <TrendingUpIcon size={20} color={Colors.text.white} />
                   <Text style={styles.sellButtonText}>Sell Now</Text>
                 </TouchableOpacity>
               )}
@@ -356,7 +356,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   statLabel: {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'bold',
     color: Colors.text.light,
     marginTop: 4,
@@ -396,14 +396,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   benefitsButton: {
-    backgroundColor: '#FF6B35',
+    backgroundColor: '#6366F1',
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 12,
-    shadowColor: '#FF6B35',
+    shadowColor: '#6366F1',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
   },
   sellButton: {
     flex: 1,
-    backgroundColor: '#FF6B35',
+    backgroundColor: '#EF4444',
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',

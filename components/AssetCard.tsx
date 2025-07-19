@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     position: 'absolute',
     top: 100,
-    left: 96,
+    left: 20,
   },
   trendingText: {
     color: Colors.text.white,

@@ -15,7 +15,7 @@ const faqs: FAQ[] = [
   {
     id: 1,
     question: 'Are these real assets?',
-    answer: 'Yes, all assets on Keeps represent real ownership stakes in legitimate sports entities. We partner directly with teams, stadiums, and sporting organizations to offer genuine investment opportunities.'
+    answer: 'Yes, all assets on Keeps represent real ownership stakes in legitimate sports entities. We partner directly with teams, stadiums, and sporting organisations to offer genuine investment opportunities.'
   },
   {
     id: 2,
