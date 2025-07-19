@@ -63,7 +63,7 @@ export default function ActionBanner({ activeTab, onTabChange }: ActionBannerPro
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: Colors.primary.white,
+    backgroundColor: Colors.text.white,
     marginHorizontal: 16,
     marginVertical: 12,
     borderRadius: 12,
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 14,
     fontWeight: '600',
-    color: Colors.text.secondary,
+    color: Colors.text.light,
   },
   activeTabText: {
-    color: Colors.primary.white,
+    color: Colors.text.white,
   },
 });

@@ -28,7 +28,7 @@ export default function LiveDealsScreen() {
         options={{ 
           title: 'Live Deals',
           headerStyle: { backgroundColor: Colors.primary.blue },
-          headerTintColor: Colors.primary.white,
+          headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
         }} 
       />

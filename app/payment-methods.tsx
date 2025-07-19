@@ -63,7 +63,7 @@ export default function PaymentMethodsScreen() {
         options={{ 
           title: 'Payment Methods',
           headerStyle: { backgroundColor: Colors.primary.blue },
-          headerTintColor: Colors.primary.white,
+          headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
         }} 
       />
@@ -100,13 +100,13 @@ export default function PaymentMethodsScreen() {
                   style={styles.actionButton}
                   onPress={() => handleEditPaymentMethod(method.id)}
                 >
-                  <Edit3 size={18} color={Colors.text.secondary} />
+                  <Edit3 size={18} color={Colors.text.light} />
                 </TouchableOpacity>
                 <TouchableOpacity 
                   style={styles.actionButton}
                   onPress={() => handleDeletePaymentMethod(method.id)}
                 >
-                  <Trash2 size={18} color={Colors.accent.red} />
+                  <Trash2 size={18} color="#FF3B30" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -114,7 +114,7 @@ export default function PaymentMethodsScreen() {
         ))}
         
         <TouchableOpacity style={styles.addButton} onPress={handleAddPaymentMethod}>
-          <Plus size={24} color={Colors.primary.white} />
+          <Plus size={24} color={Colors.text.white} />
           <Text style={styles.addButtonText}>Add New Payment Method</Text>
         </TouchableOpacity>
         
@@ -146,11 +146,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.primary.white,
+    color: Colors.text.white,
     marginBottom: 16,
   },
   paymentMethodCard: {
-    backgroundColor: Colors.primary.white,
+    backgroundColor: Colors.text.white,
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: Colors.background.light,
+    backgroundColor: Colors.background.secondary,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -185,12 +185,12 @@ const styles = StyleSheet.create({
   methodName: {
     fontSize: 16,
     fontWeight: '600',
-    color: Colors.text.primary,
+    color: Colors.text.dark,
     marginBottom: 4,
   },
   methodNumber: {
     fontSize: 14,
-    color: Colors.text.secondary,
+    color: Colors.text.light,
     marginBottom: 4,
   },
   defaultLabel: {
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: Colors.background.light,
+    backgroundColor: Colors.background.secondary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -220,29 +220,29 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 24,
     borderWidth: 2,
-    borderColor: Colors.primary.white,
+    borderColor: Colors.text.white,
     borderStyle: 'dashed',
   },
   addButtonText: {
-    color: Colors.primary.white,
+    color: Colors.text.white,
     fontSize: 16,
     fontWeight: '600',
     marginLeft: 8,
   },
   securityInfo: {
-    backgroundColor: Colors.background.light,
+    backgroundColor: Colors.background.secondary,
     borderRadius: 12,
     padding: 16,
   },
   securityTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: Colors.text.primary,
+    color: Colors.text.dark,
     marginBottom: 8,
   },
   securityText: {
     fontSize: 14,
-    color: Colors.text.secondary,
+    color: Colors.text.light,
     lineHeight: 20,
     marginBottom: 8,
   },

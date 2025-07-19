@@ -32,7 +32,7 @@ export default function CompletedDealsScreen() {
         options={{ 
           title: 'Completed Deals',
           headerStyle: { backgroundColor: Colors.primary.blue },
-          headerTintColor: Colors.primary.white,
+          headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
         }} 
       />
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   infoBox: {
-    backgroundColor: Colors.primary.white,
+    backgroundColor: Colors.text.white,
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
-    color: Colors.text.primary,
+    color: Colors.text.dark,
     textAlign: 'center',
     marginBottom: 12,
     lineHeight: 20,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   secondaryButtonText: {
-    color: Colors.primary.white,
+    color: Colors.text.white,
     fontSize: 16,
     fontWeight: '600',
   },
