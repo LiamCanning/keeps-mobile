@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingDown } from 'lucide-react-native';
+import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingDown, Eye } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
 
@@ -34,6 +34,10 @@ export default function AssetDetailScreen() {
 
   const handleEarlyAccessPress = () => {
     router.push(`/early-access/${asset.id}`);
+  };
+
+  const handleInvestorsPress = () => {
+    router.push(`/investors/${asset.id}`);
   };
 
   const getProgressColor = (progress: number) => {
@@ -93,18 +97,18 @@ export default function AssetDetailScreen() {
               {asset.progress && (
                 <View style={styles.statCard}>
                   <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress) }]} />
-                  <Text style={styles.statValue}>{asset.progress}%</Text>
-                  <Text style={styles.statLabel}>Progress</Text>
+                  <Text style={styles.statValue}>{100 - asset.progress}%</Text>
+                  <Text style={styles.statLabel}>Left</Text>
                 </View>
               )}
               
-              {asset.minimumEntry && (
-                <View style={styles.statCard}>
-                  <Calendar size={24} color={Colors.primary.blue} />
-                  <Text style={styles.statValue}>{asset.minimumEntry}</Text>
-                  <Text style={styles.statLabel}>Minimum Entry</Text>
-                </View>
-              )}
+              <View style={styles.statCard}>
+                <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
+                  <Eye size={24} color={Colors.primary.orange} />
+                  <Text style={styles.statValue}>Who's</Text>
+                  <Text style={styles.statLabel}>Invested?</Text>
+                </TouchableOpacity>
+              </View>
             </View>
             
             {/* Funding Progress Bar */}
@@ -169,8 +173,8 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailValue}>{asset.valuation}</Text>
                   </View>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Progress:</Text>
-                    <Text style={styles.detailValue}>{asset.progress}% full</Text>
+                    <Text style={styles.detailLabel}>Remaining:</Text>
+                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
@@ -190,8 +194,8 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailValue}>{asset.investorReturn}</Text>
                   </View>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Progress:</Text>
-                    <Text style={styles.detailValue}>{asset.progress}% full</Text>
+                    <Text style={styles.detailLabel}>Remaining:</Text>
+                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
@@ -203,8 +207,8 @@ export default function AssetDetailScreen() {
               {asset.type === 'debenture' && (
                 <>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Progress:</Text>
-                    <Text style={styles.detailValue}>{asset.progress}% full</Text>
+                    <Text style={styles.detailLabel}>Remaining:</Text>
+                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
@@ -482,6 +486,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.text.light,
     marginLeft: 8,
+  },
+  investorsButton: {
+    alignItems: 'center',
+    width: '100%',
   },
   errorText: {
     color: Colors.text.white,

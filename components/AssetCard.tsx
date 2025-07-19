@@ -7,9 +7,10 @@ import Colors from '@/constants/colors';
 interface AssetCardProps {
   asset: Asset;
   onPress?: () => void;
+  onInvestorsPress?: () => void;
 }
 
-export default function AssetCard({ asset, onPress }: AssetCardProps) {
+export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
   const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : Colors.text.white;
   const isComingSoon = asset.type === 'coming_soon';
@@ -28,6 +29,12 @@ export default function AssetCard({ asset, onPress }: AssetCardProps) {
               <Text style={[styles.name, { color: textColor }]}>
                 {asset.name}
               </Text>
+              {!isComingSoon && (
+                <View style={styles.liveNowBadge}>
+                  <View style={styles.liveIndicatorSmall} />
+                  <Text style={styles.liveNowText}>LIVE NOW</Text>
+                </View>
+              )}
               {!isComingSoon && asset.id === 'liverpool' && (
                 <View style={styles.trendingBadge}>
                   <Text style={styles.trendingText}>Trending</Text>
@@ -53,11 +60,6 @@ export default function AssetCard({ asset, onPress }: AssetCardProps) {
               </>
             ) : (
               <>
-                <View style={styles.statusContainer}>
-                  <View style={styles.liveIndicator} />
-                  <Text style={[styles.status, { color: textColor }]}>{asset.status}</Text>
-                </View>
-                
                 <Text style={[styles.raiseAmount, { color: textColor }]}>
                   {asset.raiseAmount}
                 </Text>
@@ -66,9 +68,14 @@ export default function AssetCard({ asset, onPress }: AssetCardProps) {
                   Minimum entry {asset.minimumEntry}
                 </Text>
                 
-                <Text style={[styles.benefits, { color: textColor }]}>
-                  Exclusive Benefits
-                </Text>
+                <TouchableOpacity 
+                  style={styles.whoInvestedButton}
+                  onPress={onInvestorsPress}
+                >
+                  <Text style={[styles.whoInvestedText, { color: textColor }]}>
+                    Who's Invested?
+                  </Text>
+                </TouchableOpacity>
                 
                 {/* Funding Progress Bar */}
                 {asset.raisedAmount && asset.goalAmount && (
@@ -249,5 +256,35 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 6,
     opacity: 0.9,
+  },
+  liveNowBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(76, 217, 100, 0.2)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginRight: 8,
+  },
+  liveIndicatorSmall: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#4CD964',
+    marginRight: 4,
+  },
+  liveNowText: {
+    color: '#4CD964',
+    fontSize: 10,
+    fontWeight: '700',
+  },
+  whoInvestedButton: {
+    marginBottom: 12,
+  },
+  whoInvestedText: {
+    fontSize: 14,
+    fontWeight: '500',
+    opacity: 0.9,
+    textDecorationLine: 'underline',
   },
 });

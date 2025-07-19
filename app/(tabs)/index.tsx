@@ -23,6 +23,10 @@ export default function HomeScreen() {
     router.push(`/asset/${assetId}`);
   };
 
+  const handleInvestorsPress = (assetId: string) => {
+    router.push(`/investors/${assetId}`);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
