@@ -6,21 +6,25 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
-import { userAssets } from '@/constants/assets';
+import { assets } from '@/constants/assets';
 import BenefitCard from '@/components/BenefitCard';
 
 export default function BenefitsScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const [selectedAssetId, setSelectedAssetId] = useState<string | null>(userAssets[0]?.id || null);
+  const [selectedTab, setSelectedTab] = useState<'live' | 'completed' | 'coming-soon'>('live');
   
   const handleHomePress = () => {
     router.push('/(tabs)');
   };
+
+  const handleAssetPress = (assetId: string) => {
+    router.push(`/benefits/${assetId}`);
+  };
   
-  const filteredBenefits = selectedAssetId 
-    ? benefits.filter(benefit => benefit.assetId === selectedAssetId)
-    : [];
+  const getAssetsByStatus = (status: string) => {
+    return assets.filter(asset => asset.status === status);
+  };
 
   return (
     <View style={styles.container}>
@@ -32,30 +36,34 @@ export default function BenefitsScreen() {
             <Home size={20} color={Colors.text.white} />
           </TouchableOpacity>
           <View style={styles.headerTitles}>
-            <Text style={styles.headerTitle}>Your Benefits</Text>
-            <Text style={styles.headerSubtitle}>Exclusive perks for your investments</Text>
+            <Text style={styles.headerTitle}>All Benefits</Text>
+            <Text style={styles.headerSubtitle}>Exclusive perks across all assets</Text>
           </View>
         </View>
       </View>
       
-      <View style={styles.assetSelector}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.assetSelectorContent}>
-          {userAssets.map((asset) => (
+      <View style={styles.tabSelector}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabSelectorContent}>
+          {[
+            { key: 'live', label: 'Live Assets' },
+            { key: 'completed', label: 'Completed Assets' },
+            { key: 'coming-soon', label: 'Coming Soon Assets' }
+          ].map((tab) => (
             <TouchableOpacity
-              key={asset.id}
+              key={tab.key}
               style={[
-                styles.assetButton,
-                selectedAssetId === asset.id && styles.assetButtonActive,
+                styles.tabButton,
+                selectedTab === tab.key && styles.tabButtonActive,
               ]}
-              onPress={() => setSelectedAssetId(asset.id)}
+              onPress={() => setSelectedTab(tab.key as any)}
             >
               <Text
                 style={[
-                  styles.assetButtonText,
-                  selectedAssetId === asset.id && styles.assetButtonTextActive,
+                  styles.tabButtonText,
+                  selectedTab === tab.key && styles.tabButtonTextActive,
                 ]}
               >
-                {asset.name}
+                {tab.label}
               </Text>
             </TouchableOpacity>
           ))}
@@ -67,15 +75,32 @@ export default function BenefitsScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {filteredBenefits.length > 0 ? (
-          filteredBenefits.map((benefit) => (
-            <BenefitCard key={benefit.id} benefit={benefit} />
-          ))
-        ) : (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>No benefits found for this asset</Text>
-          </View>
-        )}
+        {getAssetsByStatus(selectedTab).map((asset) => (
+          <TouchableOpacity
+            key={asset.id}
+            style={styles.assetCard}
+            onPress={() => handleAssetPress(asset.id)}
+          >
+            <View style={styles.assetHeader}>
+              <Text style={styles.assetName}>{asset.name}</Text>
+              <View style={[styles.statusBadge, { backgroundColor: 
+                selectedTab === 'live' ? Colors.accent.green :
+                selectedTab === 'completed' ? Colors.accent.blue :
+                Colors.accent.orange
+              }]}>
+                <Text style={styles.statusText}>
+                  {selectedTab === 'live' ? 'Live' :
+                   selectedTab === 'completed' ? 'Completed' :
+                   'Coming Soon'}
+                </Text>
+              </View>
+            </View>
+            <Text style={styles.assetDescription}>{asset.description}</Text>
+            <Text style={styles.benefitsPreview}>
+              Tap to view exclusive benefits and perks
+            </Text>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
@@ -114,28 +139,28 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     opacity: 0.8,
   },
-  assetSelector: {
+  tabSelector: {
     paddingVertical: 16,
   },
-  assetSelectorContent: {
+  tabSelectorContent: {
     paddingHorizontal: 12,
   },
-  assetButton: {
+  tabButton: {
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
     marginHorizontal: 4,
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
-  assetButtonActive: {
+  tabButtonActive: {
     backgroundColor: Colors.primary.orange,
   },
-  assetButtonText: {
+  tabButtonText: {
     fontSize: 14,
     fontWeight: '600',
     color: Colors.text.white,
   },
-  assetButtonTextActive: {
+  tabButtonTextActive: {
     color: Colors.text.white,
   },
   scrollView: {
@@ -145,14 +170,43 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 24,
   },
-  emptyContainer: {
-    padding: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
+  assetCard: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
   },
-  emptyText: {
-    fontSize: 16,
+  assetHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  assetName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    flex: 1,
+  },
+  statusBadge: {
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  statusText: {
+    fontSize: 12,
+    fontWeight: 'bold',
     color: Colors.text.white,
-    opacity: 0.7,
+  },
+  assetDescription: {
+    fontSize: 14,
+    color: Colors.text.light,
+    lineHeight: 20,
+    marginBottom: 12,
+  },
+  benefitsPreview: {
+    fontSize: 14,
+    color: Colors.primary.orange,
+    fontWeight: '600',
   },
 });

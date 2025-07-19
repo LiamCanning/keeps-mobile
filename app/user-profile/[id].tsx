@@ -328,6 +328,43 @@ export default function UserProfileScreen() {
           ))}
         </View>
 
+        {/* Data Sharing Partners */}
+        <View style={styles.partnersContainer}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
+          </View>
+          <View style={styles.partnersGrid}>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Heineken-Logo.png' }} 
+                style={styles.partnerLogo}
+              />
+              <Text style={styles.partnerName}>Heineken</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' }} 
+                style={styles.partnerLogo}
+              />
+              <Text style={styles.partnerName}>Google</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Rolex-Logo.png' }} 
+                style={styles.partnerLogo}
+              />
+              <Text style={styles.partnerName}>Rolex</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/12/AXA-Logo.png' }} 
+                style={styles.partnerLogo}
+              />
+              <Text style={styles.partnerName}>AXA</Text>
+            </View>
+          </View>
+        </View>
+
         {/* Send Message Button */}
         <TouchableOpacity style={styles.messageButton} onPress={handleSendMessage}>
           <MessageCircle size={20} color={Colors.text.white} />
@@ -484,7 +521,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background.card,
     borderRadius: 16,
     padding: 20,
-    marginBottom: 24,
+    marginBottom: 16,
   },
   achievementItem: {
     flexDirection: 'row',
@@ -515,5 +552,36 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 8,
+  },
+  partnersContainer: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
+  },
+  partnersGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  partnerItem: {
+    width: '48%',
+    alignItems: 'center',
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+  },
+  partnerLogo: {
+    width: 60,
+    height: 30,
+    resizeMode: 'contain',
+    marginBottom: 8,
+  },
+  partnerName: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: Colors.text.dark,
+    textAlign: 'center',
   },
 });

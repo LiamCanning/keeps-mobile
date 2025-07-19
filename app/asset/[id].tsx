@@ -6,6 +6,21 @@ import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, Tren
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 
+const getAssetTagline = (assetId: string): string => {
+  const taglines: { [key: string]: string } = {
+    'liverpool-fc': 'Invest in Anfield\'s Legacy',
+    'cardiff-city': 'Back the Bluebirds\' Future',
+    'mclaren-racing': 'Fuel McLaren\'s Next Victory',
+    'ohio-state': 'Fund Their New Stadium',
+    'hexagon-cup': 'Own 75% of the Team',
+    'ryder-cup': 'Golf\'s Greatest Investment',
+    'british-cycling': 'Pedal to Success',
+    'exeter-rugby': 'Tackle Your Investment Goals',
+    'ultimate-frisbee': 'Catch the Ultimate Opportunity',
+  };
+  return taglines[assetId] || 'Invest in Sports Excellence';
+};
+
 export default function AssetDetailScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
@@ -75,6 +90,7 @@ export default function AssetDetailScreen() {
             <Text style={[styles.heroTitle, { color: textColor }]}>
               {asset.name}
             </Text>
+            <Text style={styles.assetTagline}>{getAssetTagline(asset.id)}</Text>
             <Text style={[styles.heroType, { color: Colors.text.light }]}>
               {asset.type === 'equity' ? 'Equity Investment' : 
                asset.type === 'debenture' ? 'Debenture Programme' : 
@@ -302,8 +318,16 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 28,
     fontWeight: 'bold',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  assetTagline: {
+    fontSize: 16,
+    color: Colors.primary.orange,
+    fontWeight: '600',
     marginBottom: 8,
     textAlign: 'center',
+    fontStyle: 'italic',
   },
   heroType: {
     fontSize: 16,

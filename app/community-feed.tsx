@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home } from 'lucide-react-native';
+import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 
 interface Comment {
@@ -166,6 +166,10 @@ export default function CommunityFeedScreen() {
     router.push('/new-post');
   };
 
+  const handleProfilePress = () => {
+    router.push('/my-account');
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen 
@@ -199,6 +203,9 @@ export default function CommunityFeedScreen() {
           </TouchableOpacity>
           <TouchableOpacity style={styles.actionButton} onPress={handleNewPostPress}>
             <Edit size={20} color={Colors.primary.blue} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionButton} onPress={handleProfilePress}>
+            <User size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
         </View>
 

@@ -1,31 +1,72 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Search, Home } from 'lucide-react-native';
+import { Home, Play, MessageCircle } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
 import NewsCard from '@/components/NewsCard';
 
+interface Reel {
+  id: string;
+  title: string;
+  thumbnail: string;
+  duration: string;
+  views: number;
+  likes: number;
+  comments: number;
+}
+
+const reels: Reel[] = [
+  {
+    id: '1',
+    title: 'Liverpool FC investor shares their experience',
+    thumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop',
+    duration: '2:15',
+    views: 12500,
+    likes: 847,
+    comments: 23,
+  },
+  {
+    id: '2',
+    title: 'McLaren Racing behind the scenes access',
+    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop',
+    duration: '1:45',
+    views: 8900,
+    likes: 623,
+    comments: 18,
+  },
+  {
+    id: '3',
+    title: 'Cardiff City investment success story',
+    thumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=600&fit=crop',
+    duration: '3:20',
+    views: 6700,
+    likes: 445,
+    comments: 12,
+  },
+];
+
 export default function ContentScreen() {
   const insets = useSafeAreaInsets();
-  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState<'written' | 'reels'>('written');
   
   const handleHomePress = () => {
     router.push('/(tabs)');
   };
-  
-  const filteredArticles = searchQuery
-    ? newsArticles.filter(article => 
-        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        article.summary.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : newsArticles;
 
-  const handleArticlePress = (articleId: string) => {
-    router.push(`/article/${articleId}`);
+  const handleNewsPress = (newsId: string) => {
+    router.push(`/article/${newsId}`);
+  };
+
+  const handleReelPress = (reelId: string) => {
+    console.log('Playing reel:', reelId);
+  };
+
+  const handleCommentsPress = (reelId: string) => {
+    router.push(`/comment-thread/${reelId}`);
   };
 
   return (
@@ -38,42 +79,77 @@ export default function ContentScreen() {
             <Home size={20} color={Colors.text.white} />
           </TouchableOpacity>
           <View style={styles.headerTitles}>
-            <Text style={[styles.headerTitle, { color: Colors.primary.orange }]}>Sports Finance News</Text>
-            <Text style={styles.headerSubtitle}>Latest updates from the world of sports investments</Text>
+            <Text style={styles.headerTitle}>Content</Text>
+            <Text style={styles.headerSubtitle}>News, insights and investor stories</Text>
           </View>
         </View>
       </View>
-      
-      <View style={styles.searchContainer}>
-        <Search size={20} color={Colors.text.light} style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search articles..."
-          placeholderTextColor={Colors.text.light}
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
+
+      <View style={styles.tabSelector}>
+        <TouchableOpacity
+          style={[styles.tabButton, selectedTab === 'written' && styles.tabButtonActive]}
+          onPress={() => setSelectedTab('written')}
+        >
+          <Text style={[styles.tabButtonText, selectedTab === 'written' && styles.tabButtonTextActive]}>
+            Written News
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tabButton, selectedTab === 'reels' && styles.tabButtonActive]}
+          onPress={() => setSelectedTab('reels')}
+        >
+          <Text style={[styles.tabButtonText, selectedTab === 'reels' && styles.tabButtonTextActive]}>
+            Reels
+          </Text>
+        </TouchableOpacity>
       </View>
-      
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {filteredArticles.length > 0 ? (
-          filteredArticles.map((article) => (
+
+      {selectedTab === 'written' ? (
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.sectionTitle}>Latest News</Text>
+          {newsArticles.map((article) => (
             <NewsCard 
               key={article.id} 
               article={article} 
-              onPress={() => handleArticlePress(article.id)}
+              onPress={() => handleNewsPress(article.id)}
             />
-          ))
-        ) : (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>No articles found matching your search</Text>
-          </View>
-        )}
-      </ScrollView>
+          ))}
+        </ScrollView>
+      ) : (
+        <FlatList
+          data={reels}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.reelsContent}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.reelCard} onPress={() => handleReelPress(item.id)}>
+              <View style={styles.reelImageContainer}>
+                <Image source={{ uri: item.thumbnail }} style={styles.reelImage} />
+                <View style={styles.playOverlay}>
+                  <Play size={32} color={Colors.text.white} />
+                </View>
+                <View style={styles.durationBadge}>
+                  <Text style={styles.durationText}>{item.duration}</Text>
+                </View>
+              </View>
+              <View style={styles.reelInfo}>
+                <Text style={styles.reelTitle}>{item.title}</Text>
+                <View style={styles.reelStats}>
+                  <Text style={styles.reelStat}>{item.views.toLocaleString()} views</Text>
+                  <Text style={styles.reelStat}>❤️ {item.likes}</Text>
+                  <TouchableOpacity onPress={() => handleCommentsPress(item.id)}>
+                    <Text style={styles.reelStat}>💬 {item.comments}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -103,6 +179,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: Colors.text.white,
     marginBottom: 4,
   },
   headerSubtitle: {
@@ -110,24 +187,30 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     opacity: 0.8,
   },
-  searchContainer: {
+  tabSelector: {
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 12,
-    paddingHorizontal: 12,
-    marginHorizontal: 16,
-    marginVertical: 16,
-    height: 48,
+    margin: 16,
+    padding: 4,
   },
-  searchIcon: {
-    marginRight: 8,
-  },
-  searchInput: {
+  tabButton: {
     flex: 1,
-    height: '100%',
-    color: Colors.text.white,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  tabButtonActive: {
+    backgroundColor: Colors.primary.orange,
+  },
+  tabButtonText: {
     fontSize: 16,
+    fontWeight: '600',
+    color: Colors.text.white,
+    opacity: 0.7,
+  },
+  tabButtonTextActive: {
+    opacity: 1,
   },
   scrollView: {
     flex: 1,
@@ -136,14 +219,72 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 24,
   },
-  emptyContainer: {
-    padding: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  emptyText: {
-    fontSize: 16,
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: Colors.text.white,
-    opacity: 0.7,
+    marginBottom: 16,
+    marginTop: 8,
+  },
+  reelsContent: {
+    paddingHorizontal: 16,
+    paddingBottom: 24,
+  },
+  reelCard: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    marginBottom: 16,
+    overflow: 'hidden',
+  },
+  reelImageContainer: {
+    position: 'relative',
+    height: 300,
+  },
+  reelImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  playOverlay: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -16 }, { translateY: -16 }],
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: 25,
+    padding: 8,
+  },
+  durationBadge: {
+    position: 'absolute',
+    bottom: 12,
+    right: 12,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  durationText: {
+    color: Colors.text.white,
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  reelInfo: {
+    padding: 16,
+  },
+  reelTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  reelStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  reelStat: {
+    fontSize: 14,
+    color: Colors.text.light,
+    fontWeight: '500',
   },
 });

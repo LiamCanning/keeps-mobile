@@ -69,8 +69,10 @@ export default function MarketScreen() {
       
       <View style={styles.filterContainer}>
         <View style={styles.filterHeader}>
-          <Filter size={16} color={Colors.text.white} />
-          <Text style={styles.filterTitle}>Filter by sport</Text>
+          <View style={styles.filterLeft}>
+            <Filter size={16} color={Colors.text.white} />
+            <Text style={styles.filterTitle}>Filter by Asset</Text>
+          </View>
           <TouchableOpacity 
             style={styles.listAssetButton}
             onPress={() => router.push('/list-asset')}
@@ -160,11 +162,15 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     justifyContent: 'space-between',
   },
+  filterLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   filterTitle: {
     fontSize: 14,
     fontWeight: '600',
     color: Colors.text.white,
-    marginLeft: 8,
+    marginLeft: 0,
   },
   filterButtonsContainer: {
     paddingHorizontal: 12,

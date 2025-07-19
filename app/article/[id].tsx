@@ -1,19 +1,91 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Linking, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, Stack } from 'expo-router';
-import { ExternalLink, Calendar, User } from 'lucide-react-native';
+import { ExternalLink, Calendar, User, MessageCircle, Send, Heart } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
+import BackButton from '@/components/BackButton';
+
+interface Comment {
+  id: string;
+  author: string;
+  content: string;
+  timestamp: string;
+  likes: number;
+}
+
+const articleComments: { [key: string]: Comment[] } = {
+  '1': [
+    {
+      id: '1',
+      author: 'James Mitchell 🇺🇸',
+      content: 'Great analysis! This really shows the potential of sports investment.',
+      timestamp: '2h ago',
+      likes: 12,
+    },
+    {
+      id: '2',
+      author: 'Sarah Chen 🇨🇦',
+      content: 'I\'ve been following Liverpool\'s performance closely. The numbers look very promising.',
+      timestamp: '4h ago',
+      likes: 8,
+    },
+  ],
+  '2': [
+    {
+      id: '3',
+      author: 'Michael Rodriguez 🇪🇸',
+      content: 'McLaren\'s partnership strategy is brilliant. This could be a game changer.',
+      timestamp: '1h ago',
+      likes: 15,
+    },
+  ],
+  '3': [
+    {
+      id: '4',
+      author: 'Emma Thompson 🇬🇧',
+      content: 'Cardiff\'s momentum is incredible. Glad I invested early!',
+      timestamp: '3h ago',
+      likes: 6,
+    },
+  ],
+};
 
 export default function ArticleDetailScreen() {
   const { id } = useLocalSearchParams();
-  
   const article = newsArticles.find(a => a.id === id);
+  const [showComments, setShowComments] = useState(false);
+  const [newComment, setNewComment] = useState('');
+  const [comments, setComments] = useState(articleComments[id as string] || []);
+  
+  const handlePostComment = () => {
+    if (newComment.trim()) {
+      const comment: Comment = {
+        id: Date.now().toString(),
+        author: 'Liam 🇬🇧',
+        content: newComment.trim(),
+        timestamp: 'now',
+        likes: 0,
+      };
+      setComments([comment, ...comments]);
+      setNewComment('');
+    }
+  };
   
   if (!article) {
     return (
       <View style={styles.container}>
+        <Stack.Screen 
+          options={{ 
+            headerShown: true,
+            headerTitle: 'Article Not Found',
+            headerStyle: { backgroundColor: Colors.primary.blue },
+            headerTintColor: Colors.text.white,
+            headerTitleStyle: { fontWeight: 'bold' },
+            headerLeft: () => <BackButton />,
+          }} 
+        />
         <Text style={styles.errorText}>Article not found</Text>
       </View>
     );
@@ -34,6 +106,7 @@ export default function ArticleDetailScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />
@@ -71,9 +144,9 @@ export default function ArticleDetailScreen() {
               <Text style={styles.fullArticleText}>
                 This is where the full article content would appear. In a real application, this would contain the complete article text with proper formatting, additional images, and detailed analysis of the sports finance topic.
                 
-                {'\n\n'}The sports investment landscape is rapidly evolving, with new opportunities emerging for fans to directly participate in the financial success of their favorite teams and athletes. This democratization of sports finance is creating unprecedented opportunities for both individual investors and sports organizations.
+                {'\n\n'}The sports investment landscape is rapidly evolving, with new opportunities emerging for fans to directly participate in the financial success of their favorite teams and athletes. This democratisation of sports finance is creating unprecedented opportunities for both individual investors and sports organisations.
                 
-                {'\n\n'}Key trends in the market include the rise of fan tokens, equity crowdfunding for sports teams, and innovative revenue-sharing models that allow supporters to benefit from commercial success. These developments are reshaping how sports organizations raise capital and engage with their communities.
+                {'\n\n'}Key trends in the market include the rise of fan tokens, equity crowdfunding for sports teams, and innovative revenue-sharing models that allow supporters to benefit from commercial success. These developments are reshaping how sports organisations raise capital and engage with their communities.
                 
                 {'\n\n'}Regulatory frameworks are also adapting to accommodate these new investment vehicles, with various jurisdictions developing specific guidelines for sports-related financial products. This regulatory clarity is essential for the continued growth and legitimacy of the sports finance sector.
               </Text>
@@ -85,6 +158,56 @@ export default function ArticleDetailScreen() {
               <ExternalLink size={20} color={Colors.text.white} />
               <Text style={styles.linkButtonText}>Read Original Article</Text>
             </TouchableOpacity>
+          )}
+        </View>
+
+        {/* Comments Section */}
+        <View style={styles.commentsSection}>
+          <TouchableOpacity 
+            style={styles.commentsHeader}
+            onPress={() => setShowComments(!showComments)}
+          >
+            <MessageCircle size={20} color={Colors.primary.orange} />
+            <Text style={styles.commentsTitle}>
+              Comments ({comments.length})
+            </Text>
+          </TouchableOpacity>
+
+          {showComments && (
+            <View style={styles.commentsContainer}>
+              {/* Comment Input */}
+              <View style={styles.commentInput}>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Write a comment..."
+                  placeholderTextColor={Colors.text.light}
+                  value={newComment}
+                  onChangeText={setNewComment}
+                  multiline
+                />
+                <TouchableOpacity 
+                  style={styles.postButton}
+                  onPress={handlePostComment}
+                >
+                  <Send size={16} color={Colors.text.white} />
+                </TouchableOpacity>
+              </View>
+
+              {/* Comments List */}
+              {comments.map((comment) => (
+                <View key={comment.id} style={styles.commentCard}>
+                  <View style={styles.commentHeader}>
+                    <Text style={styles.commentAuthor}>{comment.author}</Text>
+                    <Text style={styles.commentTimestamp}>{comment.timestamp}</Text>
+                  </View>
+                  <Text style={styles.commentContent}>{comment.content}</Text>
+                  <TouchableOpacity style={styles.commentLike}>
+                    <Heart size={16} color={Colors.text.light} />
+                    <Text style={styles.commentLikes}>{comment.likes}</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
           )}
         </View>
       </ScrollView>
@@ -175,5 +298,82 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 100,
+  },
+  commentsSection: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginHorizontal: 16,
+    marginBottom: 24,
+  },
+  commentsHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  commentsTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginLeft: 8,
+  },
+  commentsContainer: {
+    marginTop: 8,
+  },
+  commentInput: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 16,
+    color: Colors.text.dark,
+    maxHeight: 100,
+  },
+  postButton: {
+    backgroundColor: Colors.primary.orange,
+    borderRadius: 20,
+    padding: 8,
+    marginLeft: 8,
+  },
+  commentCard: {
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+  },
+  commentHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  commentAuthor: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+  },
+  commentTimestamp: {
+    fontSize: 12,
+    color: Colors.text.light,
+  },
+  commentContent: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    lineHeight: 20,
+    marginBottom: 8,
+  },
+  commentLike: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  commentLikes: {
+    fontSize: 12,
+    color: Colors.text.light,
+    marginLeft: 4,
   },
 });
