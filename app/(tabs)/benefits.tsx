@@ -25,7 +25,7 @@ export default function BenefitsScreen() {
   // Combine all assets
   const allAssets = [...userAssets, ...comingSoonAssets, ...completedAssets];
   
-  const getAssetsByStatus = (status: string) => {
+  const getAssetsByStatus = (status: string): Asset[] => {
     if (status === 'live') {
       return userAssets;
     } else if (status === 'completed') {
@@ -85,7 +85,7 @@ export default function BenefitsScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {getAssetsByStatus(selectedTab).map((asset: Asset) => (
+        {getAssetsByStatus(selectedTab).map((asset) => (
           <TouchableOpacity
             key={asset.id}
             style={styles.assetCard}

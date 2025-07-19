@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { ShoppingCart, CreditCard, DollarSign } from 'lucide-react-native';
+import { ShoppingCart, CreditCard, DollarSign, Building2 } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
 
@@ -115,11 +115,15 @@ export default function BuyScreen() {
             style={[styles.paymentOption, paymentMethod === 'bank' && styles.paymentOptionActive]}
             onPress={() => setPaymentMethod('bank')}
           >
-            <Text style={styles.poundSign}>£</Text>
+            <Building2 size={24} color={paymentMethod === 'bank' ? Colors.primary.orange : Colors.text.light} />
             <Text style={[styles.paymentText, paymentMethod === 'bank' && styles.paymentTextActive]}>
               Bank Transfer
             </Text>
           </TouchableOpacity>
+          
+          <Text style={styles.paymentNote}>
+            Card and bank methods are saved in your account for quick payments.
+          </Text>
         </View>
 
         <View style={styles.summarySection}>
@@ -146,6 +150,15 @@ export default function BuyScreen() {
             <Text style={styles.summaryLabel}>Processing Fee (10%):</Text>
             <Text style={styles.summaryValue}>£{processingFee.toLocaleString()}</Text>
           </View>
+          
+          {asset.type === 'equity' && (
+            <View style={styles.summaryRow}>
+              <Text style={styles.summaryLabel}>Equity Percentage:</Text>
+              <Text style={styles.summaryValue}>
+                £{subtotal.toLocaleString()} = {((subtotal / (asset.id === 'liverpool' ? 40000000 : asset.id === 'exeter-rugby' ? 5000000 : asset.id === 'ultimate-frisbee' ? 8000000 : 1000000)) * 100).toFixed(3)}% of the investment round
+              </Text>
+            </View>
+          )}
           
           <View style={[styles.summaryRow, styles.totalRow]}>
             <Text style={styles.totalLabel}>Total:</Text>
@@ -308,5 +321,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 100,
+  },
+  paymentNote: {
+    fontSize: 12,
+    color: Colors.text.light,
+    textAlign: 'center',
+    marginTop: 12,
+    fontStyle: 'italic',
   },
 });

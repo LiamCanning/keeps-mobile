@@ -118,6 +118,16 @@ export default function ListAssetScreen() {
               <Text style={styles.sectionTitle}>Price Per {selectedAssetData?.type === 'debenture' ? 'Debenture' : 'Share'}</Text>
               <Text style={styles.sectionSubtitle}>Set your asking price per {selectedAssetData?.type === 'debenture' ? 'debenture' : 'share'}</Text>
               
+              <Text style={styles.suggestedPriceLabel}>Suggested Price</Text>
+              <Text style={styles.suggestedPriceValue}>
+                £{selectedAssetData?.id === 'liverpool' ? '550' : 
+                   selectedAssetData?.id === 'mclaren' ? '1,100' : 
+                   selectedAssetData?.id === 'rydercup' ? '5,250' : 
+                   selectedAssetData?.id === 'exeter-rugby' ? '525' :
+                   selectedAssetData?.id === 'british-cycling' ? '1,050' :
+                   selectedAssetData?.id === 'ultimate-frisbee' ? '265' : '500'}
+              </Text>
+              
               <View style={styles.priceInputContainer}>
                 <Text style={styles.currencySymbol}>£</Text>
                 <TextInput
@@ -162,6 +172,28 @@ export default function ListAssetScreen() {
               <View style={[styles.summaryRow, styles.totalRow]}>
                 <Text style={styles.totalLabel}>Net Amount:</Text>
                 <Text style={styles.totalValue}>£{calculateNetAmount().toLocaleString()}</Text>
+              </View>
+            </View>
+
+            <View style={styles.whatHappensNextBox}>
+              <Text style={styles.whatHappensTitle}>What Happens Next?</Text>
+              <View style={styles.stepContainer}>
+                <View style={styles.stepIcon}>
+                  <Text style={styles.stepNumber}>1</Text>
+                </View>
+                <Text style={styles.stepText}>Your asset is listed on the secondary market</Text>
+              </View>
+              <View style={styles.stepContainer}>
+                <View style={styles.stepIcon}>
+                  <Text style={styles.stepNumber}>2</Text>
+                </View>
+                <Text style={styles.stepText}>Buyers can view and purchase your listing</Text>
+              </View>
+              <View style={styles.stepContainer}>
+                <View style={styles.stepIcon}>
+                  <Text style={styles.stepNumber}>3</Text>
+                </View>
+                <Text style={styles.stepText}>Funds are transferred upon successful sale</Text>
               </View>
             </View>
 
@@ -323,5 +355,58 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginLeft: 8,
+  },
+  suggestedPriceLabel: {
+    fontSize: 14,
+    color: Colors.text.light,
+    marginBottom: 4,
+    marginTop: 8,
+  },
+  suggestedPriceValue: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: Colors.accent.green,
+    fontStyle: 'italic',
+    marginBottom: 12,
+  },
+  whatHappensNextBox: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
+    borderWidth: 2,
+    borderColor: Colors.accent.green,
+  },
+  whatHappensTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  stepContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  stepIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: Colors.accent.green,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  stepNumber: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+  },
+  stepText: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    flex: 1,
+    lineHeight: 20,
   },
 });

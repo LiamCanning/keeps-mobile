@@ -206,6 +206,10 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailLabel}>Remaining:</Text>
                     <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
+                  <View style={styles.detailRow}>
+                    <Text style={styles.detailLabel}>Dividends:</Text>
+                    <Text style={styles.detailValue}>Annual dividends based on profits</Text>
+                  </View>
                 </>
               )}
               
@@ -219,6 +223,10 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailLabel}>Remaining:</Text>
                     <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
+                  <View style={styles.detailRow}>
+                    <Text style={styles.detailLabel}>Revenue Share:</Text>
+                    <Text style={styles.detailValue}>10% of future revenues</Text>
+                  </View>
                 </>
               )}
               
@@ -231,6 +239,10 @@ export default function AssetDetailScreen() {
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Investor Return:</Text>
                     <Text style={styles.detailValue}>{asset.investorReturn}</Text>
+                  </View>
+                  <View style={styles.detailRow}>
+                    <Text style={styles.detailLabel}>Interest Rate:</Text>
+                    <Text style={styles.detailValue}>{asset.id === 'rydercup' ? '5% interest + 40% capital return' : asset.id === 'british-cycling' ? '6% interest + 40% capital return' : '5% interest + 40% capital return'}</Text>
                   </View>
                 </>
               )}

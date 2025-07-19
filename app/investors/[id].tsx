@@ -728,7 +728,7 @@ export default function InvestorsScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Trophy size={24} color={Colors.accent.green} />
-            <Text style={styles.sectionTitle}>Top 10 Investor Leaderboard 🏆</Text>
+            <Text style={styles.sectionTitle}>🏆 Top 10 Investors 🏆</Text>
           </View>
           
           {individualInvestors.map((investor, index) => (
