@@ -5,14 +5,14 @@ import { useLocalSearchParams, Stack } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
-import { userAssets, comingSoonAssets } from '@/constants/assets';
+import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 import BenefitCard from '@/components/BenefitCard';
 
 export default function AssetBenefitsScreen() {
   const { id } = useLocalSearchParams();
   const insets = useSafeAreaInsets();
   
-  const asset = [...userAssets, ...comingSoonAssets].find(a => a.id === id);
+  const asset = [...userAssets, ...comingSoonAssets, ...completedAssets].find(a => a.id === id);
   const assetBenefits = benefits.filter(benefit => benefit.assetId === id);
   
   if (!asset) {

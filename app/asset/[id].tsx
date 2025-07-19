@@ -116,8 +116,8 @@ export default function AssetDetailScreen() {
               {asset.progress && (
                 <View style={styles.statCard}>
                   <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress) }]} />
-                  <Text style={styles.statValue}>{100 - asset.progress}%</Text>
-                  <Text style={styles.statLabel}>Left</Text>
+                  <Text style={styles.statValue}>{isCompleted ? 'Completed' : `${100 - asset.progress}%`}</Text>
+                  <Text style={styles.statLabel}>{isCompleted ? '' : 'Left'}</Text>
                 </View>
               )}
               
@@ -176,25 +176,19 @@ export default function AssetDetailScreen() {
             <>
               {asset.type === 'equity' && (
                 <>
-                  <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Equity Total Available:</Text>
-                    <Text style={styles.detailValue}>£40,000,000</Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Equity Percentage:</Text>
-                    <Text style={styles.detailValue}>{asset.equityPercentage}</Text>
-                  </View>
+                  {!isCompleted && (
+                    <View style={styles.detailRow}>
+                      <Text style={styles.detailLabel}>Equity Percentage:</Text>
+                      <Text style={styles.detailValue}>{asset.equityPercentage}</Text>
+                    </View>
+                  )}
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Valuation:</Text>
                     <Text style={styles.detailValue}>{asset.valuation}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{asset.remainingAmount}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                 </>
               )}
@@ -202,20 +196,12 @@ export default function AssetDetailScreen() {
               {asset.type === 'income' && (
                 <>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Total Raise:</Text>
-                    <Text style={styles.detailValue}>£50,000,000</Text>
-                  </View>
-                  <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Investor Return:</Text>
                     <Text style={styles.detailValue}>{asset.investorReturn}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{asset.remainingAmount}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                 </>
               )}
@@ -224,11 +210,7 @@ export default function AssetDetailScreen() {
                 <>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{100 - (asset.progress || 0)}% left</Text>
-                  </View>
-                  <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{asset.remaining}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Investor Return:</Text>

@@ -13,6 +13,8 @@ interface Investor {
   amount: string;
   type: 'sponsor' | 'individual';
   logo?: string;
+  country?: string;
+  flag?: string;
 }
 
 const getInvestorsForAsset = (assetId: string): Investor[] => {
@@ -94,70 +96,90 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
         name: 'James Wilson',
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
         amount: '£3,000,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇺🇸',
+        country: 'USA'
       },
       {
         id: 'sarah_martinez',
         name: 'Sarah Martinez',
         avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
         amount: '£2,750,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇪🇸',
+        country: 'Spain'
       },
       {
         id: 'david_thompson',
         name: 'David Thompson',
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
         amount: '£2,500,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇬🇧',
+        country: 'UK'
       },
       {
         id: 'emma_johnson',
         name: 'Emma Johnson',
         avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
         amount: '£2,200,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇨🇦',
+        country: 'Canada'
       },
       {
         id: 'michael_brown',
         name: 'Michael Brown',
         avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
         amount: '£1,950,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇦🇺',
+        country: 'Australia'
       },
       {
         id: 'lisa_davis',
         name: 'Lisa Davis',
         avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
         amount: '£1,800,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇯🇵',
+        country: 'Japan'
       },
       {
         id: 'robert_garcia',
         name: 'Robert Garcia',
         avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face',
         amount: '£1,650,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇫🇷',
+        country: 'France'
       },
       {
         id: 'jennifer_lee',
         name: 'Jennifer Lee',
         avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face',
         amount: '£1,500,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇰🇷',
+        country: 'South Korea'
       },
       {
         id: 'alex_rodriguez',
         name: 'Alex Rodriguez',
         avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face',
         amount: '£1,350,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇩🇪',
+        country: 'Germany'
       },
       {
         id: 'maria_gonzalez',
         name: 'Maria Gonzalez',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
         amount: '£1,200,000',
-        type: 'individual'
+        type: 'individual',
+        flag: '🇮🇹',
+        country: 'Italy'
       }
     ],
     mclaren: [
@@ -586,7 +608,9 @@ export default function InvestorsScreen() {
                 </View>
                 <Image source={{ uri: investor.avatar }} style={styles.sponsorLogo} />
                 <View style={styles.investorInfo}>
-                  <Text style={styles.investorName}>{investor.name}</Text>
+                  <Text style={styles.investorName}>
+                    {investor.name} {investor.flag && investor.country ? `${investor.flag} ${investor.country}` : ''}
+                  </Text>
                   <Text style={styles.investorType}>Corporate Sponsor</Text>
                 </View>
                 <View style={styles.investorAmount}>
@@ -625,7 +649,9 @@ export default function InvestorsScreen() {
               </View>
               <Image source={{ uri: investor.avatar }} style={styles.investorAvatar} />
               <View style={styles.investorInfo}>
-                <Text style={styles.investorName}>{investor.name}</Text>
+                <Text style={styles.investorName}>
+                  {investor.name} {investor.flag && investor.country ? `${investor.flag} ${investor.country}` : ''}
+                </Text>
                 <Text style={styles.investorType}>Individual Investor</Text>
               </View>
               <View style={styles.investorAmount}>
