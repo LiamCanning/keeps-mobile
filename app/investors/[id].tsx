@@ -321,7 +321,7 @@ export default function InvestorsScreen() {
           <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
           <Text style={styles.assetName}>{asset.name}</Text>
           <Text style={styles.totalInvestors}>
-            {asset.investorCount?.toLocaleString()} TOTAL INVESTORS
+            {asset.investorCount?.toLocaleString()} Total Investors
           </Text>
         </View>
 

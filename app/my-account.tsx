@@ -39,7 +39,7 @@ export default function MyAccountScreen() {
           
           <View style={styles.statRow}>
             <Text style={styles.statLabel}>Total Invested:</Text>
-            <Text style={styles.statValue}>£25,750</Text>
+            <Text style={styles.statValue}>£240,000</Text>
           </View>
           
           <View style={styles.statRow}>
@@ -49,7 +49,7 @@ export default function MyAccountScreen() {
           
           <View style={styles.statRow}>
             <Text style={styles.statLabel}>Portfolio Performance:</Text>
-            <Text style={[styles.statValue, { color: Colors.accent.green }]}>+12.5%</Text>
+            <Text style={[styles.statValue, { color: Colors.accent.green }]}>+18.6%</Text>
           </View>
         </View>
 

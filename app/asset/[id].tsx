@@ -98,7 +98,7 @@ export default function AssetDetailScreen() {
               <View style={styles.statCard}>
                 <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
                   <Eye size={24} color={Colors.primary.orange} />
-                  <Text style={styles.statValue}>WHO'S INVESTED?</Text>
+                  <Text style={styles.statValue}>Who's Invested?</Text>
                 </TouchableOpacity>
               </View>
               
@@ -106,13 +106,13 @@ export default function AssetDetailScreen() {
                 <View style={styles.statCard}>
                   <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress) }]} />
                   <Text style={styles.statValue}>{100 - asset.progress}%</Text>
-                  <Text style={styles.statLabel}>LEFT</Text>
+                  <Text style={styles.statLabel}>Left</Text>
                 </View>
               )}
               
               <View style={styles.statCard}>
                 <Text style={styles.statValue}>{asset.minimumEntry}</Text>
-                <Text style={styles.statLabel}>MINIMUM ENTRY</Text>
+                <Text style={styles.statLabel}>Minimum Entry</Text>
               </View>
             </View>
             
