@@ -281,13 +281,13 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   soldOutBadge: {
-    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   soldOutIndicator: {
-    backgroundColor: '#FF0000',
+    backgroundColor: '#000000',
   },
   soldOutText: {
-    color: '#FF0000',
+    color: '#000000',
   },
   whoInvestedButton: {
     marginBottom: 12,

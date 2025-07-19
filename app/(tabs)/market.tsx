@@ -5,7 +5,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Filter } from 'lucide-react-native';
 import Colors from '@/constants/colors';
-import { marketListings } from '@/constants/market';
+import { marketListings, sportCategories } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
 
 export default function MarketScreen() {
@@ -20,11 +20,9 @@ export default function MarketScreen() {
     }
   }, [filter]);
   
-  const uniqueAssetIds = [...new Set(marketListings.map(listing => listing.assetId))];
-  
-  const filteredListings = activeFilter 
-    ? marketListings.filter(listing => listing.assetId === activeFilter)
-    : marketListings;
+  const handleSportPress = (sportId: string) => {
+    router.push(`/market/${sportId}`);
+  };
 
   const handleListingPress = (listingId: string) => {
     router.push(`/buy-secondary/${listingId}`);
@@ -56,45 +54,17 @@ export default function MarketScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.filterButtonsContainer}
         >
-          <TouchableOpacity
-            style={[
-              styles.filterButton,
-              activeFilter === null && styles.filterButtonActive,
-            ]}
-            onPress={() => setActiveFilter(null)}
-          >
-            <Text
-              style={[
-                styles.filterButtonText,
-                activeFilter === null && styles.filterButtonTextActive,
-              ]}
+          {sportCategories.sort((a, b) => a.name.localeCompare(b.name)).map((sport) => (
+            <TouchableOpacity
+              key={sport.id}
+              style={styles.filterButton}
+              onPress={() => handleSportPress(sport.id)}
             >
-              All
-            </Text>
-          </TouchableOpacity>
-          
-          {uniqueAssetIds.map((assetId) => {
-            const asset = marketListings.find(listing => listing.assetId === assetId);
-            return (
-              <TouchableOpacity
-                key={assetId}
-                style={[
-                  styles.filterButton,
-                  activeFilter === assetId && styles.filterButtonActive,
-                ]}
-                onPress={() => setActiveFilter(assetId)}
-              >
-                <Text
-                  style={[
-                    styles.filterButtonText,
-                    activeFilter === assetId && styles.filterButtonTextActive,
-                  ]}
-                >
-                  {asset?.assetName}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
+              <Text style={styles.filterButtonText}>
+                {sport.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
       </View>
       
@@ -103,7 +73,8 @@ export default function MarketScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {filteredListings.map((listing) => (
+        <Text style={styles.sectionTitle}>All Available Assets</Text>
+        {marketListings.map((listing) => (
           <MarketListingCard 
             key={listing.id} 
             listing={listing} 
@@ -179,6 +150,13 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 16,
+    marginTop: 8,
   },
   listAssetButton: {
     backgroundColor: Colors.primary.orange,

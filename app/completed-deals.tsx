@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import SearchBar from '@/components/SearchBar';
 import AssetCard from '@/components/AssetCard';
 import SectionTitle from '@/components/SectionTitle';
+import BackButton from '@/components/BackButton';
 
 import Colors from '@/constants/colors';
 import { completedAssets } from '@/constants/assets';

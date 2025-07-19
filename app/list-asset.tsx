@@ -4,6 +4,7 @@ import { Stack, useRouter } from 'expo-router';
 import { ArrowLeft, TrendingUp, DollarSign } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, completedAssets } from '@/constants/assets';
+import BackButton from '@/components/BackButton';
 
 export default function ListAssetScreen() {
   const router = useRouter();
@@ -39,6 +40,14 @@ export default function ListAssetScreen() {
     setTotalValue(qty * price);
   };
 
+  const calculatePlacementFee = () => {
+    return totalValue * 0.025; // 2.5% placement fee
+  };
+
+  const calculateNetAmount = () => {
+    return totalValue - calculatePlacementFee();
+  };
+
   const handleListAsset = () => {
     if (!selectedAsset || !quantity || !pricePerShare) {
       Alert.alert('Error', 'Please fill in all fields');
@@ -70,6 +79,7 @@ export default function ListAssetScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       
@@ -104,7 +114,7 @@ export default function ListAssetScreen() {
           <>
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Quantity</Text>
-              <Text style={styles.sectionSubtitle}>How many shares do you want to sell?</Text>
+              <Text style={styles.sectionSubtitle}>How many {selectedAssetData?.type === 'debenture' ? 'debentures' : 'shares'} do you want to sell?</Text>
               
               <TextInput
                 style={styles.input}
@@ -117,8 +127,8 @@ export default function ListAssetScreen() {
             </View>
 
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Price Per Share</Text>
-              <Text style={styles.sectionSubtitle}>Set your asking price per share</Text>
+              <Text style={styles.sectionTitle}>Price Per {selectedAssetData?.type === 'debenture' ? 'Debenture' : 'Share'}</Text>
+              <Text style={styles.sectionSubtitle}>Set your asking price per {selectedAssetData?.type === 'debenture' ? 'debenture' : 'share'}</Text>
               
               <View style={styles.priceInputContainer}>
                 <Text style={styles.currencySymbol}>£</Text>
@@ -143,17 +153,27 @@ export default function ListAssetScreen() {
               
               <View style={styles.summaryRow}>
                 <Text style={styles.summaryLabel}>Quantity:</Text>
-                <Text style={styles.summaryValue}>{quantity || '0'} shares</Text>
+                <Text style={styles.summaryValue}>{quantity || '0'} {selectedAssetData?.type === 'debenture' ? 'debentures' : 'shares'}</Text>
               </View>
               
               <View style={styles.summaryRow}>
-                <Text style={styles.summaryLabel}>Price per share:</Text>
+                <Text style={styles.summaryLabel}>Price per {selectedAssetData?.type === 'debenture' ? 'debenture' : 'share'}:</Text>
                 <Text style={styles.summaryValue}>£{pricePerShare || '0.00'}</Text>
               </View>
               
+              <View style={styles.summaryRow}>
+                <Text style={styles.summaryLabel}>Total Value:</Text>
+                <Text style={styles.summaryValue}>£{totalValue.toLocaleString()}</Text>
+              </View>
+              
+              <View style={styles.summaryRow}>
+                <Text style={styles.summaryLabel}>Placement Fee (2.5%):</Text>
+                <Text style={styles.summaryValue}>-£{calculatePlacementFee().toLocaleString()}</Text>
+              </View>
+              
               <View style={[styles.summaryRow, styles.totalRow]}>
-                <Text style={styles.totalLabel}>Total Value:</Text>
-                <Text style={styles.totalValue}>£{totalValue.toLocaleString()}</Text>
+                <Text style={styles.totalLabel}>Net Amount:</Text>
+                <Text style={styles.totalValue}>£{calculateNetAmount().toLocaleString()}</Text>
               </View>
             </View>
 
