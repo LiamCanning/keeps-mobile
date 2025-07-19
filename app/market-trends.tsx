@@ -95,7 +95,7 @@ export default function MarketTrendsScreen() {
         </View>
 
         <View style={styles.trendsSection}>
-          <Text style={styles.sectionTitle}>Asset Performance</Text>
+          <Text style={styles.sectionTitle}>🏆 Asset Performance 🏆</Text>
           {marketTrends.map((trend, index) => (
             <View key={index} style={styles.trendCard}>
               <View style={styles.trendHeader}>

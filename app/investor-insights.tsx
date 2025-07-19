@@ -26,7 +26,7 @@ export default function InvestorInsightsScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerSection}>
           <BarChart3 size={24} color={Colors.primary.orange} />
-          <Text style={styles.headerTitle}>Anonymised Investor Demographics</Text>
+          <Text style={styles.headerTitle}>🏆 Anonymised Investor Demographics 🏆</Text>
         </View>
 
         <View style={styles.statsGrid}>

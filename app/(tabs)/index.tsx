@@ -37,7 +37,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      <Header username="Liam" />
+      <Header username="Liam Canning" />
       <SearchBar 
         value={searchQuery} 
         onChangeText={setSearchQuery}

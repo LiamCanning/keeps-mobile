@@ -99,7 +99,7 @@ export default function SupportHubScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerSection}>
           <HelpCircle size={24} color={Colors.primary.orange} />
-          <Text style={styles.headerTitle}>How can we help you?</Text>
+          <Text style={styles.headerTitle}>🏆 How can we help you? 🏆</Text>
         </View>
 
         {/* Quick Actions */}

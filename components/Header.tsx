@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Modal } from 'react-native';
-import { MessageCircle, ChevronDown, User, Info, Mail, HelpCircle } from 'lucide-react-native';
+import { MessageCircle, ChevronDown, User, Info, Mail, HelpCircle, TrendingUp, Building, Newspaper, HeadphonesIcon } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Colors from '@/constants/colors';
@@ -87,6 +87,46 @@ export default function Header({ username }: HeaderProps) {
             >
               <HelpCircle size={20} color={Colors.text.dark} />
               <Text style={styles.dropdownText}>FAQs</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/market-trends')}
+            >
+              <TrendingUp size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>Market Trends</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/investor-insights')}
+            >
+              <User size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>Investor Insights</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/newsroom')}
+            >
+              <Newspaper size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>Newsroom</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/support-hub')}
+            >
+              <HeadphonesIcon size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>Support Hub</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/for-organisations')}
+            >
+              <Building size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>For Organisations</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
