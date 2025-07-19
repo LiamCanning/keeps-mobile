@@ -31,9 +31,9 @@ export default function ListSuccessScreen() {
           <CheckCircle size={80} color={Colors.accent.green} />
         </View>
         
-        <Text style={styles.successTitle}>Asset Listed Successfully!</Text>
+        <Text style={styles.successTitle}>Congratulations!</Text>
         <Text style={styles.successMessage}>
-          Your asset has been listed on the secondary market. Other investors can now purchase your shares.
+          Your asset is now live on the secondary market. Other investors can now purchase your shares.
         </Text>
         
         <View style={styles.infoBox}>
@@ -49,7 +49,7 @@ export default function ListSuccessScreen() {
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.primaryButton} onPress={handleViewMarket}>
             <TrendingUp size={20} color={Colors.text.white} />
-            <Text style={styles.primaryButtonText}>View Secondary Market</Text>
+            <Text style={styles.primaryButtonText}>See Here</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={styles.secondaryButton} onPress={handleGoHome}>

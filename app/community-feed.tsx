@@ -137,6 +137,11 @@ export default function CommunityFeedScreen() {
     router.push(`/comment-thread/${commentId}`);
   };
 
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
+  };
+
   const handleHomePress = () => {
     router.push('/');
   };
@@ -200,11 +205,16 @@ export default function CommunityFeedScreen() {
         {communityComments.map((comment) => (
           <View key={comment.id} style={styles.commentCard}>
             <View style={styles.commentHeader}>
-              <Image source={{ uri: comment.avatar }} style={styles.avatar} />
-              <View style={styles.userInfo}>
+              <TouchableOpacity onPress={() => handleUserPress(comment.username)}>
+                <Image source={{ uri: comment.avatar }} style={styles.avatar} />
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.userInfo}
+                onPress={() => handleUserPress(comment.username)}
+              >
                 <Text style={styles.username}>{comment.username}</Text>
                 <Text style={styles.handle}>{comment.handle}</Text>
-              </View>
+              </TouchableOpacity>
               <View style={styles.timestampContainer}>
                 <Text style={styles.timestamp}>{comment.timestamp}</Text>
                 <TouchableOpacity style={styles.moreButton}>

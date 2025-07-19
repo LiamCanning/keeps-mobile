@@ -25,7 +25,7 @@ export const sportCategories: SportCategory[] = [
   { id: 'football', name: 'Football', assets: ['liverpool'] },
   { id: 'formula-one', name: 'Formula One', assets: ['mclaren'] },
   { id: 'frisbee', name: 'Frisbee', assets: ['ultimate-frisbee'] },
-  { id: 'padel', name: 'Padel', assets: ['rydercup'] },
+  { id: 'golf', name: 'Golf', assets: ['rydercup'] },
   { id: 'rugby-union', name: 'Rugby Union', assets: ['exeter-rugby'] },
 ];
 
@@ -98,7 +98,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-12',
     expiryDate: '2025-08-12',
     originalPrice: 5000,
-    sport: 'padel',
+    sport: 'golf',
   },
   {
     id: 'm6',
@@ -112,7 +112,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-15',
     expiryDate: '2025-08-15',
     originalPrice: 5000,
-    sport: 'padel',
+    sport: 'golf',
   },
   {
     id: 'm7',
@@ -168,7 +168,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-17',
     expiryDate: '2025-08-17',
     originalPrice: 5000,
-    sport: 'padel',
+    sport: 'golf',
   },
   {
     id: 'm11',
@@ -182,7 +182,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-18',
     expiryDate: '2025-08-18',
     originalPrice: 5000,
-    sport: 'padel',
+    sport: 'golf',
   },
   // Exeter Rugby listings
   {

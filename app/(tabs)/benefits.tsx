@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
 import { userAssets } from '@/constants/assets';
@@ -9,7 +11,12 @@ import BenefitCard from '@/components/BenefitCard';
 
 export default function BenefitsScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>(userAssets[0]?.id || null);
+  
+  const handleHomePress = () => {
+    router.push('/(tabs)');
+  };
   
   const filteredBenefits = selectedAssetId 
     ? benefits.filter(benefit => benefit.assetId === selectedAssetId)
@@ -20,8 +27,15 @@ export default function BenefitsScreen() {
       <StatusBar style="light" />
       
       <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>Your Benefits</Text>
-        <Text style={styles.headerSubtitle}>Exclusive perks for your investments</Text>
+        <View style={styles.headerTop}>
+          <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
+            <Home size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <View style={styles.headerTitles}>
+            <Text style={styles.headerTitle}>Your Benefits</Text>
+            <Text style={styles.headerSubtitle}>Exclusive perks for your investments</Text>
+          </View>
+        </View>
       </View>
       
       <View style={styles.assetSelector}>
@@ -75,6 +89,19 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingBottom: 8,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  homeButton: {
+    padding: 8,
+    marginRight: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  headerTitles: {
+    flex: 1,
   },
   headerTitle: {
     fontSize: 24,

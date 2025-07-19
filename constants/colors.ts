@@ -18,6 +18,7 @@ export default {
     orange: "#F5A623",
     red: "#FF3B30",
     purple: "#AF52DE",
+    gold: "#FFD700",
   },
   background: {
     card: "#FFFFFF",

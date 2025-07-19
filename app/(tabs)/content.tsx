@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TextInput } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Search } from 'lucide-react-native';
+import { Search, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
 import NewsCard from '@/components/NewsCard';
@@ -12,6 +12,10 @@ export default function ContentScreen() {
   const insets = useSafeAreaInsets();
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  
+  const handleHomePress = () => {
+    router.push('/(tabs)');
+  };
   
   const filteredArticles = searchQuery
     ? newsArticles.filter(article => 
@@ -29,8 +33,15 @@ export default function ContentScreen() {
       <StatusBar style="light" />
       
       <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
-        <Text style={[styles.headerTitle, { color: Colors.primary.orange }]}>Sports Finance News</Text>
-        <Text style={styles.headerSubtitle}>Latest updates from the world of sports investments</Text>
+        <View style={styles.headerTop}>
+          <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
+            <Home size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <View style={styles.headerTitles}>
+            <Text style={[styles.headerTitle, { color: Colors.primary.orange }]}>Sports Finance News</Text>
+            <Text style={styles.headerSubtitle}>Latest updates from the world of sports investments</Text>
+          </View>
+        </View>
       </View>
       
       <View style={styles.searchContainer}>
@@ -75,6 +86,19 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingBottom: 8,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  homeButton: {
+    padding: 8,
+    marginRight: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  headerTitles: {
+    flex: 1,
   },
   headerTitle: {
     fontSize: 24,

@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'rea
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Eye, TrendingUp, ShoppingCart } from 'lucide-react-native';
+import { Eye, TrendingUp, ShoppingCart, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets } from '@/constants/assets';
 
@@ -85,6 +85,10 @@ export default function PortfolioScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   
+  const handleHomePress = () => {
+    router.push('/(tabs)');
+  };
+  
   // Calculate portfolio values correctly
   const totalInvested = portfolioAssets.reduce((sum, asset) => sum + asset.investment, 0);
   const totalCurrentValue = portfolioAssets.reduce((sum, asset) => {
@@ -133,8 +137,15 @@ export default function PortfolioScreen() {
       <StatusBar style="light" />
       
       <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>Liam's Portfolio</Text>
-        <Text style={styles.headerSubtitle}>Track your sports investments</Text>
+        <View style={styles.headerTop}>
+          <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
+            <Home size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <View style={styles.headerTitles}>
+            <Text style={styles.headerTitle}>Liam's Portfolio</Text>
+            <Text style={styles.headerSubtitle}>Track your sports investments</Text>
+          </View>
+        </View>
       </View>
       
       {/* Total Portfolio Value Card */}
@@ -266,6 +277,19 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingBottom: 8,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  homeButton: {
+    padding: 8,
+    marginRight: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  headerTitles: {
+    flex: 1,
   },
   headerTitle: {
     fontSize: 24,

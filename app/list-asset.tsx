@@ -54,19 +54,7 @@ export default function ListAssetScreen() {
       return;
     }
 
-    Alert.alert(
-      'Confirm Listing',
-      `List ${quantity} shares of ${allAssets.find(a => a.id === selectedAsset)?.name} at £${pricePerShare} per share?`,
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { 
-          text: 'List Asset', 
-          onPress: () => {
-            router.push('/list-success');
-          }
-        }
-      ]
-    );
+    router.push('/list-success');
   };
 
   const selectedAssetData = allAssets.find(a => a.id === selectedAsset);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Filter } from 'lucide-react-native';
+import { Filter, Search, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { marketListings, sportCategories } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
@@ -11,6 +11,7 @@ import MarketListingCard from '@/components/MarketListingCard';
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { filter } = useLocalSearchParams();
 
@@ -28,13 +29,42 @@ export default function MarketScreen() {
     router.push(`/buy-secondary/${listingId}`);
   };
 
+  const handleHomePress = () => {
+    router.push('/(tabs)');
+  };
+
+  const filteredListings = searchQuery
+    ? marketListings.filter(listing => 
+        listing.assetName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        listing.seller.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : marketListings;
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       
       <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
-        <Text style={styles.headerTitle}>Secondary Market</Text>
-        <Text style={styles.headerSubtitle}>Buy and sell sports assets</Text>
+        <View style={styles.headerTop}>
+          <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
+            <Home size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <View style={styles.headerTitles}>
+            <Text style={styles.headerTitle}>Secondary Market</Text>
+            <Text style={styles.headerSubtitle}>Buy and sell sports assets</Text>
+          </View>
+        </View>
+      </View>
+      
+      <View style={styles.searchContainer}>
+        <Search size={20} color={Colors.text.light} style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search assets or sellers..."
+          placeholderTextColor={Colors.text.light}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
       </View>
       
       <View style={styles.filterContainer}>
@@ -74,7 +104,7 @@ export default function MarketScreen() {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.sectionTitle}>All Available Assets</Text>
-        {marketListings.map((listing) => (
+        {filteredListings.map((listing) => (
           <MarketListingCard 
             key={listing.id} 
             listing={listing} 
@@ -94,6 +124,19 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingBottom: 8,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  homeButton: {
+    padding: 8,
+    marginRight: 12,
+    borderRadius: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  headerTitles: {
+    flex: 1,
   },
   headerTitle: {
     fontSize: 24,
@@ -168,5 +211,24 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     fontSize: 14,
     fontWeight: '600',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    height: 48,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    height: '100%',
+    color: Colors.text.white,
+    fontSize: 16,
   },
 });
