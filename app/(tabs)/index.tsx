@@ -51,7 +51,7 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        <SectionTitle title="✅ Featured Deals" />
+        <SectionTitle title="✅  Featured Deals" />
         
         {userAssets.map((asset) => (
           <AssetCard 

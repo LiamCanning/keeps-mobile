@@ -42,7 +42,13 @@ export default function MarketScreen() {
       <View style={styles.filterContainer}>
         <View style={styles.filterHeader}>
           <Filter size={16} color={Colors.text.white} />
-          <Text style={styles.filterTitle}>Filter by asset</Text>
+          <Text style={styles.filterTitle}>Filter by sport</Text>
+          <TouchableOpacity 
+            style={styles.listAssetButton}
+            onPress={() => router.push('/list-asset')}
+          >
+            <Text style={styles.listAssetButtonText}>List Asset</Text>
+          </TouchableOpacity>
         </View>
         
         <ScrollView 
@@ -138,6 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     marginBottom: 12,
+    justifyContent: 'space-between',
   },
   filterTitle: {
     fontSize: 14,
@@ -172,5 +179,16 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 24,
+  },
+  listAssetButton: {
+    backgroundColor: Colors.primary.orange,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  listAssetButtonText: {
+    color: Colors.text.white,
+    fontSize: 14,
+    fontWeight: '600',
   },
 });

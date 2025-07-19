@@ -188,7 +188,7 @@ export default function AssetDetailScreen() {
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                 </>
               )}
@@ -201,7 +201,7 @@ export default function AssetDetailScreen() {
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                 </>
               )}
@@ -210,7 +210,7 @@ export default function AssetDetailScreen() {
                 <>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Closed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Investor Return:</Text>
@@ -220,6 +220,11 @@ export default function AssetDetailScreen() {
               )}
             </>
           )}
+          
+          <View style={styles.detailRow}>
+            <Text style={styles.detailLabel}>Exclusive Benefits:</Text>
+            <Text style={[styles.detailValue, { color: Colors.accent.green }]}>✅ Included</Text>
+          </View>
           
           {asset.description && (
             <View style={styles.detailRow}>

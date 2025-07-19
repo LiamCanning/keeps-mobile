@@ -65,6 +65,20 @@ const portfolioAssets: PortfolioAsset[] = [
     tier: 'Silver',
     dividendPotential: '5% + Principal',
   },
+  {
+    id: 'british-cycling',
+    name: 'British Cycling',
+    logo: 'https://r2-pub.rork.com/attachments/k8vc0htdz7zjsyloqf0il',
+    investment: 10000,
+    sharesOwned: 10,
+    pricePerShare: 1000,
+    purchaseDate: '01/07/2025',
+    purchasePrice: 1000,
+    liveMarketPrice: 1180,
+    potentialReturn: 18.0,
+    tier: 'Silver',
+    dividendPotential: '6% + Principal',
+  },
 ];
 
 export default function PortfolioScreen() {
