@@ -13,6 +13,8 @@ export default {
     green: "#4CD964",
     blue: "#2F80ED",
     orange: "#F5A623",
+    red: "#FF3B30",
+    purple: "#AF52DE",
   },
   background: {
     card: "#FFFFFF",

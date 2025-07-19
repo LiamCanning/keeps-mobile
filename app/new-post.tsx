@@ -35,11 +35,11 @@ export default function NewPostScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.profileSection}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face' }} 
+            source={{ uri: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=200&h=200&fit=crop&crop=center' }} 
             style={styles.profileImage} 
           />
           <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>Liam 🏏 UK</Text>
+            <Text style={styles.profileName}>Liam 🇬🇧 UK</Text>
             <Text style={styles.profileHandle}>@liam_keeps</Text>
           </View>
         </View>

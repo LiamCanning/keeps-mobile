@@ -37,7 +37,7 @@ export default function MyAccountScreen() {
               style={styles.profileImage}
             />
           </View>
-          <Text style={styles.profileName}>Liam</Text>
+          <Text style={styles.profileName}>Liam 🇬🇧 UK</Text>
           <Text style={styles.profileEmail}>liam@keeps.sport</Text>
         </View>
 

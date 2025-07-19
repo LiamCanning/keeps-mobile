@@ -137,6 +137,30 @@ export default function CommunityFeedScreen() {
     router.push(`/comment-thread/${commentId}`);
   };
 
+  const handleHomePress = () => {
+    router.push('/');
+  };
+
+  const handleMessagesPress = () => {
+    router.push('/messages');
+  };
+
+  const handleSavedPress = () => {
+    router.push('/saved-content');
+  };
+
+  const handleSearchPress = () => {
+    router.push('/search');
+  };
+
+  const handleNotificationsPress = () => {
+    router.push('/notifications');
+  };
+
+  const handleNewPostPress = () => {
+    router.push('/new-post');
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen 
@@ -153,22 +177,22 @@ export default function CommunityFeedScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         {/* Action Banner */}
         <View style={styles.actionBanner}>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleHomePress}>
             <Home size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleMessagesPress}>
             <Mail size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleSavedPress}>
             <Bookmark size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleSearchPress}>
             <Search size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleNotificationsPress}>
             <Bell size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={handleNewPostPress}>
             <Edit size={20} color={Colors.primary.blue} />
           </TouchableOpacity>
         </View>
