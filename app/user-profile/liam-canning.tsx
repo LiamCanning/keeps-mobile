@@ -6,7 +6,7 @@ import { MessageCircle, MapPin, Calendar, TrendingUp, Star, Award } from 'lucide
 import Colors from '@/constants/colors';
 import BackButton from '@/components/BackButton';
 
-export default function LiamKeepsProfileScreen() {
+export default function LiamCanningProfileScreen() {
   const router = useRouter();
 
   const handleMessagePress = () => {
@@ -50,12 +50,12 @@ export default function LiamKeepsProfileScreen() {
         <View style={styles.statsSection}>
           <View style={styles.statCard}>
             <TrendingUp size={20} color={Colors.accent.green} />
-            <Text style={styles.statValue}>£250,000</Text>
+            <Text style={styles.statValue}>£14,000</Text>
             <Text style={styles.statLabel}>Total Invested</Text>
           </View>
           <View style={styles.statCard}>
             <Award size={20} color={Colors.accent.blue} />
-            <Text style={styles.statValue}>4</Text>
+            <Text style={styles.statValue}>3</Text>
             <Text style={styles.statLabel}>Active Assets</Text>
           </View>
           <View style={styles.statCard}>
@@ -77,23 +77,19 @@ export default function LiamKeepsProfileScreen() {
           <View style={styles.investmentGrid}>
             <View style={styles.investmentCard}>
               <Text style={styles.investmentAsset}>Liverpool FC</Text>
-              <Text style={styles.investmentAmount}>£100,000</Text>
+              <Text style={styles.investmentAmount}>£10,000</Text>
               <Text style={styles.investmentTier}>Gold Tier</Text>
+              <Text style={styles.investmentReturn}>Guaranteed Return: 6% on £4,000</Text>
             </View>
             <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>McLaren Racing</Text>
-              <Text style={styles.investmentAmount}>£75,000</Text>
-              <Text style={styles.investmentTier}>Silver Tier</Text>
+              <Text style={styles.investmentAsset}>Cardiff City</Text>
+              <Text style={styles.investmentAmount}>£2,000</Text>
+              <Text style={styles.investmentTier}>Bronze Tier</Text>
             </View>
             <View style={styles.investmentCard}>
               <Text style={styles.investmentAsset}>British Cycling</Text>
-              <Text style={styles.investmentAmount}>£10,000</Text>
+              <Text style={styles.investmentAmount}>£2,000</Text>
               <Text style={styles.investmentTier}>Gold Tier</Text>
-            </View>
-            <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>Ryder Cup</Text>
-              <Text style={styles.investmentAmount}>£25,000</Text>
-              <Text style={styles.investmentTier}>Bronze Tier</Text>
             </View>
           </View>
         </View>
@@ -106,12 +102,12 @@ export default function LiamKeepsProfileScreen() {
               <Text style={styles.teamName}>Liverpool FC</Text>
             </View>
             <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>🏎️</Text>
-              <Text style={styles.teamName}>McLaren F1</Text>
+              <Text style={styles.teamEmoji}>⚽</Text>
+              <Text style={styles.teamName}>Cardiff City</Text>
             </View>
             <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>🏉</Text>
-              <Text style={styles.teamName}>England Rugby</Text>
+              <Text style={styles.teamEmoji}>🚴</Text>
+              <Text style={styles.teamName}>British Cycling</Text>
             </View>
             <View style={styles.teamItem}>
               <Text style={styles.teamEmoji}>🏏</Text>
@@ -127,16 +123,13 @@ export default function LiamKeepsProfileScreen() {
               <Text style={styles.interestText}>Football</Text>
             </View>
             <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Formula 1</Text>
+              <Text style={styles.interestText}>Cycling</Text>
             </View>
             <View style={styles.interestTag}>
               <Text style={styles.interestText}>Rugby</Text>
             </View>
             <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Cycling</Text>
-            </View>
-            <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Golf</Text>
+              <Text style={styles.interestText}>Cricket</Text>
             </View>
           </View>
         </View>
@@ -154,7 +147,7 @@ export default function LiamKeepsProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Text style={styles.partnerName}>Rolex</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+              <Text style={styles.partnerStatus}>- Not Selected</Text>
             </View>
             <View style={styles.partnerItem}>
               <Text style={styles.partnerName}>AXA</Text>
@@ -299,6 +292,12 @@ const styles = StyleSheet.create({
   investmentTier: {
     fontSize: 12,
     color: Colors.text.light,
+    marginBottom: 4,
+  },
+  investmentReturn: {
+    fontSize: 11,
+    color: Colors.accent.green,
+    fontWeight: '600',
   },
   teamsContainer: {
     flexDirection: 'row',

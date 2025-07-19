@@ -8,12 +8,12 @@ import { userAssets, comingSoonAssets, completedAssets } from '@/constants/asset
 
 const getAssetTagline = (assetId: string): string => {
   const taglines: { [key: string]: string } = {
-    'liverpool-fc': 'Invest in Anfield\'s Legacy',
-    'cardiff-city': 'Back the Bluebirds\' Future',
-    'mclaren-racing': 'Fuel McLaren\'s Next Victory',
-    'ohio-state': 'Fund Their New Stadium',
-    'hexagon-cup': 'Own 75% of the Team',
-    'ryder-cup': 'Golf\'s Greatest Investment',
+    'liverpool': 'Towards the transfer budget',
+    'cardiff': 'Back the Bluebirds\' future',
+    'mclaren': 'Fuel McLaren\'s Next Victory',
+    'ohio': 'Fund their new stadium',
+    'hexagon': 'Own 75% of the team',
+    'rydercup': 'Improve digital fan engagement',
     'british-cycling': 'Pedal to Success',
     'exeter-rugby': 'Tackle Your Investment Goals',
     'ultimate-frisbee': 'Catch the Ultimate Opportunity',

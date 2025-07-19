@@ -37,26 +37,29 @@ export default function ForOrganisationsScreen() {
         </View>
 
         {/* Key Metrics Overview */}
-        <View style={styles.metricsGrid}>
-          <View style={styles.metricCard}>
-            <Users size={24} color={Colors.accent.blue} />
-            <Text style={styles.metricValue}>2,847</Text>
-            <Text style={styles.metricLabel}>Total Investors</Text>
-          </View>
-          <View style={styles.metricCard}>
-            <TrendingUp size={24} color={Colors.accent.green} />
-            <Text style={styles.metricValue}>£12.5M</Text>
-            <Text style={styles.metricLabel}>Total Raised</Text>
-          </View>
-          <View style={styles.metricCard}>
-            <Clock size={24} color={Colors.accent.orange} />
-            <Text style={styles.metricValue}>8.4 min</Text>
-            <Text style={styles.metricLabel}>Avg. Time on Page</Text>
-          </View>
-          <View style={styles.metricCard}>
-            <MapPin size={24} color={Colors.accent.purple} />
-            <Text style={styles.metricValue}>34</Text>
-            <Text style={styles.metricLabel}>Countries</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Key Metrics Overview</Text>
+          <View style={styles.metricsGrid}>
+            <View style={styles.metricCard}>
+              <Users size={24} color={Colors.accent.blue} />
+              <Text style={styles.metricValue}>10,250</Text>
+              <Text style={styles.metricLabel}>Total Investors</Text>
+            </View>
+            <View style={styles.metricCard}>
+              <TrendingUp size={24} color={Colors.accent.green} />
+              <Text style={styles.metricValue}>£30M</Text>
+              <Text style={styles.metricLabel}>Total Raised</Text>
+            </View>
+            <View style={styles.metricCard}>
+              <Clock size={24} color={Colors.accent.orange} />
+              <Text style={styles.metricValue}>8.4 min</Text>
+              <Text style={styles.metricLabel}>Avg. Time on Page</Text>
+            </View>
+            <View style={styles.metricCard}>
+              <MapPin size={24} color={Colors.accent.purple} />
+              <Text style={styles.metricValue}>34</Text>
+              <Text style={styles.metricLabel}>Countries</Text>
+            </View>
           </View>
         </View>
 
@@ -195,7 +198,7 @@ export default function ForOrganisationsScreen() {
 
         {/* Marketing Products Section */}
         <View style={styles.marketingSection}>
-          <Text style={styles.sectionTitle}>Liverpool FC 25/26 Kit Collection</Text>
+          <Text style={styles.sectionTitle}>Liverpool FC Kit Collection</Text>
           <Text style={styles.marketingSubtitle}>Market directly to 10,250 Liverpool FC investors through Keeps</Text>
           
           <View style={styles.kitGrid}>
@@ -204,7 +207,7 @@ export default function ForOrganisationsScreen() {
                 source={{ uri: 'https://r2-pub.rork.com/attachments/ttvgy1sxmvk0kpc7vdzwv' }}
                 style={styles.kitImage}
               />
-              <Text style={styles.kitTitle}>Home Kit 25/26</Text>
+              <Text style={styles.kitTitle}>Home Kit</Text>
               <Text style={styles.kitDescription}>Classic red with modern design elements</Text>
               <Text style={styles.kitPrice}>£89.99</Text>
               <TouchableOpacity style={styles.shopButton} onPress={handleShopNowPress}>
@@ -218,7 +221,7 @@ export default function ForOrganisationsScreen() {
                 source={{ uri: 'https://r2-pub.rork.com/attachments/i1l5k3wnsugb6acthtjyo' }}
                 style={styles.kitImage}
               />
-              <Text style={styles.kitTitle}>Away Kit 25/26</Text>
+              <Text style={styles.kitTitle}>Away Kit</Text>
               <Text style={styles.kitDescription}>Elegant white with gold accents</Text>
               <Text style={styles.kitPrice}>£89.99</Text>
               <TouchableOpacity style={styles.shopButton} onPress={handleShopNowPress}>
@@ -317,7 +320,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: 16,
   },
   metricCard: {
     backgroundColor: Colors.background.card,
@@ -470,6 +472,7 @@ const styles = StyleSheet.create({
   kitGrid: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 20,
   },
   kitCard: {
     width: '48%',
@@ -477,6 +480,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   kitImage: {
     width: 120,

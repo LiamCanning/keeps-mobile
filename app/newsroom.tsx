@@ -143,7 +143,7 @@ export default function NewsroomScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerSection}>
           <Newspaper size={24} color={Colors.primary.orange} />
-          <Text style={styles.headerTitle}>🏆 All News & Content 🏆</Text>
+          <Text style={styles.headerTitle}>All News & Content</Text>
         </View>
 
         <View style={styles.filterSection}>

@@ -46,6 +46,24 @@ const reels: Reel[] = [
     likes: 445,
     comments: 12,
   },
+  {
+    id: '4',
+    title: 'Ryder Cup exclusive tournament access',
+    thumbnail: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=600&fit=crop',
+    duration: '2:45',
+    views: 9200,
+    likes: 712,
+    comments: 31,
+  },
+  {
+    id: '5',
+    title: 'British Cycling debenture returns explained',
+    thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop',
+    duration: '1:55',
+    views: 5400,
+    likes: 398,
+    comments: 15,
+  },
 ];
 
 export default function ContentScreen() {
