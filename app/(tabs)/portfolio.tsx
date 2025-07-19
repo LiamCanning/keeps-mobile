@@ -76,8 +76,8 @@ const portfolioAssets: PortfolioAsset[] = [
     purchasePrice: 1000,
     liveMarketPrice: 1180,
     potentialReturn: 18.0,
-    tier: 'Silver',
-    dividendPotential: '6% + Principal',
+    tier: 'Gold',
+    dividendPotential: 'Guaranteed Return: 6% on £4,000 + £4,000 returned',
   },
 ];
 

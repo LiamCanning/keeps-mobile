@@ -709,7 +709,7 @@ export default function InvestorsScreen() {
                 <Image source={{ uri: investor.avatar }} style={styles.sponsorLogo} />
                 <View style={styles.investorInfo}>
                   <Text style={styles.investorName}>
-                    {investor.name} {investor.flag && investor.country ? `${investor.flag} ${investor.country}` : ''}
+                    {investor.name} {investor.flag ? investor.flag : ''}
                   </Text>
                   <Text style={styles.investorType}>Corporate Sponsor</Text>
                 </View>
@@ -750,7 +750,7 @@ export default function InvestorsScreen() {
               <Image source={{ uri: investor.avatar }} style={styles.investorAvatar} />
               <View style={styles.investorInfo}>
                 <Text style={styles.investorName}>
-                  {investor.name} {investor.flag && investor.country ? `${investor.flag} ${investor.country}` : ''}
+                  {investor.name} {investor.flag ? investor.flag : ''}
                 </Text>
                 <Text style={styles.investorType}>Individual Investor</Text>
               </View>

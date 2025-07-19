@@ -11,7 +11,23 @@ export interface MarketListing {
   expiryDate: string;
   originalPrice: number;
   unitType?: string;
+  sport: string;
 }
+
+export interface SportCategory {
+  id: string;
+  name: string;
+  assets: string[];
+}
+
+export const sportCategories: SportCategory[] = [
+  { id: 'cycling', name: 'Cycling', assets: ['british-cycling'] },
+  { id: 'football', name: 'Football', assets: ['liverpool'] },
+  { id: 'formula-one', name: 'Formula One', assets: ['mclaren'] },
+  { id: 'frisbee', name: 'Frisbee', assets: ['ultimate-frisbee'] },
+  { id: 'padel', name: 'Padel', assets: ['rydercup'] },
+  { id: 'rugby-union', name: 'Rugby Union', assets: ['exeter-rugby'] },
+];
 
 export const marketListings: MarketListing[] = [
   {
@@ -26,6 +42,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-01',
     expiryDate: '2025-08-01',
     originalPrice: 500,
+    sport: 'football',
   },
   {
     id: 'm2',
@@ -39,6 +56,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-05',
     expiryDate: '2025-08-05',
     originalPrice: 500,
+    sport: 'football',
   },
   {
     id: 'm3',
@@ -52,6 +70,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-10',
     expiryDate: '2025-08-10',
     originalPrice: 1000,
+    sport: 'formula-one',
   },
   {
     id: 'm4',
@@ -65,6 +84,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-12',
     expiryDate: '2025-08-12',
     originalPrice: 1000,
+    sport: 'formula-one',
   },
   {
     id: 'm5',
@@ -78,6 +98,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-12',
     expiryDate: '2025-08-12',
     originalPrice: 5000,
+    sport: 'padel',
   },
   {
     id: 'm6',
@@ -91,6 +112,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-15',
     expiryDate: '2025-08-15',
     originalPrice: 5000,
+    sport: 'padel',
   },
   {
     id: 'm7',
@@ -104,6 +126,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-15',
     expiryDate: '2025-08-15',
     originalPrice: 500,
+    sport: 'football',
   },
   {
     id: 'm8',
@@ -117,6 +140,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-16',
     expiryDate: '2025-08-16',
     originalPrice: 1000,
+    sport: 'formula-one',
   },
   {
     id: 'm9',
@@ -130,6 +154,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-17',
     expiryDate: '2025-08-17',
     originalPrice: 1000,
+    sport: 'formula-one',
   },
   {
     id: 'm10',
@@ -143,6 +168,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-17',
     expiryDate: '2025-08-17',
     originalPrice: 5000,
+    sport: 'padel',
   },
   {
     id: 'm11',
@@ -156,6 +182,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-18',
     expiryDate: '2025-08-18',
     originalPrice: 5000,
+    sport: 'padel',
   },
   // Exeter Rugby listings
   {
@@ -170,6 +197,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-10',
     expiryDate: '2025-08-10',
     originalPrice: 500,
+    sport: 'rugby-union',
   },
   {
     id: 'm13',
@@ -183,6 +211,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-12',
     expiryDate: '2025-08-12',
     originalPrice: 500,
+    sport: 'rugby-union',
   },
   {
     id: 'm14',
@@ -196,6 +225,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-14',
     expiryDate: '2025-08-14',
     originalPrice: 500,
+    sport: 'rugby-union',
   },
   // British Cycling listings
   {
@@ -210,6 +240,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-08',
     expiryDate: '2025-08-08',
     originalPrice: 1000,
+    sport: 'cycling',
   },
   {
     id: 'm16',
@@ -223,6 +254,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-11',
     expiryDate: '2025-08-11',
     originalPrice: 1000,
+    sport: 'cycling',
   },
   {
     id: 'm17',
@@ -236,6 +268,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-13',
     expiryDate: '2025-08-13',
     originalPrice: 1000,
+    sport: 'cycling',
   },
   // Ultimate Frisbee listings
   {
@@ -250,6 +283,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-09',
     expiryDate: '2025-08-09',
     originalPrice: 250,
+    sport: 'frisbee',
   },
   {
     id: 'm19',
@@ -263,6 +297,7 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-11',
     expiryDate: '2025-08-11',
     originalPrice: 250,
+    sport: 'frisbee',
   },
   {
     id: 'm20',
@@ -276,5 +311,6 @@ export const marketListings: MarketListing[] = [
     listedDate: '2025-07-15',
     expiryDate: '2025-08-15',
     originalPrice: 250,
+    sport: 'frisbee',
   },
 ];

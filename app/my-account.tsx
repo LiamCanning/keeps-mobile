@@ -37,7 +37,7 @@ export default function MyAccountScreen() {
               style={styles.profileImage}
             />
           </View>
-          <Text style={styles.profileName}>Liam 🇬🇧 UK</Text>
+          <Text style={styles.profileName}>Liam 🇬🇧</Text>
           <Text style={styles.profileEmail}>liam@keeps.sport</Text>
         </View>
 
@@ -46,12 +46,12 @@ export default function MyAccountScreen() {
           
           <View style={styles.statRow}>
             <Text style={styles.statLabel}>Total Invested:</Text>
-            <Text style={styles.statValue}>£240,000</Text>
+            <Text style={styles.statValue}>£250,000</Text>
           </View>
           
           <View style={styles.statRow}>
             <Text style={styles.statLabel}>Active Investments:</Text>
-            <Text style={styles.statValue}>3</Text>
+            <Text style={styles.statValue}>4</Text>
           </View>
           
           <View style={styles.statRow}>
@@ -92,7 +92,7 @@ export default function MyAccountScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Investment Summary</Text>
           <Text style={styles.text}>
-            You are currently invested in Liverpool FC, McLaren F1, and Ryder Cup. 
+            You are currently invested in Liverpool FC, McLaren F1, Ryder Cup, and British Cycling. 
             Your portfolio has shown consistent growth with strong performance across all assets.
           </Text>
         </View>
