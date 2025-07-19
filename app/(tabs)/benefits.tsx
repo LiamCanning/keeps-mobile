@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Home } from 'lucide-react-native';
+import { Home, ChevronRight, Gift } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
 import { Asset, userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
@@ -85,30 +85,43 @@ export default function BenefitsScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {getAssetsByStatus(selectedTab).map((asset) => (
+        {getAssetsByStatus(selectedTab).map((asset: Asset) => (
           <TouchableOpacity
             key={asset.id}
             style={styles.assetCard}
             onPress={() => handleAssetPress(asset.id)}
           >
-            <View style={styles.assetHeader}>
-              <Text style={styles.assetName}>{asset.name}</Text>
-              <View style={[styles.statusBadge, { backgroundColor: 
-                selectedTab === 'live' ? Colors.accent.green :
-                selectedTab === 'completed' ? Colors.accent.blue :
-                Colors.accent.orange
-              }]}>
-                <Text style={styles.statusText}>
-                  {selectedTab === 'live' ? 'Live' :
-                   selectedTab === 'completed' ? 'Completed' :
-                   'Coming Soon'}
+            <View style={styles.assetCardContent}>
+              <View style={styles.assetLogoContainer}>
+                <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
+              </View>
+              <View style={styles.assetInfo}>
+                <View style={styles.assetHeader}>
+                  <Text style={styles.assetName}>{asset.name}</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: 
+                    selectedTab === 'live' ? Colors.accent.green :
+                    selectedTab === 'completed' ? Colors.accent.blue :
+                    Colors.accent.orange
+                  }]}>
+                    <Text style={styles.statusText}>
+                      {selectedTab === 'live' ? 'Live' :
+                       selectedTab === 'completed' ? 'Completed' :
+                       'Coming Soon'}
+                    </Text>
+                  </View>
+                </View>
+                <Text style={styles.assetDescription}>
+                  {asset.description || 'Exclusive benefits and perks available'}
                 </Text>
+                <View style={styles.benefitsRow}>
+                  <Gift size={16} color={Colors.primary.orange} />
+                  <Text style={styles.benefitsPreview}>
+                    Tap to view exclusive benefits
+                  </Text>
+                  <ChevronRight size={16} color={Colors.primary.orange} />
+                </View>
               </View>
             </View>
-            <Text style={styles.assetDescription}>{asset.description}</Text>
-            <Text style={styles.benefitsPreview}>
-              Tap to view exclusive benefits and perks
-            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -183,14 +196,40 @@ const styles = StyleSheet.create({
   assetCard: {
     backgroundColor: Colors.background.card,
     borderRadius: 16,
-    padding: 20,
     marginBottom: 16,
+    overflow: 'hidden',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  assetCardContent: {
+    flexDirection: 'row',
+    padding: 16,
+  },
+  assetLogoContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+    backgroundColor: Colors.background.light,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  assetLogo: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+  },
+  assetInfo: {
+    flex: 1,
   },
   assetHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   assetName: {
     fontSize: 18,
@@ -199,12 +238,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   statusBadge: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
   },
   statusText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'bold',
     color: Colors.text.white,
   },
@@ -214,9 +253,15 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 12,
   },
+  benefitsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
   benefitsPreview: {
     fontSize: 14,
     color: Colors.primary.orange,
     fontWeight: '600',
+    flex: 1,
   },
 });

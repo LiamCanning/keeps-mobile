@@ -22,7 +22,7 @@ const reels: Reel[] = [
   {
     id: '1',
     title: 'Liverpool FC investor shares their experience - LIVE',
-    thumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=600&fit=crop',
     duration: '2:15',
     views: 12500,
     likes: 847,
@@ -40,7 +40,7 @@ const reels: Reel[] = [
   {
     id: '3',
     title: 'Cardiff City fan excited for upcoming launch - COMING SOON',
-    thumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=600&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop',
     duration: '3:20',
     views: 6700,
     likes: 445,
@@ -81,6 +81,24 @@ const reels: Reel[] = [
     views: 4200,
     likes: 298,
     comments: 8,
+  },
+  {
+    id: '8',
+    title: 'Exeter Chiefs rugby investment success story - COMPLETED',
+    thumbnail: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=600&fit=crop',
+    duration: '2:10',
+    views: 6300,
+    likes: 478,
+    comments: 21,
+  },
+  {
+    id: '9',
+    title: 'Ultimate Frisbee Association growth potential - COMPLETED',
+    thumbnail: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=400&h=600&fit=crop',
+    duration: '1:35',
+    views: 3800,
+    likes: 267,
+    comments: 14,
   },
 ];
 
