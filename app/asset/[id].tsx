@@ -98,7 +98,7 @@ export default function AssetDetailScreen() {
               <View style={styles.statCard}>
                 <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
                   <Eye size={24} color={Colors.primary.orange} />
-                  <Text style={styles.statValue}>Who's Invested?</Text>
+                  <Text style={styles.statValue}>WHO'S INVESTED?</Text>
                 </TouchableOpacity>
               </View>
               
@@ -106,13 +106,13 @@ export default function AssetDetailScreen() {
                 <View style={styles.statCard}>
                   <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress) }]} />
                   <Text style={styles.statValue}>{100 - asset.progress}%</Text>
-                  <Text style={styles.statLabel}>Left</Text>
+                  <Text style={styles.statLabel}>LEFT</Text>
                 </View>
               )}
               
               <View style={styles.statCard}>
                 <Text style={styles.statValue}>{asset.minimumEntry}</Text>
-                <Text style={styles.statLabel}>Minimum Entry</Text>
+                <Text style={styles.statLabel}>MINIMUM ENTRY</Text>
               </View>
             </View>
             
@@ -357,6 +357,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 12,
+    fontWeight: 'bold',
     color: Colors.text.light,
     marginTop: 4,
     textAlign: 'center',
@@ -434,7 +435,7 @@ const styles = StyleSheet.create({
   },
   buyButton: {
     flex: 1,
-    backgroundColor: Colors.primary.orange,
+    backgroundColor: Colors.accent.green,
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',
@@ -449,7 +450,7 @@ const styles = StyleSheet.create({
   },
   sellButton: {
     flex: 1,
-    backgroundColor: Colors.accent.green,
+    backgroundColor: '#FF6B35',
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',
