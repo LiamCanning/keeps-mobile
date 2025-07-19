@@ -213,7 +213,7 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
       {
         id: 'victoria_scott',
         name: 'Victoria Scott',
-        avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+        avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face',
         amount: '£2,300,000',
         type: 'individual'
       },
@@ -227,7 +227,7 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
       {
         id: 'grace_adams',
         name: 'Grace Adams',
-        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face',
         amount: '£1,800,000',
         type: 'individual'
       },
@@ -241,7 +241,7 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
       {
         id: 'chloe_green',
         name: 'Chloe Green',
-        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
+        avatar: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=150&h=150&fit=crop&crop=face',
         amount: '£1,500,000',
         type: 'individual'
       },
@@ -255,7 +255,7 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
       {
         id: 'lily_carter',
         name: 'Lily Carter',
-        avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face',
+        avatar: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=150&h=150&fit=crop&crop=face',
         amount: '£1,200,000',
         type: 'individual'
       },
@@ -269,7 +269,7 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
       {
         id: 'zoe_roberts',
         name: 'Zoe Roberts',
-        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
+        avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop&crop=face',
         amount: '£900,000',
         type: 'individual'
       }
@@ -321,7 +321,7 @@ export default function InvestorsScreen() {
           <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
           <Text style={styles.assetName}>{asset.name}</Text>
           <Text style={styles.totalInvestors}>
-            10,250 total investors
+            {asset.investorCount?.toLocaleString()} total investors
           </Text>
         </View>
 

@@ -35,11 +35,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                   <Text style={styles.liveNowText}>LIVE NOW</Text>
                 </View>
               )}
-              {!isComingSoon && asset.id === 'liverpool' && (
-                <View style={styles.trendingBadge}>
-                  <Text style={styles.trendingText}>Trending</Text>
-                </View>
-              )}
+
             </View>
             
             {isComingSoon ? (
@@ -106,6 +102,12 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
           </View>
         </View>
       </View>
+      
+      {!isComingSoon && asset.id === 'liverpool' && (
+        <View style={styles.trendingBadge}>
+          <Text style={styles.trendingText}>Trending</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
@@ -157,8 +159,8 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 12,
     position: 'absolute',
-    bottom: 16,
-    left: 16,
+    bottom: 20,
+    left: 96,
   },
   trendingText: {
     color: Colors.text.white,

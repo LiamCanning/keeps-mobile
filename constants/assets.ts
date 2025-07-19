@@ -90,7 +90,7 @@ export const userAssets: Asset[] = [
     type: 'debenture',
     logo: 'https://r2-pub.rork.com/attachments/t18y87ryxfb9d44snw5co',
     status: 'LIVE NOW',
-    raiseAmount: '2,600 Debentures',
+    raiseAmount: '£42,500,000 Debenture Programme',
     minimumEntry: '£5,000',
     pricePerShare: 5000,
     progress: 90,

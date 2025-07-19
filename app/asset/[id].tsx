@@ -109,6 +109,11 @@ export default function AssetDetailScreen() {
                   <Text style={styles.statLabel}>Left</Text>
                 </View>
               )}
+              
+              <View style={styles.statCard}>
+                <Text style={styles.statValue}>{asset.minimumEntry}</Text>
+                <Text style={styles.statLabel}>Minimum Entry</Text>
+              </View>
             </View>
             
             {/* Funding Progress Bar */}
@@ -317,13 +322,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 16,
     marginTop: 24,
+    gap: 8,
   },
   statCard: {
     flex: 1,
     backgroundColor: Colors.background.card,
     borderRadius: 12,
     padding: 16,
-    marginHorizontal: 4,
     alignItems: 'center',
   },
   liveIndicator: {
@@ -496,5 +501,28 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 100,
+  },
+  liveNowBadgeHero: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(76, 217, 100, 0.9)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  liveIndicatorHero: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#4CD964',
+    marginRight: 6,
+  },
+  liveNowTextHero: {
+    color: Colors.text.white,
+    fontSize: 12,
+    fontWeight: '700',
   },
 });
