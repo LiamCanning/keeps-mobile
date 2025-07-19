@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
 import { User, Settings, Bell, Shield, CreditCard, FileText } from 'lucide-react-native';
@@ -10,6 +10,10 @@ export default function MyAccountScreen() {
 
   const handleSettingsPress = () => {
     router.push('/settings');
+  };
+
+  const handlePaymentMethodsPress = () => {
+    router.push('/payment-methods');
   };
 
   return (
@@ -28,7 +32,10 @@ export default function MyAccountScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.profileSection}>
           <View style={styles.profileIcon}>
-            <User size={40} color={Colors.primary.orange} />
+            <Image 
+              source={{ uri: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=200&h=200&fit=crop&crop=center' }}
+              style={styles.profileImage}
+            />
           </View>
           <Text style={styles.profileName}>Liam</Text>
           <Text style={styles.profileEmail}>liam@keeps.sport</Text>
@@ -71,7 +78,7 @@ export default function MyAccountScreen() {
             <Text style={styles.menuText}>Security</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity style={styles.menuItem} onPress={handlePaymentMethodsPress}>
             <CreditCard size={24} color={Colors.text.light} />
             <Text style={styles.menuText}>Payment Methods</Text>
           </TouchableOpacity>
@@ -121,6 +128,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   profileName: {
     fontSize: 24,
