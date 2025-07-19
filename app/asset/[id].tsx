@@ -4,13 +4,13 @@ import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingUp as TrendingUpIcon, Eye } from 'lucide-react-native';
 import Colors from '@/constants/colors';
-import { userAssets, comingSoonAssets } from '@/constants/assets';
+import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 
 export default function AssetDetailScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   
-  const asset = [...userAssets, ...comingSoonAssets].find(a => a.id === id);
+  const asset = [...userAssets, ...comingSoonAssets, ...completedAssets].find(a => a.id === id);
   
   if (!asset) {
     return (
@@ -40,11 +40,16 @@ export default function AssetDetailScreen() {
     router.push(`/investors/${asset.id}`);
   };
 
+  const handleSecondaryMarketPress = () => {
+    router.push(`/(tabs)/market?filter=${asset.id}`);
+  };
+
   const getProgressColor = (progress: number) => {
     return Colors.accent.green;
   };
 
   const isComingSoon = asset.type === 'coming_soon';
+  const isCompleted = completedAssets.some(a => a.id === asset.id);
   const isOwned = userAssets.some(a => a.id === asset.id);
 
   const backgroundColor = Colors.background.card;
@@ -84,10 +89,16 @@ export default function AssetDetailScreen() {
             )}
           </View>
           
-          {!isComingSoon && (
+          {!isComingSoon && !isCompleted && (
             <View style={styles.liveNowBadgeHero}>
               <View style={styles.liveIndicatorHero} />
               <Text style={styles.liveNowTextHero}>LIVE NOW</Text>
+            </View>
+          )}
+          
+          {isCompleted && (
+            <View style={styles.completedBadgeHero}>
+              <Text style={styles.completedTextHero}>FUNDING COMPLETE</Text>
             </View>
           )}
         </View>
@@ -246,6 +257,11 @@ export default function AssetDetailScreen() {
             <TouchableOpacity style={styles.earlyAccessButton} onPress={handleEarlyAccessPress}>
               <Clock size={20} color={Colors.text.white} />
               <Text style={styles.earlyAccessButtonText}>Sign Up For Early Access</Text>
+            </TouchableOpacity>
+          ) : isCompleted ? (
+            <TouchableOpacity style={styles.secondaryMarketButton} onPress={handleSecondaryMarketPress}>
+              <TrendingUpIcon size={20} color={Colors.text.white} />
+              <Text style={styles.secondaryMarketButtonText}>View Secondary Market</Text>
             </TouchableOpacity>
           ) : (
             <View style={styles.actionButtons}>
@@ -529,5 +545,33 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     fontSize: 12,
     fontWeight: '700',
+  },
+  completedBadgeHero: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    backgroundColor: 'rgba(34, 197, 94, 0.9)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  completedTextHero: {
+    color: Colors.text.white,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  secondaryMarketButton: {
+    backgroundColor: Colors.primary.orange,
+    borderRadius: 12,
+    paddingVertical: 16,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  secondaryMarketButtonText: {
+    color: Colors.text.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 8,
   },
 });

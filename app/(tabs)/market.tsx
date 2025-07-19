@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Filter } from 'lucide-react-native';
 import Colors from '@/constants/colors';
@@ -12,6 +12,13 @@ export default function MarketScreen() {
   const insets = useSafeAreaInsets();
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const router = useRouter();
+  const { filter } = useLocalSearchParams();
+
+  useEffect(() => {
+    if (filter && typeof filter === 'string') {
+      setActiveFilter(filter);
+    }
+  }, [filter]);
   
   const uniqueAssetIds = [...new Set(marketListings.map(listing => listing.assetId))];
   
