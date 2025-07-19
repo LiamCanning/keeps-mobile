@@ -167,7 +167,7 @@ export default function CommunityFeedScreen() {
   };
 
   const handleProfilePress = () => {
-    router.push('/my-account');
+    router.push('/user-profile/liam-keeps');
   };
 
   return (
