@@ -286,6 +286,10 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 16,
   },
+  heroContent: {
+    alignItems: 'center',
+    width: '100%',
+  },
   heroLogo: {
     width: 120,
     height: 120,
