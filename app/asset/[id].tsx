@@ -65,20 +65,29 @@ export default function AssetDetailScreen() {
       
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={[styles.heroSection, { backgroundColor }]}>
-          <Image source={{ uri: asset.logo }} style={styles.heroLogo} />
-          <Text style={[styles.heroTitle, { color: textColor }]}>
-            {asset.name}
-          </Text>
-          <Text style={[styles.heroType, { color: Colors.text.light }]}>
-            {asset.type === 'equity' ? 'Equity Investment' : 
-             asset.type === 'debenture' ? 'Debenture Programme' : 
-             asset.type === 'income' ? 'Income Sharing Agreement' : 'Coming Soon'}
-          </Text>
+          <View style={styles.heroContent}>
+            <Image source={{ uri: asset.logo }} style={styles.heroLogo} />
+            <Text style={[styles.heroTitle, { color: textColor }]}>
+              {asset.name}
+            </Text>
+            <Text style={[styles.heroType, { color: Colors.text.light }]}>
+              {asset.type === 'equity' ? 'Equity Investment' : 
+               asset.type === 'debenture' ? 'Debenture Programme' : 
+               asset.type === 'income' ? 'Income Sharing Agreement' : 'Coming Soon'}
+            </Text>
+            
+            {isComingSoon && asset.comingSoonTimer && (
+              <View style={styles.comingSoonBadge}>
+                <Clock size={16} color={Colors.text.white} />
+                <Text style={styles.comingSoonBadgeText}>Launches in {asset.comingSoonTimer}</Text>
+              </View>
+            )}
+          </View>
           
-          {isComingSoon && asset.comingSoonTimer && (
-            <View style={styles.comingSoonBadge}>
-              <Clock size={16} color={Colors.text.white} />
-              <Text style={styles.comingSoonBadgeText}>Launches in {asset.comingSoonTimer}</Text>
+          {!isComingSoon && (
+            <View style={styles.liveNowBadgeHero}>
+              <View style={styles.liveIndicatorHero} />
+              <Text style={styles.liveNowTextHero}>LIVE NOW</Text>
             </View>
           )}
         </View>
@@ -86,13 +95,12 @@ export default function AssetDetailScreen() {
         {!isComingSoon && (
           <>
             <View style={styles.statsSection}>
-              {asset.status && (
-                <View style={styles.statCard}>
-                  <View style={styles.liveIndicator} />
-                  <Text style={styles.statValue}>{asset.status}</Text>
-                  <Text style={styles.statLabel}>Status</Text>
-                </View>
-              )}
+              <View style={styles.statCard}>
+                <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
+                  <Eye size={24} color={Colors.primary.orange} />
+                  <Text style={styles.statValue}>Who's Invested?</Text>
+                </TouchableOpacity>
+              </View>
               
               {asset.progress && (
                 <View style={styles.statCard}>
@@ -101,14 +109,6 @@ export default function AssetDetailScreen() {
                   <Text style={styles.statLabel}>Left</Text>
                 </View>
               )}
-              
-              <View style={styles.statCard}>
-                <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
-                  <Eye size={24} color={Colors.primary.orange} />
-                  <Text style={styles.statValue}>Who's</Text>
-                  <Text style={styles.statLabel}>Invested?</Text>
-                </TouchableOpacity>
-              </View>
             </View>
             
             {/* Funding Progress Bar */}

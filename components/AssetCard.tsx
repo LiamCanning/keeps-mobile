@@ -68,15 +68,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                   Minimum entry {asset.minimumEntry}
                 </Text>
                 
-                <TouchableOpacity 
-                  style={styles.whoInvestedButton}
-                  onPress={onInvestorsPress}
-                >
-                  <Text style={[styles.whoInvestedText, { color: textColor }]}>
-                    Who's Invested?
-                  </Text>
-                </TouchableOpacity>
-                
+
                 {/* Funding Progress Bar */}
                 {asset.raisedAmount && asset.goalAmount && (
                   <View style={styles.progressSection}>
@@ -128,6 +120,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+    position: 'relative',
   },
   content: {
     flexDirection: 'row',
@@ -163,6 +156,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
   },
   trendingText: {
     color: Colors.text.white,
