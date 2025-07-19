@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
-import { assets } from '@/constants/assets';
+import { Asset, userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 import BenefitCard from '@/components/BenefitCard';
 
 export default function BenefitsScreen() {
@@ -22,8 +22,18 @@ export default function BenefitsScreen() {
     router.push(`/benefits/${assetId}`);
   };
   
+  // Combine all assets
+  const allAssets = [...userAssets, ...comingSoonAssets, ...completedAssets];
+  
   const getAssetsByStatus = (status: string) => {
-    return assets.filter(asset => asset.status === status);
+    if (status === 'live') {
+      return userAssets;
+    } else if (status === 'completed') {
+      return completedAssets;
+    } else if (status === 'coming-soon') {
+      return comingSoonAssets;
+    }
+    return [];
   };
 
   return (
@@ -75,7 +85,7 @@ export default function BenefitsScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {getAssetsByStatus(selectedTab).map((asset) => (
+        {getAssetsByStatus(selectedTab).map((asset: Asset) => (
           <TouchableOpacity
             key={asset.id}
             style={styles.assetCard}
