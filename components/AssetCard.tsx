@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 12,
     position: 'absolute',
-    bottom: 50,
+    top: 100,
     left: 96,
   },
   trendingText: {
