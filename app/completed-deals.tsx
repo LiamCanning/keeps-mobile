@@ -37,11 +37,13 @@ export default function CompletedDealsScreen() {
         }} 
       />
       
-      <SearchBar 
-        value={searchQuery} 
-        onChangeText={setSearchQuery}
-        onAssetSelect={handleSearchAssetSelect}
-      />
+      <View style={styles.searchContainer}>
+        <SearchBar 
+          value={searchQuery} 
+          onChangeText={setSearchQuery}
+          onAssetSelect={handleSearchAssetSelect}
+        />
+      </View>
       
       <ScrollView 
         style={styles.scrollView}
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
+  searchContainer: {
+    paddingTop: 16,
+  },
   scrollView: {
     flex: 1,
   },
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   infoBox: {
-    backgroundColor: Colors.text.white,
+    backgroundColor: Colors.background.card,
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
@@ -109,7 +114,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   secondaryButtonText: {
-    color: Colors.text.white,
+    color: Colors.background.card,
     fontSize: 16,
     fontWeight: '600',
   },

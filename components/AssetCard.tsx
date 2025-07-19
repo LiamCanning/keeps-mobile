@@ -12,8 +12,10 @@ interface AssetCardProps {
 
 export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
-  const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : Colors.text.white;
+  const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
+    (asset.id === 'exeter-rugby' ? Colors.text.dark : Colors.text.white);
   const isComingSoon = asset.type === 'coming_soon';
+  const isCompleted = asset.status === 'SOLD OUT';
   
   return (
     <TouchableOpacity 
@@ -30,9 +32,11 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                 {asset.name}
               </Text>
               {!isComingSoon && (
-                <View style={styles.liveNowBadge}>
-                  <View style={styles.liveIndicatorSmall} />
-                  <Text style={styles.liveNowText}>LIVE NOW</Text>
+                <View style={[styles.liveNowBadge, isCompleted && styles.soldOutBadge]}>
+                  <View style={[styles.liveIndicatorSmall, isCompleted && styles.soldOutIndicator]} />
+                  <Text style={[styles.liveNowText, isCompleted && styles.soldOutText]}>
+                    {isCompleted ? 'SOLD OUT' : 'LIVE NOW'}
+                  </Text>
                 </View>
               )}
 
@@ -77,7 +81,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                       />
                     </View>
                     <Text style={[styles.progressText, { color: textColor }]}>
-                      {asset.raisedAmount} raised of {asset.goalAmount} goal
+                      {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
                     </Text>
                   </View>
                 )}
@@ -275,6 +279,15 @@ const styles = StyleSheet.create({
     color: '#4CD964',
     fontSize: 10,
     fontWeight: '700',
+  },
+  soldOutBadge: {
+    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+  },
+  soldOutIndicator: {
+    backgroundColor: '#FF0000',
+  },
+  soldOutText: {
+    color: '#FF0000',
   },
   whoInvestedButton: {
     marginBottom: 12,

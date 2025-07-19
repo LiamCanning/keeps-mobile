@@ -33,11 +33,13 @@ export default function ComingSoonScreen() {
         }} 
       />
       
-      <SearchBar 
-        value={searchQuery} 
-        onChangeText={setSearchQuery}
-        onAssetSelect={handleSearchAssetSelect}
-      />
+      <View style={styles.searchContainer}>
+        <SearchBar 
+          value={searchQuery} 
+          onChangeText={setSearchQuery}
+          onAssetSelect={handleSearchAssetSelect}
+        />
+      </View>
       
       <ScrollView 
         style={styles.scrollView}
@@ -62,6 +64,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.primary.blue,
+  },
+  searchContainer: {
+    paddingTop: 16,
   },
   scrollView: {
     flex: 1,
