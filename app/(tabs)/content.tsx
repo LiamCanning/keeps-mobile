@@ -91,7 +91,7 @@ export default function ContentScreen() {
           onPress={() => setSelectedTab('written')}
         >
           <Text style={[styles.tabButtonText, selectedTab === 'written' && styles.tabButtonTextActive]}>
-            Written News
+            News
           </Text>
         </TouchableOpacity>
         <TouchableOpacity

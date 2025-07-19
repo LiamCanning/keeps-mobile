@@ -195,16 +195,16 @@ export default function ForOrganisationsScreen() {
 
         {/* Marketing Products Section */}
         <View style={styles.marketingSection}>
-          <Text style={styles.sectionTitle}>Liverpool FC 2025/26 Kit Collection</Text>
-          <Text style={styles.marketingSubtitle}>Exclusive merchandise for your investors</Text>
+          <Text style={styles.sectionTitle}>Liverpool FC 25/26 Kit Collection</Text>
+          <Text style={styles.marketingSubtitle}>Market directly to 10,250 Liverpool FC investors through Keeps</Text>
           
           <View style={styles.kitGrid}>
             <View style={styles.kitCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop' }}
+                source={{ uri: 'https://r2-pub.rork.com/attachments/ttvgy1sxmvk0kpc7vdzwv' }}
                 style={styles.kitImage}
               />
-              <Text style={styles.kitTitle}>Home Kit 2025/26</Text>
+              <Text style={styles.kitTitle}>Home Kit 25/26</Text>
               <Text style={styles.kitDescription}>Classic red with modern design elements</Text>
               <Text style={styles.kitPrice}>£89.99</Text>
               <TouchableOpacity style={styles.shopButton} onPress={handleShopNowPress}>
@@ -215,16 +215,50 @@ export default function ForOrganisationsScreen() {
             
             <View style={styles.kitCard}>
               <Image 
-                source={{ uri: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=300&fit=crop' }}
+                source={{ uri: 'https://r2-pub.rork.com/attachments/i1l5k3wnsugb6acthtjyo' }}
                 style={styles.kitImage}
               />
-              <Text style={styles.kitTitle}>Away Kit 2025/26</Text>
+              <Text style={styles.kitTitle}>Away Kit 25/26</Text>
               <Text style={styles.kitDescription}>Elegant white with gold accents</Text>
               <Text style={styles.kitPrice}>£89.99</Text>
               <TouchableOpacity style={styles.shopButton} onPress={handleShopNowPress}>
                 <ShoppingBag size={16} color={Colors.text.white} />
                 <Text style={styles.shopButtonText}>Shop Now</Text>
               </TouchableOpacity>
+            </View>
+          </View>
+          
+          <View style={styles.marketingInsight}>
+            <Text style={styles.marketingInsightTitle}>Direct Marketing Opportunity</Text>
+            <Text style={styles.marketingInsightText}>
+              Reach 10,250 verified Liverpool FC investors directly through the Keeps platform. 
+              Our investors have demonstrated financial commitment and passion for the club, 
+              making them ideal customers for exclusive merchandise and experiences.
+            </Text>
+          </View>
+        </View>
+
+        {/* Data Insights Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Zero & First Party Data Insights</Text>
+          <View style={styles.dataInsightGrid}>
+            <View style={styles.dataInsightCard}>
+              <Text style={styles.dataInsightTitle}>Zero-Party Data</Text>
+              <Text style={styles.dataInsightText}>
+                • Investment preferences and amounts
+                • Declared interests and motivations
+                • Voluntary demographic information
+                • Engagement preferences
+              </Text>
+            </View>
+            <View style={styles.dataInsightCard}>
+              <Text style={styles.dataInsightTitle}>First-Party Data</Text>
+              <Text style={styles.dataInsightText}>
+                • Platform behaviour and engagement
+                • Content consumption patterns
+                • Transaction history and frequency
+                • Communication preferences
+              </Text>
             </View>
           </View>
         </View>
@@ -496,6 +530,44 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   insightText: {
+    fontSize: 14,
+    color: Colors.text.light,
+    lineHeight: 20,
+  },
+  marketingInsight: {
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 16,
+  },
+  marketingInsightTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  marketingInsightText: {
+    fontSize: 14,
+    color: Colors.text.light,
+    lineHeight: 20,
+  },
+  dataInsightGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dataInsightCard: {
+    width: '48%',
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
+  },
+  dataInsightTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 12,
+  },
+  dataInsightText: {
     fontSize: 14,
     color: Colors.text.light,
     lineHeight: 20,

@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: Colors.text.white,
-    marginLeft: 0,
+    marginLeft: 8,
   },
   filterButtonsContainer: {
     paddingHorizontal: 12,

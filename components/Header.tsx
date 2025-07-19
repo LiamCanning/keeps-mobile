@@ -67,30 +67,6 @@ export default function Header({ username }: HeaderProps) {
             
             <TouchableOpacity 
               style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/my-account')}
-            >
-              <User size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>My Account</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/contact-us')}
-            >
-              <Mail size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Contact Us</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/faqs')}
-            >
-              <HelpCircle size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>FAQs</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
               onPress={() => handleMenuItemPress('/market-trends')}
             >
               <TrendingUp size={20} color={Colors.text.dark} />
@@ -99,10 +75,18 @@ export default function Header({ username }: HeaderProps) {
             
             <TouchableOpacity 
               style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/investor-insights')}
+              onPress={() => handleMenuItemPress('/for-organisations')}
+            >
+              <Building size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>For Organisations</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/my-account')}
             >
               <User size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Investor Insights</Text>
+              <Text style={styles.dropdownText}>My Account</Text>
             </TouchableOpacity>
             
             <TouchableOpacity 
@@ -123,10 +107,18 @@ export default function Header({ username }: HeaderProps) {
             
             <TouchableOpacity 
               style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/for-organisations')}
+              onPress={() => handleMenuItemPress('/faqs')}
             >
-              <Building size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>For Organisations</Text>
+              <HelpCircle size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>FAQs</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/contact-us')}
+            >
+              <Mail size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>Contact Us</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

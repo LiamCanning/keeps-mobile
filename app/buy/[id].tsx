@@ -152,9 +152,9 @@ export default function BuyScreen() {
           </View>
           
           {asset.type === 'equity' && (
-            <View style={styles.summaryRow}>
-              <Text style={styles.summaryLabel}>Equity Percentage:</Text>
-              <Text style={styles.summaryValue}>
+            <View style={styles.equityPercentageRow}>
+              <Text style={styles.equityPercentageLabel}>Investment Round Percentage</Text>
+              <Text style={styles.equityPercentageValue}>
                 £{subtotal.toLocaleString()} = {((subtotal / (asset.id === 'liverpool' ? 40000000 : asset.id === 'exeter-rugby' ? 5000000 : asset.id === 'ultimate-frisbee' ? 8000000 : 1000000)) * 100).toFixed(3)}% of the investment round
               </Text>
             </View>
@@ -300,6 +300,26 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: Colors.primary.orange,
+  },
+  equityPercentageRow: {
+    backgroundColor: 'rgba(245, 166, 35, 0.1)',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: Colors.primary.orange,
+  },
+  equityPercentageLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Colors.primary.orange,
+    marginBottom: 4,
+  },
+  equityPercentageValue: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: Colors.text.dark,
+    lineHeight: 20,
   },
   purchaseButton: {
     backgroundColor: Colors.accent.green,

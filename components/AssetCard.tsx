@@ -64,8 +64,15 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                   {asset.raiseAmount}
                 </Text>
                 
-                <Text style={[styles.minimumEntry, { color: textColor }]}>
-                  Minimum entry {asset.minimumEntry}
+                {/* Asset tagline */}
+                <Text style={[styles.tagline, { color: textColor }]}>
+                  {asset.id === 'liverpool' ? 'Invest in Anfield\'s Legacy' :
+                   asset.id === 'mclaren' ? 'Fuel McLaren\'s Next Victory' :
+                   asset.id === 'rydercup' ? 'Improve Digital Fan Engagement' :
+                   asset.id === 'ohio' ? 'Fund Their New Stadium' :
+                   asset.id === 'cardiff' ? 'Back the Bluebirds\' Future' :
+                   asset.id === 'hexagon' ? 'Own 75% of the Team' :
+                   'Exclusive Investment Opportunity'}
                 </Text>
                 
 
@@ -281,13 +288,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   soldOutBadge: {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   soldOutIndicator: {
-    backgroundColor: '#000000',
+    backgroundColor: '#FF6B35',
   },
   soldOutText: {
-    color: '#000000',
+    color: '#FF6B35',
+  },
+  tagline: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 8,
+    fontStyle: 'italic',
+    opacity: 0.9,
   },
   whoInvestedButton: {
     marginBottom: 12,

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
-import { TrendingUp, Users, Gift } from 'lucide-react-native';
+import { TrendingUp, Users, Gift, Target, Shield, Zap } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import BackButton from '@/components/BackButton';
 
@@ -24,8 +24,10 @@ export default function AboutScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.heroSection}>
           <View style={styles.logoContainer}>
-            <Text style={styles.logoText}>K</Text>
-            <Text style={styles.title}>eeps</Text>
+            <Image 
+              source={{ uri: 'https://r2-pub.rork.com/attachments/94wbcnfwavzhobdmcgdzb' }}
+              style={styles.logoImage}
+            />
           </View>
           <Text style={styles.heroText}>
             Democratising sports investment for passionate fans worldwide
@@ -33,48 +35,69 @@ export default function AboutScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.subtitle}>What Keeps Offers</Text>
+          <Text style={styles.subtitle}>Who We Are</Text>
           <Text style={styles.text}>
-            A platform for investing in sports assets like Liverpool FC, Cardiff City, and McLaren Racing, 
-            with secondary markets, investor benefits, and data insights. Turn your passion into profit.
+            Keeps is the world's first platform that democratises sports investment, giving passionate fans 
+            direct access to invest in their favourite teams and athletes. We bridge the gap between fandom 
+            and financial opportunity.
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.subtitle}>What We Offer</Text>
+          <Text style={styles.text}>
+            • Primary market investments in elite sports assets like Liverpool FC, McLaren Racing, and Ryder Cup
+            • Secondary market trading for liquidity and portfolio management
+            • Exclusive investor benefits including VIP access, merchandise discounts, and behind-the-scenes experiences
+            • Transparent returns ranging from 4-12% annually depending on the asset
           </Text>
         </View>
 
         <View style={styles.visualsContainer}>
           <View style={styles.visualCard}>
-            <TrendingUp size={40} color={Colors.primary.orange} />
-            <Text style={styles.visualTitle}>Sample Investment</Text>
-            <Text style={styles.visualText}>Liverpool FC Equity - 4-8% Returns</Text>
+            <Target size={40} color={Colors.primary.orange} />
+            <Text style={styles.visualTitle}>Primary Market</Text>
+            <Text style={styles.visualText}>Direct investment in sports assets with exclusive access</Text>
           </View>
           
           <View style={styles.visualCard}>
             <Users size={40} color={Colors.accent.blue} />
             <Text style={styles.visualTitle}>Secondary Market</Text>
-            <Text style={styles.visualText}>Trade your investments with other fans</Text>
+            <Text style={styles.visualText}>Trade your investments with other passionate fans</Text>
           </View>
           
           <View style={styles.visualCard}>
             <Gift size={40} color={Colors.accent.green} />
-            <Text style={styles.visualTitle}>Investor Benefits</Text>
-            <Text style={styles.visualText}>Exclusive merchandise & VIP access</Text>
+            <Text style={styles.visualTitle}>Exclusive Benefits</Text>
+            <Text style={styles.visualText}>VIP experiences and merchandise discounts</Text>
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Our Mission</Text>
+          <Text style={styles.subtitle}>Why We Do It</Text>
           <Text style={styles.text}>
-            To create a world where passionate fans can directly invest in and benefit from the success 
-            of the sports they love, whilst providing teams and athletes with innovative funding solutions.
+            Sports have the power to unite people across cultures and backgrounds. We believe that passionate 
+            fans should have the opportunity to financially benefit from the success of the teams and athletes 
+            they support, whilst helping to fund the future of sport.
           </Text>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Why Choose Keeps?</Text>
-          <Text style={styles.text}>
-            We combine the passion of sports fandom with the potential of smart investing. Our platform 
-            offers transparency, security, and exclusive access to opportunities that were previously 
-            only available to institutional investors.
-          </Text>
+          <Text style={styles.subtitle}>Our Values</Text>
+          <View style={styles.valuesList}>
+            <View style={styles.valueItem}>
+              <Shield size={24} color={Colors.accent.green} />
+              <Text style={styles.valueText}>Transparency in all investments and returns</Text>
+            </View>
+            <View style={styles.valueItem}>
+              <Zap size={24} color={Colors.primary.orange} />
+              <Text style={styles.valueText}>Innovation in sports finance and fan engagement</Text>
+            </View>
+            <View style={styles.valueItem}>
+              <Users size={24} color={Colors.accent.blue} />
+              <Text style={styles.valueText}>Community-driven investment opportunities</Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -101,27 +124,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 24,
   },
-  logoText: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: Colors.primary.orange,
-    backgroundColor: Colors.primary.blue,
-    width: 50,
-    height: 50,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    borderRadius: 25,
-    overflow: 'hidden',
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginLeft: 8,
+  logoImage: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
   },
   heroText: {
     fontSize: 18,
@@ -173,5 +182,20 @@ const styles = StyleSheet.create({
     color: Colors.text.light,
     textAlign: 'center',
     lineHeight: 18,
+  },
+  valuesList: {
+    marginTop: 12,
+  },
+  valueItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  valueText: {
+    fontSize: 16,
+    color: Colors.text.dark,
+    marginLeft: 12,
+    flex: 1,
+    lineHeight: 22,
   },
 });
