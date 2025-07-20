@@ -74,7 +74,6 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                    asset.id === 'hexagon' ? 'Own 75% Of The Team' :
                    'Exclusive Investment Opportunity'}
                 </Text>
-                
 
                 {/* Funding Progress Bar */}
                 {asset.raisedAmount && asset.goalAmount && (
