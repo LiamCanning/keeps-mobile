@@ -16,36 +16,84 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     id: '1',
-    question: 'How do I start investing in sports assets?',
-    answer: 'To start investing, create an account, complete the verification process, and browse available assets. You can invest with as little as £100 in most opportunities.',
-    category: 'investment',
+    question: 'Are these real assets?',
+    answer: 'Yes, all assets on Keeps represent real ownership stakes in legitimate sports entities. We partner directly with teams, stadiums, and sporting organisations to offer genuine investment opportunities.',
+    category: 'general',
   },
   {
     id: '2',
-    question: 'What are the minimum investment amounts?',
-    answer: 'Minimum investments vary by asset: £100 for equity deals, £500 for debentures, and £250 for income share agreements.',
-    category: 'investment',
+    question: 'Is Keeps regulated?',
+    answer: 'Yes, Keeps is fully regulated by both the Financial Conduct Authority (FCA) and the Securities and Exchange Commission (SEC), ensuring the highest standards of investor protection and regulatory compliance.',
+    category: 'general',
   },
   {
     id: '3',
+    question: 'What is the minimum investment amount?',
+    answer: 'Minimum investment amounts vary by asset, typically ranging from £500 to £5,000. Each investment opportunity clearly displays its minimum entry requirement.',
+    category: 'investment',
+  },
+  {
+    id: '4',
+    question: 'How do I receive returns on my investments?',
+    answer: 'Returns vary by investment type: equity investments provide dividends and capital appreciation, debentures offer fixed interest payments, and income sharing agreements provide revenue-based returns.',
+    category: 'investment',
+  },
+  {
+    id: '5',
+    question: 'Can I sell my investments?',
+    answer: 'Yes, Keeps operates a secondary marketplace where you can list your investments for sale to other users. Liquidity varies by asset and market conditions.',
+    category: 'investment',
+  },
+  {
+    id: '6',
+    question: 'What exclusive benefits do I receive?',
+    answer: 'Benefits vary by investment tier and asset, including priority ticket access, exclusive events, merchandise discounts, behind-the-scenes experiences, and VIP hospitality packages.',
+    category: 'account',
+  },
+  {
+    id: '7',
+    question: 'How are asset valuations determined?',
+    answer: 'Valuations are conducted by independent financial experts using industry-standard methodologies, including comparable transactions, discounted cash flow analysis, and market multiples.',
+    category: 'investment',
+  },
+  {
+    id: '8',
+    question: 'What fees does Keeps charge?',
+    answer: 'We charge a 10% processing fee on primary investments and 2.5% on secondary market transactions. All fees are clearly disclosed before you complete any transaction.',
+    category: 'general',
+  },
+  {
+    id: '9',
+    question: 'How do I track my investment performance?',
+    answer: 'Your portfolio dashboard provides real-time updates on investment values, performance metrics, dividend payments, and exclusive benefit eligibility.',
+    category: 'account',
+  },
+  {
+    id: '10',
+    question: 'Is my personal information secure?',
+    answer: 'Yes, we use bank-level encryption and security measures to protect your personal and financial information. We are fully compliant with GDPR and other data protection regulations.',
+    category: 'technical',
+  },
+  {
+    id: '11',
+    question: 'How do I start investing in sports assets?',
+    answer: 'To start investing, create an account, complete the verification process, and browse available assets. You can invest with as little as £500 in most opportunities.',
+    category: 'investment',
+  },
+  {
+    id: '12',
     question: 'How do I access my investor benefits?',
     answer: 'Benefits are automatically activated after investment. Check your Benefits page for available perks and redemption instructions.',
     category: 'account',
   },
   {
-    id: '4',
-    question: 'Can I sell my investments on the secondary market?',
-    answer: 'Yes, you can list your investments for sale on our secondary market. There is a 2.5% placement fee for successful sales.',
-    category: 'investment',
-  },
-  {
-    id: '5',
+    id: '13',
     question: 'How do I update my payment methods?',
     answer: 'Go to Account Settings > Payment Methods to add, remove, or update your saved payment options.',
     category: 'account',
   },
   {
-    id: '6',
+    id: '14',
     question: 'Why is the app running slowly?',
     answer: 'Try closing and reopening the app, checking your internet connection, or updating to the latest version.',
     category: 'technical',
@@ -99,7 +147,7 @@ export default function SupportHubScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerSection}>
           <HelpCircle size={24} color={Colors.primary.orange} />
-          <Text style={styles.headerTitle}>🏆 How can we help you? 🏆</Text>
+          <Text style={styles.headerTitle}>How can we help you?</Text>
         </View>
 
         {/* Quick Actions */}
@@ -112,10 +160,10 @@ export default function SupportHubScreen() {
               <Text style={styles.actionSubtitle}>Get instant help</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/contact-us')}>
+            <TouchableOpacity style={styles.actionCard}>
               <Mail size={32} color={Colors.accent.blue} />
               <Text style={styles.actionTitle}>Email Support</Text>
-              <Text style={styles.actionSubtitle}>Send us a message</Text>
+              <Text style={styles.actionSubtitle}>info@keeps.sport</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.actionCard}>
@@ -124,17 +172,17 @@ export default function SupportHubScreen() {
               <Text style={styles.actionSubtitle}>+44 20 7946 0958</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.actionCard} onPress={() => router.push('/faqs')}>
+            <TouchableOpacity style={styles.actionCard}>
               <HelpCircle size={32} color={Colors.accent.purple} />
-              <Text style={styles.actionTitle}>Full FAQs</Text>
-              <Text style={styles.actionSubtitle}>Browse all questions</Text>
+              <Text style={styles.actionTitle}>Browse FAQs</Text>
+              <Text style={styles.actionSubtitle}>See below</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Popular FAQs */}
+        {/* All FAQs */}
         <View style={styles.faqSection}>
-          <Text style={styles.sectionTitle}>Popular FAQs</Text>
+          <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
           
           <View style={styles.categoryFilter}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -235,6 +283,14 @@ export default function SupportHubScreen() {
             <Text style={styles.hoursNote}>
               Live chat and email support available 24/7
             </Text>
+          </View>
+          
+          <View style={styles.addressSection}>
+            <Text style={styles.addressTitle}>Our Address</Text>
+            <Text style={styles.addressText}>Keeps Sport Ltd</Text>
+            <Text style={styles.addressText}>123 Canary Wharf</Text>
+            <Text style={styles.addressText}>London E14 5AB</Text>
+            <Text style={styles.addressText}>United Kingdom</Text>
           </View>
         </View>
       </ScrollView>
@@ -399,5 +455,22 @@ const styles = StyleSheet.create({
     color: Colors.text.light,
     marginTop: 12,
     fontStyle: 'italic',
+  },
+  addressSection: {
+    marginTop: 20,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: Colors.border,
+  },
+  addressTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  addressText: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    marginBottom: 4,
   },
 });

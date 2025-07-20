@@ -105,21 +105,7 @@ export default function Header({ username }: HeaderProps) {
               <Text style={styles.dropdownText}>Support Hub</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/faqs')}
-            >
-              <HelpCircle size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>FAQs</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/contact-us')}
-            >
-              <Mail size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Contact Us</Text>
-            </TouchableOpacity>
+
           </View>
         </TouchableOpacity>
       </Modal>
