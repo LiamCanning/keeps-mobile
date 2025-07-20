@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -84,6 +84,8 @@ const portfolioAssets: PortfolioAsset[] = [
 export default function PortfolioScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const [scrollY] = useState(new Animated.Value(0));
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
   
   const handleHomePress = () => {
     router.push('/(tabs)');
@@ -134,6 +136,17 @@ export default function PortfolioScreen() {
     return quantity === 1 ? 'share' : 'shares';
   };
 
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    {
+      useNativeDriver: false,
+      listener: (event: any) => {
+        const offsetY = event.nativeEvent.contentOffset.y;
+        setShowStickyHeader(offsetY > 200);
+      },
+    }
+  );
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -149,41 +162,60 @@ export default function PortfolioScreen() {
           </View>
         </View>
       </View>
-      
-      {/* Total Portfolio Value Card */}
-      <View style={styles.totalValueCard}>
-        <Text style={styles.totalValueLabel}>Total Portfolio Value</Text>
-        <Text style={styles.totalValueAmount}>£{totalCurrentValue.toLocaleString()}</Text>
-        <View style={styles.totalValueGrowth}>
-          <TrendingUp size={16} color={Colors.accent.green} />
-          <Text style={styles.totalValueGrowthText}>
-            +£{totalGrowth.toLocaleString()} ({totalGrowthPercentage.toFixed(1)}%)
-          </Text>
-        </View>
-        
-        <View style={styles.statsRow}>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>£{totalInvested.toLocaleString()}</Text>
-            <Text style={styles.statLabel}>Invested</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>{totalAssets}</Text>
-            <Text style={styles.statLabel}>Teams</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statValue}>{avgYield.toFixed(1)}%</Text>
-            <Text style={styles.statLabel}>Avg Yield</Text>
+
+      {/* Sticky Header */}
+      {showStickyHeader && (
+        <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
+          <View style={styles.stickyContent}>
+            <Text style={styles.stickyTitle}>Portfolio</Text>
+            <View style={styles.stickyStats}>
+              <Text style={styles.stickyValue}>£{totalCurrentValue.toLocaleString()}</Text>
+              <View style={styles.stickyGrowth}>
+                <TrendingUp size={12} color={Colors.accent.green} />
+                <Text style={styles.stickyGrowthText}>
+                  +{totalGrowthPercentage.toFixed(1)}%
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-      
-      <Text style={styles.sectionTitle}>Your Investments</Text>
+      )}
       
       <ScrollView 
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
+        {/* Total Portfolio Value Card */}
+        <View style={styles.totalValueCard}>
+          <Text style={styles.totalValueLabel}>Total Portfolio Value</Text>
+          <Text style={styles.totalValueAmount}>£{totalCurrentValue.toLocaleString()}</Text>
+          <View style={styles.totalValueGrowth}>
+            <TrendingUp size={16} color={Colors.accent.green} />
+            <Text style={styles.totalValueGrowthText}>
+              +£{totalGrowth.toLocaleString()} ({totalGrowthPercentage.toFixed(1)}%)
+            </Text>
+          </View>
+          
+          <View style={styles.statsRow}>
+            <View style={styles.statItem}>
+              <Text style={styles.statValue}>£{totalInvested.toLocaleString()}</Text>
+              <Text style={styles.statLabel}>Invested</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statValue}>{totalAssets}</Text>
+              <Text style={styles.statLabel}>Teams</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statValue}>{avgYield.toFixed(1)}%</Text>
+              <Text style={styles.statLabel}>Avg Yield</Text>
+            </View>
+          </View>
+        </View>
+        
+        <Text style={styles.sectionTitle}>Your Investments</Text>
         {portfolioAssets.map((asset) => (
           <View key={asset.id} style={styles.assetCard}>
             <View style={styles.assetHeader}>
@@ -304,18 +336,60 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     opacity: 0.8,
   },
+  stickyHeader: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.primary.blue,
+    zIndex: 1000,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  stickyContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+  stickyTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+  },
+  stickyStats: {
+    alignItems: 'flex-end',
+  },
+  stickyValue: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+  },
+  stickyGrowth: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 2,
+  },
+  stickyGrowthText: {
+    fontSize: 12,
+    color: Colors.accent.green,
+    marginLeft: 4,
+    fontWeight: '600',
+  },
   totalValueCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.98)',
     marginHorizontal: 16,
     marginTop: 16,
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: 12,
+    padding: 16,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
     borderWidth: 1,
     borderColor: 'rgba(245, 166, 35, 0.2)',
   },
@@ -325,7 +399,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   totalValueAmount: {
-    fontSize: 36,
+    fontSize: 28,
     fontWeight: 'bold',
     color: Colors.text.dark,
     marginBottom: 8,
@@ -333,7 +407,7 @@ const styles = StyleSheet.create({
   totalValueGrowth: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   totalValueGrowthText: {
     fontSize: 16,
@@ -350,7 +424,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statValue: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     color: Colors.text.dark,
     marginBottom: 4,
@@ -373,6 +447,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 24,
+    paddingTop: 0,
   },
   assetCard: {
     backgroundColor: Colors.background.card,
