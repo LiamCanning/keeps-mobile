@@ -147,34 +147,34 @@ export default function LiamCanningProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Nike-Logo.png' }} 
                 style={styles.partnerIcon}
               />
-              <Text style={styles.partnerName}>X</Text>
+              <Text style={styles.partnerName}>Nike</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
-                style={styles.partnerIcon}
-              />
-              <Text style={styles.partnerName}>Instagram</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
-                style={styles.partnerIcon}
-              />
-              <Text style={styles.partnerName}>YouTube</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/1b1itipm9ni7gcuc9ee3d' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/12/AXA-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>AXA</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Adidas-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Adidas</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Mastercard-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Mastercard</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>
@@ -402,9 +402,9 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   partnerIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: 25,
+    resizeMode: 'contain',
     marginBottom: 8,
   },
 });

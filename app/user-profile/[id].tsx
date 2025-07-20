@@ -24,6 +24,37 @@ interface UserProfile {
   posts: number;
 }
 
+const getDataSharingPartners = (userId: string) => {
+  const partnerOptions = [
+    { name: 'Nike', logo: 'https://logos-world.net/wp-content/uploads/2020/11/Nike-Logo.png' },
+    { name: 'Adidas', logo: 'https://logos-world.net/wp-content/uploads/2020/09/Adidas-Logo.png' },
+    { name: 'Heineken', logo: 'https://logos-world.net/wp-content/uploads/2020/09/Heineken-Logo.png' },
+    { name: 'Google', logo: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' },
+    { name: 'Rolex', logo: 'https://logos-world.net/wp-content/uploads/2020/11/Rolex-Logo.png' },
+    { name: 'AXA', logo: 'https://logos-world.net/wp-content/uploads/2020/12/AXA-Logo.png' },
+    { name: 'Mastercard', logo: 'https://logos-world.net/wp-content/uploads/2020/11/Mastercard-Logo.png' },
+    { name: 'Coca-Cola', logo: 'https://logos-world.net/wp-content/uploads/2020/09/Coca-Cola-Logo.png' },
+    { name: 'Samsung', logo: 'https://logos-world.net/wp-content/uploads/2020/09/Samsung-Logo.png' },
+    { name: 'BMW', logo: 'https://logos-world.net/wp-content/uploads/2020/11/BMW-Logo.png' },
+  ];
+
+  const partnerMappings: { [key: string]: string[] } = {
+    'james-mitchell': ['Nike', 'Mastercard', 'Coca-Cola'],
+    'sarah-chen': ['Google', 'Samsung', 'BMW', 'AXA'],
+    'michael-rodriguez': ['Rolex', 'Heineken'],
+    'emma-thompson': ['Adidas', 'AXA', 'Google', 'Nike'],
+    'david-park': ['Samsung', 'Nike', 'Mastercard'],
+    'lisa-wang': ['Google', 'BMW'],
+    'alex-johnson': ['Coca-Cola', 'Adidas', 'Heineken'],
+    'sophie-martin': ['Rolex', 'AXA', 'Mastercard', 'Heineken'],
+    'ryan-oconnor': ['BMW', 'Rolex', 'Samsung'],
+    'maria-gonzalez': ['Nike', 'Coca-Cola', 'Adidas', 'Google'],
+  };
+
+  const userPartners = partnerMappings[userId] || ['Nike', 'AXA'];
+  return partnerOptions.filter(partner => userPartners.includes(partner.name));
+};
+
 const userProfiles: { [key: string]: UserProfile } = {
   'james-mitchell': {
     id: 'james-mitchell',
@@ -334,34 +365,16 @@ export default function UserProfileScreen() {
             <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
           </View>
           <View style={styles.partnersGrid}>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Heineken-Logo.png' }} 
-                style={styles.partnerLogo}
-              />
-              <Text style={styles.partnerName}>Heineken</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' }} 
-                style={styles.partnerLogo}
-              />
-              <Text style={styles.partnerName}>Google</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Rolex-Logo.png' }} 
-                style={styles.partnerLogo}
-              />
-              <Text style={styles.partnerName}>Rolex</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/12/AXA-Logo.png' }} 
-                style={styles.partnerLogo}
-              />
-              <Text style={styles.partnerName}>AXA</Text>
-            </View>
+            {getDataSharingPartners(profile.id).map((partner, index) => (
+              <View key={index} style={styles.partnerItem}>
+                <Image 
+                  source={{ uri: partner.logo }} 
+                  style={styles.partnerLogo}
+                />
+                <Text style={styles.partnerName}>{partner.name}</Text>
+                <Text style={styles.partnerStatus}>✓ Opted In</Text>
+              </View>
+            ))}
           </View>
         </View>
 
@@ -582,6 +595,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     color: Colors.text.dark,
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  partnerStatus: {
+    fontSize: 10,
+    color: Colors.text.light,
     textAlign: 'center',
   },
 });

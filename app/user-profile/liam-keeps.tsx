@@ -146,7 +146,7 @@ export default function LiamKeepsProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Heineken-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Heineken</Text>
@@ -154,7 +154,7 @@ export default function LiamKeepsProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Google</Text>
@@ -162,7 +162,7 @@ export default function LiamKeepsProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Rolex-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Rolex</Text>
@@ -361,9 +361,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   partnerIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: 25,
+    resizeMode: 'contain',
     marginBottom: 8,
   },
   partnerName: {
