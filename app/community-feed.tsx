@@ -1,11 +1,14 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Animated } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Animated, Dimensions, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File } from 'lucide-react-native';
+import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File, Play, Pause, Volume2, VolumeX, Menu } from 'lucide-react-native';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import Colors from '@/constants/colors';
 
-interface Comment {
+const { width: screenWidth } = Dimensions.get('window');
+
+interface Post {
   id: string;
   username: string;
   handle: string;
@@ -15,9 +18,12 @@ interface Comment {
   likes: number;
   comments: number;
   shares: number;
+  type: 'text' | 'video';
+  videoUrl?: string;
+  videoThumbnail?: string;
 }
 
-const communityComments: Comment[] = [
+const communityPosts: Post[] = [
   {
     id: '1',
     username: 'James Mitchell',
@@ -28,17 +34,21 @@ const communityComments: Comment[] = [
     likes: 24,
     comments: 3,
     shares: 1,
+    type: 'text',
   },
   {
     id: '2',
     username: 'Sarah Chen',
     handle: '@sarahc_investor',
     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
-    content: 'The McLaren Racing ISA opportunity is incredible! Getting 10% of sponsorship revenues feels like being part of the team. This democratisation of sports investment is exactly what fans have been waiting for.',
+    content: 'Behind the scenes at McLaren Racing! Check out this exclusive footage from our investor day 🏎️',
     timestamp: '4h',
-    likes: 18,
-    comments: 7,
-    shares: 2,
+    likes: 89,
+    comments: 23,
+    shares: 15,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
   },
   {
     id: '3',
@@ -50,17 +60,21 @@ const communityComments: Comment[] = [
     likes: 31,
     comments: 5,
     shares: 4,
+    type: 'text',
   },
   {
     id: '4',
     username: 'Emma Thompson',
     handle: '@emmathompson_uk',
     avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
-    content: 'Keeps has completely changed how I think about supporting my favourite teams. The exclusive access and real returns make you feel like you\'re truly part of the club\'s journey, not just a spectator.',
+    content: 'Training session highlights from Liverpool FC! As an investor, getting this exclusive access is incredible ⚽',
     timestamp: '8h',
-    likes: 42,
-    comments: 12,
-    shares: 6,
+    likes: 156,
+    comments: 34,
+    shares: 28,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop',
   },
   {
     id: '5',
@@ -72,17 +86,21 @@ const communityComments: Comment[] = [
     likes: 27,
     comments: 8,
     shares: 3,
+    type: 'text',
   },
   {
     id: '6',
     username: 'Lisa Wang',
     handle: '@lisawang_finance',
     avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face',
-    content: 'The regenerative finance model is brilliant - your investment actually helps grow the sport while giving you amazing returns. It feels good knowing you\'re contributing to something bigger than just profit.',
+    content: 'Exclusive interview with Cardiff City manager! Investor perks are amazing 🔵',
     timestamp: '12h',
-    likes: 35,
-    comments: 9,
-    shares: 7,
+    likes: 73,
+    comments: 19,
+    shares: 12,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=300&fit=crop',
   },
   {
     id: '7',
@@ -94,17 +112,21 @@ const communityComments: Comment[] = [
     likes: 19,
     comments: 4,
     shares: 2,
+    type: 'text',
   },
   {
     id: '8',
     username: 'Sophie Martin',
     handle: '@sophiem_sports',
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
-    content: 'The tiered benefits system is genius! Even at Bronze level, you get exclusive content and experiences that make you feel like a VIP. The returns are just the cherry on top!',
+    content: 'Ryder Cup course walkthrough with the pros! This is why I invested 🏌️‍♂️',
     timestamp: '16h',
-    likes: 28,
-    comments: 6,
-    shares: 1,
+    likes: 94,
+    comments: 21,
+    shares: 16,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=300&fit=crop',
   },
   {
     id: '9',
@@ -116,17 +138,21 @@ const communityComments: Comment[] = [
     likes: 67,
     comments: 15,
     shares: 12,
+    type: 'text',
   },
   {
     id: '10',
     username: 'Maria Gonzalez',
     handle: '@mariag_liverpool',
     avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face',
-    content: 'Being a Liverpool investor through Keeps has been incredible! The exclusive stadium access and knowing you\'re actually part of the club\'s future makes every match even more exciting. YNWA!',
+    content: 'Match day atmosphere at Anfield! YNWA! ⚽🔴',
     timestamp: '20h',
-    likes: 45,
-    comments: 11,
-    shares: 8,
+    likes: 203,
+    comments: 45,
+    shares: 38,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400&h=300&fit=crop',
   },
   {
     id: '11',
@@ -138,11 +164,44 @@ const communityComments: Comment[] = [
     likes: 38,
     comments: 9,
     shares: 5,
+    type: 'text',
   },
 ];
 
+const VideoPlayer = ({ post }: { post: Post }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.videoContainer}>
+        <Image source={{ uri: post.videoThumbnail }} style={styles.videoThumbnail} />
+        <View style={styles.videoOverlay}>
+          <TouchableOpacity style={styles.playButton}>
+            <Play size={32} color={Colors.text.white} fill={Colors.text.white} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.videoContainer}>
+      <Image source={{ uri: post.videoThumbnail }} style={styles.videoThumbnail} />
+      <View style={styles.videoOverlay}>
+        <TouchableOpacity style={styles.playButton}>
+          <Play size={32} color={Colors.text.white} fill={Colors.text.white} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
 export default function CommunityFeedScreen() {
   const router = useRouter();
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const sidebarTranslateX = useRef(new Animated.Value(-250)).current;
+  const overlayOpacity = useRef(new Animated.Value(0)).current;
 
   const handleCommentPress = (commentId: string) => {
     router.push(`/comment-thread/${commentId}`);
@@ -181,6 +240,56 @@ export default function CommunityFeedScreen() {
     router.push('/user-profile/liam-canning');
   };
 
+  const showSidebar = () => {
+    setSidebarVisible(true);
+    Animated.parallel([
+      Animated.timing(sidebarTranslateX, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(overlayOpacity, {
+        toValue: 0.5,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const hideSidebar = () => {
+    Animated.parallel([
+      Animated.timing(sidebarTranslateX, {
+        toValue: -250,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(overlayOpacity, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setSidebarVisible(false);
+    });
+  };
+
+  const onGestureEvent = Animated.event(
+    [{ nativeEvent: { translationX: sidebarTranslateX } }],
+    { useNativeDriver: true }
+  );
+
+  const onHandlerStateChange = (event: any) => {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      const { translationX, velocityX } = event.nativeEvent;
+      
+      if (translationX > 100 || velocityX > 500) {
+        showSidebar();
+      } else {
+        hideSidebar();
+      }
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen 
@@ -190,132 +299,186 @@ export default function CommunityFeedScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => (
+            <TouchableOpacity onPress={showSidebar} style={styles.menuButton}>
+              <Menu size={24} color={Colors.text.white} />
+            </TouchableOpacity>
+          ),
         }} 
       />
       <StatusBar style="light" />
       
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {/* Trending Banner */}
-        <View style={styles.trendingBanner}>
-          <View style={styles.trendingHeader}>
-            <Text style={styles.trendingTitle}>Trending Now</Text>
-            <TrendingUp size={16} color={Colors.accent.green} />
-          </View>
-          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
-        </View>
+      <PanGestureHandler
+        onGestureEvent={onGestureEvent}
+        onHandlerStateChange={onHandlerStateChange}
+      >
+        <Animated.View style={styles.container}>
+          <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
+            {/* Trending Banner */}
+            <View style={styles.trendingBanner}>
+              <View style={styles.trendingHeader}>
+                <Text style={styles.trendingTitle}>Trending Now</Text>
+                <TrendingUp size={16} color={Colors.accent.green} />
+              </View>
+              <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
+            </View>
 
-        <View style={styles.actionBanner}>
-          <TouchableOpacity style={styles.actionButton} onPress={handleHomePress}>
-            <Home size={20} color={Colors.primary.blue} />
-            <Text style={[styles.actionButtonText, { color: Colors.primary.blue }]}>Home</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleMessagesPress}>
-            <Mail size={20} color={Colors.accent.green} />
-            <Text style={[styles.actionButtonText, { color: Colors.accent.green }]}>Chat</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleSavedPress}>
-            <Bookmark size={20} color={Colors.primary.orange} />
-            <Text style={[styles.actionButtonText, { color: Colors.primary.orange }]}>Saved</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleSearchPress}>
-            <Search size={20} color={Colors.accent.purple} />
-            <Text style={[styles.actionButtonText, { color: Colors.accent.purple }]}>Search</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleNotificationsPress}>
-            <Bell size={20} color={Colors.accent.red} />
-            <Text style={[styles.actionButtonText, { color: Colors.accent.red }]}>Alerts</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleNewPostPress}>
-            <Zap size={20} color={Colors.accent.yellow} />
-            <Text style={[styles.actionButtonText, { color: Colors.accent.yellow }]}>Post</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleProfilePress}>
-            <User size={20} color={Colors.accent.blue} />
-            <Text style={[styles.actionButtonText, { color: Colors.accent.blue }]}>Profile</Text>
-          </TouchableOpacity>
-        </View>
-
-        {communityComments.map((comment, index) => (
-          <View key={comment.id} style={[styles.commentCard, index % 3 === 0 && styles.featuredCard]}>
-            <View style={styles.commentHeader}>
-              <TouchableOpacity onPress={() => handleUserPress(comment.username)}>
-                <Image source={{ uri: comment.avatar }} style={styles.avatar} />
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={styles.userInfo}
-                onPress={() => handleUserPress(comment.username)}
-              >
-                <Text style={styles.username}>{comment.username}</Text>
-                <Text style={styles.handle}>{comment.handle}</Text>
-              </TouchableOpacity>
-              <View style={styles.timestampContainer}>
-                <Text style={styles.timestamp}>{comment.timestamp}</Text>
-                <TouchableOpacity style={styles.moreButton}>
-                  <MoreHorizontal size={16} color={Colors.text.light} />
+            {communityPosts.map((post, index) => (
+              <View key={post.id} style={[styles.postCard, index % 4 === 0 && styles.featuredCard]}>
+                <View style={styles.postHeader}>
+                  <TouchableOpacity onPress={() => handleUserPress(post.username)}>
+                    <Image source={{ uri: post.avatar }} style={styles.avatar} />
+                  </TouchableOpacity>
+                  <TouchableOpacity 
+                    style={styles.userInfo}
+                    onPress={() => handleUserPress(post.username)}
+                  >
+                    <Text style={styles.username}>{post.username}</Text>
+                    <Text style={styles.handle}>{post.handle}</Text>
+                  </TouchableOpacity>
+                  <View style={styles.timestampContainer}>
+                    <Text style={styles.timestamp}>{post.timestamp}</Text>
+                    <TouchableOpacity style={styles.moreButton}>
+                      <MoreHorizontal size={16} color={Colors.text.light} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                
+                <Text style={styles.postContent}>{post.content}</Text>
+                
+                {post.type === 'video' && (
+                  <VideoPlayer post={post} />
+                )}
+                
+                <View style={styles.postActions}>
+                  <TouchableOpacity style={[styles.actionButtonPost, styles.likeButton]}>
+                    <Heart size={18} color={Colors.accent.red} fill={post.likes > 50 ? Colors.accent.red : 'transparent'} />
+                    <Text style={[styles.actionText, styles.likeText]}>{post.likes}</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity 
+                    style={[styles.actionButtonPost, styles.commentButton]}
+                    onPress={() => handleCommentPress(post.id)}
+                  >
+                    <MessageCircle size={18} color={Colors.primary.blue} />
+                    <Text style={[styles.actionText, styles.commentText]}>{post.comments}</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity style={[styles.actionButtonPost, styles.shareButton]}>
+                    <Share size={18} color={Colors.accent.green} />
+                    <Text style={[styles.actionText, styles.shareText]}>{post.shares}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+            
+            <View style={styles.socialSection}>
+              <View style={styles.socialIcons}>
+                <TouchableOpacity style={styles.socialIcon}>
+                  <Image 
+                    source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
+                    style={styles.socialIconImage}
+                  />
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.socialIcon}>
+                  <Image 
+                    source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
+                    style={styles.socialIconImage}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialIcon}>
+                  <Image 
+                    source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
+                    style={styles.socialIconImage}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialIcon}>
+                  <Image 
+                    source={{ uri: 'https://r2-pub.rork.com/attachments/1b1itipm9ni7gcuc9ee3d' }} 
+                    style={styles.socialIconImage}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.socialIcon}>
+                  <Image 
+                    source={{ uri: 'https://r2-pub.rork.com/attachments/dwyoemuwqs2vb7frha3bu' }} 
+                    style={styles.socialIconImage}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.contactEmail}>info@keeps.sport</Text>
+            </View>
+          </ScrollView>
+        </Animated.View>
+      </PanGestureHandler>
+
+      {/* Sidebar */}
+      {sidebarVisible && (
+        <>
+          <Animated.View 
+            style={[styles.overlay, { opacity: overlayOpacity }]}
+          >
+            <TouchableOpacity 
+              style={styles.overlayTouchable}
+              onPress={hideSidebar}
+            />
+          </Animated.View>
+          
+          <Animated.View 
+            style={[
+              styles.sidebar,
+              { transform: [{ translateX: sidebarTranslateX }] }
+            ]}
+          >
+            <View style={styles.sidebarHeader}>
+              <Image 
+                source={{ uri: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face' }}
+                style={styles.sidebarAvatar}
+              />
+              <View style={styles.sidebarUserInfo}>
+                <Text style={styles.sidebarUsername}>Liam Canning</Text>
+                <Text style={styles.sidebarHandle}>@liamcanning</Text>
               </View>
             </View>
             
-            <Text style={styles.commentContent}>{comment.content}</Text>
-            
-            <View style={styles.commentActions}>
-              <TouchableOpacity style={[styles.actionButtonComment, styles.likeButton]}>
-                <Heart size={18} color={Colors.accent.red} fill={comment.likes > 30 ? Colors.accent.red : 'transparent'} />
-                <Text style={[styles.actionText, styles.likeText]}>{comment.likes}</Text>
+            <View style={styles.sidebarMenu}>
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleHomePress}>
+                <Home size={24} color={Colors.primary.blue} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.primary.blue }]}>Home</Text>
               </TouchableOpacity>
               
-              <TouchableOpacity 
-                style={[styles.actionButtonComment, styles.commentButton]}
-                onPress={() => handleCommentPress(comment.id)}
-              >
-                <MessageCircle size={18} color={Colors.primary.blue} />
-                <Text style={[styles.actionText, styles.commentText]}>{comment.comments}</Text>
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleMessagesPress}>
+                <Mail size={24} color={Colors.accent.green} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.accent.green }]}>Chat</Text>
               </TouchableOpacity>
               
-              <TouchableOpacity style={[styles.actionButtonComment, styles.shareButton]}>
-                <Share size={18} color={Colors.accent.green} />
-                <Text style={[styles.actionText, styles.shareText]}>{comment.shares}</Text>
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleSavedPress}>
+                <Bookmark size={24} color={Colors.primary.orange} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.primary.orange }]}>Saved</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleSearchPress}>
+                <Search size={24} color={Colors.accent.purple} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.accent.purple }]}>Search</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleNotificationsPress}>
+                <Bell size={24} color={Colors.accent.red} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.accent.red }]}>Alerts</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleNewPostPress}>
+                <Zap size={24} color={Colors.accent.yellow} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.accent.yellow }]}>Post</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity style={styles.sidebarMenuItem} onPress={handleProfilePress}>
+                <User size={24} color={Colors.accent.blue} />
+                <Text style={[styles.sidebarMenuText, { color: Colors.accent.blue }]}>Profile</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        ))}
-        
-        <View style={styles.socialSection}>
-          <View style={styles.socialIcons}>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
-                style={styles.socialIconImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
-                style={styles.socialIconImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
-                style={styles.socialIconImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/1b1itipm9ni7gcuc9ee3d' }} 
-                style={styles.socialIconImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/dwyoemuwqs2vb7frha3bu' }} 
-                style={styles.socialIconImage}
-              />
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.contactEmail}>info@keeps.sport</Text>
-        </View>
-      </ScrollView>
+          </Animated.View>
+        </>
+      )}
     </View>
   );
 }
@@ -324,6 +487,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background.secondary,
+  },
+  menuButton: {
+    padding: 8,
+    marginLeft: 8,
   },
   scrollView: {
     flex: 1,
@@ -360,25 +527,7 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     fontWeight: '600',
   },
-  actionBanner: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginHorizontal: 16,
-    marginTop: 16,
-    paddingVertical: 16,
-  },
-  actionButton: {
-    alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    minWidth: 45,
-  },
-  actionButtonText: {
-    fontSize: 10,
-    fontWeight: '600',
-    marginTop: 4,
-  },
-  commentCard: {
+  postCard: {
     backgroundColor: Colors.background.card,
     marginHorizontal: 16,
     marginTop: 16,
@@ -395,7 +544,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.accent.orange,
     backgroundColor: '#FFF8F0',
   },
-  commentHeader: {
+  postHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
@@ -429,20 +578,51 @@ const styles = StyleSheet.create({
   moreButton: {
     padding: 4,
   },
-  commentContent: {
+  postContent: {
     fontSize: 16,
     color: Colors.text.dark,
     lineHeight: 22,
     marginBottom: 16,
   },
-  commentActions: {
+  videoContainer: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 16,
+    position: 'relative',
+  },
+  videoThumbnail: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  videoOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  playButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  postActions: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderTopWidth: 1,
     borderTopColor: Colors.border,
     paddingTop: 12,
   },
-  actionButtonComment: {
+  actionButtonPost: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
@@ -471,6 +651,76 @@ const styles = StyleSheet.create({
   },
   shareText: {
     color: Colors.accent.green,
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'black',
+    zIndex: 1000,
+  },
+  overlayTouchable: {
+    flex: 1,
+  },
+  sidebar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: 250,
+    backgroundColor: Colors.background.card,
+    zIndex: 1001,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 0 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  sidebarHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 20,
+    paddingTop: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
+    backgroundColor: Colors.primary.blue,
+  },
+  sidebarAvatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 12,
+  },
+  sidebarUserInfo: {
+    flex: 1,
+  },
+  sidebarUsername: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+  },
+  sidebarHandle: {
+    fontSize: 14,
+    color: Colors.text.white,
+    opacity: 0.8,
+  },
+  sidebarMenu: {
+    paddingTop: 20,
+  },
+  sidebarMenuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
+  },
+  sidebarMenuText: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginLeft: 16,
   },
   socialSection: {
     backgroundColor: Colors.background.card,
