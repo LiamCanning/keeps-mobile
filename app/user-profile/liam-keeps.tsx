@@ -360,6 +360,12 @@ const styles = StyleSheet.create({
     width: '48%',
     marginBottom: 12,
   },
+  partnerIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginBottom: 8,
+  },
   partnerName: {
     fontSize: 16,
     fontWeight: 'bold',
