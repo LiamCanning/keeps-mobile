@@ -158,7 +158,9 @@ export default function PortfolioScreen() {
           </TouchableOpacity>
           <View style={styles.headerTitles}>
             <Text style={styles.headerTitle}>Liam's Portfolio</Text>
-            <Text style={styles.headerSubtitle}>Track your sports investments</Text>
+            {!showStickyHeader && (
+              <Text style={styles.headerSubtitle}>Track your sports investments</Text>
+            )}
           </View>
         </View>
       </View>
