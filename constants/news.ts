@@ -42,8 +42,8 @@ export const newsArticles: NewsArticle[] = [
   },
   {
     id: '3',
-    title: 'Ryder Cup Debenture Program Nearly Sold Out',
-    summary: 'The exclusive Ryder Cup debenture program is 90% subscribed, with only 260 debentures remaining for the upcoming tournament.',
+    title: 'Ryder Cup Debenture Programme Offers Exclusive Investment Returns',
+    summary: 'The exclusive Ryder Cup debenture programme provides investors with premium access and attractive financial returns through innovative sports investment.',
     date: '2025-06-28',
     source: 'Golf Digest',
     imageUrl: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop&crop=center',
@@ -87,7 +87,7 @@ export const newsArticles: NewsArticle[] = [
   },
   {
     id: '6',
-    title: 'Sports Investment Platforms See Record User Growth',
+    title: 'Keeps Sports Investment Platform Sees Record User Growth',
     summary: 'Digital platforms facilitating fan investment in sports properties report unprecedented user acquisition in 2025.',
     date: '2025-05-20',
     source: 'TechCrunch',
@@ -106,7 +106,7 @@ export const newsArticles: NewsArticle[] = [
     summary: 'Digital sports entertainment collective Hexagon Fan Team announces plans for innovative fan ownership structure launching in 2026.',
     date: '2025-05-15',
     source: 'Sports Tech Weekly',
-    imageUrl: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=400&fit=crop&crop=center',
+    imageUrl: 'https://r2-pub.rork.com/attachments/qagf4fvmtx9gpc7064uvt',
     url: '#',
     content: [
       'Hexagon Fan Team, the rapidly growing digital sports entertainment collective, has announced plans for a groundbreaking fan investment opportunity through Keeps Sport, set to launch in 2026. This innovative model will allow fans to directly invest in content creation and fan engagement activities.',

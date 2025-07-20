@@ -61,7 +61,7 @@ const newsItems: NewsItem[] = [
   },
   {
     id: '5',
-    title: 'Exeter Rugby Investment Highlights',
+    title: 'Exeter Chiefs Investment Highlights',
     summary: 'Investor testimonials from successful rugby investment',
     category: 'completed',
     type: 'reel',

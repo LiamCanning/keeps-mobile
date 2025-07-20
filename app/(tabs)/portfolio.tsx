@@ -239,7 +239,7 @@ export default function PortfolioScreen() {
             
             <View style={styles.buttonContainer}>
               <TouchableOpacity 
-                style={styles.actionButton} 
+                style={styles.benefitsButton} 
                 onPress={() => handleViewBenefits(asset.id)}
               >
                 <Eye size={16} color={Colors.text.white} />
@@ -247,7 +247,7 @@ export default function PortfolioScreen() {
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.actionButton} 
+                style={styles.tradeButton} 
                 onPress={() => handleTradeShares(asset.id)}
               >
                 <TrendingUp size={16} color={Colors.text.white} />
@@ -431,6 +431,22 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     backgroundColor: Colors.primary.orange,
+    borderRadius: 12,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  benefitsButton: {
+    backgroundColor: '#8B5CF6',
+    borderRadius: 12,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tradeButton: {
+    backgroundColor: Colors.accent.green,
     borderRadius: 12,
     paddingVertical: 12,
     flexDirection: 'row',

@@ -21,7 +21,7 @@ interface Reel {
 const reels: Reel[] = [
   {
     id: '1',
-    title: 'Liverpool FC investor shares their experience - LIVE',
+    title: 'Liverpool FC Investors Share Their Experience - LIVE',
     thumbnail: 'https://r2-pub.rork.com/attachments/rrq221caqlhrod57pqi5z',
     duration: '2:15',
     views: 12500,
@@ -30,7 +30,7 @@ const reels: Reel[] = [
   },
   {
     id: '2',
-    title: 'McLaren Racing behind the scenes access - LIVE',
+    title: 'McLaren Racing Behind The Scenes Access - LIVE',
     thumbnail: 'https://r2-pub.rork.com/attachments/f7flebgx9g6vzobkwttvc',
     duration: '1:45',
     views: 8900,
@@ -39,7 +39,7 @@ const reels: Reel[] = [
   },
   {
     id: '3',
-    title: 'Cardiff City fan excited for upcoming launch - COMING SOON',
+    title: 'Cardiff City Fan Excited For Upcoming Launch - COMING SOON',
     thumbnail: 'https://r2-pub.rork.com/attachments/2ld73kfmw7rqu3efztuw0',
     duration: '3:20',
     views: 6700,
@@ -48,7 +48,7 @@ const reels: Reel[] = [
   },
   {
     id: '4',
-    title: 'British Cycling debenture returns explained - COMPLETED',
+    title: 'British Cycling Debenture Returns Explained - COMPLETED',
     thumbnail: 'https://r2-pub.rork.com/attachments/ae57nptg5ffnj4az6ka5i',
     duration: '1:55',
     views: 5400,
@@ -57,7 +57,7 @@ const reels: Reel[] = [
   },
   {
     id: '5',
-    title: 'Ohio State stadium funding excitement - COMING SOON',
+    title: 'Ohio State Stadium Funding Excitement - COMING SOON',
     thumbnail: 'https://r2-pub.rork.com/attachments/g7i2b49q4fbrlijr8ex59',
     duration: '2:30',
     views: 7800,
@@ -66,7 +66,7 @@ const reels: Reel[] = [
   },
   {
     id: '6',
-    title: 'Hexagon Fan Team announcing 75% ownership opportunity - COMING SOON',
+    title: 'Hexagon Fan Team Announcing 75% Ownership Opportunity - COMING SOON',
     thumbnail: 'https://r2-pub.rork.com/attachments/sxuovop9htusk4lp0lcfm',
     duration: '1:40',
     views: 4200,
@@ -75,7 +75,7 @@ const reels: Reel[] = [
   },
   {
     id: '7',
-    title: 'Ultimate Frisbee Association growth potential - COMPLETED',
+    title: 'Ultimate Frisbee Association Growth Potential - COMPLETED',
     thumbnail: 'https://r2-pub.rork.com/attachments/6pgrnssavfwji8pvi4dkt',
     duration: '1:35',
     views: 3800,
@@ -84,8 +84,8 @@ const reels: Reel[] = [
   },
   {
     id: '8',
-    title: 'Exeter Chiefs rugby investment success story - COMPLETED',
-    thumbnail: 'https://r2-pub.rork.com/attachments/s5g0rmzq5c1lywssh5yvs',
+    title: 'Exeter Chiefs Rugby Investment Success Story - COMPLETED',
+    thumbnail: 'https://r2-pub.rork.com/attachments/pynfghqon7kw84kpncvmt',
     duration: '2:10',
     views: 6300,
     likes: 478,
@@ -185,9 +185,9 @@ export default function ContentScreen() {
                 <Text style={styles.reelTitle}>{item.title}</Text>
                 <View style={styles.reelStats}>
                   <Text style={styles.reelStat}>{item.views.toLocaleString()} views</Text>
-                  <Text style={styles.reelStat}>❤️ {item.likes}</Text>
+                  <Text style={styles.reelStat}>{item.likes.toLocaleString()} likes</Text>
                   <TouchableOpacity onPress={() => handleCommentsPress(item.id)}>
-                    <Text style={styles.reelStat}>💬 {item.comments}</Text>
+                    <Text style={styles.reelStat}>{item.comments} comments</Text>
                   </TouchableOpacity>
                 </View>
               </View>
