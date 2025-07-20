@@ -296,14 +296,17 @@ export default function SupportHubScreen() {
               Live chat and email support available 24/7
             </Text>
           </View>
-          
-          <View style={styles.addressSection}>
-            <Text style={styles.addressTitle}>Our Address</Text>
-            <Text style={styles.addressText}>Vessel Social Limited</Text>
-            <Text style={styles.addressText}>2 Hilliards Court</Text>
-            <Text style={styles.addressText}>Chester Business Park</Text>
-            <Text style={styles.addressText}>Cheshire, CH4 9QP</Text>
-            <Text style={styles.addressText}>United Kingdom</Text>
+        </View>
+
+        {/* Our Address */}
+        <View style={styles.addressSection}>
+          <Text style={styles.sectionTitle}>Our Address</Text>
+          <View style={styles.hoursCard}>
+            <Text style={styles.hoursText}>Vessel Social Limited</Text>
+            <Text style={styles.hoursText}>2 Hilliards Court</Text>
+            <Text style={styles.hoursText}>Chester Business Park</Text>
+            <Text style={styles.hoursText}>Cheshire, CH4 9QP</Text>
+            <Text style={styles.hoursText}>United Kingdom</Text>
           </View>
         </View>
       </ScrollView>
@@ -470,20 +473,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   addressSection: {
-    backgroundColor: Colors.background.card,
-    borderRadius: 16,
-    padding: 20,
-    marginTop: 16,
-  },
-  addressTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 8,
-  },
-  addressText: {
-    fontSize: 14,
-    color: Colors.text.dark,
-    marginBottom: 4,
+    marginTop: 24,
   },
 });
