@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File } from 'lucide-react-native';
+import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File, Flame } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 
 interface Comment {
@@ -198,7 +198,7 @@ export default function CommunityFeedScreen() {
         {/* Trending Banner */}
         <View style={styles.trendingBanner}>
           <View style={styles.trendingHeader}>
-            <Fire size={20} color={Colors.accent.orange} />
+            <Flame size={20} color={Colors.accent.orange} />
             <Text style={styles.trendingTitle}>🔥 Trending Now</Text>
             <TrendingUp size={16} color={Colors.accent.green} />
           </View>
