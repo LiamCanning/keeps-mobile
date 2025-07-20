@@ -305,8 +305,8 @@ export const benefits: Benefit[] = [
     includesPrevious: true,
   },
   {
-    id: 'exeter-rugby-3',
-    assetId: 'exeter-rugby',
+    id: 'exeter-chiefs-3',
+    assetId: 'exeter-chiefs',
     title: 'Match Day Hospitality',
     description: 'Premium seating and hospitality for Premiership home matches',
     level: 'gold',
@@ -314,8 +314,8 @@ export const benefits: Benefit[] = [
     includesPrevious: true,
   },
   {
-    id: 'exeter-rugby-4',
-    assetId: 'exeter-rugby',
+    id: 'exeter-chiefs-4',
+    assetId: 'exeter-chiefs',
     title: 'Player Meet & Greet',
     description: 'Exclusive meet and greet with Exeter Chiefs players and coaching staff',
     level: 'platinum',
@@ -323,8 +323,8 @@ export const benefits: Benefit[] = [
     includesPrevious: true,
   },
   {
-    id: 'exeter-rugby-5',
-    assetId: 'exeter-rugby',
+    id: 'exeter-chiefs-5',
+    assetId: 'exeter-chiefs',
     title: 'Chiefs Inner Circle',
     description: 'Access to board meetings and strategic planning sessions with club leadership',
     level: 'diamond',
