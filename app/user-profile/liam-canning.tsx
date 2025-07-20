@@ -150,7 +150,7 @@ export default function LiamCanningProfileScreen() {
                 source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
                 style={styles.partnerIcon}
               />
-              <Text style={styles.partnerName}>Heineken</Text>
+              <Text style={styles.partnerName}>X</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
@@ -158,7 +158,7 @@ export default function LiamCanningProfileScreen() {
                 source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
                 style={styles.partnerIcon}
               />
-              <Text style={styles.partnerName}>Google</Text>
+              <Text style={styles.partnerName}>Instagram</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
@@ -166,7 +166,15 @@ export default function LiamCanningProfileScreen() {
                 source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
                 style={styles.partnerIcon}
               />
-              <Text style={styles.partnerName}>Rolex</Text>
+              <Text style={styles.partnerName}>YouTube</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/1b1itipm9ni7gcuc9ee3d' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>AXA</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>

@@ -43,6 +43,58 @@ export default function BuyScreen() {
   const processingFee = subtotal * 0.1; // 10% processing fee
   const totalPrice = subtotal + processingFee;
 
+  const getTier = (amount: number, assetId: string) => {
+    if (assetId === 'liverpool') {
+      if (amount >= 50000) return 'Diamond';
+      if (amount >= 25000) return 'Gold';
+      if (amount >= 10000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'mclaren') {
+      if (amount >= 100000) return 'Diamond';
+      if (amount >= 50000) return 'Gold';
+      if (amount >= 20000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'rydercup') {
+      if (amount >= 50000) return 'Diamond';
+      if (amount >= 25000) return 'Gold';
+      if (amount >= 15000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'british-cycling') {
+      if (amount >= 25000) return 'Diamond';
+      if (amount >= 15000) return 'Gold';
+      if (amount >= 5000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'exeter-chiefs') {
+      if (amount >= 20000) return 'Diamond';
+      if (amount >= 10000) return 'Gold';
+      if (amount >= 5000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'ultimate-frisbee') {
+      if (amount >= 10000) return 'Diamond';
+      if (amount >= 5000) return 'Gold';
+      if (amount >= 2500) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'ohio') {
+      if (amount >= 50000) return 'Diamond';
+      if (amount >= 25000) return 'Gold';
+      if (amount >= 10000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'cardiff') {
+      if (amount >= 20000) return 'Diamond';
+      if (amount >= 10000) return 'Gold';
+      if (amount >= 5000) return 'Silver';
+      return 'Bronze';
+    } else if (assetId === 'hexagon') {
+      if (amount >= 15000) return 'Diamond';
+      if (amount >= 7500) return 'Gold';
+      if (amount >= 3000) return 'Silver';
+      return 'Bronze';
+    }
+    return 'Bronze';
+  };
+
+  const currentTier = getTier(subtotal, asset.id);
+
   const handlePurchase = () => {
     const assetType = asset.type === 'debenture' ? 'debentures' : 'shares';
     const unitLabel = quantityNum === 1 ? getQuantityLabel() : getQuantityLabelPlural();
@@ -151,11 +203,18 @@ export default function BuyScreen() {
             <Text style={styles.summaryValue}>£{processingFee.toLocaleString()}</Text>
           </View>
           
+          <View style={styles.tierRow}>
+            <Text style={styles.tierLabel}>Investment Tier</Text>
+            <Text style={[styles.tierValue, { color: currentTier === 'Diamond' ? '#9333EA' : currentTier === 'Gold' ? '#F59E0B' : currentTier === 'Silver' ? '#6B7280' : '#CD7F32' }]}>
+              {currentTier} Tier
+            </Text>
+          </View>
+
           {asset.type === 'equity' && (
             <View style={styles.equityPercentageRow}>
               <Text style={styles.equityPercentageLabel}>Investment Round Percentage</Text>
               <Text style={styles.equityPercentageValue}>
-                £{subtotal.toLocaleString()} = {((subtotal / (asset.id === 'liverpool' ? 40000000 : asset.id === 'exeter-rugby' ? 5000000 : asset.id === 'ultimate-frisbee' ? 8000000 : 1000000)) * 100).toFixed(3)}% of the investment round
+                £{subtotal.toLocaleString()} = {((subtotal / (asset.id === 'liverpool' ? 40000000 : asset.id === 'exeter-chiefs' ? 5000000 : asset.id === 'ultimate-frisbee' ? 8000000 : 1000000)) * 100).toFixed(3)}% of the investment round
               </Text>
             </View>
           )}
@@ -320,6 +379,26 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: Colors.text.dark,
     lineHeight: 20,
+  },
+  tierRow: {
+    backgroundColor: 'rgba(147, 51, 234, 0.1)',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#9333EA',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  tierLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#9333EA',
+  },
+  tierValue: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   purchaseButton: {
     backgroundColor: Colors.accent.green,

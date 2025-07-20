@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File, Flame } from 'lucide-react-native';
+import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 
 interface Comment {
@@ -55,7 +55,7 @@ const communityComments: Comment[] = [
     id: '4',
     username: 'Emma Thompson',
     handle: '@emmathompson_uk',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
     content: 'Keeps has completely changed how I think about supporting my favourite teams. The exclusive access and real returns make you feel like you\'re truly part of the club\'s journey, not just a spectator.',
     timestamp: '8h',
     likes: 42,
@@ -132,7 +132,7 @@ const communityComments: Comment[] = [
     id: '11',
     username: 'Sarah Martinez',
     handle: '@sarahm_sports',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     content: 'Just secured my Cardiff City shares! 🔵 The potential 12% returns plus being part of the Bluebirds future is incredible. This is how modern sports investment should work!',
     timestamp: '22h',
     likes: 38,
@@ -198,41 +198,40 @@ export default function CommunityFeedScreen() {
         {/* Trending Banner */}
         <View style={styles.trendingBanner}>
           <View style={styles.trendingHeader}>
-            <Flame size={20} color={Colors.accent.orange} />
-            <Text style={styles.trendingTitle}>🔥 Trending Now</Text>
+            <Text style={styles.trendingTitle}>Trending Now</Text>
             <TrendingUp size={16} color={Colors.accent.green} />
           </View>
-          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! 🚀 Join 10,250+ investors</Text>
+          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
         </View>
 
         <View style={styles.actionBanner}>
-          <TouchableOpacity style={[styles.actionButton, styles.homeButton]} onPress={handleHomePress}>
-            <Home size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Home</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleHomePress}>
+            <Home size={20} color={Colors.primary.blue} />
+            <Text style={[styles.actionButtonText, { color: Colors.primary.blue }]}>Home</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.messagesButton]} onPress={handleMessagesPress}>
-            <Mail size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Chat</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleMessagesPress}>
+            <Mail size={20} color={Colors.accent.green} />
+            <Text style={[styles.actionButtonText, { color: Colors.accent.green }]}>Chat</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.savedButton]} onPress={handleSavedPress}>
-            <Bookmark size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Saved</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleSavedPress}>
+            <Bookmark size={20} color={Colors.primary.orange} />
+            <Text style={[styles.actionButtonText, { color: Colors.primary.orange }]}>Saved</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.searchButton]} onPress={handleSearchPress}>
-            <Search size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Search</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleSearchPress}>
+            <Search size={20} color={Colors.accent.purple} />
+            <Text style={[styles.actionButtonText, { color: Colors.accent.purple }]}>Search</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.notificationsButton]} onPress={handleNotificationsPress}>
-            <Bell size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Alerts</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleNotificationsPress}>
+            <Bell size={20} color={Colors.accent.red} />
+            <Text style={[styles.actionButtonText, { color: Colors.accent.red }]}>Alerts</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.newPostButton]} onPress={handleNewPostPress}>
-            <Zap size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Post</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleNewPostPress}>
+            <Zap size={20} color={Colors.accent.yellow} />
+            <Text style={[styles.actionButtonText, { color: Colors.accent.yellow }]}>Post</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.actionButton, styles.profileButton]} onPress={handleProfilePress}>
-            <User size={20} color={Colors.text.white} />
-            <Text style={styles.actionButtonText}>Profile</Text>
+          <TouchableOpacity style={styles.actionButton} onPress={handleProfilePress}>
+            <User size={20} color={Colors.accent.blue} />
+            <Text style={[styles.actionButtonText, { color: Colors.accent.blue }]}>Profile</Text>
           </TouchableOpacity>
         </View>
 
@@ -364,50 +363,20 @@ const styles = StyleSheet.create({
   actionBanner: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: Colors.background.card,
     marginHorizontal: 16,
     marginTop: 16,
-    borderRadius: 16,
     paddingVertical: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 4,
   },
   actionButton: {
     alignItems: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
-    borderRadius: 12,
     minWidth: 45,
   },
   actionButtonText: {
     fontSize: 10,
     fontWeight: '600',
-    color: Colors.text.white,
     marginTop: 4,
-  },
-  homeButton: {
-    backgroundColor: Colors.primary.blue,
-  },
-  messagesButton: {
-    backgroundColor: Colors.accent.green,
-  },
-  savedButton: {
-    backgroundColor: Colors.primary.orange,
-  },
-  searchButton: {
-    backgroundColor: Colors.accent.purple,
-  },
-  notificationsButton: {
-    backgroundColor: Colors.accent.red,
-  },
-  newPostButton: {
-    backgroundColor: Colors.accent.yellow,
-  },
-  profileButton: {
-    backgroundColor: Colors.accent.blue,
   },
   commentCard: {
     backgroundColor: Colors.background.card,
