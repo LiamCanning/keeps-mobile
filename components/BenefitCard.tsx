@@ -12,17 +12,17 @@ export default function BenefitCard({ benefit }: BenefitCardProps) {
   const getBadgeColor = () => {
     switch (benefit.level) {
       case 'bronze':
-        return '#CD7F32';
+        return '#8B4513';
       case 'silver':
-        return '#C0C0C0';
+        return '#708090';
       case 'gold':
-        return '#FFD700';
+        return '#B8860B';
       case 'platinum':
-        return '#E5E4E2';
+        return '#4A4A4A';
       case 'diamond':
-        return '#B9F2FF';
+        return '#4169E1';
       default:
-        return '#9CA3AF';
+        return '#6B7280';
     }
   };
 

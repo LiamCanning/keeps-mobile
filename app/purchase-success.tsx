@@ -22,6 +22,12 @@ export default function PurchaseSuccessScreen() {
       case 'liverpool': return 'Liverpool FC';
       case 'mclaren': return 'McLaren Racing';
       case 'rydercup': return 'Ryder Cup';
+      case 'ohio': return 'Ohio State';
+      case 'cardiff': return 'Cardiff City';
+      case 'hexagon': return 'Hexagon Fan Team';
+      case 'exeter-chiefs': return 'Exeter Chiefs';
+      case 'british-cycling': return 'British Cycling';
+      case 'ultimate-frisbee': return 'Ultimate Frisbee Association';
       default: return entity;
     }
   };
@@ -101,7 +107,8 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingTop: 32,
-    paddingBottom: 24,
+    paddingBottom: 100,
+    flexGrow: 1,
   },
   successSection: {
     alignItems: 'center',
@@ -179,7 +186,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   secondaryButton: {
-    backgroundColor: Colors.accent.blue,
+    backgroundColor: Colors.primary.orange,
     borderWidth: 0,
     borderRadius: 12,
     paddingVertical: 16,

@@ -288,16 +288,16 @@ export const benefits: Benefit[] = [
 
   // Exeter Chiefs Benefits
   {
-    id: 'exeter-rugby-1',
-    assetId: 'exeter-rugby',
+    id: 'exeter-chiefs-1',
+    assetId: 'exeter-chiefs',
     title: 'Chiefs Digital Package',
     description: 'Exclusive Exeter Chiefs digital content and match highlights',
     level: 'bronze',
     investmentRequired: '£500-£2,000',
   },
   {
-    id: 'exeter-rugby-2',
-    assetId: 'exeter-rugby',
+    id: 'exeter-chiefs-2',
+    assetId: 'exeter-chiefs',
     title: 'Sandy Park Stadium Tour',
     description: 'Private guided tour of Sandy Park stadium and training facilities',
     level: 'silver',

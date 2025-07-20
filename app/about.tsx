@@ -30,13 +30,15 @@ export default function AboutScreen() {
             />
           </View>
           <Text style={styles.heroTitle}>Keeps</Text>
+          <Text style={styles.heroSubtitle}>Sports Investment Platform</Text>
           <Text style={styles.heroText}>
             Democratising sports investment for passionate fans worldwide
           </Text>
         </View>
 
-        <View style={styles.journeySection}>
-          <Text style={styles.journeyTitle}>Our Journey</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Our Journey</Text>
+          
           <View style={styles.journeyStep}>
             <View style={styles.stepNumber}>
               <Text style={styles.stepNumberText}>1</Text>
@@ -65,58 +67,83 @@ export default function AboutScreen() {
               </Text>
             </View>
           </View>
-        </View>
 
-        <View style={styles.visualsContainer}>
-          <View style={styles.visualCard}>
-            <Target size={40} color={Colors.primary.orange} />
-            <Text style={styles.visualTitle}>Primary Market</Text>
-            <Text style={styles.visualText}>Direct investment in sports assets with exclusive access</Text>
-          </View>
-          
-          <View style={styles.visualCard}>
-            <Users size={40} color={Colors.accent.blue} />
-            <Text style={styles.visualTitle}>Secondary Market</Text>
-            <Text style={styles.visualText}>Trade your investments with other passionate fans</Text>
-          </View>
-          
-          <View style={styles.visualCard}>
-            <Gift size={40} color={Colors.accent.green} />
-            <Text style={styles.visualTitle}>Exclusive Benefits</Text>
-            <Text style={styles.visualText}>VIP experiences and merchandise discounts</Text>
-          </View>
-        </View>
-
-        <View style={styles.journeyStep}>
-          <View style={styles.stepNumber}>
-            <Text style={styles.stepNumberText}>3</Text>
-          </View>
-          <View style={styles.stepContent}>
-            <Text style={styles.stepTitle}>Why We Do It</Text>
-            <Text style={styles.stepText}>
-              Sports have the power to unite people across cultures and backgrounds. We believe that passionate 
-              fans should have the opportunity to financially benefit from the success of the teams and athletes 
-              they support, whilst helping to fund the future of sport.
-            </Text>
+          <View style={styles.journeyStep}>
+            <View style={styles.stepNumber}>
+              <Text style={styles.stepNumberText}>3</Text>
+            </View>
+            <View style={styles.stepContent}>
+              <Text style={styles.stepTitle}>Why We Do It</Text>
+              <Text style={styles.stepText}>
+                Sports have the power to unite people across cultures and backgrounds. We believe that passionate 
+                fans should have the opportunity to financially benefit from the success of the teams and athletes 
+                they support, whilst helping to fund the future of sport.
+              </Text>
+            </View>
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.subtitle}>Our Values</Text>
+          <Text style={styles.sectionTitle}>How It Works</Text>
+          <View style={styles.visualsContainer}>
+            <View style={styles.visualCard}>
+              <Target size={40} color={Colors.primary.orange} />
+              <Text style={styles.visualTitle}>Primary Market</Text>
+              <Text style={styles.visualText}>Direct investment in sports assets with exclusive access and benefits</Text>
+            </View>
+            
+            <View style={styles.visualCard}>
+              <Users size={40} color={Colors.accent.blue} />
+              <Text style={styles.visualTitle}>Secondary Market</Text>
+              <Text style={styles.visualText}>Trade your investments with other passionate fans for liquidity</Text>
+            </View>
+            
+            <View style={styles.visualCard}>
+              <Gift size={40} color={Colors.accent.green} />
+              <Text style={styles.visualTitle}>Exclusive Benefits</Text>
+              <Text style={styles.visualText}>VIP experiences, merchandise discounts, and behind-the-scenes access</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Our Values</Text>
           <View style={styles.valuesList}>
             <View style={styles.valueItem}>
               <Shield size={24} color={Colors.accent.green} />
-              <Text style={styles.valueText}>Transparency in all investments and returns</Text>
+              <View style={styles.valueContent}>
+                <Text style={styles.valueTitle}>Transparency</Text>
+                <Text style={styles.valueText}>Complete transparency in all investments, returns, and asset performance</Text>
+              </View>
             </View>
             <View style={styles.valueItem}>
               <Zap size={24} color={Colors.primary.orange} />
-              <Text style={styles.valueText}>Innovation in sports finance and fan engagement</Text>
+              <View style={styles.valueContent}>
+                <Text style={styles.valueTitle}>Innovation</Text>
+                <Text style={styles.valueText}>Pioneering new approaches to sports finance and fan engagement</Text>
+              </View>
             </View>
             <View style={styles.valueItem}>
               <Users size={24} color={Colors.accent.blue} />
-              <Text style={styles.valueText}>Community-driven investment opportunities</Text>
+              <View style={styles.valueContent}>
+                <Text style={styles.valueTitle}>Community</Text>
+                <Text style={styles.valueText}>Building a community of passionate sports investors and fans</Text>
+              </View>
             </View>
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Investment Opportunities</Text>
+          <Text style={styles.text}>
+            From Premier League football clubs to Formula 1 racing teams, from golf's most prestigious tournaments 
+            to emerging sports leagues - Keeps provides access to a diverse portfolio of sports investment opportunities 
+            that were previously only available to institutional investors.
+          </Text>
+          <Text style={styles.text}>
+            Our platform offers equity stakes, debenture programmes, and income-sharing agreements across multiple 
+            sports and entertainment properties, allowing you to build a diversified sports investment portfolio.
+          </Text>
         </View>
       </ScrollView>
     </View>
@@ -133,7 +160,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 24,
+    paddingBottom: 32,
   },
   heroSection: {
     backgroundColor: Colors.background.card,
@@ -141,10 +168,11 @@ const styles = StyleSheet.create({
     padding: 24,
     marginTop: 16,
     alignItems: 'center',
+    marginBottom: 16,
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 16,
   },
   logoImage: {
     width: 80,
@@ -155,6 +183,12 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: Colors.text.dark,
+    marginBottom: 4,
+  },
+  heroSubtitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: Colors.primary.orange,
     marginBottom: 12,
   },
   heroText: {
@@ -163,22 +197,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
   },
-  journeySection: {
+  section: {
     backgroundColor: Colors.background.card,
     borderRadius: 16,
-    padding: 24,
-    marginTop: 16,
+    padding: 20,
+    marginBottom: 16,
   },
-  journeyTitle: {
+  sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: Colors.text.dark,
-    marginBottom: 24,
+    marginBottom: 20,
     textAlign: 'center',
   },
   journeyStep: {
     flexDirection: 'row',
-    marginBottom: 24,
+    marginBottom: 20,
     alignItems: 'flex-start',
   },
   stepNumber: {
@@ -210,36 +244,25 @@ const styles = StyleSheet.create({
     color: Colors.text.dark,
     lineHeight: 24,
   },
-  section: {
-    backgroundColor: Colors.background.card,
-    borderRadius: 16,
-    padding: 20,
-    marginTop: 16,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 12,
-  },
   text: {
     fontSize: 16,
     color: Colors.text.dark,
     lineHeight: 24,
+    marginBottom: 16,
   },
   visualsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: 16,
+    marginTop: 8,
   },
   visualCard: {
-    backgroundColor: Colors.background.card,
-    borderRadius: 16,
-    padding: 20,
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
     width: '48%',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   visualTitle: {
     fontSize: 16,
@@ -256,18 +279,26 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   valuesList: {
-    marginTop: 12,
+    marginTop: 8,
   },
   valueItem: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
+    alignItems: 'flex-start',
+    marginBottom: 20,
+  },
+  valueContent: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  valueTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 4,
   },
   valueText: {
-    fontSize: 16,
-    color: Colors.text.dark,
-    marginLeft: 12,
-    flex: 1,
-    lineHeight: 22,
+    fontSize: 14,
+    color: Colors.text.light,
+    lineHeight: 20,
   },
 });

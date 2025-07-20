@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -42,7 +42,13 @@ export default function AssetBenefitsScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.headerSection}>
-          <Text style={styles.headerTitle}>Exclusive Benefits</Text>
+          <View style={styles.assetHeader}>
+            <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
+            <View style={styles.assetInfo}>
+              <Text style={styles.assetName}>{asset.name}</Text>
+              <Text style={styles.headerTitle}>Exclusive Benefits</Text>
+            </View>
+          </View>
           <Text style={styles.headerSubtitle}>
             {asset.type === 'debenture' 
               ? 'Benefits are tiered based on your debenture level'
@@ -84,11 +90,30 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 16,
   },
-  headerTitle: {
-    fontSize: 24,
+  assetHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  assetLogo: {
+    width: 60,
+    height: 60,
+    resizeMode: 'contain',
+    marginRight: 16,
+  },
+  assetInfo: {
+    flex: 1,
+  },
+  assetName: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: Colors.text.dark,
-    marginBottom: 8,
+    marginBottom: 4,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: Colors.primary.orange,
   },
   headerSubtitle: {
     fontSize: 16,
