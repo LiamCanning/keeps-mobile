@@ -120,6 +120,8 @@ export default function PortfolioScreen() {
         return 'Trade ISA';
       case 'rydercup':
         return 'Trade Debentures';
+      case 'british-cycling':
+        return 'Trade Debentures';
       default:
         return 'Trade Shares';
     }

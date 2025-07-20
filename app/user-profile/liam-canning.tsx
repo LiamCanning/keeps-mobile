@@ -50,12 +50,12 @@ export default function LiamCanningProfileScreen() {
         <View style={styles.statsSection}>
           <View style={styles.statCard}>
             <TrendingUp size={20} color={Colors.accent.green} />
-            <Text style={styles.statValue}>£14,000</Text>
+            <Text style={styles.statValue}>£250,000</Text>
             <Text style={styles.statLabel}>Total Invested</Text>
           </View>
           <View style={styles.statCard}>
             <Award size={20} color={Colors.accent.blue} />
-            <Text style={styles.statValue}>3</Text>
+            <Text style={styles.statValue}>4</Text>
             <Text style={styles.statLabel}>Active Assets</Text>
           </View>
           <View style={styles.statCard}>
@@ -77,19 +77,27 @@ export default function LiamCanningProfileScreen() {
           <View style={styles.investmentGrid}>
             <View style={styles.investmentCard}>
               <Text style={styles.investmentAsset}>Liverpool FC</Text>
-              <Text style={styles.investmentAmount}>£10,000</Text>
+              <Text style={styles.investmentAmount}>£25,000</Text>
               <Text style={styles.investmentTier}>Gold Tier</Text>
-              <Text style={styles.investmentReturn}>Guaranteed Return: 6% on £4,000</Text>
+              <Text style={styles.investmentReturn}>4-8% annually</Text>
             </View>
             <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>Cardiff City</Text>
-              <Text style={styles.investmentAmount}>£2,000</Text>
-              <Text style={styles.investmentTier}>Bronze Tier</Text>
+              <Text style={styles.investmentAsset}>McLaren Racing</Text>
+              <Text style={styles.investmentAmount}>£200,000</Text>
+              <Text style={styles.investmentTier}>Diamond Tier</Text>
+              <Text style={styles.investmentReturn}>6-12% annually</Text>
+            </View>
+            <View style={styles.investmentCard}>
+              <Text style={styles.investmentAsset}>Ryder Cup</Text>
+              <Text style={styles.investmentAmount}>£15,000</Text>
+              <Text style={styles.investmentTier}>Silver Tier</Text>
+              <Text style={styles.investmentReturn}>5% + Principal</Text>
             </View>
             <View style={styles.investmentCard}>
               <Text style={styles.investmentAsset}>British Cycling</Text>
-              <Text style={styles.investmentAmount}>£2,000</Text>
+              <Text style={styles.investmentAmount}>£10,000</Text>
               <Text style={styles.investmentTier}>Gold Tier</Text>
+              <Text style={styles.investmentReturn}>6% + Principal</Text>
             </View>
           </View>
         </View>

@@ -42,7 +42,7 @@ export default function PurchaseSuccessScreen() {
       />
       <StatusBar style="light" />
       
-      <View style={styles.content}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.successSection}>
           <CheckCircle size={80} color={Colors.accent.green} />
           <Text style={styles.successTitle}>Congratulations! 🎉</Text>
@@ -85,7 +85,7 @@ export default function PurchaseSuccessScreen() {
             <Text style={styles.secondaryButtonText}>View Asset Details</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -95,10 +95,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  content: {
+  scrollView: {
     flex: 1,
+  },
+  scrollContent: {
     paddingHorizontal: 16,
     paddingTop: 32,
+    paddingBottom: 24,
   },
   successSection: {
     alignItems: 'center',
@@ -162,7 +165,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   primaryButton: {
-    backgroundColor: Colors.primary.orange,
+    backgroundColor: '#8B5CF6',
     borderRadius: 12,
     paddingVertical: 16,
     flexDirection: 'row',
@@ -176,9 +179,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   secondaryButton: {
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: Colors.text.white,
+    backgroundColor: Colors.accent.blue,
+    borderWidth: 0,
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: 'center',

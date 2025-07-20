@@ -83,26 +83,18 @@ export default function Header({ username }: HeaderProps) {
             
             <TouchableOpacity 
               style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/my-account')}
-            >
-              <User size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>My Account</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/newsroom')}
-            >
-              <Newspaper size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Newsroom</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
               onPress={() => handleMenuItemPress('/support-hub')}
             >
               <HeadphonesIcon size={20} color={Colors.text.dark} />
               <Text style={styles.dropdownText}>Support Hub</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.dropdownItem} 
+              onPress={() => handleMenuItemPress('/my-account')}
+            >
+              <User size={20} color={Colors.text.dark} />
+              <Text style={styles.dropdownText}>My Account</Text>
             </TouchableOpacity>
             
 

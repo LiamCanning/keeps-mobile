@@ -25,32 +25,46 @@ export default function AboutScreen() {
         <View style={styles.heroSection}>
           <View style={styles.logoContainer}>
             <Image 
-              source={{ uri: 'https://r2-pub.rork.com/attachments/94wbcnfwavzhobdmcgdzb' }}
+              source={{ uri: 'https://r2-pub.rork.com/attachments/g5h2iwpgke408h18sn1nu' }}
               style={styles.logoImage}
             />
           </View>
+          <Text style={styles.heroTitle}>Keeps</Text>
           <Text style={styles.heroText}>
             Democratising sports investment for passionate fans worldwide
           </Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.subtitle}>Who We Are</Text>
-          <Text style={styles.text}>
-            Keeps is the world's first platform that democratises sports investment, giving passionate fans 
-            direct access to invest in their favourite teams and athletes. We bridge the gap between fandom 
-            and financial opportunity.
-          </Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.subtitle}>What We Offer</Text>
-          <Text style={styles.text}>
-            • Primary market investments in elite sports assets like Liverpool FC, McLaren Racing, and Ryder Cup
-            • Secondary market trading for liquidity and portfolio management
-            • Exclusive investor benefits including VIP access, merchandise discounts, and behind-the-scenes experiences
-            • Transparent returns ranging from 4-12% annually depending on the asset
-          </Text>
+        <View style={styles.journeySection}>
+          <Text style={styles.journeyTitle}>Our Journey</Text>
+          <View style={styles.journeyStep}>
+            <View style={styles.stepNumber}>
+              <Text style={styles.stepNumberText}>1</Text>
+            </View>
+            <View style={styles.stepContent}>
+              <Text style={styles.stepTitle}>Who We Are</Text>
+              <Text style={styles.stepText}>
+                Keeps is the world's first platform that democratises sports investment, giving passionate fans 
+                direct access to invest in their favourite teams and athletes. We bridge the gap between fandom 
+                and financial opportunity.
+              </Text>
+            </View>
+          </View>
+          
+          <View style={styles.journeyStep}>
+            <View style={styles.stepNumber}>
+              <Text style={styles.stepNumberText}>2</Text>
+            </View>
+            <View style={styles.stepContent}>
+              <Text style={styles.stepTitle}>What We Offer</Text>
+              <Text style={styles.stepText}>
+                Primary market investments in elite sports assets like Liverpool FC, McLaren Racing, and Ryder Cup. 
+                Secondary market trading for liquidity and portfolio management. Exclusive investor benefits including 
+                VIP access, merchandise discounts, and behind-the-scenes experiences with transparent returns ranging 
+                from 4-12% annually.
+              </Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.visualsContainer}>
@@ -73,13 +87,18 @@ export default function AboutScreen() {
           </View>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.subtitle}>Why We Do It</Text>
-          <Text style={styles.text}>
-            Sports have the power to unite people across cultures and backgrounds. We believe that passionate 
-            fans should have the opportunity to financially benefit from the success of the teams and athletes 
-            they support, whilst helping to fund the future of sport.
-          </Text>
+        <View style={styles.journeyStep}>
+          <View style={styles.stepNumber}>
+            <Text style={styles.stepNumberText}>3</Text>
+          </View>
+          <View style={styles.stepContent}>
+            <Text style={styles.stepTitle}>Why We Do It</Text>
+            <Text style={styles.stepText}>
+              Sports have the power to unite people across cultures and backgrounds. We believe that passionate 
+              fans should have the opportunity to financially benefit from the success of the teams and athletes 
+              they support, whilst helping to fund the future of sport.
+            </Text>
+          </View>
         </View>
 
         <View style={styles.section}>
@@ -128,14 +147,67 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   logoImage: {
-    width: 120,
-    height: 120,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
+  },
+  heroTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 12,
   },
   heroText: {
     fontSize: 18,
     color: Colors.text.light,
     textAlign: 'center',
+    lineHeight: 24,
+  },
+  journeySection: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 24,
+    marginTop: 16,
+  },
+  journeyTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 24,
+    textAlign: 'center',
+  },
+  journeyStep: {
+    flexDirection: 'row',
+    marginBottom: 24,
+    alignItems: 'flex-start',
+  },
+  stepNumber: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: Colors.primary.orange,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+    marginTop: 4,
+  },
+  stepNumberText: {
+    color: Colors.text.white,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  stepContent: {
+    flex: 1,
+  },
+  stepTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  stepText: {
+    fontSize: 16,
+    color: Colors.text.dark,
     lineHeight: 24,
   },
   section: {

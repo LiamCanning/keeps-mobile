@@ -150,7 +150,7 @@ export const comingSoonAssets: Asset[] = [
 
 export const completedAssets: Asset[] = [
   {
-    id: 'exeter-rugby',
+    id: 'exeter-chiefs',
     name: 'Exeter Chiefs',
     type: 'equity',
     logo: 'https://r2-pub.rork.com/attachments/vgynqzajb5sdgj062fehn',

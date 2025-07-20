@@ -66,12 +66,12 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                 
                 {/* Asset tagline */}
                 <Text style={[styles.tagline, { color: textColor }, asset.id === 'ohio' && styles.taglineItalic]}>
-                  {asset.id === 'liverpool' ? 'Towards the transfer budget' :
+                  {asset.id === 'liverpool' ? 'Expand Anfield\\'s Stadium Capacity' :
                    asset.id === 'mclaren' ? 'Fuel McLaren\'s Next Victory' :
-                   asset.id === 'rydercup' ? 'Improve digital fan engagement' :
-                   asset.id === 'ohio' ? 'Fund their new stadium' :
-                   asset.id === 'cardiff' ? 'Back the Bluebirds\' future' :
-                   asset.id === 'hexagon' ? 'Own 75% of the team' :
+                   asset.id === 'rydercup' ? 'Improve Digital Access For All Fans' :
+                   asset.id === 'ohio' ? 'Fund Their World Class Stadium' :
+                   asset.id === 'cardiff' ? 'Back the Bluebirds\' Future' :
+                   asset.id === 'hexagon' ? 'Own 75% Of The Team' :
                    'Exclusive Investment Opportunity'}
                 </Text>
                 
