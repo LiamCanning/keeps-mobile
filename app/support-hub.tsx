@@ -17,7 +17,7 @@ const faqs: FAQ[] = [
   {
     id: '1',
     question: 'Are these real assets?',
-    answer: 'Yes, all assets on Keeps represent real ownership stakes in legitimate sports entities. We partner directly with teams, stadiums, and sporting organisations to offer genuine investment opportunities.',
+    answer: 'Yes, all assets on Keeps represent real ownership stakes in legitimate sports entities. We partner directly with teams, events, leagues, national governing bodies, and other sporting organisations to offer genuine investment opportunities.',
     category: 'general',
   },
   {
@@ -94,8 +94,20 @@ const faqs: FAQ[] = [
   },
   {
     id: '14',
-    question: 'Why is the app running slowly?',
-    answer: 'Try closing and reopening the app, checking your internet connection, or updating to the latest version.',
+    question: 'How do I enable two-factor authentication?',
+    answer: 'Go to Account Settings > Security > Two-Factor Authentication and follow the setup instructions using your preferred authenticator app.',
+    category: 'technical',
+  },
+  {
+    id: '15',
+    question: 'What happens if I forget my password?',
+    answer: 'Click "Forgot Password" on the login screen and follow the email instructions to reset your password securely.',
+    category: 'technical',
+  },
+  {
+    id: '16',
+    question: 'How do I download my investment statements?',
+    answer: 'Visit your Portfolio page and click "Download Statements" to access PDF copies of all your investment documents and transaction history.',
     category: 'technical',
   },
 ];
@@ -287,9 +299,10 @@ export default function SupportHubScreen() {
           
           <View style={styles.addressSection}>
             <Text style={styles.addressTitle}>Our Address</Text>
-            <Text style={styles.addressText}>Keeps Sport Ltd</Text>
-            <Text style={styles.addressText}>123 Canary Wharf</Text>
-            <Text style={styles.addressText}>London E14 5AB</Text>
+            <Text style={styles.addressText}>Vessel Social Limited</Text>
+            <Text style={styles.addressText}>2 Hilliards Court</Text>
+            <Text style={styles.addressText}>Chester Business Park</Text>
+            <Text style={styles.addressText}>Cheshire, CH4 9QP</Text>
             <Text style={styles.addressText}>United Kingdom</Text>
           </View>
         </View>
@@ -457,10 +470,10 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   addressSection: {
-    marginTop: 20,
-    paddingTop: 20,
-    borderTopWidth: 1,
-    borderTopColor: Colors.border,
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginTop: 16,
   },
   addressTitle: {
     fontSize: 16,
