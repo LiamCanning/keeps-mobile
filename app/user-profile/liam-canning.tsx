@@ -147,23 +147,7 @@ export default function LiamCanningProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/03/Nike-Logo.png' }} 
-                style={styles.partnerIcon}
-              />
-              <Text style={styles.partnerName}>Nike</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/AXA-Logo.png' }} 
-                style={styles.partnerIcon}
-              />
-              <Text style={styles.partnerName}>AXA</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://1000logos.net/wp-content/uploads/2016/11/Adidas-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/hbjafianpdm9vv10ltp5c' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Adidas</Text>
@@ -171,7 +155,15 @@ export default function LiamCanningProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://1000logos.net/wp-content/uploads/2016/12/Mastercard-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/r2e26bj9s69d5am1tla0v' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>AXA</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/qyi4xfqytxjz6u472gh1r' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Mastercard</Text>
