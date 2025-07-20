@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User } from 'lucide-react-native';
+import { Heart, MessageCircle, Share, MoreHorizontal, Edit, Mail, Bookmark, Search, Bell, Home, User, Zap, TrendingUp, File } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 
 interface Comment {
@@ -55,7 +55,7 @@ const communityComments: Comment[] = [
     id: '4',
     username: 'Emma Thompson',
     handle: '@emmathompson_uk',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
     content: 'Keeps has completely changed how I think about supporting my favourite teams. The exclusive access and real returns make you feel like you\'re truly part of the club\'s journey, not just a spectator.',
     timestamp: '8h',
     likes: 42,
@@ -128,6 +128,17 @@ const communityComments: Comment[] = [
     comments: 11,
     shares: 8,
   },
+  {
+    id: '11',
+    username: 'Sarah Martinez',
+    handle: '@sarahm_sports',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
+    content: 'Just secured my Cardiff City shares! 🔵 The potential 12% returns plus being part of the Bluebirds future is incredible. This is how modern sports investment should work!',
+    timestamp: '22h',
+    likes: 38,
+    comments: 9,
+    shares: 5,
+  },
 ];
 
 export default function CommunityFeedScreen() {
@@ -184,33 +195,49 @@ export default function CommunityFeedScreen() {
       <StatusBar style="light" />
       
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {/* Action Banner */}
+        {/* Trending Banner */}
+        <View style={styles.trendingBanner}>
+          <View style={styles.trendingHeader}>
+            <Fire size={20} color={Colors.accent.orange} />
+            <Text style={styles.trendingTitle}>🔥 Trending Now</Text>
+            <TrendingUp size={16} color={Colors.accent.green} />
+          </View>
+          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! 🚀 Join 10,250+ investors</Text>
+        </View>
+
         <View style={styles.actionBanner}>
-          <TouchableOpacity style={styles.actionButton} onPress={handleHomePress}>
-            <Home size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.homeButton]} onPress={handleHomePress}>
+            <Home size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Home</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleMessagesPress}>
-            <Mail size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.messagesButton]} onPress={handleMessagesPress}>
+            <Mail size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Chat</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleSavedPress}>
-            <Bookmark size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.savedButton]} onPress={handleSavedPress}>
+            <Bookmark size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Saved</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleSearchPress}>
-            <Search size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.searchButton]} onPress={handleSearchPress}>
+            <Search size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Search</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleNotificationsPress}>
-            <Bell size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.notificationsButton]} onPress={handleNotificationsPress}>
+            <Bell size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Alerts</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleNewPostPress}>
-            <Edit size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.newPostButton]} onPress={handleNewPostPress}>
+            <Zap size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Post</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionButton} onPress={handleProfilePress}>
-            <User size={20} color={Colors.primary.blue} />
+          <TouchableOpacity style={[styles.actionButton, styles.profileButton]} onPress={handleProfilePress}>
+            <User size={20} color={Colors.text.white} />
+            <Text style={styles.actionButtonText}>Profile</Text>
           </TouchableOpacity>
         </View>
 
-        {communityComments.map((comment) => (
-          <View key={comment.id} style={styles.commentCard}>
+        {communityComments.map((comment, index) => (
+          <View key={comment.id} style={[styles.commentCard, index % 3 === 0 && styles.featuredCard]}>
             <View style={styles.commentHeader}>
               <TouchableOpacity onPress={() => handleUserPress(comment.username)}>
                 <Image source={{ uri: comment.avatar }} style={styles.avatar} />
@@ -233,22 +260,22 @@ export default function CommunityFeedScreen() {
             <Text style={styles.commentContent}>{comment.content}</Text>
             
             <View style={styles.commentActions}>
-              <TouchableOpacity style={styles.actionButtonComment}>
-                <Heart size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{comment.likes}</Text>
+              <TouchableOpacity style={[styles.actionButtonComment, styles.likeButton]}>
+                <Heart size={18} color={Colors.accent.red} fill={comment.likes > 30 ? Colors.accent.red : 'transparent'} />
+                <Text style={[styles.actionText, styles.likeText]}>{comment.likes}</Text>
               </TouchableOpacity>
               
               <TouchableOpacity 
-                style={styles.actionButtonComment}
+                style={[styles.actionButtonComment, styles.commentButton]}
                 onPress={() => handleCommentPress(comment.id)}
               >
-                <MessageCircle size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{comment.comments}</Text>
+                <MessageCircle size={18} color={Colors.primary.blue} />
+                <Text style={[styles.actionText, styles.commentText]}>{comment.comments}</Text>
               </TouchableOpacity>
               
-              <TouchableOpacity style={styles.actionButtonComment}>
-                <Share size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{comment.shares}</Text>
+              <TouchableOpacity style={[styles.actionButtonComment, styles.shareButton]}>
+                <Share size={18} color={Colors.accent.green} />
+                <Text style={[styles.actionText, styles.shareText]}>{comment.shares}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -305,36 +332,99 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 24,
   },
+  trendingBanner: {
+    backgroundColor: Colors.primary.orange,
+    marginHorizontal: 16,
+    marginTop: 16,
+    borderRadius: 16,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  trendingHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  trendingTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginLeft: 8,
+    marginRight: 8,
+  },
+  trendingText: {
+    fontSize: 14,
+    color: Colors.text.white,
+    fontWeight: '600',
+  },
   actionBanner: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     backgroundColor: Colors.background.card,
     marginHorizontal: 16,
     marginTop: 16,
-    borderRadius: 12,
-    paddingVertical: 12,
+    borderRadius: 16,
+    paddingVertical: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
   },
   actionButton: {
-    padding: 8,
-    borderRadius: 8,
-    backgroundColor: Colors.background.secondary,
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    minWidth: 45,
+  },
+  actionButtonText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: Colors.text.white,
+    marginTop: 4,
+  },
+  homeButton: {
+    backgroundColor: Colors.primary.blue,
+  },
+  messagesButton: {
+    backgroundColor: Colors.accent.green,
+  },
+  savedButton: {
+    backgroundColor: Colors.primary.orange,
+  },
+  searchButton: {
+    backgroundColor: Colors.accent.purple,
+  },
+  notificationsButton: {
+    backgroundColor: Colors.accent.red,
+  },
+  newPostButton: {
+    backgroundColor: Colors.accent.yellow,
+  },
+  profileButton: {
+    backgroundColor: Colors.accent.blue,
   },
   commentCard: {
     backgroundColor: Colors.background.card,
     marginHorizontal: 16,
     marginTop: 16,
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: 16,
+    padding: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  featuredCard: {
+    borderWidth: 2,
+    borderColor: Colors.accent.orange,
+    backgroundColor: '#FFF8F0',
   },
   commentHeader: {
     flexDirection: 'row',
@@ -386,12 +476,32 @@ const styles = StyleSheet.create({
   actionButtonComment: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 8,
+    padding: 12,
+    borderRadius: 20,
+    backgroundColor: Colors.background.secondary,
   },
   actionText: {
     fontSize: 14,
-    color: Colors.text.light,
+    fontWeight: '600',
     marginLeft: 6,
+  },
+  likeButton: {
+    backgroundColor: '#FFE8E8',
+  },
+  likeText: {
+    color: Colors.accent.red,
+  },
+  commentButton: {
+    backgroundColor: '#E8F4FF',
+  },
+  commentText: {
+    color: Colors.primary.blue,
+  },
+  shareButton: {
+    backgroundColor: '#E8FFE8',
+  },
+  shareText: {
+    color: Colors.accent.green,
   },
   socialSection: {
     backgroundColor: Colors.background.card,

@@ -146,20 +146,28 @@ export default function LiamCanningProfileScreen() {
           <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/27w1m5ej2hs46sg5lrbo8' }} 
+                style={styles.partnerIcon}
+              />
               <Text style={styles.partnerName}>Heineken</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/6h2k4y9ibeiyw4a6rgy04' }} 
+                style={styles.partnerIcon}
+              />
               <Text style={styles.partnerName}>Google</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/8jpu7n8wuld7fgvotnbld' }} 
+                style={styles.partnerIcon}
+              />
               <Text style={styles.partnerName}>Rolex</Text>
-              <Text style={styles.partnerStatus}>- Not Selected</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Text style={styles.partnerName}>AXA</Text>
-              <Text style={styles.partnerStatus}>- Not Selected</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>
         </View>
