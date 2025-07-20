@@ -392,10 +392,4 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     marginLeft: 8,
   },
-  partnerIcon: {
-    width: 50,
-    height: 25,
-    resizeMode: 'contain',
-    marginBottom: 8,
-  },
 });
