@@ -13,7 +13,7 @@ interface AssetCardProps {
 export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
   const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
-    (asset.id === 'exeter-chiefs' ? '#000000' : Colors.text.white);
+    (asset.id === 'exeter-chiefs' ? Colors.text.dark : Colors.text.white);
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
   

@@ -158,9 +158,9 @@ export default function PortfolioScreen() {
           </TouchableOpacity>
           <View style={styles.headerTitles}>
             <Text style={styles.headerTitle}>Liam's Portfolio</Text>
-            {!showStickyHeader && (
-              <Text style={styles.headerSubtitle}>Track your sports investments</Text>
-            )}
+            <Text style={[styles.headerSubtitle, showStickyHeader && styles.hiddenSubtitle]}>
+              Track your sports investments
+            </Text>
           </View>
         </View>
       </View>
@@ -337,6 +337,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.text.white,
     opacity: 0.8,
+  },
+  hiddenSubtitle: {
+    opacity: 0,
   },
   stickyHeader: {
     position: 'absolute',
