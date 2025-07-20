@@ -109,7 +109,7 @@ export const benefits: Benefit[] = [
     title: 'Commemorative Merchandise',
     description: 'Limited edition Ryder Cup merchandise package and certificate',
     level: 'bronze',
-    investmentRequired: '£5,000',
+    investmentRequired: '£1,000 (1000 available)',
   },
   {
     id: 'rydercup-2',
@@ -117,7 +117,7 @@ export const benefits: Benefit[] = [
     title: 'Premium Hospitality',
     description: 'Access to Silver Club hospitality areas during practice rounds',
     level: 'silver',
-    investmentRequired: '£15,000',
+    investmentRequired: '£15,000 (750 available)',
     includesPrevious: true,
   },
   {
@@ -126,7 +126,7 @@ export const benefits: Benefit[] = [
     title: 'Exclusive Tournament Access',
     description: 'Premium seating for all tournament days plus Gold Lounge Access',
     level: 'gold',
-    investmentRequired: '£25,000',
+    investmentRequired: '£25,000 (500 available)',
     includesPrevious: true,
   },
   {
@@ -135,7 +135,7 @@ export const benefits: Benefit[] = [
     title: 'Player Meet & Greet',
     description: 'Exclusive meet and greet with Ryder Cup players',
     level: 'platinum',
-    investmentRequired: '£35,000',
+    investmentRequired: '£35,000 (250 available)',
     includesPrevious: true,
   },
   {
@@ -144,7 +144,7 @@ export const benefits: Benefit[] = [
     title: 'Captain\'s Dinner',
     description: 'Exclusive dinner with the Ryder Cup Captain and team members',
     level: 'diamond',
-    investmentRequired: '£50,000',
+    investmentRequired: '£50,000 (100 available)',
     includesPrevious: true,
   },
 

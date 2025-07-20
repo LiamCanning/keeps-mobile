@@ -12,34 +12,35 @@ export default function BenefitCard({ benefit }: BenefitCardProps) {
   const getBadgeColor = () => {
     switch (benefit.level) {
       case 'bronze':
-        return '#8B4513';
+        return '#CD7F32';
       case 'silver':
-        return '#708090';
+        return '#C0C0C0';
       case 'gold':
-        return '#B8860B';
+        return '#FFD700';
       case 'platinum':
-        return '#4A4A4A';
+        return '#E5E4E2';
       case 'diamond':
-        return '#4169E1';
+        return '#B9F2FF';
       default:
         return '#6B7280';
     }
   };
 
   const getBadgeIcon = () => {
+    const iconColor = benefit.level === 'gold' || benefit.level === 'platinum' || benefit.level === 'diamond' ? '#000000' : '#FFFFFF';
     switch (benefit.level) {
       case 'bronze':
-        return <Award size={16} color="#FFFFFF" />;
+        return <Award size={16} color={iconColor} />;
       case 'silver':
-        return <Star size={16} color="#FFFFFF" />;
+        return <Star size={16} color={iconColor} />;
       case 'gold':
-        return <Crown size={16} color="#FFFFFF" />;
+        return <Crown size={16} color={iconColor} />;
       case 'platinum':
-        return <Trophy size={16} color="#FFFFFF" />;
+        return <Trophy size={16} color={iconColor} />;
       case 'diamond':
-        return <Gem size={16} color="#FFFFFF" />;
+        return <Gem size={16} color={iconColor} />;
       default:
-        return <Award size={16} color="#FFFFFF" />;
+        return <Award size={16} color={iconColor} />;
     }
   };
 
@@ -47,7 +48,7 @@ export default function BenefitCard({ benefit }: BenefitCardProps) {
     <View style={styles.container}>
       <View style={[styles.badge, { backgroundColor: getBadgeColor() }]}>
         {getBadgeIcon()}
-        <Text style={styles.badgeText}>
+        <Text style={[styles.badgeText, { color: benefit.level === 'gold' || benefit.level === 'platinum' || benefit.level === 'diamond' ? '#000000' : '#FFFFFF' }]}>
           {benefit.level.charAt(0).toUpperCase() + benefit.level.slice(1)}
         </Text>
       </View>
@@ -97,7 +98,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   badgeText: {
-    color: Colors.text.white,
     fontSize: 12,
     fontWeight: '600',
     marginLeft: 4,
