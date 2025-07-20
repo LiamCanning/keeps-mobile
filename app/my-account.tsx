@@ -90,6 +90,52 @@ export default function MyAccountScreen() {
         </View>
 
         <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
+          <View style={styles.partnersGrid}>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/Rolex-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Rolex</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2016/11/google-logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Google</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/Heineken-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Heineken</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/BMW-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>BMW</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/03/Nike-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>Nike</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>Investment Summary</Text>
           <Text style={styles.text}>
             You are currently invested in Liverpool FC, McLaren F1, Ryder Cup, and British Cycling. 
@@ -188,5 +234,33 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text.dark,
     lineHeight: 24,
+  },
+  partnersGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  partnerItem: {
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
+    width: '48%',
+    marginBottom: 12,
+  },
+  partnerIcon: {
+    width: 50,
+    height: 25,
+    resizeMode: 'contain',
+    marginBottom: 8,
+  },
+  partnerName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 4,
+  },
+  partnerStatus: {
+    fontSize: 12,
+    color: Colors.text.light,
   },
 });

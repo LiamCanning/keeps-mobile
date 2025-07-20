@@ -146,7 +146,7 @@ export default function LiamKeepsProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Heineken-Logo.png' }} 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/Heineken-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Heineken</Text>
@@ -154,7 +154,7 @@ export default function LiamKeepsProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' }} 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2016/11/google-logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Google</Text>
@@ -162,7 +162,7 @@ export default function LiamKeepsProfileScreen() {
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Rolex-Logo.png' }} 
+                source={{ uri: 'https://1000logos.net/wp-content/uploads/2017/02/Rolex-Logo.png' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Rolex</Text>
@@ -391,5 +391,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.text.white,
     marginLeft: 8,
+  },
+  partnerIcon: {
+    width: 50,
+    height: 25,
+    resizeMode: 'contain',
+    marginBottom: 8,
   },
 });
