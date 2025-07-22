@@ -58,10 +58,10 @@ export default function LiamCanningProfileScreen() {
           </Text>
           <View style={styles.assetsContainer}>
             <Text style={styles.assetsTitle}>Assets Owned:</Text>
-            <Text style={styles.assetItem}>• Exeter Chiefs</Text>
-            <Text style={styles.assetItem}>• British Cycling</Text>
-            <Text style={styles.assetItem}>• Ultimate Frisbee</Text>
+            <Text style={styles.assetItem}>• Liverpool FC</Text>
+            <Text style={styles.assetItem}>• McLaren Racing</Text>
             <Text style={styles.assetItem}>• Ryder Cup</Text>
+            <Text style={styles.assetItem}>• British Cycling</Text>
           </View>
         </View>
 
