@@ -10,7 +10,7 @@ const getAssetTagline = (assetId: string): string => {
   const taglines: { [key: string]: string } = {
     'liverpool': 'Fund Anfield stadium capacity to 75,000',
     'cardiff': 'Back the Bluebirds\' future',
-    'mclaren': 'Fuel McLaren\'s Next Victory',
+    'mclaren': 'Fuel McLaren\'s Next Championship Title',
     'ohio': 'Fund their new stadium',
     'hexagon': 'Own 75% of the team',
     'rydercup': 'Improve digital fan engagement',
@@ -80,6 +80,22 @@ export default function AssetDetailScreen() {
   };
   
   const textColor = getTextColor(backgroundColor);
+  
+  const getTaglineColor = (assetId: string, baseTextColor: string) => {
+    if (assetId === 'mclaren') return Colors.text.white;
+    if (assetId === 'ohio' || assetId === 'cardiff' || assetId === 'hexagon' || assetId === 'british-cycling' || assetId === 'ultimate-frisbee') {
+      return Colors.text.white;
+    }
+    if (assetId === 'exeter-chiefs') return Colors.text.white;
+    return baseTextColor === Colors.text.white ? '#FFB366' : Colors.primary.orange;
+  };
+  
+  const getLogoStyle = (assetId: string) => {
+    if (assetId === 'mclaren' || assetId === 'hexagon' || assetId === 'rydercup') {
+      return { width: 140, height: 140 };
+    }
+    return {};
+  };
 
   return (
     <View style={styles.container}>
@@ -97,11 +113,11 @@ export default function AssetDetailScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={[styles.heroSection, { backgroundColor }]}>
           <View style={styles.heroContent}>
-            <Image source={{ uri: asset.logo }} style={styles.heroLogo} />
+            <Image source={{ uri: asset.logo }} style={[styles.heroLogo, getLogoStyle(asset.id)]} />
             <Text style={[styles.heroTitle, { color: textColor }]}>
               {asset.name}
             </Text>
-            <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic, { color: textColor === Colors.text.white ? '#FFB366' : Colors.primary.orange }]}>{getAssetTagline(asset.id)}</Text>
+            <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic, { color: getTaglineColor(asset.id, textColor) }]}>{getAssetTagline(asset.id)}</Text>
             <Text style={[styles.heroType, { color: textColor === Colors.text.white ? 'rgba(255, 255, 255, 0.8)' : Colors.text.light }]}>
               {asset.type === 'equity' ? 'Equity Investment' : 
                asset.type === 'debenture' ? 'Debenture Programme' : 
@@ -144,7 +160,7 @@ export default function AssetDetailScreen() {
                 <View style={styles.statCard}>
                   <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress || 0) }]} />
                   <Text style={styles.statValue}>{asset.timelineInfo}</Text>
-                  <Text style={styles.statLabel}>Timeline</Text>
+                  <Text style={styles.statLabel}></Text>
                 </View>
               )}
               

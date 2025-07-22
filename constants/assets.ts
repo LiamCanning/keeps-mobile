@@ -60,13 +60,13 @@ export const userAssets: Asset[] = [
     investorCount: 10250,
     growthPercentage: 24.5,
     dividendPotential: '4-8%',
-    timelineInfo: '5 days left',
+    timelineInfo: '⏰ 5 days',
   },
   {
     id: 'mclaren',
     name: 'McLaren Racing',
     type: 'income',
-    logo: 'https://r2-pub.rork.com/attachments/40293v65wbvdp8siu5o10',
+    logo: 'https://logos-world.net/wp-content/uploads/2021/03/McLaren-Logo.png',
     status: 'LIVE NOW',
     raiseAmount: '£50,000,000 ISA',
     minimumEntry: '£1,000',
@@ -85,7 +85,7 @@ export const userAssets: Asset[] = [
     investorCount: 8750,
     growthPercentage: 18.2,
     dividendPotential: '6-12%',
-    timelineInfo: '2 weeks left',
+    timelineInfo: '⏰ 2 weeks',
   },
   {
     id: 'rydercup',
@@ -109,7 +109,7 @@ export const userAssets: Asset[] = [
     investorCount: 2340,
     growthPercentage: 15.8,
     dividendPotential: '5% + Principal',
-    timelineInfo: '48 hours left',
+    timelineInfo: '⏰ 48 hours',
   },
 ];
 
@@ -125,7 +125,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£80,000,000',
     expectedReturn: 'Potential 8% annual dividends from stadium revenues',
     minimumEntry: '£2,500',
-    timelineInfo: '1 day left',
+    timelineInfo: '⏰ 1 day',
   },
   {
     id: 'cardiff',
@@ -138,7 +138,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£4,000,000',
     expectedReturn: 'Potential 12% annual dividends from club profits',
     minimumEntry: '£1,000',
-    timelineInfo: '2 weeks left',
+    timelineInfo: '⏰ 2 weeks',
   },
   {
     id: 'hexagon',
@@ -151,7 +151,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£1,250,000',
     expectedReturn: 'Potential 15% annual returns from tournament winnings',
     minimumEntry: '£500',
-    timelineInfo: '3 weeks left',
+    timelineInfo: '⏰ 3 weeks',
   },
 ];
 
@@ -187,7 +187,7 @@ export const completedAssets: Asset[] = [
     raiseAmount: '£10,000,000',
     minimumEntry: '£1,000',
     pricePerShare: 1000,
-    backgroundColor: '#1E40AF',
+    backgroundColor: '#FFFFFF',
     investorReturn: '6% interest on 40% of capital invested, repaid after 5 years. 5 year debenture programme.',
     progress: 100,
     remaining: 'Completed',
