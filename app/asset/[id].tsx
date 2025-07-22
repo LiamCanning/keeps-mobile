@@ -13,9 +13,9 @@ const getAssetTagline = (assetId: string): string => {
     'mclaren': 'Fuel McLaren\'s Next Championship Title',
     'ohio': 'Fund their new stadium',
     'hexagon': 'Own 75% of the team',
-    'rydercup': 'Improve digital fan engagement',
+    'rydercup': 'Elite Golf Excellence',
     'british-cycling': 'Pedal to Success',
-    'exeter-rugby': 'Tackle Your Investment Goals',
+    'exeter-chiefs': 'Invest in Sports Excellence',
     'ultimate-frisbee': 'Catch the Ultimate Opportunity',
   };
   return taglines[assetId] || 'Invest in Sports Excellence';
@@ -71,8 +71,8 @@ export default function AssetDetailScreen() {
   
   // Determine text color based on background brightness
   const getTextColor = (bgColor: string) => {
-    const darkBackgrounds = ['#FF8700', '#1f4e79', '#CC0000', '#003D82', '#7C3AED', '#1E40AF', '#DC2626'];
-    const lightBackgrounds = ['#FFFFFF', '#F59E0B'];
+    const darkBackgrounds = ['#FF8700', '#1f4e79', '#CC0000', '#003D82', '#7C3AED', '#1E40AF', '#DC2626', '#F59E0B'];
+    const lightBackgrounds = ['#FFFFFF'];
     
     if (darkBackgrounds.includes(bgColor)) return Colors.text.white;
     if (lightBackgrounds.includes(bgColor)) return Colors.text.dark;
@@ -86,13 +86,22 @@ export default function AssetDetailScreen() {
     if (assetId === 'ohio' || assetId === 'cardiff' || assetId === 'hexagon' || assetId === 'british-cycling' || assetId === 'ultimate-frisbee') {
       return Colors.text.white;
     }
-    if (assetId === 'exeter-chiefs') return Colors.text.white;
+    if (assetId === 'exeter-chiefs') return '#FFD700';
     return baseTextColor === Colors.text.white ? '#FFB366' : Colors.primary.orange;
   };
   
   const getLogoStyle = (assetId: string) => {
-    if (assetId === 'mclaren' || assetId === 'hexagon' || assetId === 'rydercup') {
-      return { width: 140, height: 140 };
+    if (assetId === 'mclaren') {
+      return { width: 160, height: 80 };
+    }
+    if (assetId === 'hexagon' || assetId === 'rydercup') {
+      return { width: 150, height: 150 };
+    }
+    if (assetId === 'british-cycling') {
+      return { width: 160, height: 120, marginTop: 10 };
+    }
+    if (assetId === 'ultimate-frisbee') {
+      return { marginTop: 5 };
     }
     return {};
   };
@@ -114,11 +123,11 @@ export default function AssetDetailScreen() {
         <View style={[styles.heroSection, { backgroundColor }]}>
           <View style={styles.heroContent}>
             <Image source={{ uri: asset.logo }} style={[styles.heroLogo, getLogoStyle(asset.id)]} />
-            <Text style={[styles.heroTitle, { color: textColor }]}>
+            <Text style={[styles.heroTitle, { color: asset.id === 'liverpool' ? '#C8102E' : asset.id === 'exeter-chiefs' ? Colors.text.white : textColor }]}>
               {asset.name}
             </Text>
             <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic, { color: getTaglineColor(asset.id, textColor) }]}>{getAssetTagline(asset.id)}</Text>
-            <Text style={[styles.heroType, { color: textColor === Colors.text.white ? 'rgba(255, 255, 255, 0.8)' : Colors.text.light }]}>
+            <Text style={[styles.heroType, { color: asset.id === 'exeter-chiefs' ? Colors.text.white : asset.id === 'mclaren' ? Colors.text.white : textColor === Colors.text.white ? 'rgba(255, 255, 255, 0.8)' : Colors.text.light }]}>
               {asset.type === 'equity' ? 'Equity Investment' : 
                asset.type === 'debenture' ? 'Debenture Programme' : 
                asset.type === 'income' ? 'Income Sharing Agreement' : 'Coming Soon'}
@@ -140,7 +149,7 @@ export default function AssetDetailScreen() {
           )}
           
           {isCompleted && (
-            <View style={styles.completedBadgeHero}>
+            <View style={[styles.completedBadgeHero, asset.id === 'exeter-chiefs' && styles.completedBadgeSmaller]}>
               <Text style={styles.completedTextHero}>FUNDING COMPLETE</Text>
             </View>
           )}
@@ -158,8 +167,8 @@ export default function AssetDetailScreen() {
               
               {asset.timelineInfo && (
                 <View style={styles.statCard}>
-                  <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress || 0) }]} />
-                  <Text style={styles.statValue}>{asset.timelineInfo}</Text>
+                  <Text style={styles.timerEmoji}>⏰</Text>
+                  <Text style={styles.statValue}>{asset.timelineInfo.replace('⏰ ', '')}</Text>
                   <Text style={styles.statLabel}></Text>
                 </View>
               )}
@@ -610,6 +619,14 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     fontSize: 12,
     fontWeight: '700',
+  },
+  completedBadgeSmaller: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  timerEmoji: {
+    fontSize: 20,
+    marginBottom: 8,
   },
   secondaryMarketButton: {
     backgroundColor: Colors.primary.orange,

@@ -66,7 +66,7 @@ export const userAssets: Asset[] = [
     id: 'mclaren',
     name: 'McLaren Racing',
     type: 'income',
-    logo: 'https://logos-world.net/wp-content/uploads/2021/03/McLaren-Logo.png',
+    logo: 'https://r2-pub.rork.com/attachments/xklkyrwayvkzzqg9s9dt0',
     status: 'LIVE NOW',
     raiseAmount: '£50,000,000 ISA',
     minimumEntry: '£1,000',
