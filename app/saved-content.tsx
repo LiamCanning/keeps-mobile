@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Bookmark, Heart, MessageCircle, Share, MoreHorizontal, Filter } from 'lucide-react-native';
+import { Bookmark, Heart, MessageCircle, MoreHorizontal, Filter, Reply, Repeat2, TrendingUp, MessageSquare, Search, Bell, Plus, User } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 
 interface SavedPost {
@@ -18,6 +18,9 @@ interface SavedPost {
   category: 'investment' | 'benefits' | 'news' | 'community';
   flag: string;
   country: string;
+  reposts?: number;
+  type?: 'text' | 'video';
+  videoThumbnail?: string;
 }
 
 const savedPosts: SavedPost[] = [
@@ -47,7 +50,9 @@ const savedPosts: SavedPost[] = [
     shares: 5,
     category: 'investment',
     flag: '🇮🇳',
-    country: 'India'
+    country: 'India',
+    reposts: 5,
+    type: 'text'
   },
   {
     id: '3',
@@ -89,7 +94,9 @@ const savedPosts: SavedPost[] = [
     shares: 11,
     category: 'investment',
     flag: '🇧🇷',
-    country: 'Brazil'
+    country: 'Brazil',
+    reposts: 11,
+    type: 'text'
   },
   {
     id: '6',
@@ -375,24 +382,24 @@ export default function SavedContentScreen() {
     ? savedPosts 
     : savedPosts.filter(post => post.category === selectedCategory);
 
+  const handleTrendingPress = () => {
+    router.push('/asset/liverpool');
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen 
         options={{ 
-          headerShown: true,
-          headerTitle: "Saved Content",
-          headerStyle: { backgroundColor: Colors.primary.blue },
-          headerTintColor: Colors.text.white,
-          headerTitleStyle: { fontWeight: 'bold' },
-          headerRight: () => (
-            <TouchableOpacity style={styles.headerButton}>
-              <Filter size={20} color={Colors.text.white} />
-            </TouchableOpacity>
-          ),
+          headerShown: false,
         }} 
       />
       <StatusBar style="light" />
       
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Saved Content</Text>
+        <Text style={styles.headerSubtitle}>Your saved posts and insights</Text>
+      </View>
+
       <View style={styles.categorySection}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryScroll}>
           {categories.map((category) => (
@@ -416,8 +423,40 @@ export default function SavedContentScreen() {
       </View>
 
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {filteredPosts.map((post) => (
-          <View key={post.id} style={styles.postCard}>
+        {/* Trending Banner - Changed to purple */}
+        <TouchableOpacity style={styles.trendingBanner} onPress={handleTrendingPress}>
+          <View style={styles.trendingHeader}>
+            <TrendingUp size={20} color={Colors.text.white} />
+            <Text style={styles.trendingTitle}>Trending Now</Text>
+          </View>
+          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
+        </TouchableOpacity>
+
+        {/* Social Media Icons */}
+        <View style={styles.socialContainer}>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/messages')}>
+            <MessageSquare size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/saved-content')}>
+            <Bookmark size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/search')}>
+            <Search size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/notifications')}>
+            <Bell size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/new-post')}>
+            <Plus size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/my-account')}>
+            <User size={20} color={Colors.text.white} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.sectionTitle}>Saved Posts</Text>
+        {filteredPosts.map((post, index) => (
+          <View key={post.id} style={[styles.postCard, index % 3 === 0 && styles.featuredPost]}>
             <View style={styles.postHeader}>
               <Image source={{ uri: post.avatar }} style={styles.avatar} />
               <View style={styles.userInfo}>
@@ -436,24 +475,35 @@ export default function SavedContentScreen() {
             
             <Text style={styles.postContent}>{post.content}</Text>
             
+            {/* Add photo for Priya Sharma's post */}
+            {post.id === '2' && (
+              <View style={styles.imageContainer}>
+                <Image 
+                  source={{ uri: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=200&fit=crop' }} 
+                  style={styles.postImage} 
+                />
+              </View>
+            )}
+            
             <View style={styles.postActions}>
               <TouchableOpacity style={styles.actionButton}>
-                <Heart size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{post.likes}</Text>
+                <Heart size={16} color={Colors.accent.red} fill={post.likes > 50 ? Colors.accent.red : 'transparent'} />
+                <Text style={[styles.actionText, { color: Colors.accent.red }]}>{post.likes}</Text>
               </TouchableOpacity>
               
               <TouchableOpacity style={styles.actionButton}>
-                <MessageCircle size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{post.comments}</Text>
+                <MessageCircle size={16} color={Colors.primary.blue} />
+                <Text style={[styles.actionText, { color: Colors.primary.blue }]}>{post.comments}</Text>
               </TouchableOpacity>
               
               <TouchableOpacity style={styles.actionButton}>
-                <Share size={18} color={Colors.text.light} />
-                <Text style={styles.actionText}>{post.shares}</Text>
+                <Repeat2 size={16} color={Colors.accent.purple} />
+                <Text style={[styles.actionText, { color: Colors.accent.purple }]}>{post.reposts || post.shares}</Text>
               </TouchableOpacity>
               
               <TouchableOpacity style={styles.actionButton}>
-                <Bookmark size={18} color={Colors.primary.orange} fill={Colors.primary.orange} />
+                <Reply size={16} color={Colors.accent.green} />
+                <Text style={[styles.actionText, { color: Colors.accent.green }]}>Reply</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -478,15 +528,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  headerButton: {
-    marginRight: 16,
-    padding: 4,
+  header: {
+    paddingHorizontal: 16,
+    paddingTop: 60,
+    paddingBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 4,
+  },
+  headerSubtitle: {
+    fontSize: 14,
+    color: Colors.text.white,
+    opacity: 0.8,
   },
   categorySection: {
-    backgroundColor: Colors.background.card,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    marginHorizontal: 16,
+    borderRadius: 12,
+    marginBottom: 16,
   },
   categoryScroll: {
     paddingHorizontal: 16,
@@ -495,37 +558,94 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     marginRight: 8,
   },
   activeCategoryButton: {
-    backgroundColor: Colors.primary.blue,
+    backgroundColor: Colors.primary.orange,
   },
   categoryButtonText: {
     fontSize: 14,
     fontWeight: '500',
-    color: Colors.text.dark,
+    color: Colors.text.white,
+    opacity: 0.7,
   },
   activeCategoryButtonText: {
-    color: Colors.text.white,
+    opacity: 1,
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
+    paddingHorizontal: 16,
     paddingBottom: 24,
+  },
+  trendingBanner: {
+    backgroundColor: Colors.accent.purple,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  trendingHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  trendingTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginLeft: 8,
+  },
+  trendingText: {
+    fontSize: 16,
+    color: Colors.text.white,
+    fontWeight: '600',
+  },
+  socialContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+    gap: 16,
+  },
+  socialIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 16,
+    marginTop: 8,
   },
   postCard: {
     backgroundColor: Colors.background.card,
-    marginHorizontal: 16,
-    marginTop: 16,
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 3,
+  },
+  featuredPost: {
+    borderWidth: 2,
+    borderColor: Colors.accent.gold,
+    backgroundColor: '#FFFBF0',
   },
   postHeader: {
     flexDirection: 'row',
@@ -567,6 +687,18 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 16,
   },
+  imageContainer: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 16,
+  },
+  postImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
   postActions: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -578,11 +710,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
+    borderRadius: 16,
+    backgroundColor: Colors.background.light,
   },
   actionText: {
     fontSize: 14,
-    color: Colors.text.light,
-    marginLeft: 6,
+    fontWeight: '600',
+    marginLeft: 4,
   },
   emptyState: {
     padding: 40,
@@ -592,13 +726,14 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.text.dark,
+    color: Colors.text.white,
     marginTop: 16,
     marginBottom: 8,
   },
   emptyStateText: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
+    opacity: 0.8,
     textAlign: 'center',
     lineHeight: 20,
   },
