@@ -14,7 +14,7 @@ const performanceData = {
   '1w': { price: 1150, change: +55, percentage: +5.02 },
   '1m': { price: 1100, change: +105, percentage: +10.55 },
   '6m': { price: 1000, change: +205, percentage: +25.75 },
-};
+} as const;
 
 const watchlistAssets = [
   {
@@ -69,12 +69,14 @@ const timeframes = [
   { key: '1w', label: '1 week' },
   { key: '1m', label: '1 month' },
   { key: '6m', label: '6 months' },
-];
+] as const;
+
+type TimeframeKey = keyof typeof performanceData;
 
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<'market' | 'watchlist' | 'analysis'>('market');
-  const [selectedTimeframe, setSelectedTimeframe] = useState('24h');
+  const [selectedTimeframe, setSelectedTimeframe] = useState<TimeframeKey>('24h');
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { filter } = useLocalSearchParams();
