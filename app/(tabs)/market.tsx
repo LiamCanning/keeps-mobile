@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Dimens
 import { StatusBar } from 'expo-status-bar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Search, Home, Heart, TrendingUp, LineChart, BarChart3 } from 'lucide-react-native';
+import { Search, Home, Heart, TrendingUp, LineChart, BarChart3, Users, Filter } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { marketListings } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
@@ -37,7 +37,7 @@ const watchlistAssets = [
   },
   {
     id: '3',
-    name: 'Manchester United',
+    name: 'Cardiff City',
     price: 1450,
     change: +45,
     percentage: +3.21,
@@ -75,7 +75,7 @@ type TimeframeKey = keyof typeof performanceData;
 
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState<'market' | 'watchlist' | 'analysis'>('market');
+  const [activeTab, setActiveTab] = useState<'market' | 'watchlist' | 'analysis' | 'discover'>('market');
   const [selectedTimeframe, setSelectedTimeframe] = useState<TimeframeKey>('24h');
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
@@ -115,53 +115,64 @@ export default function MarketScreen() {
       </View>
       
       <View style={styles.searchContainer}>
-        <Search size={20} color={Colors.text.light} style={styles.searchIcon} />
+        <Search size={20} color="#CCCCCC" style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search assets or sellers..."
-          placeholderTextColor={Colors.text.light}
+          placeholderTextColor="#CCCCCC"
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
       </View>
       
       <View style={styles.tabContainer}>
-        <View style={styles.tabHeader}>
-          <View style={styles.tabButtons}>
-            <TouchableOpacity 
-              style={[styles.tabButton, activeTab === 'market' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('market')}
-            >
-              <Text style={[styles.tabButtonText, activeTab === 'market' && styles.tabButtonTextActive]}>
-                Market
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.tabButton, activeTab === 'watchlist' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('watchlist')}
-            >
-              <Heart size={16} color={activeTab === 'watchlist' ? Colors.text.white : Colors.text.light} />
-              <Text style={[styles.tabButtonText, activeTab === 'watchlist' && styles.tabButtonTextActive]}>
-                Watchlist
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.tabButton, activeTab === 'analysis' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('analysis')}
-            >
-              <BarChart3 size={16} color={activeTab === 'analysis' ? Colors.text.white : Colors.text.light} />
-              <Text style={[styles.tabButtonText, activeTab === 'analysis' && styles.tabButtonTextActive]}>
-                Analysis
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tabScrollContainer}
+        >
+          <TouchableOpacity 
+            style={[styles.mainTabButton, activeTab === 'market' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('market')}
+          >
+            <Text style={[styles.mainTabButtonText, activeTab === 'market' && styles.mainTabButtonTextActive]}>
+              Market
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.mainTabButton, activeTab === 'watchlist' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('watchlist')}
+          >
+            <Heart size={16} color={activeTab === 'watchlist' ? Colors.text.white : '#CCCCCC'} />
+            <Text style={[styles.mainTabButtonText, activeTab === 'watchlist' && styles.mainTabButtonTextActive]}>
+              Watchlist
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.mainTabButton, activeTab === 'analysis' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('analysis')}
+          >
+            <BarChart3 size={16} color={activeTab === 'analysis' ? Colors.text.white : '#CCCCCC'} />
+            <Text style={[styles.mainTabButtonText, activeTab === 'analysis' && styles.mainTabButtonTextActive]}>
+              Analysis
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.mainTabButton, activeTab === 'discover' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('discover')}
+          >
+            <Users size={16} color={activeTab === 'discover' ? Colors.text.white : '#CCCCCC'} />
+            <Text style={[styles.mainTabButtonText, activeTab === 'discover' && styles.mainTabButtonTextActive]}>
+              Discover
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity 
             style={styles.listAssetButton}
             onPress={() => router.push('/list-asset')}
           >
             <Text style={styles.listAssetButtonText}>List Asset</Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
       </View>
       
       <ScrollView 
@@ -171,6 +182,12 @@ export default function MarketScreen() {
       >
         {activeTab === 'market' && (
           <>
+            <View style={styles.filterContainer}>
+              <TouchableOpacity style={styles.filterButton}>
+                <Filter size={16} color="#CCCCCC" />
+                <Text style={styles.filterButtonText}>Filter by Asset</Text>
+              </TouchableOpacity>
+            </View>
             <Text style={styles.sectionTitle}>All Available Assets</Text>
             {filteredListings.map((listing) => (
               <MarketListingCard 
@@ -221,10 +238,10 @@ export default function MarketScreen() {
             <View style={styles.performanceHeader}>
               <View style={styles.assetInfo}>
                 <Text style={styles.assetName}>McLaren Racing</Text>
-                <Text style={styles.currentPrice}>£{performanceData[selectedTimeframe].price}</Text>
+                <Text style={styles.currentPrice}>£{performanceData[selectedTimeframe as keyof typeof performanceData].price}</Text>
                 <View style={styles.priceChange}>
-                  <Text style={[styles.changeText, { color: performanceData[selectedTimeframe].change > 0 ? '#4CAF50' : '#F44336' }]}>
-                    {performanceData[selectedTimeframe].change > 0 ? '+' : ''}£{performanceData[selectedTimeframe].change} ({performanceData[selectedTimeframe].percentage > 0 ? '+' : ''}{performanceData[selectedTimeframe].percentage}%)
+                  <Text style={[styles.changeText, { color: performanceData[selectedTimeframe as keyof typeof performanceData].change > 0 ? '#4CAF50' : '#F44336' }]}>
+                    {performanceData[selectedTimeframe as keyof typeof performanceData].change > 0 ? '+' : ''}£{performanceData[selectedTimeframe as keyof typeof performanceData].change} ({performanceData[selectedTimeframe as keyof typeof performanceData].percentage > 0 ? '+' : ''}{performanceData[selectedTimeframe as keyof typeof performanceData].percentage}%)
                   </Text>
                 </View>
               </View>
@@ -323,6 +340,83 @@ export default function MarketScreen() {
             </View>
           </>
         )}
+
+        {activeTab === 'discover' && (
+          <>
+            <Text style={styles.sectionTitle}>Top Investors</Text>
+            <Text style={styles.sectionSubtitle}>Follow successful investors and copy their trades</Text>
+            
+            {[
+              {
+                id: '1',
+                name: 'Sarah Mitchell',
+                username: '@sarahinvests',
+                followers: '12.4K',
+                returns: '+34.2%',
+                period: '6 months',
+                recentInvestments: ['McLaren Racing', 'Liverpool FC'],
+                avatar: '👩‍💼'
+              },
+              {
+                id: '2', 
+                name: 'James Rodriguez',
+                username: '@jamesports',
+                followers: '8.7K',
+                returns: '+28.9%',
+                period: '6 months',
+                recentInvestments: ['Cardiff City', 'Arsenal FC'],
+                avatar: '👨‍💼'
+              },
+              {
+                id: '3',
+                name: 'Emma Thompson',
+                username: '@emmainvests',
+                followers: '15.2K',
+                returns: '+41.7%',
+                period: '6 months',
+                recentInvestments: ['Manchester City', 'Chelsea FC'],
+                avatar: '👩‍🎓'
+              }
+            ].map((investor) => (
+              <View key={investor.id} style={styles.investorCard}>
+                <View style={styles.investorHeader}>
+                  <View style={styles.investorInfo}>
+                    <Text style={styles.investorAvatar}>{investor.avatar}</Text>
+                    <View style={styles.investorDetails}>
+                      <Text style={styles.investorName}>{investor.name}</Text>
+                      <Text style={styles.investorUsername}>{investor.username}</Text>
+                      <Text style={styles.investorFollowers}>{investor.followers} followers</Text>
+                    </View>
+                  </View>
+                  <View style={styles.investorStats}>
+                    <Text style={styles.investorReturns}>{investor.returns}</Text>
+                    <Text style={styles.investorPeriod}>{investor.period}</Text>
+                  </View>
+                </View>
+                
+                <View style={styles.investorInvestments}>
+                  <Text style={styles.investorInvestmentsTitle}>Recent Investments:</Text>
+                  <View style={styles.investorInvestmentsList}>
+                    {investor.recentInvestments.map((investment, index) => (
+                      <View key={index} style={styles.investmentTag}>
+                        <Text style={styles.investmentTagText}>{investment}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+                
+                <View style={styles.investorActions}>
+                  <TouchableOpacity style={styles.followButton}>
+                    <Text style={styles.followButtonText}>Follow</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.investWithButton}>
+                    <Text style={styles.investWithButtonText}>Invest with {investor.name.split(' ')[0]}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+          </>
+        )}
       </ScrollView>
     </View>
   );
@@ -365,37 +459,31 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 8,
   },
-  tabHeader: {
+  tabScrollContainer: {
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    gap: 12,
+  },
+  mainTabButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    marginBottom: 12,
-    justifyContent: 'space-between',
-  },
-  tabButtons: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     borderRadius: 25,
-    padding: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    minWidth: 80,
+    justifyContent: 'center',
   },
-  tabButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-    marginHorizontal: 2,
-  },
-  tabButtonActive: {
+  mainTabButtonActive: {
     backgroundColor: Colors.primary.orange,
   },
-  tabButtonText: {
+  mainTabButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: Colors.text.light,
+    color: Colors.text.white,
     marginLeft: 4,
   },
-  tabButtonTextActive: {
+  mainTabButtonTextActive: {
     color: Colors.text.white,
   },
   emptyState: {
@@ -522,9 +610,12 @@ const styles = StyleSheet.create({
   },
   listAssetButton: {
     backgroundColor: Colors.primary.orange,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 25,
+    minWidth: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   listAssetButtonText: {
     color: Colors.text.white,
@@ -630,5 +721,134 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: Colors.text.white,
+  },
+  filterContainer: {
+    marginBottom: 16,
+  },
+  filterButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+  },
+  filterButtonText: {
+    color: '#CCCCCC',
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 8,
+  },
+  sectionSubtitle: {
+    fontSize: 14,
+    color: '#CCCCCC',
+    marginBottom: 20,
+    marginTop: -8,
+  },
+  investorCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+  },
+  investorHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 16,
+  },
+  investorInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  investorAvatar: {
+    fontSize: 32,
+    marginRight: 12,
+  },
+  investorDetails: {
+    flex: 1,
+  },
+  investorName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 2,
+  },
+  investorUsername: {
+    fontSize: 14,
+    color: Colors.text.light,
+    marginBottom: 2,
+  },
+  investorFollowers: {
+    fontSize: 12,
+    color: Colors.text.light,
+  },
+  investorStats: {
+    alignItems: 'flex-end',
+  },
+  investorReturns: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4CAF50',
+    marginBottom: 2,
+  },
+  investorPeriod: {
+    fontSize: 12,
+    color: Colors.text.light,
+  },
+  investorInvestments: {
+    marginBottom: 16,
+  },
+  investorInvestmentsTitle: {
+    fontSize: 14,
+    color: Colors.text.light,
+    marginBottom: 8,
+  },
+  investorInvestmentsList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  investmentTag: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+    marginRight: 8,
+    marginBottom: 4,
+  },
+  investmentTagText: {
+    fontSize: 12,
+    color: Colors.text.white,
+    fontWeight: '500',
+  },
+  investorActions: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  followButton: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  followButtonText: {
+    color: Colors.text.white,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  investWithButton: {
+    flex: 1,
+    backgroundColor: Colors.primary.orange,
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  investWithButtonText: {
+    color: Colors.text.white,
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
