@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   trendingBanner: {
-    backgroundColor: '#FF8C42',
+    backgroundColor: '#8B5CF6',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
