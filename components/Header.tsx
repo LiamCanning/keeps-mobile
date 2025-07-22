@@ -87,15 +87,6 @@ export default function Header({ username }: HeaderProps) {
               <Text style={styles.dropdownText}>Support Hub</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/my-account')}
-            >
-              <User size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>My Account</Text>
-            </TouchableOpacity>
-            
-
           </View>
         </TouchableOpacity>
       </Modal>

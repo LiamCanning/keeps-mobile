@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { Home, Gift, Newspaper, PieChart, TrendingUp } from "lucide-react-native";
+import { Home, Gift, Newspaper, PieChart, TrendingUp, User } from "lucide-react-native";
 import React from "react";
 import Colors from "@/constants/colors";
 
@@ -66,6 +66,13 @@ export default function TabLayout() {
         options={{
           title: "Trade",
           tabBarIcon: ({ color }) => <TrendingUp color={color} size={22} />,
+        }}
+      />
+      <Tabs.Screen
+        name="my-account"
+        options={{
+          title: "Account",
+          tabBarIcon: ({ color }) => <User color={color} size={22} />,
         }}
       />
     </Tabs>
