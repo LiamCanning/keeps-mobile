@@ -3,9 +3,9 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Dimens
 import { StatusBar } from 'expo-status-bar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Search, Home, Heart, TrendingUp, LineChart, BarChart3, Users, Filter } from 'lucide-react-native';
+import { Search, Home, Heart, TrendingUp, LineChart, BarChart3, Users, Filter, Plus } from 'lucide-react-native';
 import Colors from '@/constants/colors';
-import { marketListings } from '@/constants/market';
+import { marketListings, sportCategories } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
 
 const performanceData = {
@@ -75,7 +75,7 @@ type TimeframeKey = keyof typeof performanceData;
 
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState<'market' | 'watchlist' | 'analysis' | 'discover'>('market');
+  const [activeTab, setActiveTab] = useState<'market' | 'listasset' | 'analysis' | 'watchlist' | 'discover'>('market');
   const [selectedTimeframe, setSelectedTimeframe] = useState<TimeframeKey>('24h');
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
@@ -140,37 +140,40 @@ export default function MarketScreen() {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={[styles.mainTabButton, activeTab === 'watchlist' && styles.mainTabButtonActive]}
-            onPress={() => setActiveTab('watchlist')}
+            style={[styles.mainTabButton, activeTab === 'listasset' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('listasset')}
           >
-            <Heart size={16} color={activeTab === 'watchlist' ? Colors.text.white : '#CCCCCC'} />
-            <Text style={[styles.mainTabButtonText, activeTab === 'watchlist' && styles.mainTabButtonTextActive]}>
-              Watchlist
+            <Plus size={16} color={activeTab === 'listasset' ? Colors.text.white : Colors.text.white} />
+            <Text style={[styles.mainTabButtonText, activeTab === 'listasset' && styles.mainTabButtonTextActive]}>
+              List Asset
             </Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={[styles.mainTabButton, activeTab === 'analysis' && styles.mainTabButtonActive]}
             onPress={() => setActiveTab('analysis')}
           >
-            <BarChart3 size={16} color={activeTab === 'analysis' ? Colors.text.white : '#CCCCCC'} />
+            <BarChart3 size={16} color={activeTab === 'analysis' ? Colors.text.white : Colors.text.white} />
             <Text style={[styles.mainTabButtonText, activeTab === 'analysis' && styles.mainTabButtonTextActive]}>
               Analysis
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.mainTabButton, activeTab === 'watchlist' && styles.mainTabButtonActive]}
+            onPress={() => setActiveTab('watchlist')}
+          >
+            <Heart size={16} color={activeTab === 'watchlist' ? Colors.text.white : Colors.text.white} />
+            <Text style={[styles.mainTabButtonText, activeTab === 'watchlist' && styles.mainTabButtonTextActive]}>
+              Watchlist
             </Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={[styles.mainTabButton, activeTab === 'discover' && styles.mainTabButtonActive]}
             onPress={() => setActiveTab('discover')}
           >
-            <Users size={16} color={activeTab === 'discover' ? Colors.text.white : '#CCCCCC'} />
+            <Users size={16} color={activeTab === 'discover' ? Colors.text.white : Colors.text.white} />
             <Text style={[styles.mainTabButtonText, activeTab === 'discover' && styles.mainTabButtonTextActive]}>
               Discover
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.listAssetButton}
-            onPress={() => router.push('/list-asset')}
-          >
-            <Text style={styles.listAssetButtonText}>List Asset</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -183,10 +186,24 @@ export default function MarketScreen() {
         {activeTab === 'market' && (
           <>
             <View style={styles.filterContainer}>
-              <TouchableOpacity style={styles.filterButton}>
-                <Filter size={16} color="#CCCCCC" />
-                <Text style={styles.filterButtonText}>Filter by Asset</Text>
-              </TouchableOpacity>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <TouchableOpacity 
+                  style={styles.filterButton}
+                  onPress={() => router.push('/market/all')}
+                >
+                  <Filter size={16} color={Colors.text.white} />
+                  <Text style={styles.filterButtonText}>All Sports</Text>
+                </TouchableOpacity>
+                {sportCategories.map((category) => (
+                  <TouchableOpacity 
+                    key={category.id}
+                    style={styles.filterButton}
+                    onPress={() => router.push(`/market/${category.id}`)}
+                  >
+                    <Text style={styles.filterButtonText}>{category.name}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
             </View>
             <Text style={styles.sectionTitle}>All Available Assets</Text>
             {filteredListings.map((listing) => (
@@ -196,6 +213,22 @@ export default function MarketScreen() {
                 onPress={() => handleListingPress(listing.id)}
               />
             ))}
+          </>
+        )}
+
+        {activeTab === 'listasset' && (
+          <>
+            <View style={styles.emptyState}>
+              <Plus size={64} color={Colors.primary.orange} />
+              <Text style={styles.emptyStateTitle}>List Your Asset</Text>
+              <Text style={styles.emptyStateSubtitle}>Ready to sell your sports investments? List them on the secondary market.</Text>
+              <TouchableOpacity 
+                style={styles.listAssetCTAButton}
+                onPress={() => router.push('/list-asset')}
+              >
+                <Text style={styles.listAssetCTAButtonText}>Start Listing</Text>
+              </TouchableOpacity>
+            </View>
           </>
         )}
 
@@ -354,7 +387,7 @@ export default function MarketScreen() {
                 followers: '12.4K',
                 returns: '+34.2%',
                 period: '6 months',
-                recentInvestments: ['McLaren Racing', 'Liverpool FC'],
+                recentInvestments: ['Exeter Chiefs', 'British Cycling'],
                 avatar: '👩‍💼'
               },
               {
@@ -364,7 +397,7 @@ export default function MarketScreen() {
                 followers: '8.7K',
                 returns: '+28.9%',
                 period: '6 months',
-                recentInvestments: ['Cardiff City', 'Arsenal FC'],
+                recentInvestments: ['Ultimate Frisbee', 'Ryder Cup'],
                 avatar: '👨‍💼'
               },
               {
@@ -374,7 +407,7 @@ export default function MarketScreen() {
                 followers: '15.2K',
                 returns: '+41.7%',
                 period: '6 months',
-                recentInvestments: ['Manchester City', 'Chelsea FC'],
+                recentInvestments: ['McLaren Racing', 'Cardiff City'],
                 avatar: '👩‍🎓'
               }
             ].map((investor) => (
@@ -732,17 +765,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 20,
-    alignSelf: 'flex-start',
+    marginRight: 8,
+  },
+  listAssetCTAButton: {
+    backgroundColor: Colors.primary.orange,
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderRadius: 25,
+    marginTop: 24,
+  },
+  listAssetCTAButtonText: {
+    color: Colors.text.white,
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
   },
   filterButtonText: {
-    color: '#CCCCCC',
+    color: Colors.text.white,
     fontSize: 14,
     fontWeight: '600',
     marginLeft: 8,
   },
   sectionSubtitle: {
     fontSize: 14,
-    color: '#CCCCCC',
+    color: Colors.text.white,
     marginBottom: 20,
     marginTop: -8,
   },
