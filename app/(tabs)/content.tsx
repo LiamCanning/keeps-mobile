@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, FlatList }
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Home, Play, MessageCircle, Heart, Share, MoreHorizontal, TrendingUp, Reply } from 'lucide-react-native';
+import { Home, Play, MessageCircle, Heart, MoreHorizontal, TrendingUp, Reply, Repeat2, Facebook, Twitter, Instagram, Youtube, Linkedin } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
 import NewsCard from '@/components/NewsCard';
@@ -58,7 +58,7 @@ const communityPosts: CommunityPost[] = [
     reposts: 15,
     type: 'video',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    videoThumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+    videoThumbnail: 'https://r2-pub.rork.com/attachments/hg1snt7via7ectrsgpa73',
   },
   {
     id: '3',
@@ -84,7 +84,7 @@ const communityPosts: CommunityPost[] = [
     reposts: 28,
     type: 'video',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-    videoThumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop',
+    videoThumbnail: 'https://r2-pub.rork.com/attachments/sporzaro1639q9bewkp6i',
   },
   {
     id: '5',
@@ -110,7 +110,7 @@ const communityPosts: CommunityPost[] = [
     reposts: 12,
     type: 'video',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    videoThumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=300&fit=crop',
+    videoThumbnail: 'https://r2-pub.rork.com/attachments/imiwfo3i465cow7qsrydj',
   },
 ];
 
@@ -297,6 +297,25 @@ export default function ContentScreen() {
             <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
           </TouchableOpacity>
 
+          {/* Social Media Icons */}
+          <View style={styles.socialContainer}>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Facebook size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Twitter size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Instagram size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Youtube size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Linkedin size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+          </View>
+
           <Text style={styles.sectionTitle}>Community Feed</Text>
           {communityPosts.map((post, index) => (
             <View key={post.id} style={[styles.postCard, index % 3 === 0 && styles.featuredPost]}>
@@ -346,17 +365,17 @@ export default function ContentScreen() {
                   <Text style={[styles.actionText, { color: Colors.primary.blue }]}>{post.comments}</Text>
                 </TouchableOpacity>
                 
+                <TouchableOpacity style={styles.actionButton}>
+                  <Repeat2 size={16} color={Colors.accent.purple} />
+                  <Text style={[styles.actionText, { color: Colors.accent.purple }]}>{post.reposts}</Text>
+                </TouchableOpacity>
+                
                 <TouchableOpacity 
                   style={styles.actionButton}
                   onPress={() => handleReplyPress(post.id)}
                 >
                   <Reply size={16} color={Colors.accent.green} />
                   <Text style={[styles.actionText, { color: Colors.accent.green }]}>Reply</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.actionButton}>
-                  <Share size={16} color={Colors.accent.purple} />
-                  <Text style={[styles.actionText, { color: Colors.accent.purple }]}>{post.reposts}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -662,5 +681,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     marginLeft: 4,
+  },
+  socialContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 24,
+    gap: 16,
+  },
+  socialIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
 });

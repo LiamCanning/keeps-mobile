@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Modal } from 'react-native';
-import { MessageCircle, ChevronDown, User, Info, Mail, HelpCircle, TrendingUp, Building, Newspaper, HeadphonesIcon } from 'lucide-react-native';
+import { ChevronDown, User, Info, Mail, HelpCircle, TrendingUp, Building, Newspaper, HeadphonesIcon } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Colors from '@/constants/colors';
@@ -42,9 +42,7 @@ export default function Header({ username }: HeaderProps) {
         <Text style={styles.welcome}>Welcome Back!</Text>
       </View>
       
-      <TouchableOpacity style={styles.messageButton} onPress={handleCommunityPress}>
-        <MessageCircle color={Colors.primary.blue} size={24} />
-      </TouchableOpacity>
+
       
       <Modal
         visible={showDropdown}
