@@ -12,7 +12,8 @@ export default function MyAccountScreen() {
     nike: true,
     axa: true,
     heineken: true,
-    emirates: false
+    emirates: false,
+    bmw: true
   });
 
   const handleSettingsPress = () => {
@@ -93,6 +94,9 @@ export default function MyAccountScreen() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
+          <Text style={styles.partnerExplanation}>
+            You have full control over your data sharing preferences. By opting in, you'll gain access to exclusive brand-specific discounts, premium activations, and unique experiences through the Keeps platform.
+          </Text>
           <View style={styles.partnersGrid}>
             <TouchableOpacity 
               style={styles.partnerItem}
@@ -138,7 +142,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/bibvpbijbq6tjodjzh7ug' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.partnerIconAligned]}
               />
               <Text style={styles.partnerName}>AXA</Text>
               <View style={styles.checkboxContainer}>
@@ -176,7 +180,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/nt7frvvt7k9uxifx1uayb' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.partnerIconAligned]}
               />
               <Text style={styles.partnerName}>Emirates</Text>
               <View style={styles.checkboxContainer}>
@@ -185,6 +189,25 @@ export default function MyAccountScreen() {
                 </View>
                 <Text style={styles.partnerStatus}>
                   {partnerOptIns.emirates ? 'Opted In' : 'Opted Out'}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={styles.partnerItem}
+              onPress={() => togglePartnerOptIn('bmw')}
+            >
+              <Image 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/BMW-Logo.png' }} 
+                style={styles.partnerIcon}
+              />
+              <Text style={styles.partnerName}>BMW</Text>
+              <View style={styles.checkboxContainer}>
+                <View style={[styles.checkbox, partnerOptIns.bmw && styles.checkboxChecked]}>
+                  {partnerOptIns.bmw && <Check size={16} color={Colors.text.white} />}
+                </View>
+                <Text style={styles.partnerStatus}>
+                  {partnerOptIns.bmw ? 'Opted In' : 'Opted Out'}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -378,5 +401,14 @@ const styles = StyleSheet.create({
   checkboxChecked: {
     backgroundColor: Colors.accent.green,
     borderColor: Colors.accent.green,
+  },
+  partnerExplanation: {
+    fontSize: 14,
+    color: Colors.text.light,
+    lineHeight: 20,
+    marginBottom: 16,
+  },
+  partnerIconAligned: {
+    marginLeft: -8,
   },
 });
