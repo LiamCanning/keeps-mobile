@@ -38,15 +38,6 @@ export default function HomeScreen() {
       <StatusBar style="light" />
       
       <Header username="Liam Canning" />
-      
-      {/* Temporary Intro Preview Button */}
-      <TouchableOpacity 
-        style={styles.tempButton}
-        onPress={() => router.push('/intro-preview')}
-      >
-        <Text style={styles.tempButtonText}>Intro</Text>
-      </TouchableOpacity>
-      
       <SearchBar 
         value={searchQuery} 
         onChangeText={setSearchQuery}
@@ -95,20 +86,5 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 24,
-  },
-  tempButton: {
-    position: 'absolute',
-    top: 60,
-    right: 16,
-    backgroundColor: Colors.accent.purple,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    zIndex: 1000,
-  },
-  tempButtonText: {
-    color: 'white',
-    fontSize: 12,
-    fontWeight: '600' as const,
   },
 });
