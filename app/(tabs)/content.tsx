@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, FlatList }
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Home, Play, MessageCircle, Heart, MoreHorizontal, TrendingUp, Reply, Repeat2, Facebook, Twitter, Instagram, Youtube, Linkedin } from 'lucide-react-native';
+import { Home, Play, MessageCircle, Heart, MoreHorizontal, TrendingUp, Reply, Repeat2, MessageSquare, Bookmark, Search, Bell, Plus, User } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
 import NewsCard from '@/components/NewsCard';
@@ -110,7 +110,7 @@ const communityPosts: CommunityPost[] = [
     reposts: 12,
     type: 'video',
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    videoThumbnail: 'https://r2-pub.rork.com/attachments/imiwfo3i465cow7qsrydj',
+    videoThumbnail: 'https://r2-pub.rork.com/attachments/5tt0ft9ii8dhmrfeob5a3',
   },
 ];
 
@@ -300,19 +300,22 @@ export default function ContentScreen() {
           {/* Social Media Icons */}
           <View style={styles.socialContainer}>
             <TouchableOpacity style={styles.socialIcon}>
-              <Facebook size={20} color={Colors.text.white} />
+              <MessageSquare size={20} color={Colors.text.white} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialIcon}>
-              <Twitter size={20} color={Colors.text.white} />
+              <Bookmark size={20} color={Colors.text.white} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialIcon}>
-              <Instagram size={20} color={Colors.text.white} />
+              <Search size={20} color={Colors.text.white} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialIcon}>
-              <Youtube size={20} color={Colors.text.white} />
+              <Bell size={20} color={Colors.text.white} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialIcon}>
-              <Linkedin size={20} color={Colors.text.white} />
+              <Plus size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <User size={20} color={Colors.text.white} />
             </TouchableOpacity>
           </View>
 
