@@ -29,10 +29,10 @@ export default function AboutScreen() {
               style={styles.logoImage}
             />
           </View>
-          <Text style={styles.heroTitle}>Keeps</Text>
           <Text style={styles.heroSubtitle}>Sports Investment Platform</Text>
           <Text style={styles.heroText}>
-            Democratising sports investment for passionate fans worldwide
+            Breaking down barriers. Democratising sports investment. 
+            Empowering passionate fans to own a piece of the action and profit from the teams they love.
           </Text>
         </View>
 
@@ -109,6 +109,12 @@ export default function AboutScreen() {
               <Text style={styles.visualTitle}>Portfolio Tracking</Text>
               <Text style={styles.visualText}>Monitor your investments with real-time performance analytics and insights</Text>
             </View>
+            
+            <View style={styles.visualCard}>
+              <TrendingUp size={40} color={Colors.accent.purple || Colors.primary.orange} />
+              <Text style={styles.visualTitle}>Growth Potential</Text>
+              <Text style={styles.visualText}>Access high-growth sports assets with transparent returns ranging from 4-12% annually</Text>
+            </View>
           </View>
         </View>
 
@@ -181,27 +187,24 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   logoImage: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
   },
-  heroTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 4,
-  },
   heroSubtitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '700',
     color: Colors.primary.orange,
-    marginBottom: 12,
+    marginBottom: 16,
+    textAlign: 'center',
   },
   heroText: {
-    fontSize: 18,
-    color: Colors.text.light,
+    fontSize: 16,
+    color: Colors.text.dark,
     textAlign: 'center',
     lineHeight: 24,
+    fontWeight: '500',
+    paddingHorizontal: 8,
   },
   section: {
     backgroundColor: Colors.background.card,
@@ -270,6 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
     minHeight: 140,
+    justifyContent: 'center',
   },
   visualTitle: {
     fontSize: 16,
