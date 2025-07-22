@@ -223,7 +223,7 @@ export default function PortfolioScreen() {
         <View style={styles.aiAnalysisContainer}>
           <Text style={styles.aiAnalysisTitle}>AI Portfolio Analysis</Text>
           <Text style={styles.aiAnalysisText}>
-            Your portfolio shows strong diversification across different sports sectors. McLaren Racing (80% of holdings) represents a significant concentration risk, but its strong performance (+12.3% YTD) justifies the allocation. Consider adding exposure to emerging sports markets for additional growth potential. Your current projected annual return is 7.8%, outperforming the sports investment index by 2.1%.
+            Your portfolio shows strong diversification across different sports sectors. McLaren Racing (80% of holdings) represents a significant concentration risk, but its strong performance (+22.0% current return) justifies the allocation. Consider adding exposure to emerging sports markets for additional growth potential. Your current projected annual return is {avgYield.toFixed(1)}%, outperforming the sports investment index by 2.1%.
           </Text>
         </View>
         
