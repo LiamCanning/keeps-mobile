@@ -103,7 +103,9 @@ export default function PortfolioScreen() {
   const avgYield = portfolioAssets.reduce((sum, asset) => sum + asset.potentialReturn, 0) / totalAssets;
 
   const handleViewBenefits = (assetId: string) => {
-    router.push(`/benefits/${assetId}`);
+    const userAsset = portfolioAssets.find(asset => asset.id === assetId);
+    const userTier = userAsset?.tier || '';
+    router.push(`/benefits/${assetId}?fromPortfolio=true&userTier=${userTier}`);
   };
 
   const handleTradeShares = (assetId: string) => {
@@ -259,7 +261,7 @@ export default function PortfolioScreen() {
               </View>
               <View style={styles.detailRow}>
                 <Text style={styles.detailLabel}>Potential Return:</Text>
-                <Text style={[styles.detailValue, { color: Colors.accent.green }]}>
+                <Text style={[styles.detailValue, { color: '#2E7D32' }]}>
                   +{asset.potentialReturn.toFixed(1)}% (if sold today)
                 </Text>
               </View>

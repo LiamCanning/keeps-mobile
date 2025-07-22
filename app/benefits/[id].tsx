@@ -9,11 +9,13 @@ import { userAssets, comingSoonAssets, completedAssets } from '@/constants/asset
 import BenefitCard from '@/components/BenefitCard';
 
 export default function AssetBenefitsScreen() {
-  const { id } = useLocalSearchParams();
+  const { id, fromPortfolio, userTier } = useLocalSearchParams();
   const insets = useSafeAreaInsets();
   
   const asset = [...userAssets, ...comingSoonAssets, ...completedAssets].find(a => a.id === id);
   const assetBenefits = benefits.filter(benefit => benefit.assetId === id);
+  const isFromPortfolio = fromPortfolio === 'true';
+  const userTierString = typeof userTier === 'string' ? userTier.toLowerCase() : '';
   
   if (!asset) {
     return (
@@ -59,7 +61,11 @@ export default function AssetBenefitsScreen() {
         
         {assetBenefits.length > 0 ? (
           assetBenefits.map((benefit) => (
-            <BenefitCard key={benefit.id} benefit={benefit} />
+            <BenefitCard 
+              key={benefit.id} 
+              benefit={benefit} 
+              highlightUserTier={isFromPortfolio && benefit.level === userTierString}
+            />
           ))
         ) : (
           <View style={styles.emptyContainer}>

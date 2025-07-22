@@ -6,9 +6,10 @@ import { Benefit } from '@/constants/benefits';
 
 interface BenefitCardProps {
   benefit: Benefit;
+  highlightUserTier?: boolean;
 }
 
-export default function BenefitCard({ benefit }: BenefitCardProps) {
+export default function BenefitCard({ benefit, highlightUserTier = false }: BenefitCardProps) {
   const getBadgeColor = () => {
     switch (benefit.level) {
       case 'bronze':
@@ -45,7 +46,7 @@ export default function BenefitCard({ benefit }: BenefitCardProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, highlightUserTier && styles.highlightedContainer]}>
       <View style={[styles.badge, { backgroundColor: getBadgeColor() }]}>
         {getBadgeIcon()}
         <Text style={[styles.badgeText, { color: benefit.level === 'gold' || benefit.level === 'platinum' || benefit.level === 'diamond' ? '#000000' : '#FFFFFF' }]}>
@@ -144,5 +145,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: Colors.primary.blue,
+  },
+  highlightedContainer: {
+    borderWidth: 3,
+    borderColor: Colors.primary.orange,
+    backgroundColor: '#FFF8E1',
+    shadowColor: Colors.primary.orange,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
   },
 });

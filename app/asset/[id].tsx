@@ -160,6 +160,7 @@ export default function AssetDetailScreen() {
           <>
             <View style={styles.statsSection}>
               <View style={styles.statCard}>
+                <Text style={styles.minimumEntryEmoji}>💰</Text>
                 <Text style={styles.statLabel}>Minimum Entry</Text>
                 <Text style={styles.statValue}>{asset.minimumEntry}</Text>
               </View>
@@ -626,6 +627,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   timerEmoji: {
+    fontSize: 20,
+    marginBottom: 8,
+  },
+  minimumEntryEmoji: {
     fontSize: 20,
     marginBottom: 8,
   },
