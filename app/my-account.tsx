@@ -418,12 +418,12 @@ const styles = StyleSheet.create({
     marginLeft: -12,
   },
   heinekenIcon: {
-    marginLeft: -4,
+    marginLeft: -2,
   },
   emiratesIcon: {
-    marginLeft: -16,
+    marginLeft: -14,
   },
   bmwIcon: {
-    marginLeft: -6,
+    marginLeft: -8,
   },
 });

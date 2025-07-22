@@ -56,8 +56,8 @@ export default function BenefitsScreen() {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabSelectorContent}>
           {[
             { key: 'live', label: 'Live Assets' },
-            { key: 'completed', label: 'Completed Assets' },
-            { key: 'coming-soon', label: 'Coming Soon Assets' }
+            { key: 'coming-soon', label: 'Coming Soon Assets' },
+            { key: 'completed', label: 'Completed Assets' }
           ].map((tab) => (
             <TouchableOpacity
               key={tab.key}
@@ -114,11 +114,11 @@ export default function BenefitsScreen() {
                   {asset.description || 'Exclusive benefits and perks available'}
                 </Text>
                 <View style={styles.benefitsRow}>
-                  <Gift size={16} color={Colors.primary.orange} />
-                  <Text style={styles.benefitsPreview}>
-                    Tap to view exclusive benefits
+                  <Gift size={16} color={Colors.primary.purple} />
+                  <Text style={[styles.benefitsPreview, { color: Colors.primary.purple }]}>
+                    Tap exclusive benefits
                   </Text>
-                  <ChevronRight size={16} color={Colors.primary.orange} />
+                  <ChevronRight size={16} color={Colors.primary.purple} />
                 </View>
               </View>
             </View>
@@ -203,6 +203,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 165, 0, 0.15)',
   },
   assetCardContent: {
     flexDirection: 'row',
@@ -212,14 +214,16 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 12,
-    backgroundColor: Colors.background.light,
+    backgroundColor: 'rgba(255, 165, 0, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 165, 0, 0.2)',
   },
   assetLogo: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     resizeMode: 'contain',
   },
   assetInfo: {
