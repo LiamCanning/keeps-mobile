@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Dimens
 import { StatusBar } from 'expo-status-bar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Search, Home, Heart, TrendingUp, LineChart } from 'lucide-react-native';
+import { Search, Home, Heart, TrendingUp, LineChart, BarChart3 } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { marketListings } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
@@ -16,6 +16,53 @@ const performanceData = {
   '6m': { price: 1000, change: +205, percentage: +25.75 },
 };
 
+const watchlistAssets = [
+  {
+    id: '1',
+    name: 'McLaren Racing',
+    price: 1205,
+    change: +25,
+    percentage: +2.16,
+    volume: '£2.4M',
+    marketCap: '£156M'
+  },
+  {
+    id: '2', 
+    name: 'Liverpool FC',
+    price: 890,
+    change: -12,
+    percentage: -1.33,
+    volume: '£1.8M',
+    marketCap: '£234M'
+  },
+  {
+    id: '3',
+    name: 'Manchester United',
+    price: 1450,
+    change: +45,
+    percentage: +3.21,
+    volume: '£3.2M',
+    marketCap: '£298M'
+  }
+];
+
+const analysisMetrics = {
+  mclaren: {
+    peRatio: 18.5,
+    revenueGrowth: 12.3,
+    profitMargin: 8.7,
+    debtToEquity: 0.45,
+    returnOnEquity: 15.2,
+    currentRatio: 2.1,
+    quickRatio: 1.8,
+    grossMargin: 24.5,
+    operatingMargin: 11.2,
+    netMargin: 8.7,
+    assetTurnover: 1.3,
+    inventoryTurnover: 6.2
+  }
+};
+
 const timeframes = [
   { key: '5min', label: '5 min' },
   { key: '24h', label: '24h' },
@@ -26,7 +73,7 @@ const timeframes = [
 
 export default function MarketScreen() {
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState<'market' | 'wishlist' | 'performance'>('market');
+  const [activeTab, setActiveTab] = useState<'market' | 'watchlist' | 'analysis'>('market');
   const [selectedTimeframe, setSelectedTimeframe] = useState('24h');
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
@@ -88,21 +135,21 @@ export default function MarketScreen() {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={[styles.tabButton, activeTab === 'wishlist' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('wishlist')}
+              style={[styles.tabButton, activeTab === 'watchlist' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('watchlist')}
             >
-              <Heart size={16} color={activeTab === 'wishlist' ? Colors.text.white : Colors.text.light} />
-              <Text style={[styles.tabButtonText, activeTab === 'wishlist' && styles.tabButtonTextActive]}>
-                Wishlist
+              <Heart size={16} color={activeTab === 'watchlist' ? Colors.text.white : Colors.text.light} />
+              <Text style={[styles.tabButtonText, activeTab === 'watchlist' && styles.tabButtonTextActive]}>
+                Watchlist
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={[styles.tabButton, activeTab === 'performance' && styles.tabButtonActive]}
-              onPress={() => setActiveTab('performance')}
+              style={[styles.tabButton, activeTab === 'analysis' && styles.tabButtonActive]}
+              onPress={() => setActiveTab('analysis')}
             >
-              <TrendingUp size={16} color={activeTab === 'performance' ? Colors.text.white : Colors.text.light} />
-              <Text style={[styles.tabButtonText, activeTab === 'performance' && styles.tabButtonTextActive]}>
-                Performance
+              <BarChart3 size={16} color={activeTab === 'analysis' ? Colors.text.white : Colors.text.light} />
+              <Text style={[styles.tabButtonText, activeTab === 'analysis' && styles.tabButtonTextActive]}>
+                Analysis
               </Text>
             </TouchableOpacity>
           </View>
@@ -133,18 +180,41 @@ export default function MarketScreen() {
           </>
         )}
 
-        {activeTab === 'wishlist' && (
+        {activeTab === 'watchlist' && (
           <>
-            <Text style={styles.sectionTitle}>Your Wishlist</Text>
-            <View style={styles.emptyState}>
-              <Heart size={48} color={Colors.text.light} />
-              <Text style={styles.emptyStateTitle}>No items in wishlist</Text>
-              <Text style={styles.emptyStateSubtitle}>Add assets to your wishlist to track them here</Text>
-            </View>
+            <Text style={styles.sectionTitle}>Your Watchlist</Text>
+            {watchlistAssets.map((asset) => (
+              <View key={asset.id} style={styles.watchlistCard}>
+                <View style={styles.watchlistHeader}>
+                  <Text style={styles.watchlistAssetName}>{asset.name}</Text>
+                  <TouchableOpacity>
+                    <Heart size={20} color={Colors.primary.orange} fill={Colors.primary.orange} />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.watchlistData}>
+                  <View style={styles.watchlistPrice}>
+                    <Text style={styles.watchlistPriceText}>£{asset.price}</Text>
+                    <Text style={[styles.watchlistChange, { color: asset.change > 0 ? '#4CAF50' : '#F44336' }]}>
+                      {asset.change > 0 ? '+' : ''}£{asset.change} ({asset.percentage > 0 ? '+' : ''}{asset.percentage}%)
+                    </Text>
+                  </View>
+                  <View style={styles.watchlistStats}>
+                    <View style={styles.watchlistStat}>
+                      <Text style={styles.watchlistStatLabel}>Volume</Text>
+                      <Text style={styles.watchlistStatValue}>{asset.volume}</Text>
+                    </View>
+                    <View style={styles.watchlistStat}>
+                      <Text style={styles.watchlistStatLabel}>Market Cap</Text>
+                      <Text style={styles.watchlistStatValue}>{asset.marketCap}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            ))}
           </>
         )}
 
-        {activeTab === 'performance' && (
+        {activeTab === 'analysis' && (
           <>
             <View style={styles.performanceHeader}>
               <View style={styles.assetInfo}>
@@ -181,6 +251,57 @@ export default function MarketScreen() {
             </View>
 
             <View style={styles.performanceStats}>
+              <Text style={styles.metricsTitle}>Key Financial Metrics</Text>
+              <View style={styles.metricsGrid}>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>P/E Ratio</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.peRatio}</Text>
+                </View>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>Revenue Growth</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.revenueGrowth}%</Text>
+                </View>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>Profit Margin</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.profitMargin}%</Text>
+                </View>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>Debt/Equity</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.debtToEquity}</Text>
+                </View>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>ROE</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.returnOnEquity}%</Text>
+                </View>
+                <View style={styles.metricItem}>
+                  <Text style={styles.metricLabel}>Current Ratio</Text>
+                  <Text style={styles.metricValue}>{analysisMetrics.mclaren.currentRatio}</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.performanceStats}>
+              <Text style={styles.metricsTitle}>Operational Metrics</Text>
+              <View style={styles.statItem}>
+                <Text style={styles.statLabel}>Gross Margin</Text>
+                <Text style={styles.statValue}>{analysisMetrics.mclaren.grossMargin}%</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Text style={styles.statLabel}>Operating Margin</Text>
+                <Text style={styles.statValue}>{analysisMetrics.mclaren.operatingMargin}%</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Text style={styles.statLabel}>Asset Turnover</Text>
+                <Text style={styles.statValue}>{analysisMetrics.mclaren.assetTurnover}x</Text>
+              </View>
+              <View style={[styles.statItem, { borderBottomWidth: 0 }]}>
+                <Text style={styles.statLabel}>Inventory Turnover</Text>
+                <Text style={styles.statValue}>{analysisMetrics.mclaren.inventoryTurnover}x</Text>
+              </View>
+            </View>
+
+            <View style={styles.performanceStats}>
+              <Text style={styles.metricsTitle}>Market Data</Text>
               <View style={styles.statItem}>
                 <Text style={styles.statLabel}>Volume (24h)</Text>
                 <Text style={styles.statValue}>£2.4M</Text>
@@ -426,5 +547,86 @@ const styles = StyleSheet.create({
     height: '100%',
     color: Colors.text.white,
     fontSize: 16,
+  },
+  watchlistCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 12,
+  },
+  watchlistHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  watchlistAssetName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+  },
+  watchlistData: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+  watchlistPrice: {
+    flex: 1,
+  },
+  watchlistPriceText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 4,
+  },
+  watchlistChange: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  watchlistStats: {
+    alignItems: 'flex-end',
+  },
+  watchlistStat: {
+    alignItems: 'flex-end',
+    marginBottom: 4,
+  },
+  watchlistStatLabel: {
+    fontSize: 12,
+    color: Colors.text.light,
+  },
+  watchlistStatValue: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: Colors.text.white,
+  },
+  metricsTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginBottom: 16,
+  },
+  metricsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  metricItem: {
+    width: '48%',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 8,
+    alignItems: 'center',
+  },
+  metricLabel: {
+    fontSize: 12,
+    color: Colors.text.light,
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  metricValue: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.white,
   },
 });
