@@ -83,16 +83,17 @@ export default function AssetDetailScreen() {
   
   const getTaglineColor = (assetId: string, baseTextColor: string) => {
     if (assetId === 'mclaren') return Colors.text.white;
-    if (assetId === 'ohio' || assetId === 'cardiff' || assetId === 'hexagon' || assetId === 'british-cycling' || assetId === 'ultimate-frisbee') {
+    if (assetId === 'ohio' || assetId === 'cardiff' || assetId === 'hexagon' || assetId === 'ultimate-frisbee') {
       return Colors.text.white;
     }
-    if (assetId === 'exeter-chiefs') return '#FFD700';
+    if (assetId === 'british-cycling') return Colors.text.dark;
+    if (assetId === 'exeter-chiefs') return Colors.text.white;
     return baseTextColor === Colors.text.white ? '#FFB366' : Colors.primary.orange;
   };
   
   const getLogoStyle = (assetId: string) => {
     if (assetId === 'mclaren') {
-      return { width: 160, height: 80 };
+      return { width: 160, height: 80, marginTop: 10 };
     }
     if (assetId === 'hexagon' || assetId === 'rydercup') {
       return { width: 150, height: 150 };
@@ -123,7 +124,7 @@ export default function AssetDetailScreen() {
         <View style={[styles.heroSection, { backgroundColor }]}>
           <View style={styles.heroContent}>
             <Image source={{ uri: asset.logo }} style={[styles.heroLogo, getLogoStyle(asset.id)]} />
-            <Text style={[styles.heroTitle, { color: asset.id === 'liverpool' ? '#C8102E' : asset.id === 'exeter-chiefs' ? Colors.text.white : textColor }]}>
+            <Text style={[styles.heroTitle, { color: asset.id === 'liverpool' ? Colors.text.dark : asset.id === 'exeter-chiefs' ? Colors.text.white : textColor }]}>
               {asset.name}
             </Text>
             <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic, { color: getTaglineColor(asset.id, textColor) }]}>{getAssetTagline(asset.id)}</Text>
@@ -159,6 +160,11 @@ export default function AssetDetailScreen() {
           <>
             <View style={styles.statsSection}>
               <View style={styles.statCard}>
+                <Text style={styles.statValue}>{asset.minimumEntry}</Text>
+                <Text style={styles.statLabel}>Minimum Entry</Text>
+              </View>
+              
+              <View style={styles.statCard}>
                 <TouchableOpacity onPress={handleInvestorsPress} style={styles.investorsButton}>
                   <Eye size={24} color={Colors.primary.orange} />
                   <Text style={styles.statValue}>Who's Invested?</Text>
@@ -172,11 +178,6 @@ export default function AssetDetailScreen() {
                   <Text style={styles.statLabel}></Text>
                 </View>
               )}
-              
-              <View style={styles.statCard}>
-                <Text style={styles.statValue}>{asset.minimumEntry}</Text>
-                <Text style={styles.statLabel}>Minimum Entry</Text>
-              </View>
             </View>
             
             {/* Funding Progress Bar */}
