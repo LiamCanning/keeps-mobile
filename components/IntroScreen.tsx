@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Platform } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, Platform, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import Colors from '@/constants/colors';
@@ -14,33 +14,27 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
-  const sparkleAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     const sequence = Animated.sequence([
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 1000,
+          duration: 1200,
           useNativeDriver: true,
         }),
         Animated.timing(scaleAnim, {
           toValue: 1,
-          duration: 1000,
+          duration: 1200,
           useNativeDriver: true,
         }),
         Animated.timing(slideAnim, {
           toValue: 0,
-          duration: 800,
+          duration: 1000,
           useNativeDriver: true,
         }),
       ]),
-      Animated.timing(sparkleAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.delay(1500),
+      Animated.delay(2000),
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 0,
@@ -48,7 +42,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
           useNativeDriver: true,
         }),
         Animated.timing(scaleAnim, {
-          toValue: 1.1,
+          toValue: 1.05,
           duration: 800,
           useNativeDriver: true,
         }),
@@ -60,26 +54,18 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
     });
   }, []);
 
-  const sparkleOpacity = sparkleAnim.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [0, 1, 0],
-  });
 
-  const sparkleRotation = sparkleAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
 
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#0B1426', '#1E3A8A', '#3B82F6', '#60A5FA']}
+        colors={['#0F172A', '#1E293B', '#334155', '#475569']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
         {Platform.OS !== 'web' && (
-          <BlurView intensity={20} style={styles.blur} />
+          <BlurView intensity={15} style={styles.blur} />
         )}
         
         <Animated.View
@@ -94,40 +80,14 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
             },
           ]}
         >
-          <View style={styles.iconContainer}>
-            <Animated.View
-              style={[
-                styles.sparkle,
-                {
-                  opacity: sparkleOpacity,
-                  transform: [{ rotate: sparkleRotation }],
-                },
-              ]}
-            >
-              <Text style={styles.sparkleText}>✨</Text>
-            </Animated.View>
-            
-            <View style={styles.logoContainer}>
-              <LinearGradient
-                colors={['#FFD700', '#FFA500', '#FF6B35']}
-                style={styles.logoGradient}
-              >
-                <Text style={styles.logoText}>⚡</Text>
-              </LinearGradient>
+          <View style={styles.logoContainer}>
+            <View style={styles.logoBackground}>
+              <Image
+                source={{ uri: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&h=200&fit=crop&crop=center' }}
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
-            
-            <Animated.View
-              style={[
-                styles.sparkle,
-                styles.sparkle2,
-                {
-                  opacity: sparkleOpacity,
-                  transform: [{ rotate: sparkleRotation }],
-                },
-              ]}
-            >
-              <Text style={styles.sparkleText}>✨</Text>
-            </Animated.View>
           </View>
 
           <View style={styles.textContainer}>
@@ -136,28 +96,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
             <Text style={styles.subText}>Come on in...</Text>
           </View>
 
-          <View style={styles.decorativeElements}>
-            {[...Array(6)].map((_, i) => (
-              <Animated.View
-                key={i}
-                style={[
-                  styles.floatingDot,
-                  {
-                    left: `${15 + i * 12}%`,
-                    top: `${20 + (i % 2) * 60}%`,
-                    opacity: sparkleOpacity,
-                    transform: [
-                      {
-                        translateY: sparkleAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, -10 + (i % 3) * 5],
-                        }),
-                      },
-                    ],
-                  },
-                ]}
-              />
-            ))}
+          <View style={styles.sportsElements}>
+            <View style={[styles.sportsDot, { left: '10%', top: '15%' }]} />
+            <View style={[styles.sportsDot, { right: '15%', top: '25%' }]} />
+            <View style={[styles.sportsDot, { left: '20%', bottom: '30%' }]} />
+            <View style={[styles.sportsDot, { right: '10%', bottom: '20%' }]} />
           </View>
         </Animated.View>
       </LinearGradient>
@@ -192,48 +135,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 40,
   },
-  iconContainer: {
-    position: 'relative',
+  logoContainer: {
     marginBottom: 60,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logoContainer: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+  logoBackground: {
+    width: 140,
+    height: 140,
+    borderRadius: 70,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#FFD700',
+    borderWidth: 3,
+    borderColor: 'rgba(59, 130, 246, 0.3)',
+    shadowColor: '#3B82F6',
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.4,
     shadowRadius: 20,
-    elevation: 20,
+    elevation: 15,
   },
-  logoGradient: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoText: {
-    fontSize: 48,
-    textAlign: 'center',
-  },
-  sparkle: {
-    position: 'absolute',
-    top: -10,
-    right: -10,
-  },
-  sparkle2: {
-    top: 80,
-    left: -20,
-    right: 'auto' as any,
-  },
-  sparkleText: {
-    fontSize: 24,
-    color: '#FFD700',
+  logoImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   textContainer: {
     alignItems: 'center',
@@ -250,23 +175,23 @@ const styles = StyleSheet.create({
   highlightText: {
     fontSize: 36,
     fontWeight: '800',
-    color: '#FFD700',
+    color: '#3B82F6',
     textAlign: 'center',
     marginBottom: 16,
     letterSpacing: 1.5,
-    textShadowColor: 'rgba(255, 215, 0, 0.5)',
+    textShadowColor: 'rgba(59, 130, 246, 0.3)',
     textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 10,
+    textShadowRadius: 8,
   },
   subText: {
     fontSize: 20,
     fontWeight: '400',
-    color: '#E2E8F0',
+    color: '#CBD5E1',
     textAlign: 'center',
     fontStyle: 'italic',
     letterSpacing: 0.5,
   },
-  decorativeElements: {
+  sportsElements: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -274,15 +199,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     pointerEvents: 'none',
   },
-  floatingDot: {
+  sportsDot: {
     position: 'absolute',
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: '#60A5FA',
-    shadowColor: '#60A5FA',
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#3B82F6',
+    shadowColor: '#3B82F6',
     shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 4,
+    shadowOpacity: 0.6,
+    shadowRadius: 6,
+    elevation: 5,
   },
 });
