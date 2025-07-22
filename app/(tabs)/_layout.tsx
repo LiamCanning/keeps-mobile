@@ -15,6 +15,7 @@ export default function TabLayout() {
           borderTopColor: 'rgba(255, 255, 255, 0.1)',
           paddingBottom: 8,
           paddingTop: 8,
+          paddingHorizontal: 0,
           height: 88,
         },
         tabBarLabelStyle: {
@@ -24,6 +25,11 @@ export default function TabLayout() {
         },
         tabBarIconStyle: {
           marginTop: 4,
+        },
+        tabBarItemStyle: {
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
         },
       }}
     >
