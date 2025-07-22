@@ -61,8 +61,7 @@ export default function AboutScreen() {
               <Text style={styles.stepText}>
                 Primary issuance investments in elite sports assets, providing direct access to exclusive opportunities 
                 in professional sports. Our secondary market enables seamless trading between investors, offering 
-                liquidity and portfolio management flexibility. Together, these markets create a comprehensive 
-                ecosystem where passionate fans can invest, trade, and benefit from the sports they love.
+                liquidity and portfolio management flexibility.
               </Text>
             </View>
           </View>
