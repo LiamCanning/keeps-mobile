@@ -219,6 +219,14 @@ export default function PortfolioScreen() {
           </View>
         </View>
         
+        {/* AI Portfolio Analysis */}
+        <View style={styles.aiAnalysisContainer}>
+          <Text style={styles.aiAnalysisTitle}>AI Portfolio Analysis</Text>
+          <Text style={styles.aiAnalysisText}>
+            Your portfolio shows strong diversification across different sports sectors. McLaren Racing (80% of holdings) represents a significant concentration risk, but its strong performance (+12.3% YTD) justifies the allocation. Consider adding exposure to emerging sports markets for additional growth potential. Your current projected annual return is 7.8%, outperforming the sports investment index by 2.1%.
+          </Text>
+        </View>
+        
         <Text style={styles.sectionTitle}>Your Investments</Text>
         {portfolioAssets.map((asset) => (
           <View key={asset.id} style={styles.assetCard}>
@@ -542,5 +550,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginLeft: 8,
+  },
+  aiAnalysisContainer: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 12,
+    padding: 16,
+    marginHorizontal: 16,
+    marginTop: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: Colors.accent.green,
+  },
+  aiAnalysisTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  aiAnalysisText: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    lineHeight: 20,
   },
 });
