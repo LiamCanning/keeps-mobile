@@ -31,7 +31,7 @@ export default function AboutScreen() {
           </View>
           <Text style={styles.heroSubtitle}>Sports Investment Platform</Text>
           <Text style={styles.heroText}>
-            Democratising sports investment by enabling access to passionate fans worldwide
+            Democratising sports investments for a global audience
           </Text>
         </View>
 
@@ -59,10 +59,10 @@ export default function AboutScreen() {
             <View style={styles.stepContent}>
               <Text style={styles.stepTitle}>What We Offer</Text>
               <Text style={styles.stepText}>
-                Primary market investments in elite sports assets like Liverpool FC, McLaren Racing, and Ryder Cup. 
-                Secondary market trading for liquidity and portfolio management. Exclusive investor benefits including 
-                VIP access, merchandise discounts, and behind-the-scenes experiences with transparent returns ranging 
-                from 4-12% annually.
+                Primary issuance investments in elite sports assets, providing direct access to exclusive opportunities 
+                in professional sports. Our secondary market enables seamless trading between investors, offering 
+                liquidity and portfolio management flexibility. Together, these markets create a comprehensive 
+                ecosystem where passionate fans can invest, trade, and benefit from the sports they love.
               </Text>
             </View>
           </View>
