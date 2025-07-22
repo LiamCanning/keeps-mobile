@@ -63,7 +63,15 @@ export default function BenefitsScreen() {
               key={tab.key}
               style={[
                 styles.tabButton,
-                selectedTab === tab.key && styles.tabButtonActive,
+                selectedTab === tab.key && [
+                  styles.tabButtonActive,
+                  {
+                    backgroundColor: 
+                      tab.key === 'live' ? Colors.accent.green :
+                      tab.key === 'completed' ? Colors.accent.blue :
+                      Colors.primary.orange
+                  }
+                ],
               ]}
               onPress={() => setSelectedTab(tab.key as any)}
             >
@@ -176,7 +184,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   tabButtonActive: {
-    backgroundColor: Colors.primary.orange,
+    // Dynamic background color set inline
   },
   tabButtonText: {
     fontSize: 14,
