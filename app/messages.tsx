@@ -29,8 +29,8 @@ const messages: Message[] = [
   },
   {
     id: '2',
-    name: 'Sarah Martinez',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    name: 'Rachel Thompson',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
     lastMessage: 'Are you considering the McLaren opportunity?',
     timestamp: '1h',
     unread: true,
@@ -153,7 +153,7 @@ export default function MessagesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.primary.blue,
   },
   headerButton: {
     marginRight: 16,

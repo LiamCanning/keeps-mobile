@@ -101,9 +101,9 @@ const getInvestorsForAsset = (assetId: string): Investor[] => {
         country: 'USA'
       },
       {
-        id: 'sarah_martinez',
-        name: 'Sarah Martinez',
-        avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+        id: 'rachel_garcia',
+        name: 'Rachel Garcia',
+        avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
         amount: '£2,750,000',
         type: 'individual',
         flag: '🇪🇸',

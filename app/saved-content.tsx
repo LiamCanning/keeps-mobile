@@ -65,9 +65,9 @@ const savedPosts: SavedPost[] = [
   },
   {
     id: '4',
-    username: 'Emma Thompson',
-    handle: '@emmathompson_uk',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+    username: 'Marcus Johnson',
+    handle: '@marcusj_sports',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
     content: 'Keeps has completely changed how I think about supporting my favorite teams. The exclusive access and real returns make you feel like you\'re truly part of the club\'s journey.',
     timestamp: '8h',
     likes: 42,
@@ -196,7 +196,7 @@ export default function SavedContentScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background.secondary,
+    backgroundColor: Colors.primary.blue,
   },
   headerButton: {
     marginRight: 16,
