@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 80,
   },
   mainText: {
     fontSize: 28,
@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
     letterSpacing: 0.5,
+    marginTop: 30,
   },
   sportsElements: {
     position: 'absolute',
