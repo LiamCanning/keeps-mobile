@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Clock, TrendingUp, Users } from 'lucide-react-native';
 import { Asset } from '@/constants/assets';
 import Colors from '@/constants/colors';
@@ -16,21 +16,19 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
     (asset.id === 'exeter-chiefs' ? Colors.text.dark : Colors.text.white);
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
-  const { width } = Dimensions.get('window');
-  const isDesktop = Platform.OS === 'web' && width > 768;
   
   return (
     <TouchableOpacity 
-      style={[styles.container, { backgroundColor }, isDesktop && styles.desktopContainer]} 
+      style={[styles.container, { backgroundColor }]} 
       onPress={onPress}
       activeOpacity={0.9}
     >
       <View style={styles.content}>
         <View style={styles.leftSection}>
-          <Image source={{ uri: asset.logo }} style={[styles.logo, isDesktop && styles.desktopLogo]} />
+          <Image source={{ uri: asset.logo }} style={styles.logo} />
           <View style={styles.textContainer}>
             <View style={styles.titleRow}>
-              <Text style={[styles.name, { color: textColor }, isDesktop && styles.desktopName]}>
+              <Text style={[styles.name, { color: textColor }]}>
                 {asset.name}
               </Text>
               {!isComingSoon && (
@@ -46,7 +44,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
             
             {isComingSoon ? (
               <>
-                <Text style={[styles.description, { color: textColor }, isDesktop && styles.desktopDescription]}>
+                <Text style={[styles.description, { color: textColor }]}>
                   {asset.description}
                 </Text>
                 <Text style={[styles.comingSoonInfo, { color: textColor }]}>
@@ -62,12 +60,12 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
               </>
             ) : (
               <>
-                <Text style={[styles.raiseAmount, { color: textColor }, isDesktop && styles.desktopRaiseAmount]}>
+                <Text style={[styles.raiseAmount, { color: textColor }]}>
                   {asset.raiseAmount}
                 </Text>
                 
                 {/* Asset tagline */}
-                <Text style={[styles.tagline, { color: textColor }, asset.id === 'ohio' && styles.taglineItalic, isDesktop && styles.desktopTagline]}>
+                <Text style={[styles.tagline, { color: textColor }, asset.id === 'ohio' && styles.taglineItalic]}>
                   {asset.id === 'liverpool' ? "Expand Anfield's Stadium Capacity" :
                    asset.id === 'mclaren' ? "Fuel McLaren's Next Victory" :
                    asset.id === 'rydercup' ? 'Improve Digital Access For All Fans' :
@@ -136,13 +134,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     position: 'relative',
   },
-  desktopContainer: {
-    padding: 24,
-    marginBottom: 0,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-  },
   content: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -158,11 +149,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 16,
   },
-  desktopLogo: {
-    width: 100,
-    height: 100,
-    marginRight: 20,
-  },
   textContainer: {
     flex: 1,
   },
@@ -176,9 +162,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     marginRight: 8,
-  },
-  desktopName: {
-    fontSize: 26,
   },
   trendingBadge: {
     backgroundColor: Colors.accent.green,
@@ -215,10 +198,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 6,
   },
-  desktopRaiseAmount: {
-    fontSize: 18,
-    marginBottom: 8,
-  },
   minimumEntry: {
     fontSize: 14,
     marginBottom: 6,
@@ -234,10 +213,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     lineHeight: 22,
     marginBottom: 8,
-  },
-  desktopDescription: {
-    fontSize: 18,
-    lineHeight: 26,
   },
   comingSoonInfo: {
     fontSize: 14,
@@ -326,10 +301,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
     opacity: 0.9,
-  },
-  desktopTagline: {
-    fontSize: 16,
-    marginBottom: 12,
   },
   taglineItalic: {
     fontStyle: 'italic',

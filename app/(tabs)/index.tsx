@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 
@@ -16,8 +16,6 @@ export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState<'live' | 'coming-soon' | 'completed'>('live');
   const router = useRouter();
-  const { width } = Dimensions.get('window');
-  const isDesktop = Platform.OS === 'web' && width > 768;
 
   const handleAssetPress = (assetId: string) => {
     router.push(`/asset/${assetId}`);
@@ -51,35 +49,27 @@ export default function HomeScreen() {
       <ScrollView 
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.scrollContent, isDesktop && styles.desktopScrollContent]}
+        contentContainerStyle={styles.scrollContent}
       >
-        <View style={[styles.contentContainer, isDesktop && styles.desktopContentContainer]}>
-          <SectionTitle title="✅ Featured Deals" />
-          
-          <View style={[styles.assetsGrid, isDesktop && styles.desktopAssetsGrid]}>
-            {userAssets.map((asset) => (
-              <View key={asset.id} style={[styles.assetWrapper, isDesktop && styles.desktopAssetWrapper]}>
-                <AssetCard 
-                  asset={asset} 
-                  onPress={() => handleAssetPress(asset.id)}
-                />
-              </View>
-            ))}
-          </View>
-          
-          <SectionTitle title="Coming Soon" />
-          
-          <View style={[styles.assetsGrid, isDesktop && styles.desktopAssetsGrid]}>
-            {comingSoonAssets.map((asset) => (
-              <View key={asset.id} style={[styles.assetWrapper, isDesktop && styles.desktopAssetWrapper]}>
-                <AssetCard 
-                  asset={asset} 
-                  onPress={() => handleAssetPress(asset.id)}
-                />
-              </View>
-            ))}
-          </View>
-        </View>
+        <SectionTitle title="✅ Featured Deals" />
+        
+        {userAssets.map((asset) => (
+          <AssetCard 
+            key={asset.id} 
+            asset={asset} 
+            onPress={() => handleAssetPress(asset.id)}
+          />
+        ))}
+        
+        <SectionTitle title="Coming Soon" />
+        
+        {comingSoonAssets.map((asset) => (
+          <AssetCard 
+            key={asset.id} 
+            asset={asset} 
+            onPress={() => handleAssetPress(asset.id)}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -96,33 +86,5 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 24,
-  },
-  desktopScrollContent: {
-    paddingHorizontal: 0,
-    alignItems: 'center',
-  },
-  contentContainer: {
-    width: '100%',
-  },
-  desktopContentContainer: {
-    maxWidth: 1200,
-    width: '100%',
-    paddingHorizontal: 32,
-  },
-  assetsGrid: {
-    width: '100%',
-  },
-  desktopAssetsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    gap: 20,
-  },
-  assetWrapper: {
-    width: '100%',
-  },
-  desktopAssetWrapper: {
-    width: '48%',
-    minWidth: 400,
   },
 });

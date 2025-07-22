@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, Animated, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, Animated } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -86,8 +86,6 @@ export default function PortfolioScreen() {
   const router = useRouter();
   const [scrollY] = useState(new Animated.Value(0));
   const [showStickyHeader, setShowStickyHeader] = useState(false);
-  const { width } = Dimensions.get('window');
-  const isDesktop = Platform.OS === 'web' && width > 768;
   
   const handleHomePress = () => {
     router.push('/(tabs)');
