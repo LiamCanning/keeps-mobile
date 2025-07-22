@@ -16,7 +16,7 @@ export const newsArticles: NewsArticle[] = [
     summary: 'Liverpool FC has unveiled a new investment program allowing fans to purchase equity shares in the club for the first time.',
     date: '2025-07-10',
     source: 'Sports Business Journal',
-    imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop&crop=center',
+    imageUrl: 'https://r2-pub.rork.com/attachments/oveso773axl6ounwafh77',
     url: '#',
     content: [
       'Liverpool FC has revolutionized fan engagement by launching an unprecedented equity investment program through Keeps Sport, allowing supporters to become genuine stakeholders in one of the world\'s most successful football clubs. This groundbreaking initiative represents the democratization of sports investment, breaking down traditional barriers that have long excluded ordinary fans from ownership opportunities.',
@@ -31,7 +31,7 @@ export const newsArticles: NewsArticle[] = [
     summary: 'Formula 1 team McLaren Racing has successfully raised £50,000,000 through a unique income sharing agreement with fans and investors.',
     date: '2025-07-05',
     source: 'Financial Times',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop&crop=center',
+    imageUrl: 'https://r2-pub.rork.com/attachments/rmr1d2om04mobl04yyn2r',
     url: '#',
     content: [
       'McLaren Racing has achieved a remarkable milestone by raising nearly £50,000,000 in just 24 hours through Keeps Sport\'s innovative income-sharing platform. This unprecedented response demonstrates the global appetite for Formula 1 investment opportunities and the power of Keeps\' democratized approach to sports finance.',
