@@ -164,7 +164,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('nike')}
             >
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/j25xdtg1yoju10t0vncri' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png' }} 
                 style={[styles.partnerIcon, styles.nikeIcon]}
               />
               <Text style={styles.partnerName}>Nike</Text>
