@@ -109,18 +109,34 @@ export default function LiamCanningProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/j25xdtg1yoju10t0vncri' }} 
-                style={styles.partnerLogo}
+                source={{ uri: 'https://r2-pub.rork.com/attachments/epn2r7ahj354ixvxt63p8' }} 
+                style={[styles.partnerLogo, styles.rolexIcon]}
               />
-              <Text style={styles.partnerName}>Nike</Text>
+              <Text style={styles.partnerName}>Rolex</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/jtlahuau9tnjvr1nor8ls' }} 
-                style={styles.partnerLogo}
+                source={{ uri: 'https://r2-pub.rork.com/attachments/bibvpbijbq6tjodjzh7ug' }} 
+                style={[styles.partnerLogo, styles.axaIcon]}
               />
-              <Text style={styles.partnerName}>Visa</Text>
+              <Text style={styles.partnerName}>AXA</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/ucqykkdm33mytlbooecib' }} 
+                style={[styles.partnerLogo, styles.heinekenIcon]}
+              />
+              <Text style={styles.partnerName}>Heineken</Text>
+              <Text style={styles.partnerStatus}>✓ Opted In</Text>
+            </View>
+            <View style={styles.partnerItem}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/nt7frvvt7k9uxifx1uayb' }} 
+                style={[styles.partnerLogo, styles.emiratesIcon]}
+              />
+              <Text style={styles.partnerName}>Emirates</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>
@@ -292,8 +308,20 @@ const styles = StyleSheet.create({
   },
   partnerStatus: {
     fontSize: 10,
-    color: Colors.text.light,
+    color: Colors.text.dark,
     textAlign: 'center',
+  },
+  rolexIcon: {
+    marginLeft: -2,
+  },
+  axaIcon: {
+    marginLeft: -12,
+  },
+  heinekenIcon: {
+    marginLeft: -2,
+  },
+  emiratesIcon: {
+    marginLeft: -14,
   },
   messageButton: {
     backgroundColor: Colors.primary.orange,
