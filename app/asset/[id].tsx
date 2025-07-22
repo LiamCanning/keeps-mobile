@@ -160,8 +160,8 @@ export default function AssetDetailScreen() {
           <>
             <View style={styles.statsSection}>
               <View style={styles.statCard}>
-                <Text style={styles.statValue}>{asset.minimumEntry}</Text>
                 <Text style={styles.statLabel}>Minimum Entry</Text>
+                <Text style={styles.statValue}>{asset.minimumEntry}</Text>
               </View>
               
               <View style={styles.statCard}>
