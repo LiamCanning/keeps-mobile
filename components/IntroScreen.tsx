@@ -59,15 +59,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#1a2332', '#2d3748', '#4a5568']}
+        colors={['#f8fafb', '#e8f4f8', '#d6eaf0']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
-        {Platform.OS !== 'web' && (
-          <BlurView intensity={10} style={styles.blur} />
-        )}
-        
         <View style={styles.sportsBackground}>
           <View style={styles.fieldLines} />
           <View style={[styles.fieldLines, styles.fieldLinesHorizontal]} />
@@ -95,8 +91,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
 
           <View style={styles.textContainer}>
             <View style={styles.mainTextContainer}>
-              <Text style={styles.mainTextPart1}>Are you ready to</Text>
-              <Text style={styles.mainTextPart2}>invest in sports?</Text>
+              <Text style={styles.mainText}>Are you ready to invest in sports?</Text>
             </View>
             <Text style={styles.subText}>Come on in...</Text>
           </View>
@@ -134,7 +129,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.1,
+    opacity: 0.05,
   },
   fieldLines: {
     position: 'absolute',
@@ -142,7 +137,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     width: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#0F1A4A',
     marginLeft: -0.5,
   },
   fieldLinesHorizontal: {
@@ -164,11 +159,11 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 80,
+    marginBottom: 60,
   },
   logoImage: {
-    width: 180,
-    height: 180,
+    width: 120,
+    height: 120,
   },
   textContainer: {
     alignItems: 'center',
@@ -176,37 +171,25 @@ const styles = StyleSheet.create({
   },
   mainTextContainer: {
     alignItems: 'center',
-    marginBottom: 60,
+    marginBottom: 40,
     paddingHorizontal: 20,
   },
-  mainTextPart1: {
-    fontSize: 32,
-    fontWeight: '300',
-    color: Colors.text.white,
+  mainText: {
+    fontSize: 28,
+    fontWeight: '600',
+    color: Colors.primary.blue,
     textAlign: 'center',
-    letterSpacing: 1.2,
-    lineHeight: 40,
-  },
-  mainTextPart2: {
-    fontSize: 38,
-    fontWeight: '800',
-    color: '#FF6B35',
-    textAlign: 'center',
-    letterSpacing: 1.8,
-    lineHeight: 46,
-    textTransform: 'uppercase',
-    textShadowColor: 'rgba(255, 107, 53, 0.4)',
-    textShadowOffset: { width: 0, height: 3 },
-    textShadowRadius: 12,
-    marginTop: 8,
+    letterSpacing: 0.5,
+    lineHeight: 36,
   },
   subText: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '400',
-    color: '#E2E8F0',
+    color: Colors.text.secondary,
     textAlign: 'center',
     fontStyle: 'italic',
-    letterSpacing: 1,
-    opacity: 0.9,
+    letterSpacing: 0.5,
+    opacity: 0.8,
+    marginTop: 20,
   },
 });
