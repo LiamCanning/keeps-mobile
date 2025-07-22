@@ -12,7 +12,7 @@ export default function IntroPreview() {
       <Stack.Screen 
         options={{ 
           title: 'Intro Screen Preview',
-          headerStyle: { backgroundColor: Colors.background.primary },
+          headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
         }} 
       />
@@ -39,7 +39,7 @@ export default function IntroPreview() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background.primary,
+    backgroundColor: Colors.primary.blue,
   },
   content: {
     flex: 1,
