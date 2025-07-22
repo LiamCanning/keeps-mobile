@@ -38,22 +38,7 @@ const savedPosts: SavedPost[] = [
     flag: '🇮🇹',
     country: 'Italy'
   },
-  {
-    id: '2',
-    username: 'Priya Sharma',
-    handle: '@priya_sports_mumbai',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
-    content: 'The British Cycling investment opportunity is revolutionary! Being part of the Olympic legacy while earning returns feels like the future of sports investing.',
-    timestamp: '2h',
-    likes: 28,
-    comments: 12,
-    shares: 5,
-    category: 'investment',
-    flag: '🇮🇳',
-    country: 'India',
-    reposts: 5,
-    type: 'text'
-  },
+
   {
     id: '3',
     username: 'Lars Andersen',
@@ -475,15 +460,7 @@ export default function SavedContentScreen() {
             
             <Text style={styles.postContent}>{post.content}</Text>
             
-            {/* Add photo for Priya Sharma's post */}
-            {post.id === '2' && (
-              <View style={styles.imageContainer}>
-                <Image 
-                  source={{ uri: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=200&fit=crop' }} 
-                  style={styles.postImage} 
-                />
-              </View>
-            )}
+
             
             <View style={styles.postActions}>
               <TouchableOpacity style={styles.actionButton}>
@@ -581,7 +558,7 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   trendingBanner: {
-    backgroundColor: Colors.accent.purple,
+    backgroundColor: '#FF8C42',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
