@@ -54,14 +54,14 @@ export default function LiamCanningProfileScreen() {
             <Text style={styles.sectionTitle}>Investment Portfolio</Text>
           </View>
           <Text style={styles.investmentValue}>
-            Total Invested: £250,000
+            Total Invested: £185,000
           </Text>
           <View style={styles.assetsContainer}>
             <Text style={styles.assetsTitle}>Assets Owned:</Text>
-            <Text style={styles.assetItem}>• Liverpool FC</Text>
-            <Text style={styles.assetItem}>• McLaren Racing</Text>
-            <Text style={styles.assetItem}>• Ryder Cup</Text>
+            <Text style={styles.assetItem}>• Exeter Chiefs</Text>
             <Text style={styles.assetItem}>• British Cycling</Text>
+            <Text style={styles.assetItem}>• Ultimate Frisbee</Text>
+            <Text style={styles.assetItem}>• Ryder Cup</Text>
           </View>
         </View>
 
@@ -71,10 +71,10 @@ export default function LiamCanningProfileScreen() {
             <Heart size={20} color={Colors.accent.red} />
             <Text style={styles.sectionTitle}>Favourite Teams</Text>
           </View>
-          <Text style={styles.teamItem}>• Liverpool FC</Text>
-          <Text style={styles.teamItem}>• Ryder Cup</Text>
-          <Text style={styles.teamItem}>• British Cycling</Text>
-          <Text style={styles.teamItem}>• England Cricket</Text>
+          <Text style={styles.teamItem}>• Exeter Chiefs</Text>
+          <Text style={styles.teamItem}>• Team GB Cycling</Text>
+          <Text style={styles.teamItem}>• England Rugby</Text>
+          <Text style={styles.teamItem}>• European Ryder Cup Team</Text>
         </View>
 
         {/* Achievements */}
@@ -85,19 +85,19 @@ export default function LiamCanningProfileScreen() {
           </View>
           <View style={styles.achievementItem}>
             <Trophy size={16} color={Colors.accent.gold} />
-            <Text style={styles.achievementText}>Early Investor</Text>
+            <Text style={styles.achievementText}>Sports Diversification Expert</Text>
           </View>
           <View style={styles.achievementItem}>
             <Trophy size={16} color={Colors.accent.gold} />
-            <Text style={styles.achievementText}>Top 10% Returns</Text>
+            <Text style={styles.achievementText}>Emerging Sports Pioneer</Text>
           </View>
           <View style={styles.achievementItem}>
             <Trophy size={16} color={Colors.accent.gold} />
-            <Text style={styles.achievementText}>Community Champion</Text>
+            <Text style={styles.achievementText}>Rugby Investment Specialist</Text>
           </View>
           <View style={styles.achievementItem}>
             <Trophy size={16} color={Colors.accent.gold} />
-            <Text style={styles.achievementText}>Diamond Tier Investor</Text>
+            <Text style={styles.achievementText}>Cycling Enthusiast Investor</Text>
           </View>
         </View>
 
@@ -109,18 +109,18 @@ export default function LiamCanningProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Nike-Logo.png' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Adidas-Logo.png' }} 
                 style={styles.partnerLogo}
               />
-              <Text style={styles.partnerName}>Nike</Text>
+              <Text style={styles.partnerName}>Adidas</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Mastercard-Logo.png' }} 
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Visa-Logo.png' }} 
                 style={styles.partnerLogo}
               />
-              <Text style={styles.partnerName}>Mastercard</Text>
+              <Text style={styles.partnerName}>Visa</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>

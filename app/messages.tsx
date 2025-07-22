@@ -252,13 +252,13 @@ const styles = StyleSheet.create({
   emptyStateTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.text.dark,
+    color: Colors.text.white,
     marginBottom: 8,
     textAlign: 'center',
   },
   emptyStateText: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
     textAlign: 'center',
     lineHeight: 20,
   },

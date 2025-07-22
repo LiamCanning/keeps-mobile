@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { Bookmark, Heart, MessageCircle, MoreHorizontal, Filter, Reply, Repeat2, TrendingUp, MessageSquare, Search, Bell, Plus, User } from 'lucide-react-native';
+import { Bookmark, Heart, MessageCircle, MoreHorizontal, Filter, Reply, Repeat2, TrendingUp, MessageSquare, Search, Bell, Plus, User, ArrowLeft } from 'lucide-react-native';
 import Colors from '@/constants/colors';
+import BackButton from '@/components/BackButton';
 
 interface SavedPost {
   id: string;
@@ -375,15 +376,17 @@ export default function SavedContentScreen() {
     <View style={styles.container}>
       <Stack.Screen 
         options={{ 
-          headerShown: false,
+          headerShown: true,
+          headerTitle: "Saved Content",
+          headerStyle: { backgroundColor: Colors.primary.blue },
+          headerTintColor: Colors.text.white,
+          headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />
       
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Saved Content</Text>
-        <Text style={styles.headerSubtitle}>Your saved posts and insights</Text>
-      </View>
+
 
       <View style={styles.categorySection}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryScroll}>
@@ -408,14 +411,6 @@ export default function SavedContentScreen() {
       </View>
 
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        {/* Trending Banner - Changed to purple */}
-        <TouchableOpacity style={styles.trendingBanner} onPress={handleTrendingPress}>
-          <View style={styles.trendingHeader}>
-            <TrendingUp size={20} color={Colors.text.white} />
-            <Text style={styles.trendingTitle}>Trending Now</Text>
-          </View>
-          <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
-        </TouchableOpacity>
 
         {/* Social Media Icons */}
         <View style={styles.socialContainer}>
@@ -505,22 +500,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  header: {
-    paddingHorizontal: 16,
-    paddingTop: 60,
-    paddingBottom: 16,
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: Colors.text.white,
-    marginBottom: 4,
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: Colors.text.white,
-    opacity: 0.8,
-  },
+
   categorySection: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     paddingVertical: 12,
@@ -557,33 +537,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 24,
   },
-  trendingBanner: {
-    backgroundColor: '#4ECDC4',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  trendingHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  trendingTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: Colors.text.white,
-    marginLeft: 8,
-  },
-  trendingText: {
-    fontSize: 16,
-    color: Colors.text.white,
-    fontWeight: '600',
-  },
+
   socialContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
