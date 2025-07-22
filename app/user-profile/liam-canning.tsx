@@ -54,7 +54,7 @@ export default function LiamCanningProfileScreen() {
             <Text style={styles.sectionTitle}>Investment Portfolio</Text>
           </View>
           <Text style={styles.investmentValue}>
-            Total Invested: £185,000
+            Total Invested: £250,000
           </Text>
           <View style={styles.assetsContainer}>
             <Text style={styles.assetsTitle}>Assets Owned:</Text>
