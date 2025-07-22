@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack } from 'expo-router';
-import { TrendingUp, Users, Gift, Target, Shield, Zap } from 'lucide-react-native';
+import { TrendingUp, Users, Gift, Target, Shield, Zap, BarChart3 } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import BackButton from '@/components/BackButton';
 
@@ -25,7 +25,7 @@ export default function AboutScreen() {
         <View style={styles.heroSection}>
           <View style={styles.logoContainer}>
             <Image 
-              source={{ uri: 'https://r2-pub.rork.com/attachments/g5h2iwpgke408h18sn1nu' }}
+              source={{ uri: 'https://r2-pub.rork.com/attachments/lyp9shhwsvzuzg7chf3vq' }}
               style={styles.logoImage}
             />
           </View>
@@ -102,6 +102,12 @@ export default function AboutScreen() {
               <Gift size={40} color={Colors.accent.green} />
               <Text style={styles.visualTitle}>Exclusive Benefits</Text>
               <Text style={styles.visualText}>VIP experiences, merchandise discounts, and behind-the-scenes access</Text>
+            </View>
+            
+            <View style={styles.visualCard}>
+              <BarChart3 size={40} color={Colors.primary.blue} />
+              <Text style={styles.visualTitle}>Portfolio Tracking</Text>
+              <Text style={styles.visualText}>Monitor your investments with real-time performance analytics and insights</Text>
             </View>
           </View>
         </View>
@@ -263,6 +269,7 @@ const styles = StyleSheet.create({
     width: '48%',
     alignItems: 'center',
     marginBottom: 12,
+    minHeight: 140,
   },
   visualTitle: {
     fontSize: 16,
