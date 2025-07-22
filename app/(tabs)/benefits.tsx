@@ -114,11 +114,11 @@ export default function BenefitsScreen() {
                   {asset.description || 'Exclusive benefits and perks available'}
                 </Text>
                 <View style={styles.benefitsRow}>
-                  <Gift size={16} color={Colors.primary.purple} />
-                  <Text style={[styles.benefitsPreview, { color: Colors.primary.purple }]}>
+                  <Gift size={16} color={Colors.accent.purple} />
+                  <Text style={[styles.benefitsPreview, { color: Colors.accent.purple }]}>
                     Tap exclusive benefits
                   </Text>
-                  <ChevronRight size={16} color={Colors.primary.purple} />
+                  <ChevronRight size={16} color={Colors.accent.purple} />
                 </View>
               </View>
             </View>
