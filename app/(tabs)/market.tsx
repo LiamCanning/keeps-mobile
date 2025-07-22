@@ -453,6 +453,7 @@ export default function MarketScreen() {
             ))}
           </>
         )}
+        </View>
       </ScrollView>
     </View>
   );
