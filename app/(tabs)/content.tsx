@@ -299,22 +299,22 @@ export default function ContentScreen() {
 
           {/* Social Media Icons */}
           <View style={styles.socialContainer}>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/messages')}>
               <MessageSquare size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/saved-content')}>
               <Bookmark size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/search')}>
               <Search size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/notifications')}>
               <Bell size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/new-post')}>
               <Plus size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/my-account')}>
               <User size={20} color={Colors.text.white} />
             </TouchableOpacity>
           </View>
