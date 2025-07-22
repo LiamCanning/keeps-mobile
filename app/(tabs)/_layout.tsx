@@ -13,23 +13,27 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: Colors.primary.blue,
           borderTopColor: 'rgba(255, 255, 255, 0.1)',
-          paddingBottom: 6,
-          paddingTop: 6,
-          paddingHorizontal: 0,
+          paddingBottom: 8,
+          paddingTop: 8,
+          paddingHorizontal: 4,
           height: 78,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: '600',
-          marginBottom: 4,
+          marginBottom: 2,
+          marginTop: 2,
+          textAlign: 'center',
         },
         tabBarIconStyle: {
-          marginTop: 4,
+          marginTop: 2,
+          marginBottom: 2,
         },
         tabBarItemStyle: {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          paddingHorizontal: 2,
         },
       }}
     >
