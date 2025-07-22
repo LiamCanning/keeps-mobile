@@ -39,8 +39,8 @@ const getDataSharingPartners = (userId: string) => {
   ];
 
   const partnerMappings: { [key: string]: string[] } = {
-    'james-mitchell': ['Nike', 'Mastercard', 'Coca-Cola'],
-    'sarah-chen': ['Google', 'Samsung', 'BMW', 'AXA'],
+    'james-mitchell': ['Nike', 'Mastercard'],
+    'sarah-chen': ['Google', 'Samsung', 'BMW'],
     'michael-rodriguez': ['Rolex', 'Heineken'],
     'emma-thompson': ['Adidas', 'AXA', 'Google', 'Nike'],
     'david-park': ['Samsung', 'Nike', 'Mastercard'],
@@ -334,11 +334,11 @@ export default function UserProfileScreen() {
           </View>
         </View>
 
-        {/* Favorite Teams */}
+        {/* Favourite Teams */}
         <View style={styles.teamsContainer}>
           <View style={styles.sectionHeader}>
             <Heart size={20} color={Colors.accent.red} />
-            <Text style={styles.sectionTitle}>Favorite Teams</Text>
+            <Text style={styles.sectionTitle}>Favourite Teams</Text>
           </View>
           {profile.favoriteTeams.map((team, index) => (
             <Text key={index} style={styles.teamItem}>• {team}</Text>

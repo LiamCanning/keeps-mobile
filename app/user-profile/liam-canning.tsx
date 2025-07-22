@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Stack, useRouter } from 'expo-router';
-import { MessageCircle, MapPin, Calendar, TrendingUp, Star, Award } from 'lucide-react-native';
+import { MessageCircle, MapPin, Calendar, TrendingUp, Heart, Trophy } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import BackButton from '@/components/BackButton';
 
@@ -18,7 +18,7 @@ export default function LiamCanningProfileScreen() {
       <Stack.Screen 
         options={{ 
           headerShown: true,
-          headerTitle: 'Profile',
+          headerTitle: 'Liam Canning',
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
@@ -47,131 +47,78 @@ export default function LiamCanningProfileScreen() {
           </View>
         </View>
 
-        <View style={styles.statsSection}>
-          <View style={styles.statCard}>
-            <TrendingUp size={20} color={Colors.accent.green} />
-            <Text style={styles.statValue}>£250,000</Text>
-            <Text style={styles.statLabel}>Total Invested</Text>
+        {/* Investment Info */}
+        <View style={styles.investmentContainer}>
+          <View style={styles.sectionHeader}>
+            <TrendingUp size={20} color={Colors.primary.orange} />
+            <Text style={styles.sectionTitle}>Investment Portfolio</Text>
           </View>
-          <View style={styles.statCard}>
-            <Award size={20} color={Colors.accent.blue} />
-            <Text style={styles.statValue}>4</Text>
-            <Text style={styles.statLabel}>Active Assets</Text>
-          </View>
-          <View style={styles.statCard}>
-            <Star size={20} color={Colors.accent.orange} />
-            <Text style={styles.statValue}>+18.6%</Text>
-            <Text style={styles.statLabel}>Portfolio Growth</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>About</Text>
-          <Text style={styles.aboutText}>
-            Passionate sports investor and Liverpool FC supporter. Love backing innovative sports ventures and connecting with fellow investors. Always looking for the next big opportunity in sports finance.
+          <Text style={styles.investmentValue}>
+            Total Invested: £250,000
           </Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Investment Portfolio</Text>
-          <View style={styles.investmentGrid}>
-            <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>Liverpool FC</Text>
-              <Text style={styles.investmentAmount}>£25,000</Text>
-              <Text style={styles.investmentTier}>Gold Tier</Text>
-              <Text style={styles.investmentReturn}>4-8% annually</Text>
-            </View>
-            <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>McLaren Racing</Text>
-              <Text style={styles.investmentAmount}>£200,000</Text>
-              <Text style={styles.investmentTier}>Diamond Tier</Text>
-              <Text style={styles.investmentReturn}>6-12% annually</Text>
-            </View>
-            <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>Ryder Cup</Text>
-              <Text style={styles.investmentAmount}>£15,000</Text>
-              <Text style={styles.investmentTier}>Silver Tier</Text>
-              <Text style={styles.investmentReturn}>5% + Principal</Text>
-            </View>
-            <View style={styles.investmentCard}>
-              <Text style={styles.investmentAsset}>British Cycling</Text>
-              <Text style={styles.investmentAmount}>£10,000</Text>
-              <Text style={styles.investmentTier}>Gold Tier</Text>
-              <Text style={styles.investmentReturn}>6% + Principal</Text>
-            </View>
-          </View>
-          
-          <View style={styles.aiAnalysisContainer}>
-            <Text style={styles.aiAnalysisTitle}>AI Portfolio Analysis</Text>
-            <Text style={styles.aiAnalysisText}>
-              Your portfolio shows strong diversification across different sports sectors. McLaren Racing (80% of holdings) represents a significant concentration risk, but its strong performance (+12.3% YTD) justifies the allocation. Consider adding exposure to emerging sports markets for additional growth potential. Your current projected annual return is 7.8%, outperforming the sports investment index by 2.1%.
-            </Text>
+          <View style={styles.assetsContainer}>
+            <Text style={styles.assetsTitle}>Assets Owned:</Text>
+            <Text style={styles.assetItem}>• Liverpool FC</Text>
+            <Text style={styles.assetItem}>• McLaren Racing</Text>
+            <Text style={styles.assetItem}>• Ryder Cup</Text>
+            <Text style={styles.assetItem}>• British Cycling</Text>
           </View>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Favourite Sports Teams</Text>
-          <View style={styles.teamsContainer}>
-            <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>⚽</Text>
-              <Text style={styles.teamName}>Liverpool FC</Text>
-            </View>
-            <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>⛳</Text>
-              <Text style={styles.teamName}>Ryder Cup</Text>
-            </View>
-            <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>🚴</Text>
-              <Text style={styles.teamName}>British Cycling</Text>
-            </View>
-            <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>🏏</Text>
-              <Text style={styles.teamName}>England Cricket</Text>
-            </View>
+        {/* Favourite Teams */}
+        <View style={styles.teamsContainer}>
+          <View style={styles.sectionHeader}>
+            <Heart size={20} color={Colors.accent.red} />
+            <Text style={styles.sectionTitle}>Favourite Teams</Text>
+          </View>
+          <Text style={styles.teamItem}>• Liverpool FC</Text>
+          <Text style={styles.teamItem}>• Ryder Cup</Text>
+          <Text style={styles.teamItem}>• British Cycling</Text>
+          <Text style={styles.teamItem}>• England Cricket</Text>
+        </View>
+
+        {/* Achievements */}
+        <View style={styles.achievementsContainer}>
+          <View style={styles.sectionHeader}>
+            <Trophy size={20} color={Colors.accent.gold} />
+            <Text style={styles.sectionTitle}>Achievements</Text>
+          </View>
+          <View style={styles.achievementItem}>
+            <Trophy size={16} color={Colors.accent.gold} />
+            <Text style={styles.achievementText}>Early Investor</Text>
+          </View>
+          <View style={styles.achievementItem}>
+            <Trophy size={16} color={Colors.accent.gold} />
+            <Text style={styles.achievementText}>Top 10% Returns</Text>
+          </View>
+          <View style={styles.achievementItem}>
+            <Trophy size={16} color={Colors.accent.gold} />
+            <Text style={styles.achievementText}>Community Champion</Text>
+          </View>
+          <View style={styles.achievementItem}>
+            <Trophy size={16} color={Colors.accent.gold} />
+            <Text style={styles.achievementText}>Diamond Tier Investor</Text>
           </View>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Investment Interests</Text>
-          <View style={styles.interestsContainer}>
-            <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Football</Text>
-            </View>
-            <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Cycling</Text>
-            </View>
-            <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Rugby</Text>
-            </View>
-            <View style={styles.interestTag}>
-              <Text style={styles.interestText}>Cricket</Text>
-            </View>
+        {/* Data Sharing Partners */}
+        <View style={styles.partnersContainer}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
           </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Data Sharing Partners</Text>
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/hbjafianpdm9vv10ltp5c' }} 
-                style={styles.partnerIcon}
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Nike-Logo.png' }} 
+                style={styles.partnerLogo}
               />
-              <Text style={styles.partnerName}>Adidas</Text>
+              <Text style={styles.partnerName}>Nike</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/r2e26bj9s69d5am1tla0v' }} 
-                style={styles.partnerIcon}
-              />
-              <Text style={styles.partnerName}>AXA</Text>
-              <Text style={styles.partnerStatus}>✓ Opted In</Text>
-            </View>
-            <View style={styles.partnerItem}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/qyi4xfqytxjz6u472gh1r' }} 
-                style={styles.partnerIcon}
+                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/Mastercard-Logo.png' }} 
+                style={styles.partnerLogo}
               />
               <Text style={styles.partnerName}>Mastercard</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
@@ -197,14 +144,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: 16,
-    paddingBottom: 24,
+    padding: 16,
   },
   profileHeader: {
     backgroundColor: Colors.background.card,
     borderRadius: 16,
     padding: 20,
-    marginTop: 16,
+    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -220,7 +166,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.text.dark,
+    color: Colors.text.white,
     marginBottom: 4,
   },
   profileHandle: {
@@ -236,7 +182,7 @@ const styles = StyleSheet.create({
   locationText: {
     fontSize: 14,
     color: Colors.text.light,
-    marginLeft: 4,
+    marginLeft: 6,
   },
   joinedContainer: {
     flexDirection: 'row',
@@ -245,122 +191,78 @@ const styles = StyleSheet.create({
   joinedText: {
     fontSize: 14,
     color: Colors.text.light,
-    marginLeft: 4,
+    marginLeft: 6,
   },
-  statsSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16,
-  },
-  statCard: {
-    backgroundColor: Colors.background.card,
-    borderRadius: 12,
-    padding: 16,
-    width: '31%',
-    alignItems: 'center',
-  },
-  statValue: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  statLabel: {
-    fontSize: 12,
-    color: Colors.text.light,
-    textAlign: 'center',
-  },
-  section: {
+  investmentContainer: {
     backgroundColor: Colors.background.card,
     borderRadius: 16,
     padding: 20,
-    marginTop: 16,
+    marginBottom: 16,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 16,
+    color: Colors.text.white,
+    marginLeft: 8,
   },
-  aboutText: {
+  investmentValue: {
     fontSize: 16,
-    color: Colors.text.light,
-    lineHeight: 24,
-  },
-  investmentGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  investmentCard: {
-    backgroundColor: Colors.background.secondary,
-    borderRadius: 12,
-    padding: 16,
-    width: '48%',
+    fontWeight: '600',
+    color: Colors.primary.orange,
     marginBottom: 12,
   },
-  investmentAsset: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 4,
+  assetsContainer: {
+    marginTop: 8,
   },
-  investmentAmount: {
+  assetsTitle: {
     fontSize: 14,
-    color: Colors.primary.orange,
     fontWeight: '600',
-    marginBottom: 4,
+    color: Colors.text.white,
+    marginBottom: 8,
   },
-  investmentTier: {
-    fontSize: 12,
-    color: Colors.text.light,
+  assetItem: {
+    fontSize: 14,
+    color: Colors.text.white,
     marginBottom: 4,
-  },
-  investmentReturn: {
-    fontSize: 11,
-    color: Colors.accent.green,
-    fontWeight: '600',
   },
   teamsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
   },
   teamItem: {
+    fontSize: 14,
+    color: Colors.text.white,
+    marginBottom: 4,
+  },
+  achievementsContainer: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+  },
+  achievementItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.background.secondary,
-    borderRadius: 12,
-    padding: 12,
-    width: '48%',
     marginBottom: 8,
   },
-  teamEmoji: {
-    fontSize: 20,
-    marginRight: 8,
-  },
-  teamName: {
+  achievementText: {
     fontSize: 14,
-    color: Colors.text.dark,
-    fontWeight: '600',
-  },
-  interestsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  interestTag: {
-    backgroundColor: Colors.primary.orange,
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    marginRight: 8,
-    marginBottom: 8,
-  },
-  interestText: {
-    fontSize: 12,
     color: Colors.text.white,
+    marginLeft: 8,
     fontWeight: '600',
+  },
+  partnersContainer: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 24,
   },
   partnersGrid: {
     flexDirection: 'row',
@@ -368,21 +270,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   partnerItem: {
+    width: '48%',
+    alignItems: 'center',
+    marginBottom: 16,
+    padding: 12,
     backgroundColor: Colors.background.secondary,
     borderRadius: 12,
-    padding: 16,
-    width: '48%',
-    marginBottom: 12,
+  },
+  partnerLogo: {
+    width: 60,
+    height: 30,
+    resizeMode: 'contain',
+    marginBottom: 8,
   },
   partnerName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
+    fontSize: 12,
+    fontWeight: '600',
+    color: Colors.text.white,
+    textAlign: 'center',
     marginBottom: 4,
   },
   partnerStatus: {
-    fontSize: 12,
+    fontSize: 10,
     color: Colors.text.light,
+    textAlign: 'center',
   },
   messageButton: {
     backgroundColor: Colors.primary.orange,
@@ -399,30 +310,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.text.white,
     marginLeft: 8,
-  },
-  partnerIcon: {
-    width: 50,
-    height: 25,
-    resizeMode: 'contain',
-    marginBottom: 8,
-  },
-  aiAnalysisContainer: {
-    backgroundColor: Colors.background.secondary,
-    borderRadius: 12,
-    padding: 16,
-    marginTop: 16,
-    borderLeftWidth: 4,
-    borderLeftColor: Colors.accent.green,
-  },
-  aiAnalysisTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.text.dark,
-    marginBottom: 8,
-  },
-  aiAnalysisText: {
-    fontSize: 14,
-    color: Colors.text.dark,
-    lineHeight: 20,
   },
 });
