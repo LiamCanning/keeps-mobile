@@ -37,7 +37,7 @@ const watchlistAssets = [
   },
   {
     id: '3',
-    name: 'Cardiff City',
+    name: 'Ryder Cup',
     price: 1450,
     change: +45,
     percentage: +3.21,
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
   },
   emptyStateSubtitle: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
     textAlign: 'center',
   },
   performanceHeader: {
@@ -581,7 +581,7 @@ const styles = StyleSheet.create({
   timeframeButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: Colors.text.light,
+    color: Colors.text.white,
   },
   timeframeButtonTextActive: {
     color: Colors.text.white,
@@ -602,7 +602,7 @@ const styles = StyleSheet.create({
   },
   chartSubtext: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
     textAlign: 'center',
   },
   performanceStats: {
@@ -620,7 +620,7 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 16,
-    color: Colors.text.light,
+    color: Colors.text.white,
   },
   statValue: {
     fontSize: 16,
@@ -718,7 +718,7 @@ const styles = StyleSheet.create({
   },
   watchlistStatLabel: {
     fontSize: 12,
-    color: Colors.text.light,
+    color: Colors.text.white,
   },
   watchlistStatValue: {
     fontSize: 14,
@@ -746,7 +746,7 @@ const styles = StyleSheet.create({
   },
   metricLabel: {
     fontSize: 12,
-    color: Colors.text.light,
+    color: Colors.text.white,
     marginBottom: 4,
     textAlign: 'center',
   },
@@ -824,12 +824,12 @@ const styles = StyleSheet.create({
   },
   investorUsername: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
     marginBottom: 2,
   },
   investorFollowers: {
     fontSize: 12,
-    color: Colors.text.light,
+    color: Colors.text.white,
   },
   investorStats: {
     alignItems: 'flex-end',
@@ -842,14 +842,14 @@ const styles = StyleSheet.create({
   },
   investorPeriod: {
     fontSize: 12,
-    color: Colors.text.light,
+    color: Colors.text.white,
   },
   investorInvestments: {
     marginBottom: 16,
   },
   investorInvestmentsTitle: {
     fontSize: 14,
-    color: Colors.text.light,
+    color: Colors.text.white,
     marginBottom: 8,
   },
   investorInvestmentsList: {
