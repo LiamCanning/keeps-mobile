@@ -100,6 +100,13 @@ export default function LiamCanningProfileScreen() {
               <Text style={styles.investmentReturn}>6% + Principal</Text>
             </View>
           </View>
+          
+          <View style={styles.aiAnalysisContainer}>
+            <Text style={styles.aiAnalysisTitle}>AI Portfolio Analysis</Text>
+            <Text style={styles.aiAnalysisText}>
+              Your portfolio shows strong diversification across different sports sectors. McLaren Racing (80% of holdings) represents a significant concentration risk, but its strong performance (+12.3% YTD) justifies the allocation. Consider adding exposure to emerging sports markets for additional growth potential. Your current projected annual return is 7.8%, outperforming the sports investment index by 2.1%.
+            </Text>
+          </View>
         </View>
 
         <View style={styles.section}>
@@ -110,8 +117,8 @@ export default function LiamCanningProfileScreen() {
               <Text style={styles.teamName}>Liverpool FC</Text>
             </View>
             <View style={styles.teamItem}>
-              <Text style={styles.teamEmoji}>⚽</Text>
-              <Text style={styles.teamName}>Cardiff City</Text>
+              <Text style={styles.teamEmoji}>⛳</Text>
+              <Text style={styles.teamName}>Ryder Cup</Text>
             </View>
             <View style={styles.teamItem}>
               <Text style={styles.teamEmoji}>🚴</Text>
@@ -398,5 +405,24 @@ const styles = StyleSheet.create({
     height: 25,
     resizeMode: 'contain',
     marginBottom: 8,
+  },
+  aiAnalysisContainer: {
+    backgroundColor: Colors.background.secondary,
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: Colors.accent.green,
+  },
+  aiAnalysisTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+    marginBottom: 8,
+  },
+  aiAnalysisText: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    lineHeight: 20,
   },
 });

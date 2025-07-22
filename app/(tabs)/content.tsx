@@ -314,7 +314,7 @@ export default function ContentScreen() {
             <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/new-post')}>
               <Plus size={20} color={Colors.text.white} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/my-account')}>
+            <TouchableOpacity style={styles.socialIcon} onPress={() => router.push('/user-profile/liam-canning')}>
               <User size={20} color={Colors.text.white} />
             </TouchableOpacity>
           </View>
@@ -553,7 +553,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   trendingBanner: {
-    backgroundColor: Colors.primary.orange,
+    backgroundColor: Colors.accent.purple,
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
