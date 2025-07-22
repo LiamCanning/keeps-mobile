@@ -109,7 +109,7 @@ const savedPosts: SavedPost[] = [
     id: '7',
     username: 'Hiroshi Tanaka',
     handle: '@hiroshi_tokyo_sports',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&crop=face',
     content: 'Hexagon Cup benefits are outstanding! Behind-the-scenes access and exclusive merchandise make this investment feel incredibly special.',
     timestamp: '7h',
     likes: 26,
