@@ -33,6 +33,7 @@ export interface Asset {
   investorCount?: number;
   growthPercentage?: number;
   dividendPotential?: string;
+  timelineInfo?: string;
 }
 
 export const userAssets: Asset[] = [
@@ -59,6 +60,7 @@ export const userAssets: Asset[] = [
     investorCount: 10250,
     growthPercentage: 24.5,
     dividendPotential: '4-8%',
+    timelineInfo: '5 days left',
   },
   {
     id: 'mclaren',
@@ -83,6 +85,7 @@ export const userAssets: Asset[] = [
     investorCount: 8750,
     growthPercentage: 18.2,
     dividendPotential: '6-12%',
+    timelineInfo: '2 weeks left',
   },
   {
     id: 'rydercup',
@@ -106,6 +109,7 @@ export const userAssets: Asset[] = [
     investorCount: 2340,
     growthPercentage: 15.8,
     dividendPotential: '5% + Principal',
+    timelineInfo: '48 hours left',
   },
 ];
 
@@ -121,6 +125,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£80,000,000',
     expectedReturn: 'Potential 8% annual dividends from stadium revenues',
     minimumEntry: '£2,500',
+    timelineInfo: '1 day left',
   },
   {
     id: 'cardiff',
@@ -133,6 +138,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£4,000,000',
     expectedReturn: 'Potential 12% annual dividends from club profits',
     minimumEntry: '£1,000',
+    timelineInfo: '2 weeks left',
   },
   {
     id: 'hexagon',
@@ -145,6 +151,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£1,250,000',
     expectedReturn: 'Potential 15% annual returns from tournament winnings',
     minimumEntry: '£500',
+    timelineInfo: '3 weeks left',
   },
 ];
 
@@ -169,6 +176,7 @@ export const completedAssets: Asset[] = [
     growthPercentage: 28.5,
     dividendPotential: '5% + 6% dividends',
     description: 'Sold out in 72 hours',
+    timelineInfo: 'Completed',
   },
   {
     id: 'british-cycling',
@@ -189,6 +197,7 @@ export const completedAssets: Asset[] = [
     growthPercentage: 22.8,
     dividendPotential: '6% + Principal',
     description: 'Sold out in 1 week',
+    timelineInfo: 'Completed',
   },
   {
     id: 'ultimate-frisbee',
@@ -210,5 +219,6 @@ export const completedAssets: Asset[] = [
     growthPercentage: 35.2,
     dividendPotential: '5% + 8% dividends',
     description: 'Sold out in 2 weeks',
+    timelineInfo: 'Completed',
   },
 ];

@@ -67,8 +67,11 @@ export default function AssetDetailScreen() {
   const isCompleted = completedAssets.some(a => a.id === asset.id);
   const isOwned = userAssets.some(a => a.id === asset.id);
 
-  const backgroundColor = Colors.background.card;
-  const textColor = Colors.text.dark;
+  const backgroundColor = asset.backgroundColor || Colors.background.card;
+  const textColor = asset.backgroundColor === '#FFFFFF' ? Colors.text.dark : 
+                   asset.backgroundColor === '#FF8700' ? Colors.text.white :
+                   asset.backgroundColor === '#1f4e79' ? Colors.text.white :
+                   Colors.text.dark;
 
   return (
     <View style={styles.container}>
@@ -129,11 +132,11 @@ export default function AssetDetailScreen() {
                 </TouchableOpacity>
               </View>
               
-              {asset.progress && (
+              {asset.timelineInfo && (
                 <View style={styles.statCard}>
-                  <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress) }]} />
-                  <Text style={styles.statValue}>{isCompleted ? 'Completed' : `${100 - asset.progress}%`}</Text>
-                  <Text style={styles.statLabel}>{isCompleted ? '' : 'Left'}</Text>
+                  <View style={[styles.progressIndicator, { backgroundColor: getProgressColor(asset.progress || 0) }]} />
+                  <Text style={styles.statValue}>{asset.timelineInfo}</Text>
+                  <Text style={styles.statLabel}>Timeline</Text>
                 </View>
               )}
               
@@ -203,8 +206,8 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailValue}>{asset.valuation}</Text>
                   </View>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailLabel}>Timeline:</Text>
+                    <Text style={styles.detailValue}>{asset.timelineInfo || 'TBD'}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Dividends:</Text>
@@ -220,8 +223,8 @@ export default function AssetDetailScreen() {
                     <Text style={styles.detailValue}>{asset.investorReturn}</Text>
                   </View>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailLabel}>Timeline:</Text>
+                    <Text style={styles.detailValue}>{asset.timelineInfo || 'TBD'}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Revenue Share:</Text>
@@ -233,8 +236,8 @@ export default function AssetDetailScreen() {
               {asset.type === 'debenture' && (
                 <>
                   <View style={styles.detailRow}>
-                    <Text style={styles.detailLabel}>Remaining:</Text>
-                    <Text style={styles.detailValue}>{isCompleted ? 'Completed' : `${100 - (asset.progress || 0)}% left`}</Text>
+                    <Text style={styles.detailLabel}>Timeline:</Text>
+                    <Text style={styles.detailValue}>{asset.timelineInfo || 'TBD'}</Text>
                   </View>
                   <View style={styles.detailRow}>
                     <Text style={styles.detailLabel}>Investor Return:</Text>
