@@ -8,7 +8,6 @@ import SearchBar from '@/components/SearchBar';
 import AssetCard from '@/components/AssetCard';
 import SectionTitle from '@/components/SectionTitle';
 import ActionBanner from '@/components/ActionBanner';
-import ResponsiveContainer from '@/components/ResponsiveContainer';
 
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
@@ -38,42 +37,40 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      <ResponsiveContainer>
-        <Header username="Liam Canning" />
-        <SearchBar 
-          value={searchQuery} 
-          onChangeText={setSearchQuery}
-          onAssetSelect={handleSearchAssetSelect}
-        />
+      <Header username="Liam Canning" />
+      <SearchBar 
+        value={searchQuery} 
+        onChangeText={setSearchQuery}
+        onAssetSelect={handleSearchAssetSelect}
+      />
+      
+      <ActionBanner activeTab={activeTab} onTabChange={handleTabChange} />
+      
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        <SectionTitle title="✅ Featured Deals" />
         
-        <ActionBanner activeTab={activeTab} onTabChange={handleTabChange} />
+        {userAssets.map((asset) => (
+          <AssetCard 
+            key={asset.id} 
+            asset={asset} 
+            onPress={() => handleAssetPress(asset.id)}
+          />
+        ))}
         
-        <ScrollView 
-          style={styles.scrollView}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollContent}
-        >
-          <SectionTitle title="✅ Featured Deals" />
-          
-          {userAssets.map((asset) => (
-            <AssetCard 
-              key={asset.id} 
-              asset={asset} 
-              onPress={() => handleAssetPress(asset.id)}
-            />
-          ))}
-          
-          <SectionTitle title="Coming Soon" />
-          
-          {comingSoonAssets.map((asset) => (
-            <AssetCard 
-              key={asset.id} 
-              asset={asset} 
-              onPress={() => handleAssetPress(asset.id)}
-            />
-          ))}
-        </ScrollView>
-      </ResponsiveContainer>
+        <SectionTitle title="Coming Soon" />
+        
+        {comingSoonAssets.map((asset) => (
+          <AssetCard 
+            key={asset.id} 
+            asset={asset} 
+            onPress={() => handleAssetPress(asset.id)}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }
