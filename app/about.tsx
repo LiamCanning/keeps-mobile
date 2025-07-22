@@ -31,8 +31,7 @@ export default function AboutScreen() {
           </View>
           <Text style={styles.heroSubtitle}>Sports Investment Platform</Text>
           <Text style={styles.heroText}>
-            Breaking down barriers. Democratising sports investment. 
-            Empowering passionate fans to own a piece of the action and profit from the teams they love.
+            Democratising sports investment by enabling access to passionate fans worldwide
           </Text>
         </View>
 
@@ -108,12 +107,6 @@ export default function AboutScreen() {
               <BarChart3 size={40} color={Colors.primary.blue} />
               <Text style={styles.visualTitle}>Portfolio Tracking</Text>
               <Text style={styles.visualText}>Monitor your investments with real-time performance analytics and insights</Text>
-            </View>
-            
-            <View style={styles.visualCard}>
-              <TrendingUp size={40} color={Colors.accent.purple || Colors.primary.orange} />
-              <Text style={styles.visualTitle}>Growth Potential</Text>
-              <Text style={styles.visualText}>Access high-growth sports assets with transparent returns ranging from 4-12% annually</Text>
             </View>
           </View>
         </View>
@@ -268,18 +261,18 @@ const styles = StyleSheet.create({
   visualCard: {
     backgroundColor: Colors.background.secondary,
     borderRadius: 12,
-    padding: 16,
+    padding: 20,
     width: '48%',
     alignItems: 'center',
-    marginBottom: 12,
-    minHeight: 140,
-    justifyContent: 'center',
+    marginBottom: 16,
+    minHeight: 160,
+    justifyContent: 'space-between',
   },
   visualTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: Colors.text.dark,
-    marginTop: 12,
+    marginTop: 16,
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -287,7 +280,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.text.light,
     textAlign: 'center',
-    lineHeight: 18,
+    lineHeight: 20,
+    flex: 1,
   },
   valuesList: {
     marginTop: 8,
