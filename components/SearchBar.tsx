@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, TextInput, View, Text, TouchableOpacity, ScrollView, Dimensions, Platform } from 'react-native';
 import { Search } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
@@ -13,6 +13,8 @@ interface SearchBarProps {
 
 export default function SearchBar({ value, onChangeText, placeholder = 'Search Entities', onAssetSelect }: SearchBarProps) {
   const [showResults, setShowResults] = useState(false);
+  const { width } = Dimensions.get('window');
+  const isDesktop = Platform.OS === 'web' && width > 768;
   
   const allAssets = [...userAssets, ...comingSoonAssets];
   const filteredAssets = value.length > 0 
@@ -33,11 +35,11 @@ export default function SearchBar({ value, onChangeText, placeholder = 'Search E
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
+    <View style={[styles.container, isDesktop && styles.desktopContainer]}>
+      <View style={[styles.inputContainer, isDesktop && styles.desktopInputContainer]}>
         <Search size={20} color={Colors.text.light} style={styles.icon} />
         <TextInput
-          style={styles.input}
+          style={[styles.input, isDesktop && styles.desktopInput]}
           value={value}
           onChangeText={handleTextChange}
           placeholder={placeholder}
@@ -75,6 +77,13 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 1000,
   },
+  desktopContainer: {
+    marginHorizontal: 32,
+    marginBottom: 24,
+    maxWidth: 1200,
+    alignSelf: 'center',
+    width: '100%',
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -82,6 +91,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     height: 48,
+  },
+  desktopInputContainer: {
+    height: 56,
+    paddingHorizontal: 16,
+    borderRadius: 16,
   },
   icon: {
     marginRight: 8,
@@ -91,6 +105,9 @@ const styles = StyleSheet.create({
     height: '100%',
     color: Colors.text.white,
     fontSize: 16,
+  },
+  desktopInput: {
+    fontSize: 18,
   },
   resultsContainer: {
     position: 'absolute',

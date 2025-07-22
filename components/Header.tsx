@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Modal } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Modal, Dimensions, Platform } from 'react-native';
 import { ChevronDown, User, Info, Mail, HelpCircle, TrendingUp, Building, Newspaper, HeadphonesIcon } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,6 +13,8 @@ export default function Header({ username }: HeaderProps) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
+  const { width } = Dimensions.get('window');
+  const isDesktop = Platform.OS === 'web' && width > 768;
   
   const handleCommunityPress = () => {
     router.push('/community-feed');
@@ -28,18 +30,18 @@ export default function Header({ username }: HeaderProps) {
   };
   
   return (
-    <View style={[styles.container, { paddingTop: insets.top + 20 }]}>
-      <TouchableOpacity style={styles.logoContainer} onPress={handleLogoPress}>
+    <View style={[styles.container, { paddingTop: insets.top + 20 }, isDesktop && styles.desktopContainer]}>
+      <TouchableOpacity style={[styles.logoContainer, isDesktop && styles.desktopLogoContainer]} onPress={handleLogoPress}>
         <Image 
           source={{ uri: 'https://r2-pub.rork.com/attachments/deijf9ahr9tnz07gsupjf' }} 
-          style={styles.logo}
+          style={[styles.logo, isDesktop && styles.desktopLogo]}
         />
         <ChevronDown size={16} color={Colors.primary.blue} style={styles.chevron} />
       </TouchableOpacity>
       
       <View style={styles.welcomeContainer}>
-        <Text style={styles.greeting}>Hello {username}</Text>
-        <Text style={styles.welcome}>Welcome Back!</Text>
+        <Text style={[styles.greeting, isDesktop && styles.desktopGreeting]}>Hello {username}</Text>
+        <Text style={[styles.welcome, isDesktop && styles.desktopWelcome]}>Welcome Back!</Text>
       </View>
       
 
@@ -54,7 +56,7 @@ export default function Header({ username }: HeaderProps) {
           style={styles.modalOverlay} 
           onPress={() => setShowDropdown(false)}
         >
-          <View style={styles.dropdown}>
+          <View style={[styles.dropdown, isDesktop && styles.desktopDropdown]}>
             <TouchableOpacity 
               style={styles.dropdownItem} 
               onPress={() => handleMenuItemPress('/about')}
@@ -110,6 +112,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 16,
   },
+  desktopContainer: {
+    paddingHorizontal: 32,
+    paddingBottom: 24,
+    maxWidth: 1200,
+    alignSelf: 'center',
+    width: '100%',
+  },
   logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -119,11 +128,21 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     marginRight: 12,
   },
+  desktopLogoContainer: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    marginRight: 16,
+  },
   logo: {
     width: 32,
     height: 32,
     resizeMode: 'contain',
     marginRight: 4,
+  },
+  desktopLogo: {
+    width: 40,
+    height: 40,
+    marginRight: 6,
   },
   welcomeContainer: {
     flex: 1,
@@ -133,10 +152,16 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     opacity: 0.8,
   },
+  desktopGreeting: {
+    fontSize: 16,
+  },
   welcome: {
     fontSize: 22,
     fontWeight: 'bold',
     color: Colors.text.white,
+  },
+  desktopWelcome: {
+    fontSize: 28,
   },
   messageButton: {
     width: 40,
@@ -165,6 +190,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
+  },
+  desktopDropdown: {
+    minWidth: 250,
+    padding: 12,
   },
   dropdownItem: {
     flexDirection: 'row',
