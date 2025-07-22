@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Dimensions, Platform } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -80,8 +80,6 @@ export default function MarketScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { filter } = useLocalSearchParams();
-  const { width } = Dimensions.get('window');
-  const isDesktop = Platform.OS === 'web' && width > 768;
 
 
 
@@ -182,10 +180,9 @@ export default function MarketScreen() {
       
       <ScrollView 
         style={styles.scrollView}
-        contentContainerStyle={[styles.scrollContent, isDesktop && styles.desktopScrollContent]}
+        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.contentContainer, isDesktop && styles.desktopContentContainer]}>
         {activeTab === 'market' && (
           <>
             <View style={styles.filterContainer}>
@@ -453,7 +450,6 @@ export default function MarketScreen() {
             ))}
           </>
         )}
-        </View>
       </ScrollView>
     </View>
   );
@@ -636,20 +632,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 100,
-  },
-  desktopScrollContent: {
-    paddingHorizontal: 0,
-    alignItems: 'center',
-    paddingBottom: 120,
-  },
-  contentContainer: {
-    width: '100%',
-  },
-  desktopContentContainer: {
-    maxWidth: 1200,
-    width: '90%',
-    paddingHorizontal: 32,
+    paddingBottom: 24,
   },
   sectionTitle: {
     fontSize: 20,

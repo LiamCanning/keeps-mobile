@@ -95,19 +95,18 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 100,
+    paddingBottom: 24,
   },
   desktopScrollContent: {
     paddingHorizontal: 0,
     alignItems: 'center',
-    paddingBottom: 120,
   },
   contentContainer: {
     width: '100%',
   },
   desktopContentContainer: {
     maxWidth: 1200,
-    width: '90%',
+    width: '100%',
     paddingHorizontal: 32,
   },
   assetsGrid: {
