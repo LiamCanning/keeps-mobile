@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, FlatList }
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Home, Play, MessageCircle } from 'lucide-react-native';
+import { Home, Play, MessageCircle, Heart, Share, MoreHorizontal, TrendingUp, Reply } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { newsArticles } from '@/constants/news';
 import NewsCard from '@/components/NewsCard';
@@ -17,6 +17,102 @@ interface Reel {
   likes: number;
   comments: number;
 }
+
+interface CommunityPost {
+  id: string;
+  username: string;
+  handle: string;
+  avatar: string;
+  content: string;
+  timestamp: string;
+  likes: number;
+  comments: number;
+  reposts: number;
+  type: 'text' | 'video';
+  videoUrl?: string;
+  videoThumbnail?: string;
+}
+
+const communityPosts: CommunityPost[] = [
+  {
+    id: '1',
+    username: 'James Mitchell',
+    handle: '@jamesmitch_nyc',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+    content: 'Just invested in Liverpool FC through Keeps! The exclusive benefits and potential 4-8% returns make this feel like being a real part of the club. Never thought I\'d actually own shares in my favourite team!',
+    timestamp: '2h',
+    likes: 24,
+    comments: 3,
+    reposts: 1,
+    type: 'text',
+  },
+  {
+    id: '2',
+    username: 'Sarah Chen',
+    handle: '@sarahc_investor',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    content: 'Behind the scenes at McLaren Racing! Check out this exclusive footage from our investor day 🏎️',
+    timestamp: '4h',
+    likes: 89,
+    comments: 23,
+    reposts: 15,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+  },
+  {
+    id: '3',
+    username: 'Michael Rodriguez',
+    handle: '@mikerod_golf',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    content: 'Secured my Ryder Cup debentures through Keeps! The exclusive tournament access and meet-and-greets with players make this so much more than just an investment. The returns are just a bonus!',
+    timestamp: '6h',
+    likes: 31,
+    comments: 5,
+    reposts: 4,
+    type: 'text',
+  },
+  {
+    id: '4',
+    username: 'Emma Thompson',
+    handle: '@emmathompson_uk',
+    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
+    content: 'Training session highlights from Liverpool FC! As an investor, getting this exclusive access is incredible ⚽',
+    timestamp: '8h',
+    likes: 156,
+    comments: 34,
+    reposts: 28,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop',
+  },
+  {
+    id: '5',
+    username: 'David Park',
+    handle: '@davidpark_sports',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+    content: 'What I love about Keeps is how it gives regular fans access to investment opportunities that were previously only available to the ultra-wealthy. The benefits and returns are just incredible!',
+    timestamp: '10h',
+    likes: 27,
+    comments: 8,
+    reposts: 3,
+    type: 'text',
+  },
+  {
+    id: '6',
+    username: 'Lisa Wang',
+    handle: '@lisawang_finance',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face',
+    content: 'Exclusive interview with Cardiff City manager! Investor perks are amazing 🔵',
+    timestamp: '12h',
+    likes: 73,
+    comments: 19,
+    reposts: 12,
+    type: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoThumbnail: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=300&fit=crop',
+  },
+];
 
 const reels: Reel[] = [
   {
@@ -96,7 +192,8 @@ const reels: Reel[] = [
 export default function ContentScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<'written' | 'reels'>('written');
+  const [selectedTab, setSelectedTab] = useState<'written' | 'reels' | 'community'>('written');
+  const [showReplyModal, setShowReplyModal] = useState<string | null>(null);
   
   const handleHomePress = () => {
     router.push('/(tabs)');
@@ -112,6 +209,19 @@ export default function ContentScreen() {
 
   const handleCommentsPress = (reelId: string) => {
     router.push(`/comment-thread/${reelId}`);
+  };
+
+  const handleTrendingPress = () => {
+    router.push('/asset/liverpool');
+  };
+
+  const handleReplyPress = (postId: string) => {
+    setShowReplyModal(postId);
+  };
+
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
   };
 
   return (
@@ -140,6 +250,14 @@ export default function ContentScreen() {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={[styles.tabButton, selectedTab === 'community' && styles.tabButtonActive]}
+          onPress={() => setSelectedTab('community')}
+        >
+          <Text style={[styles.tabButtonText, selectedTab === 'community' && styles.tabButtonTextActive]}>
+            Community
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[styles.tabButton, selectedTab === 'reels' && styles.tabButtonActive]}
           onPress={() => setSelectedTab('reels')}
         >
@@ -162,6 +280,86 @@ export default function ContentScreen() {
               article={article} 
               onPress={() => handleNewsPress(article.id)}
             />
+          ))}
+        </ScrollView>
+      ) : selectedTab === 'community' ? (
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* Trending Banner */}
+          <TouchableOpacity style={styles.trendingBanner} onPress={handleTrendingPress}>
+            <View style={styles.trendingHeader}>
+              <TrendingUp size={20} color={Colors.text.white} />
+              <Text style={styles.trendingTitle}>Trending Now</Text>
+            </View>
+            <Text style={styles.trendingText}>Liverpool FC hits 75% funding! Join 10,250+ investors</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.sectionTitle}>Community Feed</Text>
+          {communityPosts.map((post, index) => (
+            <View key={post.id} style={[styles.postCard, index % 3 === 0 && styles.featuredPost]}>
+              <View style={styles.postHeader}>
+                <TouchableOpacity onPress={() => handleUserPress(post.username)}>
+                  <Image source={{ uri: post.avatar }} style={styles.avatar} />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.userInfo}
+                  onPress={() => handleUserPress(post.username)}
+                >
+                  <Text style={styles.username}>{post.username}</Text>
+                  <Text style={styles.handle}>{post.handle}</Text>
+                </TouchableOpacity>
+                <View style={styles.timestampContainer}>
+                  <Text style={styles.timestamp}>{post.timestamp}</Text>
+                  <TouchableOpacity style={styles.moreButton}>
+                    <MoreHorizontal size={16} color={Colors.text.light} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              
+              <Text style={styles.postContent}>{post.content}</Text>
+              
+              {post.type === 'video' && (
+                <View style={styles.videoContainer}>
+                  <Image source={{ uri: post.videoThumbnail }} style={styles.videoThumbnail} />
+                  <View style={styles.videoOverlay}>
+                    <TouchableOpacity style={styles.playButton}>
+                      <Play size={24} color={Colors.text.white} fill={Colors.text.white} />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+              
+              <View style={styles.postActions}>
+                <TouchableOpacity style={styles.actionButton}>
+                  <Heart size={16} color={Colors.accent.red} fill={post.likes > 50 ? Colors.accent.red : 'transparent'} />
+                  <Text style={[styles.actionText, { color: Colors.accent.red }]}>{post.likes}</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={styles.actionButton}
+                  onPress={() => handleCommentsPress(post.id)}
+                >
+                  <MessageCircle size={16} color={Colors.primary.blue} />
+                  <Text style={[styles.actionText, { color: Colors.primary.blue }]}>{post.comments}</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
+                  style={styles.actionButton}
+                  onPress={() => handleReplyPress(post.id)}
+                >
+                  <Reply size={16} color={Colors.accent.green} />
+                  <Text style={[styles.actionText, { color: Colors.accent.green }]}>Reply</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={styles.actionButton}>
+                  <Share size={16} color={Colors.accent.purple} />
+                  <Text style={[styles.actionText, { color: Colors.accent.purple }]}>{post.reposts}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           ))}
         </ScrollView>
       ) : (
@@ -331,5 +529,138 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.text.light,
     fontWeight: '500',
+  },
+  trendingBanner: {
+    backgroundColor: Colors.primary.orange,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  trendingHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  trendingTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
+    marginLeft: 8,
+  },
+  trendingText: {
+    fontSize: 16,
+    color: Colors.text.white,
+    fontWeight: '600',
+  },
+  postCard: {
+    backgroundColor: Colors.background.card,
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  featuredPost: {
+    borderWidth: 2,
+    borderColor: Colors.accent.gold,
+    backgroundColor: '#FFFBF0',
+  },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    marginRight: 12,
+  },
+  userInfo: {
+    flex: 1,
+  },
+  username: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Colors.text.dark,
+  },
+  handle: {
+    fontSize: 14,
+    color: Colors.text.light,
+  },
+  timestampContainer: {
+    alignItems: 'flex-end',
+  },
+  timestamp: {
+    fontSize: 12,
+    color: Colors.text.light,
+    marginBottom: 4,
+  },
+  moreButton: {
+    padding: 4,
+  },
+  postContent: {
+    fontSize: 16,
+    color: Colors.text.dark,
+    lineHeight: 22,
+    marginBottom: 16,
+  },
+  videoContainer: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 16,
+    position: 'relative',
+  },
+  videoThumbnail: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  videoOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  playButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  postActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    borderTopWidth: 1,
+    borderTopColor: Colors.border,
+    paddingTop: 12,
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+    borderRadius: 16,
+    backgroundColor: Colors.background.light,
+  },
+  actionText: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 4,
   },
 });

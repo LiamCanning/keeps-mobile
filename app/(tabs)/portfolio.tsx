@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
   totalValueAmount: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: Colors.accent.brightGreen,
+    color: Colors.text.dark,
     marginBottom: 8,
   },
   totalValueGrowth: {
