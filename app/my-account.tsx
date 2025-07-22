@@ -13,7 +13,7 @@ export default function MyAccountScreen() {
     axa: true,
     heineken: true,
     emirates: false,
-    bmw: true
+    bmw: false
   });
 
   const handleSettingsPress = () => {
@@ -104,7 +104,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/epn2r7ahj354ixvxt63p8' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.rolexIcon]}
               />
               <Text style={styles.partnerName}>Rolex</Text>
               <View style={styles.checkboxContainer}>
@@ -123,7 +123,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.nikeIcon]}
               />
               <Text style={styles.partnerName}>Nike</Text>
               <View style={styles.checkboxContainer}>
@@ -142,7 +142,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/bibvpbijbq6tjodjzh7ug' }} 
-                style={[styles.partnerIcon, styles.partnerIconAligned]}
+                style={[styles.partnerIcon, styles.axaIcon]}
               />
               <Text style={styles.partnerName}>AXA</Text>
               <View style={styles.checkboxContainer}>
@@ -161,7 +161,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/ucqykkdm33mytlbooecib' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.heinekenIcon]}
               />
               <Text style={styles.partnerName}>Heineken</Text>
               <View style={styles.checkboxContainer}>
@@ -180,7 +180,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://r2-pub.rork.com/attachments/nt7frvvt7k9uxifx1uayb' }} 
-                style={[styles.partnerIcon, styles.partnerIconAligned]}
+                style={[styles.partnerIcon, styles.emiratesIcon]}
               />
               <Text style={styles.partnerName}>Emirates</Text>
               <View style={styles.checkboxContainer}>
@@ -199,7 +199,7 @@ export default function MyAccountScreen() {
             >
               <Image 
                 source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/BMW-Logo.png' }} 
-                style={styles.partnerIcon}
+                style={[styles.partnerIcon, styles.bmwIcon]}
               />
               <Text style={styles.partnerName}>BMW</Text>
               <View style={styles.checkboxContainer}>
@@ -408,7 +408,22 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 16,
   },
-  partnerIconAligned: {
-    marginLeft: -8,
+  rolexIcon: {
+    marginLeft: -2,
+  },
+  nikeIcon: {
+    marginLeft: -1,
+  },
+  axaIcon: {
+    marginLeft: -12,
+  },
+  heinekenIcon: {
+    marginLeft: -4,
+  },
+  emiratesIcon: {
+    marginLeft: -16,
+  },
+  bmwIcon: {
+    marginLeft: -6,
   },
 });
