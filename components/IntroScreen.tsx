@@ -81,13 +81,11 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
           ]}
         >
           <View style={styles.logoContainer}>
-            <View style={styles.logoBackground}>
-              <Image
-                source={{ uri: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&h=200&fit=crop&crop=center' }}
-                style={styles.logoImage}
-                resizeMode="contain"
-              />
-            </View>
+            <Image
+              source={{ uri: 'https://r2-pub.rork.com/attachments/85k8lfkdo6n4wpccudsjh' }}
+              style={styles.logoImage}
+              resizeMode="contain"
+            />
           </View>
 
           <View style={styles.textContainer}>
@@ -140,25 +138,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logoBackground: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: 'rgba(59, 130, 246, 0.3)',
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
-    elevation: 15,
-  },
   logoImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 160,
+    height: 160,
   },
   textContainer: {
     alignItems: 'center',
