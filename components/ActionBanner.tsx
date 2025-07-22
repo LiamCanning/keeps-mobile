@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
   },
   desktopContainer: {
-    marginHorizontal: 32,
+    marginHorizontal: 0,
     marginVertical: 24,
     maxWidth: 1200,
     alignSelf: 'center',
