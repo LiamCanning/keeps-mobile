@@ -178,7 +178,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('nike')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/j25xdtg1yoju10t0vncri' }} 
                 style={[styles.partnerIcon, styles.nikeIcon]}
               />
               <Text style={styles.partnerName}>Nike</Text>
@@ -254,7 +254,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('bmw')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/BMW-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/1ze85s45xe6wvcfmplhg0' }} 
                 style={[styles.partnerIcon, styles.bmwIcon]}
               />
               <Text style={styles.partnerName}>BMW</Text>

@@ -109,18 +109,18 @@ export default function LiamKeepsProfileScreen() {
           <View style={styles.partnersGrid}>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/lwg9vgr5tkbyjp3fd3q5w' }} 
                 style={styles.partnerLogo}
               />
-              <Text style={styles.partnerName}>Google</Text>
+              <Text style={styles.partnerName}>Mastercard</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
             <View style={styles.partnerItem}>
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/11/BMW-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/4a2qfbukp621sf3wt9dr3' }} 
                 style={styles.partnerLogo}
               />
-              <Text style={styles.partnerName}>BMW</Text>
+              <Text style={styles.partnerName}>Samsung</Text>
               <Text style={styles.partnerStatus}>✓ Opted In</Text>
             </View>
           </View>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginBottom: 4,
   },
   profileHandle: {
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginLeft: 8,
   },
   investmentValue: {
@@ -222,12 +222,12 @@ const styles = StyleSheet.create({
   assetsTitle: {
     fontSize: 14,
     fontWeight: '600',
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginBottom: 8,
   },
   assetItem: {
     fontSize: 14,
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginBottom: 4,
   },
   teamsContainer: {
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   teamItem: {
     fontSize: 14,
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginBottom: 4,
   },
   achievementsContainer: {
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   },
   achievementText: {
     fontSize: 14,
-    color: Colors.text.white,
+    color: Colors.text.dark,
     marginLeft: 8,
     fontWeight: '600',
   },
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   partnerName: {
     fontSize: 12,
     fontWeight: '600',
-    color: Colors.text.white,
+    color: Colors.text.dark,
     textAlign: 'center',
     marginBottom: 4,
   },
