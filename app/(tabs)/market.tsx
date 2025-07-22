@@ -7,6 +7,7 @@ import { Search, Home, Heart, TrendingUp, LineChart, BarChart3, Users, Filter, P
 import Colors from '@/constants/colors';
 import { marketListings, sportCategories } from '@/constants/market';
 import MarketListingCard from '@/components/MarketListingCard';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
 
 const performanceData = {
   '5min': { price: 1205, change: +5, percentage: +0.42 },

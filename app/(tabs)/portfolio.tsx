@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Eye, TrendingUp, ShoppingCart, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets } from '@/constants/assets';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
 
 interface PortfolioAsset {
   id: string;
@@ -153,45 +154,46 @@ export default function PortfolioScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
-        <View style={styles.headerTop}>
-          <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
-            <Home size={20} color={Colors.text.white} />
-          </TouchableOpacity>
-          <View style={styles.headerTitles}>
-            <Text style={styles.headerTitle}>Liam's Portfolio</Text>
-            <Text style={[styles.headerSubtitle, showStickyHeader && styles.hiddenSubtitle]}>
-              Track your sports investments
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      {/* Sticky Header */}
-      {showStickyHeader && (
-        <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
-          <View style={styles.stickyContent}>
-            <Text style={styles.stickyTitle}>Portfolio</Text>
-            <View style={styles.stickyStats}>
-              <Text style={styles.stickyValue}>£{totalCurrentValue.toLocaleString()}</Text>
-              <View style={styles.stickyGrowth}>
-                <TrendingUp size={12} color={Colors.accent.brightGreen} />
-                <Text style={styles.stickyGrowthText}>
-                  +{totalGrowthPercentage.toFixed(1)}%
-                </Text>
-              </View>
+      <ResponsiveContainer>
+        <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
+          <View style={styles.headerTop}>
+            <TouchableOpacity style={styles.homeButton} onPress={handleHomePress}>
+              <Home size={20} color={Colors.text.white} />
+            </TouchableOpacity>
+            <View style={styles.headerTitles}>
+              <Text style={styles.headerTitle}>Liam's Portfolio</Text>
+              <Text style={[styles.headerSubtitle, showStickyHeader && styles.hiddenSubtitle]}>
+                Track your sports investments
+              </Text>
             </View>
           </View>
         </View>
-      )}
-      
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-      >
+
+        {/* Sticky Header */}
+        {showStickyHeader && (
+          <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
+            <View style={styles.stickyContent}>
+              <Text style={styles.stickyTitle}>Portfolio</Text>
+              <View style={styles.stickyStats}>
+                <Text style={styles.stickyValue}>£{totalCurrentValue.toLocaleString()}</Text>
+                <View style={styles.stickyGrowth}>
+                  <TrendingUp size={12} color={Colors.accent.brightGreen} />
+                  <Text style={styles.stickyGrowthText}>
+                    +{totalGrowthPercentage.toFixed(1)}%
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+        
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
         {/* Total Portfolio Value Card */}
         <View style={styles.totalValueCard}>
           <Text style={styles.totalValueLabel}>Total Portfolio Value</Text>
@@ -302,7 +304,8 @@ export default function PortfolioScreen() {
             </View>
           </View>
         ))}
-      </ScrollView>
+        </ScrollView>
+      </ResponsiveContainer>
     </View>
   );
 }

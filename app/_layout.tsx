@@ -8,6 +8,7 @@ import BackButton from "@/components/BackButton";
 import Colors from "@/constants/colors";
 import IntroScreen from "@/components/IntroScreen";
 import { AppStateProvider, useAppState } from "@/contexts/AppStateContext";
+import { getDesktopContainerStyles, getResponsiveStyles } from "@/constants/responsive";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -34,20 +35,22 @@ function RootLayoutNav() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <Stack 
-        screenOptions={{ 
-          headerBackTitle: "Back",
-          headerLeft: () => <BackButton />,
-          headerStyle: { backgroundColor: Colors.primary.blue },
-          headerTintColor: Colors.text.white,
-          headerTitleStyle: { fontWeight: 'bold' },
-        }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-      
-      {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
+    <View style={[{ flex: 1 }, getDesktopContainerStyles()]}>
+      <View style={[{ flex: 1 }, getResponsiveStyles()]}>
+        <Stack 
+          screenOptions={{ 
+            headerBackTitle: "Back",
+            headerLeft: () => <BackButton />,
+            headerStyle: { backgroundColor: Colors.primary.blue },
+            headerTintColor: Colors.text.white,
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+        
+        {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
+      </View>
     </View>
   );
 }

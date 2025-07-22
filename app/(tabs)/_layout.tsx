@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import { Home, Gift, Newspaper, PieChart, TrendingUp } from "lucide-react-native";
 import React from "react";
 import Colors from "@/constants/colors";
+import { getResponsiveWidth, isDesktop } from "@/constants/responsive";
 
 export default function TabLayout() {
   return (
@@ -17,6 +18,14 @@ export default function TabLayout() {
           paddingTop: 6,
           paddingHorizontal: 0,
           height: 78,
+          ...(isDesktop && {
+            maxWidth: getResponsiveWidth(),
+            alignSelf: 'center',
+            borderLeftWidth: 1,
+            borderRightWidth: 1,
+            borderLeftColor: 'rgba(255, 255, 255, 0.1)',
+            borderRightColor: 'rgba(255, 255, 255, 0.1)',
+          }),
         },
         tabBarLabelStyle: {
           fontSize: 12,
