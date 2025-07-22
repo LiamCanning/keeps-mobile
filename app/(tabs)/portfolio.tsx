@@ -175,7 +175,7 @@ export default function PortfolioScreen() {
             <View style={styles.stickyStats}>
               <Text style={styles.stickyValue}>£{totalCurrentValue.toLocaleString()}</Text>
               <View style={styles.stickyGrowth}>
-                <TrendingUp size={12} color={Colors.accent.green} />
+                <TrendingUp size={12} color={Colors.accent.brightGreen} />
                 <Text style={styles.stickyGrowthText}>
                   +{totalGrowthPercentage.toFixed(1)}%
                 </Text>
@@ -197,7 +197,7 @@ export default function PortfolioScreen() {
           <Text style={styles.totalValueLabel}>Total Portfolio Value</Text>
           <Text style={styles.totalValueAmount}>£{totalCurrentValue.toLocaleString()}</Text>
           <View style={styles.totalValueGrowth}>
-            <TrendingUp size={16} color={Colors.accent.green} />
+            <TrendingUp size={16} color={Colors.accent.brightGreen} />
             <Text style={styles.totalValueGrowthText}>
               +£{totalGrowth.toLocaleString()} ({totalGrowthPercentage.toFixed(1)}%)
             </Text>
@@ -261,7 +261,7 @@ export default function PortfolioScreen() {
               </View>
               <View style={styles.detailRow}>
                 <Text style={styles.detailLabel}>Potential Return:</Text>
-                <Text style={[styles.detailValue, { color: '#2E7D32' }]}>
+                <Text style={[styles.detailValue, { color: Colors.accent.brightGreen }]}>
                   +{asset.potentialReturn.toFixed(1)}% (if sold today)
                 </Text>
               </View>
@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
   },
   stickyGrowthText: {
     fontSize: 12,
-    color: Colors.accent.green,
+    color: Colors.accent.brightGreen,
     marginLeft: 4,
     fontWeight: '600',
   },
@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
   totalValueAmount: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: Colors.text.dark,
+    color: Colors.accent.brightGreen,
     marginBottom: 8,
   },
   totalValueGrowth: {
@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
   },
   totalValueGrowthText: {
     fontSize: 16,
-    color: Colors.accent.green,
+    color: Colors.accent.brightGreen,
     marginLeft: 6,
     fontWeight: '600',
   },

@@ -14,6 +14,7 @@ export default {
   },
   accent: {
     green: "#4CD964",
+    brightGreen: "#00D563", // Bright green for portfolio gains
     blue: "#2F80ED",
     orange: "#F5A623",
     red: "#FF3B30",
