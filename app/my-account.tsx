@@ -12,7 +12,7 @@ export default function MyAccountScreen() {
     nike: true,
     axa: true,
     heineken: true,
-    bmw: false
+    emirates: false
   });
 
   const handleSettingsPress = () => {
@@ -84,9 +84,9 @@ export default function MyAccountScreen() {
           <View style={styles.aiAnalysisContainer}>
             <Text style={styles.aiAnalysisTitle}>AI Portfolio Analysis</Text>
             <Text style={styles.aiAnalysisText}>
-              Based on your current investments in football, Formula 1, golf, and cycling, your portfolio shows a strong preference for premium sporting assets with global appeal. Your diversification across different sports reduces risk while maintaining exposure to high-growth potential markets.
+              Based on your current investments in Football, Formula 1, Golf, and Cycling, your portfolio shows a strong preference for premium sporting assets with global appeal. Your diversification across different sports reduces risk while maintaining exposure to high-growth potential markets.
               
-              {'\n\n'}Recommendation: Consider adding tennis or basketball assets to further diversify your portfolio. These sports offer strong commercial partnerships and year-round engagement, which could complement your existing seasonal investments and provide additional revenue streams during off-peak periods for your current holdings.
+              {'\n\n'}Recommendation: Consider adding Tennis or Basketball assets to further diversify your portfolio. These sports offer strong commercial partnerships and year-round engagement, which could complement your existing seasonal investments and provide additional revenue streams during off-peak periods for your current holdings.
             </Text>
           </View>
         </View>
@@ -99,7 +99,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('rolex')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/Rolex-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/epn2r7ahj354ixvxt63p8' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Rolex</Text>
@@ -137,7 +137,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('axa')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/AXA-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/bibvpbijbq6tjodjzh7ug' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>AXA</Text>
@@ -156,7 +156,7 @@ export default function MyAccountScreen() {
               onPress={() => togglePartnerOptIn('heineken')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/Heineken-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/ucqykkdm33mytlbooecib' }} 
                 style={styles.partnerIcon}
               />
               <Text style={styles.partnerName}>Heineken</Text>
@@ -172,19 +172,19 @@ export default function MyAccountScreen() {
             
             <TouchableOpacity 
               style={styles.partnerItem}
-              onPress={() => togglePartnerOptIn('bmw')}
+              onPress={() => togglePartnerOptIn('emirates')}
             >
               <Image 
-                source={{ uri: 'https://logos-world.net/wp-content/uploads/2020/04/BMW-Logo.png' }} 
+                source={{ uri: 'https://r2-pub.rork.com/attachments/nt7frvvt7k9uxifx1uayb' }} 
                 style={styles.partnerIcon}
               />
-              <Text style={styles.partnerName}>BMW</Text>
+              <Text style={styles.partnerName}>Emirates</Text>
               <View style={styles.checkboxContainer}>
-                <View style={[styles.checkbox, partnerOptIns.bmw && styles.checkboxChecked]}>
-                  {partnerOptIns.bmw && <Check size={16} color={Colors.text.white} />}
+                <View style={[styles.checkbox, partnerOptIns.emirates && styles.checkboxChecked]}>
+                  {partnerOptIns.emirates && <Check size={16} color={Colors.text.white} />}
                 </View>
                 <Text style={styles.partnerStatus}>
-                  {partnerOptIns.bmw ? 'Opted In' : 'Opted Out'}
+                  {partnerOptIns.emirates ? 'Opted In' : 'Opted Out'}
                 </Text>
               </View>
             </TouchableOpacity>
