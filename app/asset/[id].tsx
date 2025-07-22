@@ -8,7 +8,7 @@ import { userAssets, comingSoonAssets, completedAssets } from '@/constants/asset
 
 const getAssetTagline = (assetId: string): string => {
   const taglines: { [key: string]: string } = {
-    'liverpool': 'Towards the transfer budget',
+    'liverpool': 'Fund Anfield stadium capacity to 75,000',
     'cardiff': 'Back the Bluebirds\' future',
     'mclaren': 'Fuel McLaren\'s Next Victory',
     'ohio': 'Fund their new stadium',
@@ -68,10 +68,18 @@ export default function AssetDetailScreen() {
   const isOwned = userAssets.some(a => a.id === asset.id);
 
   const backgroundColor = asset.backgroundColor || Colors.background.card;
-  const textColor = asset.backgroundColor === '#FFFFFF' ? Colors.text.dark : 
-                   asset.backgroundColor === '#FF8700' ? Colors.text.white :
-                   asset.backgroundColor === '#1f4e79' ? Colors.text.white :
-                   Colors.text.dark;
+  
+  // Determine text color based on background brightness
+  const getTextColor = (bgColor: string) => {
+    const darkBackgrounds = ['#FF8700', '#1f4e79', '#CC0000', '#003D82', '#7C3AED', '#1E40AF', '#DC2626'];
+    const lightBackgrounds = ['#FFFFFF', '#F59E0B'];
+    
+    if (darkBackgrounds.includes(bgColor)) return Colors.text.white;
+    if (lightBackgrounds.includes(bgColor)) return Colors.text.dark;
+    return Colors.text.dark;
+  };
+  
+  const textColor = getTextColor(backgroundColor);
 
   return (
     <View style={styles.container}>
@@ -93,8 +101,8 @@ export default function AssetDetailScreen() {
             <Text style={[styles.heroTitle, { color: textColor }]}>
               {asset.name}
             </Text>
-            <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic]}>{getAssetTagline(asset.id)}</Text>
-            <Text style={[styles.heroType, { color: Colors.text.light }]}>
+            <Text style={[styles.assetTagline, asset.id === 'ohio' && styles.assetTaglineItalic, { color: textColor === Colors.text.white ? '#FFB366' : Colors.primary.orange }]}>{getAssetTagline(asset.id)}</Text>
+            <Text style={[styles.heroType, { color: textColor === Colors.text.white ? 'rgba(255, 255, 255, 0.8)' : Colors.text.light }]}>
               {asset.type === 'equity' ? 'Equity Investment' : 
                asset.type === 'debenture' ? 'Debenture Programme' : 
                asset.type === 'income' ? 'Income Sharing Agreement' : 'Coming Soon'}
@@ -325,8 +333,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   heroLogo: {
-    width: 120,
-    height: 120,
+    width: 140,
+    height: 140,
     resizeMode: 'contain',
     marginBottom: 16,
   },
@@ -338,7 +346,6 @@ const styles = StyleSheet.create({
   },
   assetTagline: {
     fontSize: 16,
-    color: Colors.primary.orange,
     fontWeight: '600',
     marginBottom: 8,
     textAlign: 'center',
