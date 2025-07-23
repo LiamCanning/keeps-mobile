@@ -111,6 +111,28 @@ export const userAssets: Asset[] = [
     dividendPotential: '5% + Principal',
     timelineInfo: '⏰ 48 hours',
   },
+  {
+    id: 'british-cycling',
+    name: 'British Cycling',
+    type: 'debenture',
+    logo: 'https://r2-pub.rork.com/attachments/k8vc0htdz7zjsyloqf0il',
+    status: 'OWNED',
+    raiseAmount: '£10,000,000 Debenture Programme',
+    minimumEntry: '£1,000',
+    pricePerShare: 1000,
+    backgroundColor: '#FFFFFF',
+    shares: 5,
+    performance: 12.4,
+    investorReturn: '6% interest on 40% of capital invested, repaid after 5 years. 5 year debenture programme.',
+    progress: 100,
+    remaining: 'Completed',
+    raisedAmount: '£10,000,000',
+    goalAmount: '£10,000,000',
+    investorCount: 4200,
+    growthPercentage: 22.8,
+    dividendPotential: '6% + Principal',
+    timelineInfo: 'Completed',
+  },
 ];
 
 export const comingSoonAssets: Asset[] = [

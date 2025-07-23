@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Alert, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { ShoppingCart } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { marketListings } from '@/constants/market';
+import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 
 export default function BuySecondaryScreen() {
   const { id } = useLocalSearchParams();
@@ -19,6 +20,9 @@ export default function BuySecondaryScreen() {
       </View>
     );
   }
+
+  // Find the asset to get the logo
+  const asset = [...userAssets, ...comingSoonAssets, ...completedAssets].find(a => a.id === listing.assetId);
 
   const getUnitLabel = () => {
     if (listing.assetId === 'rydercup') return listing.quantity === 1 ? 'debenture' : 'debentures';
@@ -60,8 +64,13 @@ export default function BuySecondaryScreen() {
       
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.assetInfo}>
-          <Text style={styles.assetName}>{listing.assetName}</Text>
-          <Text style={styles.assetType}>Secondary Market Purchase</Text>
+          <View style={styles.assetHeader}>
+            {asset && <Image source={{ uri: asset.logo }} style={styles.assetLogo} />}
+            <View style={styles.assetDetails}>
+              <Text style={styles.assetName}>{listing.assetName}</Text>
+              <Text style={styles.assetType}>Secondary Market Purchase</Text>
+            </View>
+          </View>
           <Text style={styles.sellerInfo}>Seller: {listing.seller}</Text>
         </View>
 
@@ -133,23 +142,36 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     marginTop: 16,
+  },
+  assetHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 16,
+  },
+  assetLogo: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  assetDetails: {
+    flex: 1,
   },
   assetName: {
     fontSize: 24,
     fontWeight: 'bold',
     color: Colors.text.dark,
-    marginBottom: 8,
+    marginBottom: 4,
   },
   assetType: {
     fontSize: 16,
     color: Colors.text.light,
-    marginBottom: 8,
   },
   sellerInfo: {
     fontSize: 14,
     color: Colors.primary.orange,
     fontWeight: '600',
+    textAlign: 'center',
   },
   orderSection: {
     backgroundColor: Colors.background.card,

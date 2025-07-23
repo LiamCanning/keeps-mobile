@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { ShoppingCart, CreditCard, DollarSign, Building2 } from 'lucide-react-native';
@@ -126,12 +126,17 @@ export default function BuyScreen() {
       
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.assetInfo}>
-          <Text style={styles.assetName}>{asset.name}</Text>
-          <Text style={styles.assetType}>
-            {asset.type === 'equity' ? 'Equity Investment' : 
-             asset.type === 'debenture' ? 'Debenture Programme' : 
-             'Income Sharing Agreement'}
-          </Text>
+          <View style={styles.assetHeader}>
+            <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
+            <View style={styles.assetDetails}>
+              <Text style={styles.assetName}>{asset.name}</Text>
+              <Text style={styles.assetType}>
+                {asset.type === 'equity' ? 'Equity Investment' : 
+                 asset.type === 'debenture' ? 'Debenture Programme' : 
+                 'Income Sharing Agreement'}
+              </Text>
+            </View>
+          </View>
           <Text style={styles.unitPrice}>
             £{unitPrice.toLocaleString()} per {asset.type === 'debenture' ? 'debenture' : 'share'}
           </Text>
@@ -251,23 +256,36 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     marginTop: 16,
+  },
+  assetHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 16,
+  },
+  assetLogo: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  assetDetails: {
+    flex: 1,
   },
   assetName: {
     fontSize: 24,
     fontWeight: 'bold',
     color: Colors.text.dark,
-    marginBottom: 8,
+    marginBottom: 4,
   },
   assetType: {
     fontSize: 16,
     color: Colors.text.light,
-    marginBottom: 12,
   },
   unitPrice: {
     fontSize: 20,
     fontWeight: 'bold',
     color: Colors.primary.orange,
+    textAlign: 'center',
   },
   quantitySection: {
     backgroundColor: Colors.background.card,
