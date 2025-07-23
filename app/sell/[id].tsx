@@ -85,7 +85,7 @@ export default function SellScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.assetInfo}>
           <View style={styles.assetHeader}>
-            <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
+            <Image source={{ uri: asset.logo }} style={styles.assetLogo} resizeMode="contain" />
             <View style={styles.assetDetails}>
               <Text style={styles.assetName}>{asset.name}</Text>
               <Text style={styles.assetType}>
@@ -93,12 +93,14 @@ export default function SellScreen() {
               </Text>
             </View>
           </View>
-          <Text style={styles.currentValue}>
-            Original price: £{unitPrice.toLocaleString()} per unit
-          </Text>
-          <Text style={styles.performance}>
-            Current performance: +{asset.performance?.toFixed(1)}%
-          </Text>
+          <View style={styles.priceSection}>
+            <Text style={styles.currentValue}>
+              Original price: £{unitPrice.toLocaleString()} per unit
+            </Text>
+            <Text style={styles.performance}>
+              Current performance: +{asset.performance?.toFixed(1)}%
+            </Text>
+          </View>
         </View>
 
         <View style={styles.quantitySection}>
@@ -165,6 +167,7 @@ export default function SellScreen() {
 
         <View style={styles.summarySection}>
           <Text style={styles.sectionTitle}>Sale Summary</Text>
+          <Text style={styles.sellerInfo}>Seller: You</Text>
           
           <View style={styles.summaryRow}>
             <Text style={styles.summaryLabel}>Quantity:</Text>
@@ -232,13 +235,13 @@ const styles = StyleSheet.create({
   assetHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   assetLogo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 8,
-    marginRight: 12,
+    marginRight: 16,
   },
   assetDetails: {
     flex: 1,
@@ -253,16 +256,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text.light,
   },
+  priceSection: {
+    paddingLeft: 76,
+  },
   currentValue: {
     fontSize: 16,
     color: Colors.text.dark,
-    marginBottom: 4,
-    textAlign: 'center',
+    marginBottom: 8,
   },
   performance: {
     fontSize: 16,
     fontWeight: 'bold',
     color: Colors.accent.green,
+  },
+  sellerInfo: {
+    fontSize: 16,
+    color: Colors.primary.orange,
+    fontWeight: '600',
+    marginBottom: 16,
   },
   quantitySection: {
     backgroundColor: Colors.background.card,

@@ -65,17 +65,17 @@ export default function BuySecondaryScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.assetInfo}>
           <View style={styles.assetHeader}>
-            {asset && <Image source={{ uri: asset.logo }} style={styles.assetLogo} />}
+            {asset && <Image source={{ uri: asset.logo }} style={styles.assetLogo} resizeMode="contain" />}
             <View style={styles.assetDetails}>
               <Text style={styles.assetName}>{listing.assetName}</Text>
               <Text style={styles.assetType}>Secondary Market Purchase</Text>
             </View>
           </View>
-          <Text style={styles.sellerInfo}>Seller: {listing.seller}</Text>
         </View>
 
         <View style={styles.orderSection}>
           <Text style={styles.sectionTitle}>Order Details</Text>
+          <Text style={styles.sellerInfo}>Seller: {listing.seller}</Text>
           
           <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Quantity:</Text>
@@ -146,13 +146,13 @@ const styles = StyleSheet.create({
   assetHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 0,
   },
   assetLogo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 8,
-    marginRight: 12,
+    marginRight: 16,
   },
   assetDetails: {
     flex: 1,
@@ -168,10 +168,10 @@ const styles = StyleSheet.create({
     color: Colors.text.light,
   },
   sellerInfo: {
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.primary.orange,
     fontWeight: '600',
-    textAlign: 'center',
+    marginBottom: 16,
   },
   orderSection: {
     backgroundColor: Colors.background.card,

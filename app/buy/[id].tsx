@@ -127,7 +127,7 @@ export default function BuyScreen() {
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
         <View style={styles.assetInfo}>
           <View style={styles.assetHeader}>
-            <Image source={{ uri: asset.logo }} style={styles.assetLogo} />
+            <Image source={{ uri: asset.logo }} style={styles.assetLogo} resizeMode="contain" />
             <View style={styles.assetDetails}>
               <Text style={styles.assetName}>{asset.name}</Text>
               <Text style={styles.assetType}>
@@ -137,9 +137,11 @@ export default function BuyScreen() {
               </Text>
             </View>
           </View>
-          <Text style={styles.unitPrice}>
-            £{unitPrice.toLocaleString()} per {asset.type === 'debenture' ? 'debenture' : 'share'}
-          </Text>
+          <View style={styles.priceSection}>
+            <Text style={styles.unitPrice}>
+              £{unitPrice.toLocaleString()} per {asset.type === 'debenture' ? 'debenture' : 'share'}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.quantitySection}>
@@ -185,6 +187,7 @@ export default function BuyScreen() {
 
         <View style={styles.summarySection}>
           <Text style={styles.sectionTitle}>Order Summary</Text>
+          <Text style={styles.sellerInfo}>Seller: Primary Market</Text>
           
           <View style={styles.summaryRow}>
             <Text style={styles.summaryLabel}>Quantity:</Text>
@@ -260,13 +263,13 @@ const styles = StyleSheet.create({
   assetHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   assetLogo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 8,
-    marginRight: 12,
+    marginRight: 16,
   },
   assetDetails: {
     flex: 1,
@@ -281,11 +284,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text.light,
   },
+  priceSection: {
+    paddingLeft: 76,
+  },
   unitPrice: {
     fontSize: 20,
     fontWeight: 'bold',
     color: Colors.primary.orange,
-    textAlign: 'center',
+  },
+  sellerInfo: {
+    fontSize: 16,
+    color: Colors.primary.orange,
+    fontWeight: '600',
+    marginBottom: 16,
   },
   quantitySection: {
     backgroundColor: Colors.background.card,
