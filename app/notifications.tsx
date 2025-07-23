@@ -30,7 +30,7 @@ const notifications: Notification[] = [
     title: 'Sarah Chen liked your post',
     message: 'Your post about McLaren Racing got a new like',
     timestamp: '12m ago',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     read: false,
   },
   {
@@ -48,7 +48,7 @@ const notifications: Notification[] = [
     title: 'New follower',
     message: 'Alex Rodriguez started following you',
     timestamp: '2h ago',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face',
     read: true,
   },
   {
@@ -87,6 +87,20 @@ const notifications: Notification[] = [
 
 export default function NotificationsScreen() {
   const router = useRouter();
+
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
+  };
+
+  const handleNotificationPress = (notification: Notification) => {
+    if (notification.type === 'like' || notification.type === 'comment' || notification.type === 'follow') {
+      const username = notification.title.split(' ')[0] + ' ' + notification.title.split(' ')[1];
+      if (username !== 'New comment' && username !== 'New follower') {
+        handleUserPress(username);
+      }
+    }
+  };
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
@@ -127,16 +141,27 @@ export default function NotificationsScreen() {
         </View>
 
         {notifications.map((notification) => (
-          <TouchableOpacity key={notification.id} style={[
-            styles.notificationCard,
-            !notification.read && styles.unreadCard
-          ]}>
+          <TouchableOpacity 
+            key={notification.id} 
+            style={[
+              styles.notificationCard,
+              !notification.read && styles.unreadCard
+            ]}
+            onPress={() => handleNotificationPress(notification)}
+          >
             <View style={styles.notificationHeader}>
               <View style={styles.iconContainer}>
                 {getNotificationIcon(notification.type)}
               </View>
               {notification.avatar && (
-                <Image source={{ uri: notification.avatar }} style={styles.avatar} />
+                <TouchableOpacity onPress={() => {
+                  const username = notification.title.split(' ')[0] + ' ' + notification.title.split(' ')[1];
+                  if (username !== 'New comment' && username !== 'New follower') {
+                    handleUserPress(username);
+                  }
+                }}>
+                  <Image source={{ uri: notification.avatar }} style={styles.avatar} />
+                </TouchableOpacity>
               )}
               <View style={styles.notificationContent}>
                 <Text style={[

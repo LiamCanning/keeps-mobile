@@ -37,7 +37,7 @@ const searchResults: SearchResult[] = [
     type: 'user',
     title: 'Sarah Chen',
     subtitle: '@sarahc_investor • 2.4k followers',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     flag: '🇺🇸',
     country: 'USA'
   },
@@ -69,7 +69,7 @@ const searchResults: SearchResult[] = [
     type: 'user',
     title: 'Emma Thompson',
     subtitle: '@emmathompson_uk • 1.8k followers',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
     flag: '🇬🇧',
     country: 'UK'
   },
@@ -83,6 +83,21 @@ export default function SearchScreen() {
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     setShowResults(query.length > 0);
+  };
+
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
+  };
+
+  const handleResultPress = (result: SearchResult) => {
+    if (result.type === 'user') {
+      handleUserPress(result.title);
+    } else if (result.type === 'investment') {
+      router.push('/asset/liverpool');
+    } else {
+      console.log('Handle other result types:', result.type);
+    }
   };
 
   const getResultIcon = (type: string) => {
@@ -168,7 +183,11 @@ export default function SearchScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Search Results</Text>
             {searchResults.map((result) => (
-              <TouchableOpacity key={result.id} style={styles.resultCard}>
+              <TouchableOpacity 
+                key={result.id} 
+                style={styles.resultCard}
+                onPress={() => handleResultPress(result)}
+              >
                 <View style={styles.resultIcon}>
                   {result.avatar ? (
                     <Image source={{ uri: result.avatar }} style={styles.resultAvatar} />

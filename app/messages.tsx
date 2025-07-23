@@ -30,7 +30,7 @@ const messages: Message[] = [
   {
     id: '2',
     name: 'Rachel Thompson',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
     lastMessage: 'Are you considering the McLaren opportunity?',
     timestamp: '1h',
     unread: true,
@@ -50,7 +50,7 @@ const messages: Message[] = [
   {
     id: '4',
     name: 'Emma Johnson',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=150&h=150&fit=crop&crop=face',
     lastMessage: 'The exclusive benefits are amazing',
     timestamp: '1d',
     unread: false,
@@ -75,6 +75,11 @@ export default function MessagesScreen() {
   const handleMessagePress = (messageId: string) => {
     // Navigate to individual message thread
     console.log('Open message:', messageId);
+  };
+
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
   };
 
   return (
@@ -113,16 +118,21 @@ export default function MessagesScreen() {
             style={styles.messageCard}
             onPress={() => handleMessagePress(message.id)}
           >
-            <View style={styles.avatarContainer}>
+            <TouchableOpacity 
+              style={styles.avatarContainer}
+              onPress={() => handleUserPress(message.name)}
+            >
               <Image source={{ uri: message.avatar }} style={styles.avatar} />
               {message.unread && <View style={styles.unreadIndicator} />}
-            </View>
+            </TouchableOpacity>
             
             <View style={styles.messageContent}>
               <View style={styles.messageHeader}>
-                <Text style={styles.messageName}>
-                  {message.name} {message.flag} {message.country}
-                </Text>
+                <TouchableOpacity onPress={() => handleUserPress(message.name)}>
+                  <Text style={styles.messageName}>
+                    {message.name} {message.flag} {message.country}
+                  </Text>
+                </TouchableOpacity>
                 <Text style={styles.messageTime}>{message.timestamp}</Text>
               </View>
               <Text style={[

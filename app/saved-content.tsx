@@ -29,7 +29,7 @@ const savedPosts: SavedPost[] = [
     id: '1',
     username: 'Alessandro Rossi',
     handle: '@alex_rossi_milan',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
     content: 'Just secured my position in Exeter Chiefs! The rugby heritage and exclusive matchday experiences make this investment feel incredibly authentic.',
     timestamp: '1h',
     likes: 34,
@@ -58,7 +58,7 @@ const savedPosts: SavedPost[] = [
     id: '4',
     username: 'Fatima Al-Zahra',
     handle: '@fatima_dubai_sports',
-    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&crop=face',
     content: 'McLaren Racing ISA is a game-changer! 10% of sponsorship revenues plus F1 paddock access - feels like owning a piece of motorsport history.',
     timestamp: '4h',
     likes: 45,
@@ -88,7 +88,7 @@ const savedPosts: SavedPost[] = [
     id: '6',
     username: 'Sophie Dubois',
     handle: '@sophie_paris_golf',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     content: 'Ryder Cup debentures are incredible! VIP hospitality, player meet-and-greets, and exclusive course access - this is premium sports investing at its finest.',
     timestamp: '6h',
     likes: 38,
@@ -144,7 +144,7 @@ const savedPosts: SavedPost[] = [
     id: '10',
     username: 'Aisha Okonkwo',
     handle: '@aisha_lagos_sports',
-    avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
     content: 'Liverpool FC benefits are legendary! Anfield tours, training ground access, and exclusive merchandise - being a Red has never felt this special.',
     timestamp: '10h',
     likes: 47,
@@ -186,7 +186,7 @@ const savedPosts: SavedPost[] = [
     id: '13',
     username: 'Chen Wei',
     handle: '@chen_beijing_news',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
     content: 'McLaren Racing secures major tech partnership with leading AI company. Expected to increase sponsorship revenues by 15% - great news for ISA holders!',
     timestamp: '3h',
     likes: 67,
@@ -200,7 +200,7 @@ const savedPosts: SavedPost[] = [
     id: '14',
     username: 'Amara Thompson',
     handle: '@amara_cape_town',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
     content: 'British Cycling announces new Olympic training facility. This infrastructure investment should enhance the value proposition for all cycling investors.',
     timestamp: '5h',
     likes: 54,
@@ -214,7 +214,7 @@ const savedPosts: SavedPost[] = [
     id: '15',
     username: 'Dmitri Volkov',
     handle: '@dmitri_st_petersburg',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face',
     content: 'Exeter Chiefs reaches Premiership final! Strong on-field performance typically correlates with increased commercial value and investor returns.',
     timestamp: '7h',
     likes: 43,
@@ -228,7 +228,7 @@ const savedPosts: SavedPost[] = [
     id: '16',
     username: 'Leila Hassan',
     handle: '@leila_cairo_sports',
-    avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face',
     content: 'Ryder Cup 2025 ticket sales break records! Debenture holders are seeing unprecedented demand - this bodes well for future valuations.',
     timestamp: '9h',
     likes: 38,
@@ -372,6 +372,11 @@ export default function SavedContentScreen() {
     router.push('/asset/liverpool');
   };
 
+  const handleUserPress = (username: string) => {
+    const userId = username.toLowerCase().replace(/\s+/g, '-').replace(/'/g, '');
+    router.push(`/user-profile/${userId}`);
+  };
+
   return (
     <View style={styles.container}>
       <Stack.Screen 
@@ -418,13 +423,18 @@ export default function SavedContentScreen() {
         {filteredPosts.map((post, index) => (
           <View key={post.id} style={[styles.postCard, index % 3 === 0 && styles.featuredPost]}>
             <View style={styles.postHeader}>
-              <Image source={{ uri: post.avatar }} style={styles.avatar} />
-              <View style={styles.userInfo}>
+              <TouchableOpacity onPress={() => handleUserPress(post.username)}>
+                <Image source={{ uri: post.avatar }} style={styles.avatar} />
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.userInfo}
+                onPress={() => handleUserPress(post.username)}
+              >
                 <Text style={styles.username}>
                   {post.username} {post.flag} {post.country}
                 </Text>
                 <Text style={styles.handle}>{post.handle}</Text>
-              </View>
+              </TouchableOpacity>
               <View style={styles.timestampContainer}>
                 <Text style={styles.timestamp}>{post.timestamp}</Text>
                 <TouchableOpacity style={styles.moreButton}>
