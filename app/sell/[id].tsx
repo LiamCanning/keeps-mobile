@@ -93,14 +93,12 @@ export default function SellScreen() {
               </Text>
             </View>
           </View>
-          <View style={styles.priceContainer}>
-            <Text style={styles.currentValue}>
-              Original price: £{unitPrice.toLocaleString()} per unit
-            </Text>
-            <Text style={styles.performance}>
-              Current performance: +{asset.performance?.toFixed(1)}%
-            </Text>
-          </View>
+          <Text style={styles.currentValue}>
+            Original price: £{unitPrice.toLocaleString()} per unit
+          </Text>
+          <Text style={styles.performance}>
+            Current performance: +{asset.performance?.toFixed(1)}%
+          </Text>
         </View>
 
         <View style={styles.quantitySection}>
@@ -237,11 +235,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   assetLogo: {
-    width: 80,
-    height: 80,
-    borderRadius: 12,
-    marginRight: 16,
-    resizeMode: 'contain',
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 12,
   },
   assetDetails: {
     flex: 1,
@@ -256,13 +253,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text.light,
   },
-  priceContainer: {
-    alignItems: 'center',
-  },
   currentValue: {
     fontSize: 16,
     color: Colors.text.dark,
     marginBottom: 4,
+    textAlign: 'center',
   },
   performance: {
     fontSize: 16,
