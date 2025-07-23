@@ -137,9 +137,14 @@ export default function BuyScreen() {
               </Text>
             </View>
           </View>
-          <Text style={styles.unitPrice}>
-            £{unitPrice.toLocaleString()} per {asset.type === 'debenture' ? 'debenture' : 'share'}
-          </Text>
+          <View style={styles.priceContainer}>
+            <Text style={styles.unitPrice}>
+              Original price: £{unitPrice.toLocaleString()} per unit
+            </Text>
+            <Text style={styles.currentPerformance}>
+              Current performance: +{asset.performance?.toFixed(1) || '0.0'}%
+            </Text>
+          </View>
         </View>
 
         <View style={styles.quantitySection}>
@@ -263,10 +268,11 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   assetLogo: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-    marginRight: 12,
+    width: 80,
+    height: 80,
+    borderRadius: 12,
+    marginRight: 16,
+    resizeMode: 'contain',
   },
   assetDetails: {
     flex: 1,
@@ -281,11 +287,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.text.light,
   },
+  priceContainer: {
+    alignItems: 'center',
+  },
   unitPrice: {
-    fontSize: 20,
+    fontSize: 16,
+    color: Colors.text.dark,
+    marginBottom: 4,
+  },
+  currentPerformance: {
+    fontSize: 16,
     fontWeight: 'bold',
-    color: Colors.primary.orange,
-    textAlign: 'center',
+    color: Colors.accent.green,
   },
   quantitySection: {
     backgroundColor: Colors.background.card,
