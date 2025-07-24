@@ -108,7 +108,9 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
           {isComingSoon && (
             <View style={styles.comingSoonStats}>
               <Text style={styles.carouselComingSoonInfo}>
-                Total Raise: {asset.totalRaiseAmount}
+                Deal Type: {asset.id === 'ohio' ? 'Income Sharing Agreement' : 
+                           asset.id === 'cardiff' ? 'Equity' : 
+                           asset.id === 'hexagon' ? 'Equity' : 'TBD'}
               </Text>
               <Text style={styles.carouselComingSoonInfo}>
                 {asset.expectedReturn}
@@ -168,7 +170,9 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                   {asset.description}
                 </Text>
                 <Text style={[styles.comingSoonInfo, { color: textColor }]}>
-                  Total Raise: {asset.totalRaiseAmount}
+                  Deal Type: {asset.id === 'ohio' ? 'Income Sharing Agreement' : 
+                             asset.id === 'cardiff' ? 'Equity' : 
+                             asset.id === 'hexagon' ? 'Equity' : 'TBD'}
                 </Text>
                 <Text style={[styles.comingSoonInfo, { color: textColor }]}>
                   {asset.expectedReturn}
