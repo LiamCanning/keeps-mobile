@@ -92,21 +92,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
                   </View>
                 )}
                 
-                {/* Investor Metrics */}
-                <View style={styles.metricsContainer}>
-                  <View style={styles.metric}>
-                    <Users size={14} color={textColor} />
-                    <Text style={[styles.metricText, { color: textColor }]}>
-                      {asset.investorCount?.toLocaleString()} investors joined
-                    </Text>
-                  </View>
-                  <View style={styles.metric}>
-                    <TrendingUp size={14} color={Colors.accent.green} />
-                    <Text style={[styles.metricText, { color: textColor }]}>
-                      +{asset.growthPercentage}% asset value growth
-                    </Text>
-                  </View>
-                </View>
+
               </>
             )}
           </View>
@@ -159,7 +145,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   name: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: '700',
     marginRight: 8,
   },
@@ -194,7 +180,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   raiseAmount: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: '600',
     marginBottom: 6,
   },
@@ -249,7 +235,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   progressText: {
-    fontSize: 12,
+    fontSize: 16,
     opacity: 1.0,
   },
   metricsContainer: {
@@ -297,7 +283,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   tagline: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: '600',
     marginBottom: 8,
     opacity: 1.0,
