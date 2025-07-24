@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
   stickyTitle: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: Colors.text.white,
   },
@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   stickyValue: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: Colors.text.white,
   },
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   stickyGrowthText: {
-    fontSize: 12,
+    fontSize: 16,
     color: Colors.accent.brightGreen,
     marginLeft: 4,
     fontWeight: '600',
