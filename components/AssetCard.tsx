@@ -27,15 +27,15 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
       case 'liverpool':
         return 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=600&fit=crop';
       case 'mclaren':
-        return 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop';
+        return 'https://r2-pub.rork.com/attachments/o8lybvzfamvarwvxnfdsb';
       case 'rydercup':
         return 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop';
       case 'ohio':
         return 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&h=600&fit=crop';
       case 'cardiff':
-        return 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=600&fit=crop';
+        return 'https://r2-pub.rork.com/attachments/9czsmqde33jpsdrw2fpxl';
       case 'hexagon':
-        return 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop';
+        return 'https://r2-pub.rork.com/attachments/ars3u1m058okyafe02vwu';
       default:
         return null;
     }
@@ -95,8 +95,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                 </Text>
                 <Text style={styles.statLabel}>Investors</Text>
               </View>
-              <View style={styles.statItemWithIcon}>
-                <Clock size={16} color="#FF6B6B" />
+              <View style={styles.statItem}>
                 <Text style={styles.statValue}>
                   {asset.id === 'liverpool' ? '5 days' : 
                    asset.id === 'mclaren' ? '2 weeks' : '48 hours'}

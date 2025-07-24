@@ -60,7 +60,7 @@ export const userAssets: Asset[] = [
     investorCount: 10250,
     growthPercentage: 24.5,
     dividendPotential: '4-8%',
-    timelineInfo: '⏰ 5 days',
+    timelineInfo: '5 days',
   },
   {
     id: 'mclaren',
@@ -85,7 +85,7 @@ export const userAssets: Asset[] = [
     investorCount: 8750,
     growthPercentage: 18.2,
     dividendPotential: '6-12%',
-    timelineInfo: '⏰ 2 weeks',
+    timelineInfo: '2 weeks',
   },
   {
     id: 'rydercup',
@@ -109,7 +109,7 @@ export const userAssets: Asset[] = [
     investorCount: 2340,
     growthPercentage: 15.8,
     dividendPotential: '5% + Principal',
-    timelineInfo: '⏰ 48 hours',
+    timelineInfo: '48 hours',
   },
 ];
 
@@ -125,7 +125,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£80,000,000',
     expectedReturn: 'Potential 8% annual dividends from stadium revenues',
     minimumEntry: '£2,500',
-    timelineInfo: '⏰ 1 day',
+    timelineInfo: '1 day',
   },
   {
     id: 'cardiff',
@@ -138,7 +138,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£4,000,000',
     expectedReturn: 'Potential 12% annual dividends from club profits',
     minimumEntry: '£1,000',
-    timelineInfo: '⏰ 2 weeks',
+    timelineInfo: '2 weeks',
   },
   {
     id: 'hexagon',
@@ -151,7 +151,7 @@ export const comingSoonAssets: Asset[] = [
     totalRaiseAmount: '£1,250,000',
     expectedReturn: 'Potential 15% annual returns from tournament winnings',
     minimumEntry: '£500',
-    timelineInfo: '⏰ 3 weeks',
+    timelineInfo: '3 weeks',
   },
 ];
 
