@@ -65,6 +65,8 @@ export default function LiveDealsScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
+        {/* Title moved to bottom - will be added after cards */}
+        
         {userAssets.map((asset) => (
           <AssetCard 
             key={asset.id} 
@@ -72,6 +74,7 @@ export default function LiveDealsScreen() {
             onPress={() => handleAssetPress(asset.id)}
           />
         ))}
+
       </ScrollView>
       
       {/* Bottom Navigation */}
