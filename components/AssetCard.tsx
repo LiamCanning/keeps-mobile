@@ -50,8 +50,21 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
         onPress={onPress}
         activeOpacity={0.9}
       >
-        <View style={styles.carouselContent}>
-          {/* Header with Logo and Name */}
+        {/* Background Image Section */}
+        <View style={styles.imageSection}>
+          {backgroundImageUri && (
+            <ImageBackground 
+              source={{ uri: backgroundImageUri }} 
+              style={styles.carouselBackgroundImage}
+              imageStyle={styles.carouselBackgroundImageStyle}
+            >
+              <View style={styles.imageOverlay} />
+            </ImageBackground>
+          )}
+        </View>
+        
+        {/* Text Section with Logo and Name */}
+        <View style={styles.textSection}>
           <View style={styles.carouselHeader}>
             <Image source={{ uri: asset.logo }} style={styles.carouselLogo} />
             <View style={styles.carouselHeaderText}>
@@ -236,11 +249,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
     backgroundColor: Colors.background.card,
-    padding: 20,
-    minHeight: 280,
+    overflow: 'hidden',
+    minHeight: 320,
   },
   imageSection: {
-    height: 200,
+    height: 180,
     position: 'relative',
   },
   carouselBackgroundImage: {
@@ -258,8 +271,7 @@ const styles = StyleSheet.create({
   },
   textSection: {
     backgroundColor: Colors.background.card,
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
+    padding: 16,
     flex: 1,
   },
   carouselContent: {
@@ -269,7 +281,7 @@ const styles = StyleSheet.create({
   carouselHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 12,
   },
   carouselHeaderText: {
     flex: 1,
@@ -280,22 +292,22 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   carouselLogo: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     resizeMode: 'contain',
-    marginRight: 16,
+    marginRight: 12,
   },
   carouselTextContainer: {
     flex: 1,
   },
   carouselName: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     color: Colors.text.dark,
-    marginBottom: 4,
+    marginBottom: 2,
   },
   carouselRaiseAmount: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
     color: '#4A90E2',
   },
@@ -575,7 +587,7 @@ const styles = StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   statItem: {
     alignItems: 'flex-start',
@@ -595,7 +607,7 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   comingSoonStats: {
-    marginBottom: 20,
+    marginBottom: 16,
   },
   investButtonText: {
     color: Colors.text.white,
