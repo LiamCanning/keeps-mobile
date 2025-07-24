@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { CheckCircle, ArrowRight } from 'lucide-react-native';
 import Colors from '@/constants/colors';
+import BackButton from '@/components/BackButton';
 
 export default function PurchaseSuccessScreen() {
   const { amount, entity, quantity, type, unitLabel } = useLocalSearchParams();
@@ -44,6 +45,7 @@ export default function PurchaseSuccessScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />

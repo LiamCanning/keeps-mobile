@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import { Stack } from 'expo-router';
 import { useRouter } from 'expo-router';
-import { ChevronDown, Info, TrendingUp, Building, HeadphonesIcon, Home, Gift, Newspaper, PieChart, User } from 'lucide-react-native';
+import { Home, Gift, Newspaper, PieChart, User, TrendingUp } from 'lucide-react-native';
 
 import SearchBar from '@/components/SearchBar';
 import AssetCard from '@/components/AssetCard';
+import BackButton from '@/components/BackButton';
 
 import Colors from '@/constants/colors';
 import { userAssets } from '@/constants/assets';
 
 export default function LiveDealsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
 
   const handleAssetPress = (assetId: string) => {
@@ -21,15 +21,6 @@ export default function LiveDealsScreen() {
 
   const handleSearchAssetSelect = (assetId: string) => {
     router.push(`/asset/${assetId}`);
-  };
-
-  const handleLogoPress = () => {
-    setShowDropdown(!showDropdown);
-  };
-  
-  const handleMenuItemPress = (route: string) => {
-    setShowDropdown(false);
-    router.push(route);
   };
 
   const handleTabPress = (route: string) => {
@@ -44,15 +35,7 @@ export default function LiveDealsScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
-          headerLeft: () => (
-            <TouchableOpacity style={styles.logoContainer} onPress={handleLogoPress}>
-              <Image 
-                source={{ uri: 'https://r2-pub.rork.com/attachments/deijf9ahr9tnz07gsupjf' }} 
-                style={styles.headerLogo}
-              />
-              <ChevronDown size={16} color={Colors.primary.blue} style={styles.chevron} />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <BackButton />,
           headerTitle: () => (
             <View style={styles.headerTitleContainer}>
               <Image 
@@ -127,52 +110,7 @@ export default function LiveDealsScreen() {
         </TouchableOpacity>
       </View>
       
-      {/* Dropdown Modal */}
-      <Modal
-        visible={showDropdown}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setShowDropdown(false)}
-      >
-        <TouchableOpacity 
-          style={styles.modalOverlay} 
-          onPress={() => setShowDropdown(false)}
-        >
-          <View style={styles.dropdown}>
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/about')}
-            >
-              <Info size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>About</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/market-trends')}
-            >
-              <TrendingUp size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Market Trends</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/for-organisations')}
-            >
-              <Building size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>For Organisations</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity 
-              style={styles.dropdownItem} 
-              onPress={() => handleMenuItemPress('/support-hub')}
-            >
-              <HeadphonesIcon size={20} color={Colors.text.dark} />
-              <Text style={styles.dropdownText}>Support Hub</Text>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-      </Modal>
+
     </View>
   );
 }
@@ -182,24 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary.blue,
   },
-  logoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.text.white,
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    marginLeft: 16,
-  },
-  headerLogo: {
-    width: 32,
-    height: 32,
-    resizeMode: 'contain',
-    marginRight: 4,
-  },
-  chevron: {
-    opacity: 0.7,
-  },
+
   searchContainer: {
     paddingTop: 16,
   },
@@ -256,36 +177,7 @@ const styles = StyleSheet.create({
   activeNavText: {
     color: Colors.primary.orange,
   },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-start',
-    paddingTop: 100,
-    paddingHorizontal: 16,
-  },
-  dropdown: {
-    backgroundColor: Colors.background.card,
-    borderRadius: 12,
-    padding: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  dropdownItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-  },
-  dropdownText: {
-    fontSize: 16,
-    color: Colors.text.dark,
-    marginLeft: 12,
-    fontWeight: '500',
-  },
+
   headerTitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { ArrowLeft, TrendingUp, Users, Calendar, ShoppingCart, Clock, Gift, TrendingUp as TrendingUpIcon, Eye } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
+import BackButton from '@/components/BackButton';
 
 const getAssetTagline = (assetId: string): string => {
   const taglines: { [key: string]: string } = {
@@ -116,6 +117,7 @@ export default function AssetDetailScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />

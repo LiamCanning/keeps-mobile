@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { ShoppingCart, CreditCard, DollarSign, Building2 } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets, comingSoonAssets } from '@/constants/assets';
+import BackButton from '@/components/BackButton';
 
 export default function BuyScreen() {
   const { id } = useLocalSearchParams();
@@ -120,6 +121,7 @@ export default function BuyScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />

@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Mail, Bell, CheckCircle } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { comingSoonAssets } from '@/constants/assets';
+import BackButton from '@/components/BackButton';
 
 export default function EarlyAccessScreen() {
   const { id } = useLocalSearchParams();
@@ -79,6 +80,7 @@ export default function EarlyAccessScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />

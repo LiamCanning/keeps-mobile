@@ -7,6 +7,7 @@ import Colors from '@/constants/colors';
 import { benefits } from '@/constants/benefits';
 import { userAssets, comingSoonAssets, completedAssets } from '@/constants/assets';
 import BenefitCard from '@/components/BenefitCard';
+import BackButton from '@/components/BackButton';
 
 export default function AssetBenefitsScreen() {
   const { id, fromPortfolio, userTier } = useLocalSearchParams();
@@ -34,6 +35,7 @@ export default function AssetBenefitsScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />

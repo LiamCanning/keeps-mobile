@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { TrendingDown, Clock } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { userAssets } from '@/constants/assets';
+import BackButton from '@/components/BackButton';
 
 export default function SellScreen() {
   const { id } = useLocalSearchParams();
@@ -78,6 +79,7 @@ export default function SellScreen() {
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
+          headerLeft: () => <BackButton />,
         }} 
       />
       <StatusBar style="light" />
