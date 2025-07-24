@@ -125,7 +125,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
           {/* Invest Now Button */}
           {onInvestPress && (
             <TouchableOpacity 
-              style={styles.investButton} 
+              style={[styles.investButton, isComingSoon && styles.earlyAccessButton]} 
               onPress={onInvestPress}
               activeOpacity={0.8}
             >
@@ -616,5 +616,8 @@ const styles = StyleSheet.create({
     color: Colors.text.white,
     fontSize: 16,
     fontWeight: '700',
+  },
+  earlyAccessButton: {
+    backgroundColor: '#FF8C42',
   },
 });
