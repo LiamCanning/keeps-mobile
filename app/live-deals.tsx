@@ -62,6 +62,7 @@ export default function LiveDealsScreen() {
               <Text style={styles.headerTitleText}>Live Deals</Text>
             </View>
           ),
+          headerTitleAlign: 'center',
         }} 
       />
       
@@ -90,15 +91,7 @@ export default function LiveDealsScreen() {
             onPress={() => handleAssetPress(asset.id)}
           />
         ))}
-        
-        {/* Title moved to bottom center */}
-        <View style={styles.bottomTitleContainer}>
-          <Image 
-            source={{ uri: 'https://r2-pub.rork.com/generated-images/8ed8a159-de50-4daf-99eb-e1c0ae8c7865.png' }}
-            style={styles.tickIcon}
-          />
-          <Text style={styles.bottomTitle}>Live Deals</Text>
-        </View>
+
       </ScrollView>
       
       {/* Bottom Navigation */}
@@ -236,18 +229,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFFFFF',
   },
-  bottomTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 24,
-    marginBottom: 16,
-  },
-  bottomTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-  },
+
   bottomNav: {
     flexDirection: 'row',
     backgroundColor: Colors.primary.blue,
