@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { Stack } from 'expo-router';
 import { useRouter } from 'expo-router';
 
 import SearchBar from '@/components/SearchBar';
 import AssetCard from '@/components/AssetCard';
-import SectionTitle from '@/components/SectionTitle';
+import ActionBanner from '@/components/ActionBanner';
 
 import Colors from '@/constants/colors';
 import { userAssets } from '@/constants/assets';
 
 export default function LiveDealsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState<'live' | 'coming-soon' | 'completed'>('live');
   const router = useRouter();
 
   const handleAssetPress = (assetId: string) => {
@@ -20,6 +21,10 @@ export default function LiveDealsScreen() {
 
   const handleSearchAssetSelect = (assetId: string) => {
     router.push(`/asset/${assetId}`);
+  };
+
+  const handleTabChange = (tab: 'live' | 'coming-soon' | 'completed') => {
+    setActiveTab(tab);
   };
 
   return (
@@ -46,7 +51,13 @@ export default function LiveDealsScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        <SectionTitle title="All Live Deals 🔥" />
+        <View style={styles.titleContainer}>
+          <Image 
+            source={{ uri: 'https://r2-pub.rork.com/generated-images/8ed8a159-de50-4daf-99eb-e1c0ae8c7865.png' }}
+            style={styles.tickIcon}
+          />
+          <Text style={styles.title}>All Live Deals</Text>
+        </View>
         
         {userAssets.map((asset) => (
           <AssetCard 
@@ -56,6 +67,8 @@ export default function LiveDealsScreen() {
           />
         ))}
       </ScrollView>
+      
+      <ActionBanner activeTab={activeTab} onTabChange={handleTabChange} />
     </View>
   );
 }
@@ -73,6 +86,22 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 24,
+    paddingBottom: 100,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    marginTop: 8,
+  },
+  tickIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 8,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.text.white,
   },
 });
