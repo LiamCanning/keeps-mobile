@@ -43,110 +43,83 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
   
   const backgroundImageUri = getBackgroundImage();
   
-  if (showBackgroundImage && backgroundImageUri) {
+  if (showBackgroundImage) {
     return (
       <TouchableOpacity 
         style={styles.carouselContainer} 
         onPress={onPress}
         activeOpacity={0.9}
       >
-        {/* Image Section */}
-        <View style={styles.imageSection}>
-          <ImageBackground 
-            source={{ uri: backgroundImageUri }}
-            style={styles.carouselBackgroundImage}
-            imageStyle={styles.carouselBackgroundImageStyle}
-          >
-            <View style={styles.imageOverlay} />
-            {asset.id === 'liverpool' && (
-              <View style={styles.carouselTrendingBadge}>
-                <Text style={styles.trendingText}>Trending</Text>
-              </View>
-            )}
-          </ImageBackground>
-        </View>
-        
-        {/* Text Section */}
-        <View style={styles.textSection}>
-          <View style={styles.carouselContent}>
-            <View style={styles.carouselLeftSection}>
-              <Image source={{ uri: asset.logo }} style={styles.carouselLogo} />
-              <View style={styles.carouselTextContainer}>
-                <View style={styles.titleRow}>
-                  <Text style={[styles.carouselName]}>
-                    {asset.name}
-                  </Text>
-                  {!isComingSoon && (
-                    <View style={[styles.liveNowBadge, isCompleted && styles.soldOutBadge]}>
-                      <View style={[styles.liveIndicatorSmall, isCompleted && styles.soldOutIndicator]} />
-                      <Text style={[styles.liveNowText, isCompleted && styles.soldOutText]}>
-                        {isCompleted ? 'SOLD OUT' : 'LIVE NOW'}
-                      </Text>
-                    </View>
-                  )}
-                </View>
-                
-                <Text style={styles.carouselRaiseAmount}>
-                  {isComingSoon ? asset.totalRaiseAmount : 
-                   asset.id === 'rydercup' ? '£42,500,000 Bond' : asset.raiseAmount}
-                </Text>
-                
-                <Text style={styles.carouselTagline}>
-                  {asset.id === 'liverpool' ? "Expand Anfield's Stadium Capacity" :
-                   asset.id === 'mclaren' ? "Fuel McLaren's Next Victory" :
-                   asset.id === 'rydercup' ? 'Improve Digital Access for Fans' :
-                   asset.id === 'ohio' ? 'Fund Their World Class Stadium' :
-                   asset.id === 'cardiff' ? "Back the Bluebirds' Future" :
-                   asset.id === 'hexagon' ? 'Own 75% Of The Team' :
-                   'Exclusive Investment Opportunity'}
-                </Text>
-
-                {isComingSoon ? (
-                  <>
-                    <Text style={styles.carouselComingSoonInfo}>
-                      Total Raise: {asset.totalRaiseAmount}
-                    </Text>
-                    <Text style={styles.carouselComingSoonInfo}>
-                      {asset.expectedReturn}
-                    </Text>
-                    <View style={styles.carouselComingSoonIndicator}>
-                      <Clock size={16} color={Colors.text.white} />
-                      <Text style={styles.carouselComingSoonText}>{asset.comingSoonTimer}</Text>
-                    </View>
-                  </>
-                ) : (
-                  asset.raisedAmount && asset.goalAmount && (
-                    <View style={styles.carouselProgressSection}>
-                      <View style={styles.carouselProgressBar}>
-                        <View 
-                          style={[
-                            styles.progressFill, 
-                            { width: `${asset.progress}%`, backgroundColor: Colors.accent.green }
-                          ]} 
-                        />
-                      </View>
-                      <Text style={styles.carouselProgressText}>
-                        {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
-                      </Text>
-                    </View>
-                  )
-                )}
-                
-                {/* Invest Now Button */}
-                {onInvestPress && (
-                  <TouchableOpacity 
-                    style={styles.investButton} 
-                    onPress={onInvestPress}
-                    activeOpacity={0.8}
-                  >
-                    <Text style={styles.investButtonText}>
-                      {isComingSoon ? 'Get Early Access' : 'Invest Now'}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              </View>
+        <View style={styles.carouselContent}>
+          {/* Header with Logo and Name */}
+          <View style={styles.carouselHeader}>
+            <Image source={{ uri: asset.logo }} style={styles.carouselLogo} />
+            <View style={styles.carouselHeaderText}>
+              <Text style={styles.carouselName}>{asset.name}</Text>
+              <Text style={styles.carouselRaiseAmount}>
+                {isComingSoon ? asset.totalRaiseAmount : 
+                 asset.id === 'rydercup' ? '£42,500,000 Debenture Programme' : 
+                 asset.id === 'mclaren' ? '£50,000,000 ISA' :
+                 '£40,000,000 Equity Raise'}
+              </Text>
             </View>
           </View>
+          
+          {/* Stats Row */}
+          {!isComingSoon && (
+            <View style={styles.statsRow}>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>
+                  {asset.id === 'liverpool' ? '75%' : 
+                   asset.id === 'mclaren' ? '70%' : '90%'}
+                </Text>
+                <Text style={styles.statLabel}>Funded</Text>
+              </View>
+              <View style={styles.statItem}>
+                <Text style={styles.statValue}>
+                  {asset.id === 'liverpool' ? '10,250' : 
+                   asset.id === 'mclaren' ? '8,750' : '2,340'}
+                </Text>
+                <Text style={styles.statLabel}>Investors</Text>
+              </View>
+              <View style={styles.statItemWithIcon}>
+                <Clock size={16} color="#FF6B6B" />
+                <Text style={styles.statValue}>
+                  {asset.id === 'liverpool' ? '5 days' : 
+                   asset.id === 'mclaren' ? '2 weeks' : '48 hours'}
+                </Text>
+                <Text style={styles.statLabel}>Remaining</Text>
+              </View>
+            </View>
+          )}
+          
+          {isComingSoon && (
+            <View style={styles.comingSoonStats}>
+              <Text style={styles.carouselComingSoonInfo}>
+                Total Raise: {asset.totalRaiseAmount}
+              </Text>
+              <Text style={styles.carouselComingSoonInfo}>
+                {asset.expectedReturn}
+              </Text>
+              <View style={styles.carouselComingSoonIndicator}>
+                <Clock size={16} color={Colors.text.white} />
+                <Text style={styles.carouselComingSoonText}>{asset.comingSoonTimer}</Text>
+              </View>
+            </View>
+          )}
+          
+          {/* Invest Now Button */}
+          {onInvestPress && (
+            <TouchableOpacity 
+              style={styles.investButton} 
+              onPress={onInvestPress}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.investButtonText}>
+                {isComingSoon ? 'Get Early Access' : 'Invest Now'}
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </TouchableOpacity>
     );
@@ -262,9 +235,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
-    overflow: 'hidden',
     backgroundColor: Colors.background.card,
-    height: 380,
+    padding: 20,
+    minHeight: 280,
   },
   imageSection: {
     height: 200,
@@ -290,12 +263,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   carouselContent: {
-    paddingHorizontal: 20,
-    paddingVertical: 24,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+  },
+  carouselHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  carouselHeaderText: {
+    flex: 1,
   },
   carouselLeftSection: {
     flexDirection: 'row',
@@ -303,27 +280,24 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   carouselLogo: {
-    width: 50,
+    width: 60,
     height: 60,
     resizeMode: 'contain',
-    marginRight: 12,
+    marginRight: 16,
   },
   carouselTextContainer: {
     flex: 1,
   },
   carouselName: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
-    marginRight: 8,
-    flex: 1,
-    flexShrink: 1,
     color: Colors.text.dark,
+    marginBottom: 4,
   },
   carouselRaiseAmount: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginBottom: 6,
-    color: Colors.text.dark,
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#4A90E2',
   },
   carouselTagline: {
     fontSize: 16,
@@ -588,9 +562,8 @@ const styles = StyleSheet.create({
   investButton: {
     backgroundColor: '#4A90E2',
     borderRadius: 8,
-    paddingVertical: 12,
+    paddingVertical: 14,
     paddingHorizontal: 24,
-    marginTop: 12,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -598,6 +571,31 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  statItem: {
+    alignItems: 'flex-start',
+  },
+  statItemWithIcon: {
+    alignItems: 'flex-start',
+  },
+  statValue: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: Colors.text.dark,
+    marginBottom: 2,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    opacity: 0.7,
+  },
+  comingSoonStats: {
+    marginBottom: 20,
   },
   investButtonText: {
     color: Colors.text.white,
