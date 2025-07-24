@@ -60,6 +60,7 @@ export default function HomeScreen() {
         <AssetCarousel 
           assets={comingSoonAssets}
           onAssetPress={handleAssetPress}
+          showBackgroundImages={true}
         />
       </ScrollView>
     </View>

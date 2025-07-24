@@ -18,7 +18,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
   
-  // Background images for featured deals
+  // Background images for carousel cards
   const getBackgroundImage = () => {
     if (!showBackgroundImage) return null;
     
@@ -26,9 +26,15 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
       case 'liverpool':
         return 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=600&fit=crop';
       case 'mclaren':
-        return 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop';
+        return 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=600&fit=crop';
       case 'rydercup':
         return 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop';
+      case 'ohio':
+        return 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&h=600&fit=crop';
+      case 'cardiff':
+        return 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=600&fit=crop';
+      case 'hexagon':
+        return 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop';
       default:
         return null;
     }
@@ -80,30 +86,49 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                 </View>
                 
                 <Text style={styles.carouselRaiseAmount}>
-                  {asset.id === 'rydercup' ? '£42,500,000 Bond' : asset.raiseAmount}
+                  {isComingSoon ? asset.totalRaiseAmount : 
+                   asset.id === 'rydercup' ? '£42,500,000 Bond' : asset.raiseAmount}
                 </Text>
                 
                 <Text style={styles.carouselTagline}>
                   {asset.id === 'liverpool' ? "Expand Anfield's Stadium Capacity" :
                    asset.id === 'mclaren' ? "Fuel McLaren's Next Victory" :
                    asset.id === 'rydercup' ? 'Improve Digital Access for Fans' :
+                   asset.id === 'ohio' ? 'Fund Their World Class Stadium' :
+                   asset.id === 'cardiff' ? "Back the Bluebirds' Future" :
+                   asset.id === 'hexagon' ? 'Own 75% Of The Team' :
                    'Exclusive Investment Opportunity'}
                 </Text>
 
-                {asset.raisedAmount && asset.goalAmount && (
-                  <View style={styles.carouselProgressSection}>
-                    <View style={styles.carouselProgressBar}>
-                      <View 
-                        style={[
-                          styles.progressFill, 
-                          { width: `${asset.progress}%`, backgroundColor: Colors.accent.green }
-                        ]} 
-                      />
-                    </View>
-                    <Text style={styles.carouselProgressText}>
-                      {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
+                {isComingSoon ? (
+                  <>
+                    <Text style={styles.carouselComingSoonInfo}>
+                      Total Raise: {asset.totalRaiseAmount}
                     </Text>
-                  </View>
+                    <Text style={styles.carouselComingSoonInfo}>
+                      {asset.expectedReturn}
+                    </Text>
+                    <View style={styles.carouselComingSoonIndicator}>
+                      <Clock size={16} color={Colors.text.white} />
+                      <Text style={styles.carouselComingSoonText}>{asset.comingSoonTimer}</Text>
+                    </View>
+                  </>
+                ) : (
+                  asset.raisedAmount && asset.goalAmount && (
+                    <View style={styles.carouselProgressSection}>
+                      <View style={styles.carouselProgressBar}>
+                        <View 
+                          style={[
+                            styles.progressFill, 
+                            { width: `${asset.progress}%`, backgroundColor: Colors.accent.green }
+                          ]} 
+                        />
+                      </View>
+                      <Text style={styles.carouselProgressText}>
+                        {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
+                      </Text>
+                    </View>
+                  )
                 )}
               </View>
             </View>
@@ -225,6 +250,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     overflow: 'hidden',
     backgroundColor: Colors.background.card,
+    height: 380,
   },
   imageSection: {
     height: 200,
@@ -247,11 +273,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background.card,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
+    flex: 1,
   },
   carouselContent: {
     padding: 20,
     flexDirection: 'row',
     alignItems: 'flex-start',
+    flex: 1,
   },
   carouselLeftSection: {
     flexDirection: 'row',
@@ -518,5 +546,27 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     opacity: 0.9,
     textDecorationLine: 'underline',
+  },
+  carouselComingSoonInfo: {
+    fontSize: 14,
+    marginBottom: 4,
+    color: Colors.text.dark,
+    opacity: 0.8,
+  },
+  carouselComingSoonIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    marginTop: 8,
+    alignSelf: 'flex-start',
+  },
+  carouselComingSoonText: {
+    color: Colors.text.white,
+    fontSize: 12,
+    fontWeight: '600',
+    marginLeft: 4,
   },
 });
