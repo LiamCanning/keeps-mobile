@@ -7,13 +7,14 @@ interface AssetCarouselProps {
   assets: Asset[];
   onAssetPress: (assetId: string) => void;
   showBackgroundImages?: boolean;
+  onInvestPress?: (assetId: string) => void;
 }
 
 const { width: screenWidth } = Dimensions.get('window');
 const CARD_WIDTH = screenWidth - 32; // 16px padding on each side
 const CARD_SPACING = 16;
 
-export default function AssetCarousel({ assets, onAssetPress, showBackgroundImages = false }: AssetCarouselProps) {
+export default function AssetCarousel({ assets, onAssetPress, showBackgroundImages = false, onInvestPress }: AssetCarouselProps) {
   return (
     <ScrollView
       horizontal
@@ -35,6 +36,7 @@ export default function AssetCarousel({ assets, onAssetPress, showBackgroundImag
             asset={asset} 
             onPress={() => onAssetPress(asset.id)}
             showBackgroundImage={showBackgroundImages}
+            onInvestPress={onInvestPress ? () => onInvestPress(asset.id) : undefined}
           />
         </View>
       ))}

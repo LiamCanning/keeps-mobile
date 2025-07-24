@@ -25,6 +25,16 @@ export default function HomeScreen() {
     router.push(`/asset/${assetId}`);
   };
 
+  const handleInvestPress = (assetId: string) => {
+    // For coming soon assets, go to early access page
+    const asset = [...userAssets, ...comingSoonAssets].find(a => a.id === assetId);
+    if (asset?.type === 'coming_soon') {
+      router.push(`/early-access/${assetId}`);
+    } else {
+      router.push(`/buy/${assetId}`);
+    }
+  };
+
 
 
   const handleTabChange = (tab: 'live' | 'coming-soon' | 'completed') => {
@@ -54,6 +64,7 @@ export default function HomeScreen() {
           assets={userAssets}
           onAssetPress={handleAssetPress}
           showBackgroundImages={true}
+          onInvestPress={handleInvestPress}
         />
         
         <SectionTitle title="Coming Soon" />
@@ -61,6 +72,7 @@ export default function HomeScreen() {
           assets={comingSoonAssets}
           onAssetPress={handleAssetPress}
           showBackgroundImages={true}
+          onInvestPress={handleInvestPress}
         />
       </ScrollView>
     </View>

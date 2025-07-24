@@ -9,9 +9,10 @@ interface AssetCardProps {
   onPress?: () => void;
   onInvestorsPress?: () => void;
   showBackgroundImage?: boolean;
+  onInvestPress?: () => void;
 }
 
-export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgroundImage = false }: AssetCardProps) {
+export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgroundImage = false, onInvestPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
   const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
     (asset.id === 'exeter-chiefs' ? Colors.text.dark : '#FFFFFF');
@@ -129,6 +130,19 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                       </Text>
                     </View>
                   )
+                )}
+                
+                {/* Invest Now Button */}
+                {onInvestPress && (
+                  <TouchableOpacity 
+                    style={styles.investButton} 
+                    onPress={onInvestPress}
+                    activeOpacity={0.8}
+                  >
+                    <Text style={styles.investButtonText}>
+                      {isComingSoon ? 'Get Early Access' : 'Invest Now'}
+                    </Text>
+                  </TouchableOpacity>
                 )}
               </View>
             </View>
@@ -570,5 +584,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     marginLeft: 4,
+  },
+  investButton: {
+    backgroundColor: '#4A90E2',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    marginTop: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  investButtonText: {
+    color: Colors.text.white,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
