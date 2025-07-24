@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import { Clock, TrendingUp, Users } from 'lucide-react-native';
 import { Asset } from '@/constants/assets';
 import Colors from '@/constants/colors';
@@ -8,14 +8,104 @@ interface AssetCardProps {
   asset: Asset;
   onPress?: () => void;
   onInvestorsPress?: () => void;
+  showBackgroundImage?: boolean;
 }
 
-export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
+export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgroundImage = false }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
   const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
     (asset.id === 'exeter-chiefs' ? Colors.text.dark : '#FFFFFF');
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
+  
+  // Background images for featured deals
+  const getBackgroundImage = () => {
+    if (!showBackgroundImage) return null;
+    
+    switch (asset.id) {
+      case 'liverpool':
+        return 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=600&fit=crop';
+      case 'mclaren':
+        return 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop';
+      case 'rydercup':
+        return 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop';
+      default:
+        return null;
+    }
+  };
+  
+  const backgroundImageUri = getBackgroundImage();
+  
+  if (showBackgroundImage && backgroundImageUri) {
+    return (
+      <TouchableOpacity 
+        style={styles.container} 
+        onPress={onPress}
+        activeOpacity={0.9}
+      >
+        <ImageBackground 
+          source={{ uri: backgroundImageUri }}
+          style={styles.backgroundImage}
+          imageStyle={styles.backgroundImageStyle}
+        >
+          <View style={styles.overlay} />
+          <View style={styles.contentWithBackground}>
+            <View style={styles.leftSection}>
+              <Image source={{ uri: asset.logo }} style={styles.logoWithBackground} />
+              <View style={styles.textContainer}>
+                <View style={styles.titleRow}>
+                  <Text style={[styles.name, { color: '#FFFFFF' }]}>
+                    {asset.name}
+                  </Text>
+                  {!isComingSoon && (
+                    <View style={[styles.liveNowBadge, isCompleted && styles.soldOutBadge]}>
+                      <View style={[styles.liveIndicatorSmall, isCompleted && styles.soldOutIndicator]} />
+                      <Text style={[styles.liveNowText, isCompleted && styles.soldOutText]}>
+                        {isCompleted ? 'SOLD OUT' : 'LIVE NOW'}
+                      </Text>
+                    </View>
+                  )}
+                </View>
+                
+                <Text style={[styles.raiseAmount, { color: '#FFFFFF' }]}>
+                  {asset.id === 'rydercup' ? '£42,500,000 Bond' : asset.raiseAmount}
+                </Text>
+                
+                <Text style={[styles.tagline, { color: '#FFFFFF' }]}>
+                  {asset.id === 'liverpool' ? "Expand Anfield's Stadium Capacity" :
+                   asset.id === 'mclaren' ? "Fuel McLaren's Next Victory" :
+                   asset.id === 'rydercup' ? 'Improve Digital Access for Fans' :
+                   'Exclusive Investment Opportunity'}
+                </Text>
+
+                {asset.raisedAmount && asset.goalAmount && (
+                  <View style={styles.progressSection}>
+                    <View style={styles.progressBar}>
+                      <View 
+                        style={[
+                          styles.progressFill, 
+                          { width: `${asset.progress}%`, backgroundColor: Colors.accent.green }
+                        ]} 
+                      />
+                    </View>
+                    <Text style={[styles.progressText, { color: '#FFFFFF' }]}>
+                      {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
+                    </Text>
+                  </View>
+                )}
+              </View>
+            </View>
+          </View>
+          
+          {asset.id === 'liverpool' && (
+            <View style={styles.trendingBadge}>
+              <Text style={styles.trendingText}>Trending</Text>
+            </View>
+          )}
+        </ImageBackground>
+      </TouchableOpacity>
+    );
+  }
   
   return (
     <TouchableOpacity 
@@ -118,6 +208,32 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
     position: 'relative',
+    overflow: 'hidden',
+  },
+  backgroundImage: {
+    flex: 1,
+    minHeight: 200,
+    margin: -20,
+    justifyContent: 'flex-end',
+  },
+  backgroundImageStyle: {
+    borderRadius: 16,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    borderRadius: 16,
+  },
+  contentWithBackground: {
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  logoWithBackground: {
+    width: 60,
+    height: 75,
+    resizeMode: 'contain',
+    marginRight: 16,
   },
   content: {
     flexDirection: 'row',

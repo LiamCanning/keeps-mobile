@@ -53,6 +53,7 @@ export default function HomeScreen() {
         <AssetCarousel 
           assets={userAssets}
           onAssetPress={handleAssetPress}
+          showBackgroundImages={true}
         />
         
         <SectionTitle title="Coming Soon" />
