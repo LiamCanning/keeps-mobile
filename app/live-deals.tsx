@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
     paddingBottom: 20,
+    gap: 16,
   },
   titleContainer: {
     flexDirection: 'row',

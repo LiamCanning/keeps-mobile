@@ -276,10 +276,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   carouselContent: {
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 24,
     flexDirection: 'row',
     alignItems: 'flex-start',
     flex: 1,
+    justifyContent: 'center',
   },
   carouselLeftSection: {
     flexDirection: 'row',
