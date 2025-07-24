@@ -39,22 +39,34 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
   if (showBackgroundImage && backgroundImageUri) {
     return (
       <TouchableOpacity 
-        style={styles.container} 
+        style={styles.carouselContainer} 
         onPress={onPress}
         activeOpacity={0.9}
       >
-        <ImageBackground 
-          source={{ uri: backgroundImageUri }}
-          style={styles.backgroundImage}
-          imageStyle={styles.backgroundImageStyle}
-        >
-          <View style={styles.overlay} />
-          <View style={styles.contentWithBackground}>
-            <View style={styles.leftSection}>
-              <Image source={{ uri: asset.logo }} style={styles.logoWithBackground} />
-              <View style={styles.textContainer}>
+        {/* Image Section */}
+        <View style={styles.imageSection}>
+          <ImageBackground 
+            source={{ uri: backgroundImageUri }}
+            style={styles.carouselBackgroundImage}
+            imageStyle={styles.carouselBackgroundImageStyle}
+          >
+            <View style={styles.imageOverlay} />
+            {asset.id === 'liverpool' && (
+              <View style={styles.carouselTrendingBadge}>
+                <Text style={styles.trendingText}>Trending</Text>
+              </View>
+            )}
+          </ImageBackground>
+        </View>
+        
+        {/* Text Section */}
+        <View style={styles.textSection}>
+          <View style={styles.carouselContent}>
+            <View style={styles.carouselLeftSection}>
+              <Image source={{ uri: asset.logo }} style={styles.carouselLogo} />
+              <View style={styles.carouselTextContainer}>
                 <View style={styles.titleRow}>
-                  <Text style={[styles.name, { color: '#FFFFFF' }]}>
+                  <Text style={[styles.carouselName]}>
                     {asset.name}
                   </Text>
                   {!isComingSoon && (
@@ -67,11 +79,11 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                   )}
                 </View>
                 
-                <Text style={[styles.raiseAmount, { color: '#FFFFFF' }]}>
+                <Text style={styles.carouselRaiseAmount}>
                   {asset.id === 'rydercup' ? '£42,500,000 Bond' : asset.raiseAmount}
                 </Text>
                 
-                <Text style={[styles.tagline, { color: '#FFFFFF' }]}>
+                <Text style={styles.carouselTagline}>
                   {asset.id === 'liverpool' ? "Expand Anfield's Stadium Capacity" :
                    asset.id === 'mclaren' ? "Fuel McLaren's Next Victory" :
                    asset.id === 'rydercup' ? 'Improve Digital Access for Fans' :
@@ -79,8 +91,8 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                 </Text>
 
                 {asset.raisedAmount && asset.goalAmount && (
-                  <View style={styles.progressSection}>
-                    <View style={styles.progressBar}>
+                  <View style={styles.carouselProgressSection}>
+                    <View style={styles.carouselProgressBar}>
                       <View 
                         style={[
                           styles.progressFill, 
@@ -88,7 +100,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
                         ]} 
                       />
                     </View>
-                    <Text style={[styles.progressText, { color: '#FFFFFF' }]}>
+                    <Text style={styles.carouselProgressText}>
                       {isCompleted ? `${asset.raisedAmount} - ${asset.remaining}` : `${asset.raisedAmount} raised of ${asset.goalAmount} goal`}
                     </Text>
                   </View>
@@ -96,13 +108,7 @@ export default function AssetCard({ asset, onPress, onInvestorsPress, showBackgr
               </View>
             </View>
           </View>
-          
-          {asset.id === 'liverpool' && (
-            <View style={styles.trendingBadge}>
-              <Text style={styles.trendingText}>Trending</Text>
-            </View>
-          )}
-        </ImageBackground>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -209,6 +215,101 @@ const styles = StyleSheet.create({
     elevation: 2,
     position: 'relative',
     overflow: 'hidden',
+  },
+  carouselContainer: {
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    overflow: 'hidden',
+    backgroundColor: Colors.background.card,
+  },
+  imageSection: {
+    height: 200,
+    position: 'relative',
+  },
+  carouselBackgroundImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  carouselBackgroundImageStyle: {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  },
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  textSection: {
+    backgroundColor: Colors.background.card,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+  },
+  carouselContent: {
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  carouselLeftSection: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  carouselLogo: {
+    width: 50,
+    height: 60,
+    resizeMode: 'contain',
+    marginRight: 12,
+  },
+  carouselTextContainer: {
+    flex: 1,
+  },
+  carouselName: {
+    fontSize: 22,
+    fontWeight: '700',
+    marginRight: 8,
+    flex: 1,
+    flexShrink: 1,
+    color: Colors.text.dark,
+  },
+  carouselRaiseAmount: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 6,
+    color: Colors.text.dark,
+  },
+  carouselTagline: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginBottom: 12,
+    color: Colors.text.dark,
+    opacity: 0.8,
+  },
+  carouselProgressSection: {
+    marginBottom: 8,
+  },
+  carouselProgressBar: {
+    height: 6,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 3,
+    marginBottom: 6,
+  },
+  carouselProgressText: {
+    fontSize: 14,
+    color: Colors.text.dark,
+    opacity: 0.8,
+  },
+  carouselTrendingBadge: {
+    backgroundColor: Colors.accent.green,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    position: 'absolute',
+    top: 12,
+    left: 12,
   },
   backgroundImage: {
     flex: 1,
