@@ -64,7 +64,7 @@ export const userAssets: Asset[] = [
   },
   {
     id: 'mclaren',
-    name: 'McLaren Racing',
+    name: 'McLaren F1',
     type: 'income',
     logo: 'https://r2-pub.rork.com/attachments/xklkyrwayvkzzqg9s9dt0',
     status: 'LIVE NOW',

@@ -142,12 +142,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
   },
   name: {
     fontSize: 26,
     fontWeight: '700',
     marginRight: 8,
+    flex: 1,
+    flexShrink: 1,
   },
   trendingBadge: {
     backgroundColor: Colors.accent.green,
@@ -259,6 +261,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 12,
     marginRight: 8,
+    flexShrink: 0,
   },
   liveIndicatorSmall: {
     width: 6,
