@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useRouter } from 'expo-router';
 
 import Header from '@/components/Header';
 import SearchBar from '@/components/SearchBar';
-import AssetCard from '@/components/AssetCard';
+import AssetCarousel from '@/components/AssetCarousel';
 import SectionTitle from '@/components/SectionTitle';
 import ActionBanner from '@/components/ActionBanner';
 
@@ -25,9 +25,7 @@ export default function HomeScreen() {
     router.push(`/asset/${assetId}`);
   };
 
-  const handleInvestorsPress = (assetId: string) => {
-    router.push(`/investors/${assetId}`);
-  };
+
 
   const handleTabChange = (tab: 'live' | 'coming-soon' | 'completed') => {
     setActiveTab(tab);
@@ -52,24 +50,16 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
       >
         <SectionTitle title="✅ Featured Deals" />
-        
-        {userAssets.map((asset) => (
-          <AssetCard 
-            key={asset.id} 
-            asset={asset} 
-            onPress={() => handleAssetPress(asset.id)}
-          />
-        ))}
+        <AssetCarousel 
+          assets={userAssets}
+          onAssetPress={handleAssetPress}
+        />
         
         <SectionTitle title="Coming Soon" />
-        
-        {comingSoonAssets.map((asset) => (
-          <AssetCard 
-            key={asset.id} 
-            asset={asset} 
-            onPress={() => handleAssetPress(asset.id)}
-          />
-        ))}
+        <AssetCarousel 
+          assets={comingSoonAssets}
+          onAssetPress={handleAssetPress}
+        />
       </ScrollView>
     </View>
   );
@@ -84,7 +74,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    paddingHorizontal: 16,
     paddingBottom: 24,
   },
 });

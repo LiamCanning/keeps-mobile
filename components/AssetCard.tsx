@@ -111,7 +111,6 @@ export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCar
 const styles = StyleSheet.create({
   container: {
     borderRadius: 16,
-    marginBottom: 16,
     padding: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
