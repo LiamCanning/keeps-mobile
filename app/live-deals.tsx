@@ -64,18 +64,15 @@ export default function LiveDealsScreen() {
         />
       </View>
       
+      {/* Add spacing after search bar */}
+      <View style={styles.spacingAfterSearch} />
+      
       <ScrollView 
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        <View style={styles.titleContainer}>
-          <Image 
-            source={{ uri: 'https://r2-pub.rork.com/generated-images/8ed8a159-de50-4daf-99eb-e1c0ae8c7865.png' }}
-            style={styles.tickIcon}
-          />
-          <Text style={styles.title}>All Live Deals</Text>
-        </View>
+        {/* Title moved to bottom - will be added after cards */}
         
         {userAssets.map((asset) => (
           <AssetCard 
@@ -84,6 +81,15 @@ export default function LiveDealsScreen() {
             onPress={() => handleAssetPress(asset.id)}
           />
         ))}
+        
+        {/* Title moved to bottom center */}
+        <View style={styles.bottomTitleContainer}>
+          <Image 
+            source={{ uri: 'https://r2-pub.rork.com/generated-images/8ed8a159-de50-4daf-99eb-e1c0ae8c7865.png' }}
+            style={styles.tickIcon}
+          />
+          <Text style={styles.bottomTitle}>Live Deals</Text>
+        </View>
       </ScrollView>
       
       {/* Bottom Navigation */}
@@ -195,6 +201,9 @@ const styles = StyleSheet.create({
   searchContainer: {
     paddingTop: 16,
   },
+  spacingAfterSearch: {
+    height: 16,
+  },
   scrollView: {
     flex: 1,
   },
@@ -216,7 +225,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: Colors.text.white,
+    color: '#FFFFFF',
+  },
+  bottomTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 24,
+    marginBottom: 16,
+  },
+  bottomTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
   },
   bottomNav: {
     flexDirection: 'row',
