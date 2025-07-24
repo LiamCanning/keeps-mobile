@@ -13,7 +13,7 @@ interface AssetCardProps {
 export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
   const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
-    (asset.id === 'exeter-chiefs' ? Colors.text.dark : Colors.text.white);
+    (asset.id === 'exeter-chiefs' ? Colors.text.dark : '#FFFFFF');
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
   
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   comingSoonInfo: {
     fontSize: 14,
     marginBottom: 4,
-    opacity: 0.9,
+    opacity: 1.0,
   },
   comingSoonIndicator: {
     flexDirection: 'row',
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    opacity: 0.8,
+    opacity: 1.0,
   },
   metricsContainer: {
     gap: 4,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   metricText: {
     fontSize: 12,
     marginLeft: 6,
-    opacity: 0.9,
+    opacity: 1.0,
   },
   liveNowBadge: {
     flexDirection: 'row',
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
-    opacity: 0.9,
+    opacity: 1.0,
   },
   taglineItalic: {
     fontStyle: 'italic',
