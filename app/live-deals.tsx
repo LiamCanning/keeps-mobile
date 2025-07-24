@@ -40,7 +40,7 @@ export default function LiveDealsScreen() {
     <View style={styles.container}>
       <Stack.Screen 
         options={{ 
-          title: 'Live Deals',
+          title: '',
           headerStyle: { backgroundColor: Colors.primary.blue },
           headerTintColor: Colors.text.white,
           headerTitleStyle: { fontWeight: 'bold' },
@@ -52,6 +52,15 @@ export default function LiveDealsScreen() {
               />
               <ChevronDown size={16} color={Colors.primary.blue} style={styles.chevron} />
             </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <View style={styles.headerTitleContainer}>
+              <Image 
+                source={{ uri: 'https://r2-pub.rork.com/generated-images/8ed8a159-de50-4daf-99eb-e1c0ae8c7865.png' }}
+                style={styles.headerTickIcon}
+              />
+              <Text style={styles.headerTitleText}>Live Deals</Text>
+            </View>
           ),
         }} 
       />
@@ -294,5 +303,19 @@ const styles = StyleSheet.create({
     color: Colors.text.dark,
     marginLeft: 12,
     fontWeight: '500',
+  },
+  headerTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerTickIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 8,
+  },
+  headerTitleText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Colors.text.white,
   },
 });
