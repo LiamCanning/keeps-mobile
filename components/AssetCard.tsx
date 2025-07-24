@@ -12,7 +12,8 @@ interface AssetCardProps {
 
 export default function AssetCard({ asset, onPress, onInvestorsPress }: AssetCardProps) {
   const backgroundColor = asset.backgroundColor || Colors.background.card;
-  const textColor = Colors.text.white;
+  const textColor = backgroundColor === Colors.background.card ? Colors.text.dark : 
+    (asset.id === 'exeter-chiefs' ? Colors.text.dark : Colors.text.white);
   const isComingSoon = asset.type === 'coming_soon';
   const isCompleted = asset.status === 'SOLD OUT';
   
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   name: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '700',
     marginRight: 8,
   },
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   raiseAmount: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     marginBottom: 6,
   },
@@ -208,13 +209,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   description: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 4,
-    lineHeight: 24,
+    lineHeight: 22,
     marginBottom: 8,
   },
   comingSoonInfo: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 4,
     opacity: 0.9,
   },
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   progressText: {
-    fontSize: 14,
+    fontSize: 12,
     opacity: 0.8,
   },
   metricsContainer: {
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   metricText: {
-    fontSize: 14,
+    fontSize: 12,
     marginLeft: 6,
     opacity: 0.9,
   },
@@ -296,7 +297,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   tagline: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
     opacity: 0.9,

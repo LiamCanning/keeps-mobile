@@ -254,7 +254,8 @@ const styles = StyleSheet.create({
   dropdown: {
     backgroundColor: Colors.background.card,
     borderRadius: 12,
-    padding: 8,
+    padding: 16,
+    minWidth: 280,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -264,14 +265,14 @@ const styles = StyleSheet.create({
   dropdownItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     borderRadius: 8,
   },
   dropdownText: {
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.text.dark,
-    marginLeft: 12,
+    marginLeft: 16,
     fontWeight: '500',
   },
 });
