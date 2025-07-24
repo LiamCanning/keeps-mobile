@@ -118,6 +118,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
     position: 'relative',
+    marginBottom: 16,
+    minHeight: 180,
   },
   content: {
     flexDirection: 'row',
